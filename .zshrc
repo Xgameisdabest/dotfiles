@@ -179,7 +179,7 @@ alias ohmyzsh="cd ~/.oh-my-zsh"
 alias tmuxconfig="nvim ~/.config/tmux/tmux.conf"
 
 # system related
-alias cat=batcat
+#alias cat=batcat
 alias open=xdg-open
 alias poweroff="sudo poweroff"
 alias cls=clear

@@ -1,0 +1,36 @@
+ipc_socket: true
+
+import: 
+- ~/.config/alacritty/catppuccin-mocha.yml
+
+env:
+  TERM: xterm-256color
+
+font: 
+  normal: 
+    family: JetBrainsMono Nerd Font
+    style: Regular
+
+window:
+  title: "Alacritty  "
+  dynamic_title: true
+
+cursor:
+  style: beam
+  blinking: off
+
+hints:
+  regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+    [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+  hyperlinks: true
+  command: xdg-open
+  post_processing: true
+  persist: false
+  mouse:
+   enabled: true
+  binding:
+   key: U
+   mods: Control|Shift
+
+mouse_bindings:
+  - { mouse: "Left", mods: "Super", action: "Paste" }
