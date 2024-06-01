@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# URLS=(
+#   ["Google"]="https://www.google.com/search?q="
+#   ["Bing"]="https://www.bing.com/search?q="
+#   ["Yahoo"]="https://search.yahoo.com/search?p="
+#   ["Duckduckgo"]="https://www.duckduckgo.com/?q="
+#   ["Yandex"]="https://yandex.ru/yandsearch?text="
+#   ["Youtube"]="https://www.youtube.com/results?search_query="
+# )
+
+search=$( (echo ) | rofi -dmenu -theme-str "window {height: 8%;}" -matching fuzzy -p "Search: " )
+search_engine="https://www.google.com/search?q="
+#search_engine=https://duckduckgo.com/?q=""
+
+main() {
+    if [[ -n "$search" ]]; then
+      url="$search_engine$search"
+      xdg-open "$url"
+	
+       else
+	texts=("Nigga wdym 💀" "Bro wasted my fucking time 🤬" "Fuck you 🖕" "Bitch did NOT have anything to say 🤡")
+	num_texts=${#texts[@]}
+	random_index=$(( RANDOM % num_texts ))
+	random_text=${texts[random_index]}
+	notify-send -t 1000 "$random_text"
+		exit
+	      fi
+}
+
+main
+
+exit 0
