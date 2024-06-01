@@ -194,6 +194,9 @@ alias sysls=ls
 # --------------------------------
 
 #jump between dirs
+
+alias z=zoxide
+
 alias programmingdir="cd ~/programming/"
 alias cdir="cd ~/programming/c/"
 alias luadir="cd ~/programming/lua/"
