@@ -16,13 +16,13 @@
     // Modules configuration
      
 
-    "hyprland/language": {
+    "sway/language": {
         "format": "  : {} ",
         "keyboard-name": "at-translated-set-2-keyboard"
     },
 
 
-    "hyprland/workspaces": {
+    "sway/workspaces": {
       "format": "{name}",
       "format-icons": {
         "active": "",
