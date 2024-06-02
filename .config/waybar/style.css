@@ -1,0 +1,162 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrainsMono Nerd Font;
+    font-weight: bold;
+    font-size: 18px;
+    min-height: 25px;
+}
+
+/* window#waybar { */
+/*     background: transparent; */
+/*     color: #cdd6f4; */
+/*     margin: 0px; */
+/*     padding: 0px; */
+/* } */
+
+window#waybar {
+    background: rgba(40, 40, 40, 0);
+    color: #cdd6f4;
+    margin: 0px;
+    border-radius: 0px;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #cdd6f4;
+}
+
+tooltip {
+    background: transparent;
+    border-radius: 6px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #cdd6f4;
+}
+
+#workspaces button {
+    color: #585b70;
+    border: none;
+    border-radius: 6px;
+    transition-duration: 0.1s;
+    background: none;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.active {
+    color: #cdd6f4;
+    border: none;
+    border-radius: 6px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.focused {
+    color: #cdd6f4;
+    background: none;
+    border-radius: 6px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.persistent,
+#workspaces button.empty {
+    color: #6c7086;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button:hover {
+    background: none;
+    border-color: transparent;
+    color: #cdd6f4;
+    border-radius: 6px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.special {
+    color: #fabd2f;
+    background: rgba(40, 40, 40, 0.92);
+    border-radius: 6px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.active,
+#workspaces button.visible {
+    color: #cdd6f4;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.urgent {
+    color: #cc241d;
+    background: none;
+    border-radius: 6px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+/* #window, */
+/* #clock, */
+/* #battery, */
+/* #pulseaudio, */
+/* #network, */
+/* #workspaces, */
+/* #custom-power, */
+/* #cpu, */
+/* #memory, */
+/* #temperature, */
+/* #bluetooth, */
+/* #backlight, */
+/* #custom-lock, */
+/* #window, */
+/* #language, */
+/* #custom-wallpaper, */
+/* #custom-search { */
+/*     background: rgba(40, 40, 40, 0.92); */
+/*     border-radius: 6px; */
+/*     border-width: 2px; */
+/*     border-style: solid; */
+/*     border-color: #cdd6f4; */
+/*     margin-left: 4px; */
+/*     padding-right: 4px; */
+/*     padding-left: 0px; */
+/**/
+/* } */
+
+
+/* my theme */
+
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#workspaces,
+#custom-power,
+#cpu,
+#memory,
+#temperature,
+#bluetooth,
+#backlight,
+#custom-lock,
+#window,
+#language,
+#custom-wallpaper,
+#custom-search {
+    background: rgba(40, 40, 40, 0.92);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #cdd6f4;
+    margin-top: 0;
+    border-radius: 5px;
+    padding-right: 4px;
+    padding-left: 4px;
+}

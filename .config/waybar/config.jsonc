@@ -1,0 +1,176 @@
+{
+   
+    "layer": "top", "position": "top", //(top|bottom|left|right)
+    //"height": 30, //(removed for auto height)
+    "width": 1900, // Waybar width
+    "spacing": 8, // Gaps between modules (4px)
+    "margin-top": 14,
+    "margin-bottom": 0,
+
+    // Choose the order of the modules
+    "modules-left": ["custom/padd","battery","pulseaudio","bluetooth"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["clock","network","custom/power","custom/padd"],
+    
+
+    // Modules configuration
+     
+
+    "hyprland/language": {
+        "format": "  : {} ",
+        "keyboard-name": "at-translated-set-2-keyboard"
+    },
+
+
+    "hyprland/workspaces": {
+      "format": "{name}",
+      "format-icons": {
+        "active": "",
+        "default": ""
+      },
+        "persistent_workspaces": {
+            "1": ["eDP-1"],
+            "2": ["eDP-1"],
+            "3": ["eDP-1"],
+            "4": ["eDP-1"],
+            "5": ["eDP-1"],
+            "6": ["HDMI-A-1"],
+            "7": ["HDMI-A-1"],
+            "8": ["HDMI-A-1"],
+            "9": ["HDMI-A-1"],
+            "10": ["HDMI-A-1"]
+        }
+},
+    
+    "hyprland/window": {
+        "format": " 󰘔  {class} "
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
+    "bluetooth":{
+	  "format": "  {status} ",
+	  "format-disabled": "", // an empty format will hide the module
+	  "format-connected": "  {device_alias} connected ",
+	  "tooltip-format": "Controller: {controller_alias} -> {controller_address}",
+	  "tooltip-format-connected": "Controller: {controller_alias} -> {controller_address}\n---\nConnected Device: {device_enumerate}",
+	  "tooltip-format-enumerate-connected": "\n{device_alias} -> {device_address}",
+    "on-click-right": "rfkill unblock bluetooth && kitty bluetoothctl"
+    },
+
+    "clock": {
+        // "timezone": "Hanoi",
+        "interval": 1,
+        "format": "   {:%T} ",
+        "tooltip-format": "<big>{:%Y %B}</big>\n\n<tt><big>{calendar}</big></tt>",
+        "format-alt": "   {:%d-%m-%Y} "
+    },
+    "cpu": {
+        "interval": 15,
+        "format": " {usage}%  ",
+        "tooltip": true
+    },
+    "memory": {
+        "interval": 3,
+        "format": " {}% 󰘚 ",
+        "format-alt": "  {used} / {total} Gib "
+    },
+    
+    "temperature": {
+        "interval": 1,
+        "critical-threshold": 80,
+        "format-critical": " {temperatureC}°C  ",
+        "format": " {temperatureC}°C  "
+    },
+
+    "battery": {
+      "interval": 1,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        
+        "format": " {capacity}% {icon} ",
+        "format-charging": " {capacity}% 󰂄 ",
+        "format-not-charging": " {capacity}% 󰂌 ",
+        "format-plugged": " {capacity}%  ",
+        //"tooltip-format": " {time} {icon} ",
+        "format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁽","󰁾","󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "on-click": "powerprofilesctl set performance && notify-send SET_PWR_PERFORMANCE ",
+        "on-click-right": "powerprofilesctl set power-saver && notify-send SET_PWR_SAVER",
+        "on-click-middle": "powerprofilesctl set balanced && notify-send SET_PWR_BALANCE"
+    },
+
+    "network": {
+        "interval": 2,
+        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+        "format-wifi": " {icon} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected ⚠ ",
+        "format-alt": " IP: {ipaddr} ",
+        "on-click-right": "kitty nmtui"
+    },
+    
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": " {volume}% {icon} {format_source} ",
+        "format-bluetooth": " {volume}% {icon} {format_source} ",
+        "format-bluetooth-muted": " {icon} {format_source} ",
+        "format-muted": " 󰖁 {format_source} ",
+        "format-source": " {volume}%  ",
+        "format-source-muted": "",
+        "format-icons": {
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pamixer --toggle-mute",
+        "on-click-right": "pavucontrol"
+        },
+
+    "custom/power": {
+      "format": " {icon} ",
+      "format-icons": "⏻",
+      "on-click": "wlogout"
+    },
+  
+   "backlight": {
+      "device": "intel_backlight",
+      "scroll-step": 5,
+      "format": "  {percent}% {icon}  ",
+      "format-icons": [""]
+    },
+  
+    "custom/spotify": {
+      "max-length": 100,
+       "interval": 1,
+       "return-type": "json",
+       "exec": "waybar_media_display",
+       "exec-if": "pgrep spotify",     
+       "escape": true
+      },
+  
+    "custom/wallpaper": {
+      "format": " {icon} ",
+      "format-icons": "",
+      "on-click": "waypaper"
+    },
+    
+    "custom/search": {
+      "format": " {icon} ",
+      "format-icons": "",
+      "on-click": "rofi -show drun"
+    },
+
+    "custom/padd": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+}
+
+}
+
