@@ -75,6 +75,7 @@ bindsym $mod+s exec ~/.config/rofi/modules/rofi-web-search
 
 #lock the fucking screen
 bindsym $mod+q exec betterlockscreen -l --span
+#exec --no-startup-id xss-lock  -- ~/.config/i3/lock.sh
 
 # kill focused window
 bindsym $mod+x kill
