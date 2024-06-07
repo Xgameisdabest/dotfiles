@@ -7,7 +7,7 @@ frame_color = "#89b4fa"
 highlight = "#89dceb"
 separator_color= frame
 origin=bottom-center
-
+timeout=1250
 
 [urgency_low]
 background = "#1e1e2e"
