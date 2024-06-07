@@ -1,1 +1,9 @@
-Theme = alldefault
+theme = nightly_enhanced
+MusicDir = ~/Music
+XTerms = xterm
+XTerms += xterm-colour:xterm-color
+XTerms += xterm-256colour:xterm-256color
+XTerms += rxvt:rxvt-unicode
+XTerms += rxvt-unicode-256colour:rxvt-unicode-256color
+XTerms += eterm
+PlaylistNumbering = yes
