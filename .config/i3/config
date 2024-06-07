@@ -77,6 +77,9 @@ bindsym $mod+s exec ~/.config/rofi/modules/rofi-web-search
 bindsym $mod+q exec betterlockscreen -l --span
 exec_always --no-startup-id xss-lock  -- ~/.config/i3/lock.sh
 
+#i3 settings
+bindsym $mod+i exec alacritty -e nvim ~/.config/i3/config
+
 # kill focused window
 bindsym $mod+x kill
 
