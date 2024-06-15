@@ -4,7 +4,7 @@ my i3 config, up to date as I change my shits
 NOTE: only work on debian based distros
 
 ## Dependencies for i3, some of the config files I put for hyprland and sway (NOT COMPLETE)
-- apt nala pacstall flatpak (essential)
+- apt snap nala pacstall flatpak (essential)
 - gsimplecal (essential)
 - neovim (essential)
 - alacritty/kitty (essential)
@@ -21,7 +21,7 @@ NOTE: only work on debian based distros
 - cava
 - superfile
 - moc
-
+- tetris-thefenriswolf gambit (games)
 ## Installation
 
 1st, git clone the whole thing

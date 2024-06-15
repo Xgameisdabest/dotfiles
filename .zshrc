@@ -223,6 +223,7 @@ alias games="ls /usr/games/"
 alias tetris=/snap/bin/tetris-thefenriswolf.tetris
 alias pacman=pacman4console
 alias aquarium=asciiquarium
+alias chess=gambit
 
 #fetching programs
 alias nfetch=neofetch
