@@ -299,6 +299,7 @@ PROMPT=' $(git_prompt_info)
 RPROMPT='%B%F{red}|%f%F{white}%f%T%F{red}|%f%b %(?:%{$fg_bold[green]%}%1{✔%}:%{$fg_bold[red]%}%1{✗%})%{$fg_bold[white]%} '
 
 #startup
+echo "\n  $(whoami) - 󰟀 $(hostname)"
 #echo "Tip of the day:" 
 #fortune ubuntu-server-tips
 #echo
