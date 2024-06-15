@@ -1,6 +1,10 @@
+## about
 my i3 config, up to date as I change my shits
 
+NOTE: only work on debian based distros
+
 ## Dependencies for i3, some of the config files I put for hyprland and sway (NOT COMPLETE)
+- apt nala pacstall flatpak (essential)
 - gsimplecal (essential)
 - neovim (essential)
 - alacritty/kitty (essential)
