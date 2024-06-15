@@ -13,15 +13,15 @@ NOTE: only work on debian based distros
 - hyprland
 - pijulius picom (essential)
 - betterlockscreen (essential)
-- neofetch
-- tmux
-- waypaper (feh)
+- tmux neofetch(terminal util)
+- waypaper feh (wallpaper)
 - dunst (essential)
 - rofi (essential)
-- cava
-- superfile
-- moc
+- superfile nautilus thunar (file manager)
+- moc spotify spt spotifyd (music player)
+- cava (audio visualizer)
 - tetris-thefenriswolf gambit (games)
+- solaar (logitech util setting)
 ## Installation
 
 1st, git clone the whole thing
