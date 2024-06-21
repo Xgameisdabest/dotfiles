@@ -40,3 +40,6 @@ regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:
 bindings = [
 	{ mouse = "Right", mods = "Control", action = "Paste" },
 ]
+
+[env]
+WINIT_X11_SCALE_FACTOR = "1.5"
