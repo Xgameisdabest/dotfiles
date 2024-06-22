@@ -8,6 +8,9 @@ ipc_socket = true
 title = "Alacritty  "
 dynamic_title = true
 
+[font]
+builtin_box_drawing = true
+
 [font.normal]
 family = "JetBrainsMono Nerd Font"
 

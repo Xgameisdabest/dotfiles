@@ -9,7 +9,7 @@
 
     // Choose the order of the modules
     "modules-left": ["custom/padd","battery","pulseaudio","bluetooth"],
-    "modules-center": ["hyprland/workspaces"],
+    "modules-center": ["sway/workspaces"],
     "modules-right": ["clock","network","custom/power","custom/padd"],
     
 
@@ -42,7 +42,7 @@
         }
 },
     
-    "hyprland/window": {
+    "sway/window": {
         "format": " 󰘔  {class} "
     },
 
@@ -55,10 +55,10 @@
 	  "format": "  {status} ",
 	  "format-disabled": "", // an empty format will hide the module
 	  "format-connected": "  {device_alias} connected ",
-	  "tooltip-format": "Controller: {controller_alias} -> {controller_address}",
-	  "tooltip-format-connected": "Controller: {controller_alias} -> {controller_address}\n---\nConnected Device: {device_enumerate}",
-	  "tooltip-format-enumerate-connected": "\n{device_alias} -> {device_address}",
-    "on-click-right": "rfkill unblock bluetooth && kitty bluetoothctl"
+	  //"tooltip-format": "Controller: {controller_alias} -> {controller_address}",
+	  //"tooltip-format-connected": "Controller: {controller_alias} -> {controller_address}\n---\nConnected Device: {device_enumerate}",
+	  //"tooltip-format-enumerate-connected": "\n{device_alias} -> {device_address}",
+    "on-click": "rfkill unblock bluetooth && ~/.config/rofi/modules/rofi-bluetooth"
     },
 
     "clock": {
@@ -113,8 +113,8 @@
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} (No IP)  ",
         "format-disconnected": "Disconnected ⚠ ",
-        "format-alt": " IP: {ipaddr} ",
-        "on-click-right": "kitty nmtui"
+        //"format-alt": " IP: {ipaddr} ",
+        "on-click": "~/.config/rofi/modules/rofi-wifi-menu"
     },
     
     "pulseaudio": {
@@ -135,7 +135,7 @@
     "custom/power": {
       "format": " {icon} ",
       "format-icons": "⏻",
-      "on-click": "wlogout"
+      "on-click": "~/.config/rofi/modules/rofi-power-menu"
     },
   
    "backlight": {
