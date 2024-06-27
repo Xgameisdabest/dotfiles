@@ -1,5 +1,6 @@
 #DEFAULT MODIFIER KEY
 set $mod Mod4
+set $alt Mod1
 
 exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help menu!"
 
@@ -8,7 +9,7 @@ exec_always --no-startup-id waypaper --restore
 
 #exec --no-startup-id setxkbmap -layout us,vn && setxkbmap -option 'grp:win_space_toggle'
 
-exec --no-startup-id easyeffects --gapplication-service
+#exec --no-startup-id easyeffects --gapplication-service
 
 exec --no-startup-id solaar --window=hide
 
@@ -93,7 +94,9 @@ bindsym $mod+Shift+d scratchpad show
 
 # start dmenu (a program launcher)
 #bindsym $mod+r exec --no-startup-id rofi -show drun
-bindsym $mod+r exec --no-startup-id rofi -theme catppuccin-mocha-fullscreen.rasi -show drun 
+bindsym $mod+r exec --no-startup-id rofi -show drun
+bindsym $alt+space exec --no-startup-id rofi -theme catppuccin-mocha-fullscreen.rasi -show drun
+
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # A more modern dmenu replacement is rofi:

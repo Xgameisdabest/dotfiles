@@ -4,7 +4,7 @@ notify-send "Getting list of available Wi-Fi networks..."
 # Get a list of available wifi connections and morph it into a nice-looking list
 #wifi_list=$(nmcli --fields "IN-USE,BARS,SECURITY,SSID" device wifi list | sed '/^--/d' | sed 1d | sed -E "s/WPA*.?\S/~~/g" | sed "s/~~ ~~/~~/g;s/802\.1X//g;s/--/~~/g;s/  *~/~/g;s/~  */~/g;s/_/ /g" | column -t -s '~')
 
-wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/~~/g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d" | column -t -s '~')
+wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/~~/g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d" | column -t -s '~')
 
 #wifi_list=$(nmcli --fields "IN-USE,,SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/~~/g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d" | column -t -s '~')
 
