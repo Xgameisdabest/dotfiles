@@ -181,6 +181,8 @@ alias tmuxconfig="nvim ~/.config/tmux/tmux.conf"
 
 # system related
 #alias cat=batcat
+alias god=sudo
+alias fucking=sudo
 alias open=xdg-open
 alias poweroff="sudo poweroff"
 alias cls=clear
@@ -239,6 +241,7 @@ alias spt="spotifyd && spt"
 #neovide/nvim/vim
 alias nvide=neovide
 alias v=nvim
+alias suv="sudo -e"
 alias vconfig="cd ~/.config/nvim/"
 
 #files
