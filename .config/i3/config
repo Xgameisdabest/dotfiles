@@ -55,12 +55,6 @@ bindsym $mod+c exec google-chrome-stable
 #wallpaper
 bindsym $mod+m exec waypaper
 
-#games
-bindsym $mod+g exec flatpak run page.kramo.Cartridges
-
-#task manager
-bindsym Ctrl+Shift+Escape exec flatpak run io.missioncenter.MissionCenter
-
 #screenshot
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)" && notify-send "Screenshot'ed"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)" && "Window Screenshot'ed"

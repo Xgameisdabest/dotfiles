@@ -213,7 +213,7 @@ alias py=python3
 #package management
 alias update="sudo nala update"
 alias upgrade="sudo nala upgrade"
-alias update-all="sudo nala update && sudo nala upgrade && pacstall -U && pacstall -Up && flatpak update && flatpak remove --unused && python -m pip install --upgrade pip"
+alias update-all="sudo nala update && sudo nala upgrade && pacstall -U && pacstall -Up && python -m pip install --upgrade pip"
 alias install="sudo nala install"
 alias reinstall="sudo apt reinstall"
 alias remove="sudo nala remove"

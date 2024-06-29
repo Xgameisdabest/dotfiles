@@ -1,4 +1,4 @@
-pidof picom 1> /dev/null || picom --config ~/.config/picom/picom.conf &
+#pidof picom 1> /dev/null || picom --config ~/.config/picom/picom.conf &
 GTK_IM_MODULE=ibus
 SDK_IM_MODULE=ibus
 QT_IM_MODULE=ibus
