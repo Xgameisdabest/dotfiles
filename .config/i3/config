@@ -168,6 +168,8 @@ for_window [title="^Steam Keyboard$"] floating enable
 
 for_window [title="^Waypaper$"] floating enable
 
+for_window [title="^SimpleScreenRecorder$"] floating enable
+
 for_window [title="^SuperTuxKart$"] fullscreen enable
 
 # Define names for default workspaces for which we configure key bindings later on.
