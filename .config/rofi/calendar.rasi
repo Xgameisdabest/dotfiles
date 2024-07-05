@@ -117,7 +117,7 @@ element-icon {
 }
 
 element-text {
-    font:							"JetBrainsMono Nerd Font 11";
+    font:							"JetBrainsMono Nerd Font 12";
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0;
