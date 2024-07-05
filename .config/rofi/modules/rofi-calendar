@@ -1,143 +1,93 @@
-#! /usr/bin/env bash
+#!/bin/bash
+current_day=$(date +"%e")
+current_month=$(date +"%m")
+current_year=$(date +"%Y")
 
-###### Variables ######
-DATEFTM="${DATEFTM:-+%a %d %b %Y}"
-SHORTFMT="${SHORTFMT:-+%d/%m/%Y}"
-LABEL="${LABEL:- }"
-FONT="${FONT:-Jetbrainsmono Nerd Font 10}"
-LEFTCLICK_PREV_MONTH=${LEFTCLICK_PREV_MONTH:-false}
-PREV_MONTH_TEXT="${PREV_MONTH_TEXT:-« previous month «}"
-NEXT_MONTH_TEXT="${NEXT_MONTH_TEXT:-» next month »}"
-ROFI_CONFIG_FILE="${ROFI_CONFIG_FILE:-/dev/null}"
-BAR_POSITION="${BAR_POSITION:-bottom}"
-WEEK_START="${WEEK_START:-monday}"
-###### Variables ######
+month=$(date +"%-m")
+year=$(date +"%Y")
+previous_month="◀"
+next_month=" ▶"
+last_selected_option=""
 
-
-###### Functions ######
-# get current date and set today header
-get_current_date() {
-  year=$(date '+%Y')
-  month=$(date '+%m')
-  day=$(date '+%d')
+format_calendar () {
+    echo "$1" \
+    | sed -E 's/([[:alpha:]])__/\ \n/g' \
+    | sed -E 's/___([[:digit:]])/.\n\1/g' \
+    | sed -e 's/___/\n./g' \
+    | sed -e 's/__/\n/g' \
+    | sed -e 's/_/\n/g'
 }
-# print the selected month
+
 print_month() {
-  mnt=$1
-  yr=$2
-  cal --color=always --$WEEK_START $mnt $yr \
-    | sed -e 's/\x1b\[[7;]*m/\<b\>\<u\>/g' \
-          -e 's/\x1b\[[27;]*m/\<\/u\>\<\/b\>/g' \
-          -e '/^ *$/d' \
-    | tail -n +2
-  echo $PREV_MONTH_TEXT$'\n'$NEXT_MONTH_TEXT
+    calendar="$(ncal -- $1 $2 | tail -n +2 | sed -e 's/ /_/g')"
+    echo "$(format_calendar "$calendar")"
 }
-# increment year and/or month appropriately based on month increment
-increment_month() {
-  # pick increment and define/update delta
-  incr=$1
-  (( delta += incr ))
-  # for non-current month
-  if (( incr != 0 )); then
-    # add the increment
-    month=$(( 10#$month + incr ))
-    # normalize month and compute year
-    if (( month > 0 )); then
-      (( month -= 1 ))
-      (( year += month/12 ))
-      (( month %= 12 ))
-      (( month += 1 ))
-    else
-      (( year += month/12 - 1 ))
-      (( month %= 12 ))
-      (( month += 12 ))
-    fi
-  fi
-  # adjust header
-  if (( delta == 0 )); then
-    # today's month => show dd/mm/yyyy
-    header=$(date "$DATEFTM")
-  else
-    # not today's month => show mm/yyyy
-    header=$(cal $month $year | sed -n '1s/^ *\(.*[^ ]\) *$/\1/p')
-  fi
+
+find_day_index() {
+    index=0
+    while IFS=' ' read -ra arr; do
+        for i in "${arr[@]}"; do
+            if [[ "$i" == "$2" ]]; then
+                echo "$index"
+                break
+            fi
+            ((index++))
+        done
+    done <<< "$1"
 }
-###### Functions ######
 
+calendar_menu() {
+    calendar_header=$(ncal -- $month $year | head -n 1)
 
-###### Main body ######
-get_current_date
+    month_page="$(print_month $month $year)"
+    calendar_body="\n\n\n$previous_month\n\n\n\n$month_page\n\n\n\n$next_month\n\n\n"
 
-# handle the click
-# variables:
-#   current_row: set means today row is highlighted
-#   current_row: not set means...
-#     bias_row ==  0: `next month` row is highlighted
-#     bias_row == -1: `prev month` row is highlighted
-#   selected: contains the selected row (next or prev month)
-#   month_page: the month to be printed
-case "$BLOCK_BUTTON" in
-  1)
-    if [[ $LEFTCLICK_PREV_MONTH == true ]]; then
-      increment_month -1
-      bias_row=-1
-    else
-      increment_month 0
-      current_row=
+    previous_month_index="3"
+    next_month_index="59"
+    calendar_body_column="7"
+    urgent="-u $previous_month_index,$next_month_index"
+    active=""
+    selected_row=""
+
+    if [[ "$(echo $current_month | bc) $current_year" == "$(echo $month | bc) $year" ]]; then
+        current_day_index=$(($(find_day_index "$month_page" $current_day) + $calendar_body_column))
+        active="-a $current_day_index"
+        selected_row="-selected-row $current_day_index"
     fi
-    ;;
-  2)
-    increment_month 0
-    current_row=
-    ;;
-  3)
-    increment_month +1
-    bias_row=0
-    ;;
-esac
 
-# rofi pop up
-case "$BLOCK_BUTTON" in
-  1|2|3)
-    # as long as prev/next is selected (and the first time also)
-    while [[ "${selected+xxx}" != "xxx" ]] || [[ $selected =~ ($PREV_MONTH_TEXT|$NEXT_MONTH_TEXT) ]]; do
-      IFS=
-      month_page=$(print_month $month $year)
-      if [[ "${current_row+xxx}" = "xxx" ]]; then
-        current_row=$(( $(echo $month_page | grep -n ${day#0} | head -n 1 | cut -d: -f1) - 1 ))
-      else
-        current_row=$(( $(echo $month_page | wc -l) - 1))
-      fi
+    if [[ $last_selected_option == $previous_month ]]; then
+        selected_row="-selected-row $previous_month_index"
+    fi
 
-      # check bar position and adjust anchor accordingly
-      if [[ $BAR_POSITION = "top" ]]; then
-        anchor="northeast"
-      else
-        anchor="southeast"
-      fi
+    if [[ $last_selected_option == $next_month ]]; then
+        selected_row="-selected-row $next_month_index"
+    fi
 
-      # open rofi and read the selected row
-      # (add the following option to rofi command with proper config file, if needed)
-      selected="$(echo $month_page \
-        | rofi \
-            -dmenu \
-            -markup-rows \
-            -font $FONT \
-            -m -3 \
-            -theme-str 'window {width: 10%; anchor: '"$anchor"'; location: northwest;}' \
-            -theme-str 'listview {lines: '"$(echo $month_page | wc -l)"' ;scrollbar: false;}' \
-            -theme $ROFI_CONFIG_FILE \
-            -selected-row $(( current_row + bias_row )) \
-            -p "$header")"
-      # select next/prev month if necessary and prepare row to be highlighted
-      [[ $selected =~ $PREV_MONTH_TEXT ]] && { increment_month -1; bias_row=-1; }
-      [[ $selected =~ $NEXT_MONTH_TEXT ]] && { increment_month +1; bias_row=0; }
-      # get ready for successive next/prev month hits
-      unset current_row
-    done
-esac
+    echo -e "$calendar_body" | rofi -dmenu \
+    -theme ~/.config/rofi/calendar.rasi \
+    -p "$calendar_header" $urgent $active $selected_row
+}
 
-# print blocklet text
-echo $LABEL$(date "$DATEFTM")
-echo $LABEL$(date "$SHORTFMT")
-###### Main body ######
+while [[ true ]]; do
+    selected=$(calendar_menu)
+    last_selected_option="$selected"
+    case $selected in
+        $previous_month)
+            ((month--))
+            if [[ $month -lt 1 ]]; then
+                month=12
+                ((year--))
+            fi
+            ;;
+        $next_month)
+            ((month++))
+            if [[ $month -gt 12 ]]; then
+                month=1
+                ((year++))
+            fi
+            ;;
+        *)
+    		break
+    	    ;;
+    esac
+done

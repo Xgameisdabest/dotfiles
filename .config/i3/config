@@ -234,7 +234,7 @@ bindsym $mod+ctrl+r mode "resize"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #COLORS
-client.focused #b4befe #b4befe #1e1e2e
+client.focused #b4befe #b4befe #1e1e2e #b4befe #b4befe
 client.unfocused #585b70 #585b70 #b4befe
 
 #bar
