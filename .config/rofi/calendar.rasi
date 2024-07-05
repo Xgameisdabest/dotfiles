@@ -1,5 +1,5 @@
 configuration {
-    font:                           "Iosevka 12";
+    font:                           "JetBrainsMono Nerd Font 14";
     show-icons:                     false;
 	icon-theme: 					"Papirus";
     display-drun: 					":";
@@ -13,21 +13,23 @@ configuration {
 }
 
 * {
-background:			#303535;
-foreground:			#BA969B;
-selected:			#98B3C8;
-urgent:				#D4BC6C;
-on:					#98B3C8;
-off:				#CC9498;
+background:			#1e1e2e;
+foreground:			#cdd6f4;
+selected:			#89b4fa;
+blue:			        #89b4fa;
+grey: 				#6c7086;
+urgent:				#fab387;
+on:				#f38ba8;
+off:				#89b4fa;
 }
 
 window {
     transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-	border:							1px;
+    border:			    3px;
     border-radius:                  0px;
-    border-color:					@selected;
+    border-color:		    @blue;
     width:                          384px;
     location:                       center;
     anchor:                         center;
@@ -56,9 +58,8 @@ inputbar {
     background-color:               @background;
     text-color:                     @foreground;
     expand:                         false;
-    border:                  		0px 0px 1px 0px;
-    border-radius:                  0px;
-    border-color:                  	@selected;
+    border:                  		3px;
+    border-color:                  	@blue;
     margin:                         0px 0px 0px 0px;
     padding:                        0px 0px 0px 0px;
     position:                       center;
@@ -116,7 +117,7 @@ element-icon {
 }
 
 element-text {
-    font:							"Iosevka 12";
+    font:							"JetBrainsMono Nerd Font 11";
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0;
