@@ -2,7 +2,7 @@
 
 # default options
 display_on=0
-span_image=true
+span_image=false
 lock_timeout=10
 dim_level=40
 blur_level=1
