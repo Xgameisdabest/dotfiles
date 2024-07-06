@@ -9,7 +9,7 @@
 #   ["Youtube"]="https://www.youtube.com/results?search_query="
 # )
 
-search=$( (echo ) | rofi -dmenu -theme-str "window {height: 8%;}" -matching fuzzy -p "Search: " )
+search=$( (echo ) | rofi -dmenu -theme-str "window {height: 90px;}" -p "Search: " )
 search_engine="https://www.google.com/search?q="
 #search_engine=https://duckduckgo.com/?q=""
 

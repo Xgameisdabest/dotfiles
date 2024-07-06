@@ -1,31 +1,13 @@
 #!/usr/bin/env bash
 
 # Options
-performance='󰓅 Performance'
-medium='󰾅 Balance'
-power='󰾆 Power Saver'
+performance='󰓅 performance'
+medium='󰾅 balance'
+power='󰾆 power saver'
 
 rofi_cmd() {
-	rofi -dmenu
+	rofi -dmenu -theme-str 'window {height: 215px; width: 250px;}' -p "Mode:"
 }
-
-
-# Confirmation CMD
-confirm_cmd() {
-	rofi -theme-str 'window {location: center; anchor: center; fullscreen: false;}' \
-		-theme-str 'mainbox {children: [ "message", "listview" ];}' \
-		-theme-str 'listview {columns: 1; lines: 1;}' \
-		-theme-str 'element-text {horizontal-align: 0.5;}' \
-		-theme-str 'textbox {horizontal-align: 0.5;}' \
-		-dmenu \
-		-p 'Confirmation' \
-		-mesg 'Are you Sure?'
-}
-
-confirm_exit() {
-	echo -e "$yes\n$no" | confirm_cmd
-}
-
 
 # Pass variables to rofi dmenu
 run_rofi() {

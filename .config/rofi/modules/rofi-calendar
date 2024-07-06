@@ -63,7 +63,7 @@ calendar_menu() {
         selected_row="-selected-row $next_month_index"
     fi
 
-    echo -e "$calendar_body" | rofi -dmenu \
+    echo -e "$calendar_body" | sed 's/\./__/g' | rofi -dmenu \
     -theme ~/.config/rofi/calendar.rasi \
     -p "$calendar_header" $urgent $active $selected_row
 }
