@@ -16,7 +16,8 @@ no='✗'
 # Rofi CMD
 rofi_cmd() {
 	rofi -dmenu \
-		-p "Uptime: $uptime" \
+		-theme-str 'window {width: 350px;}' \
+		-p "Select" \
 		-mesg "Uptime: $uptime" 
 }
 

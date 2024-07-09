@@ -40,7 +40,8 @@ toggle_scan() {
         bluetoothctl scan off
         show_menu
     else
-        bluetoothctl --timeout 8 scan on
+	notify-send "Scanning nearby devices..."
+        bluetoothctl --timeout 5 scan on
         echo "Scanning..."
 	show_menu
     fi
