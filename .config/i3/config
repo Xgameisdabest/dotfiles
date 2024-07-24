@@ -47,6 +47,9 @@ tiling_drag modifier titlebar
 #keyboard layout
 #bindsym $mod+space exec ~/.config/polybar/ibus/ibus-switch.sh
 
+#scrpy
+bindsym $alt+p exec notify-send "CONNECTING TO PHONE..." && scrcpy --select-usb
+
 #start file manager
 bindsym $mod+e exec thunar
 
@@ -173,6 +176,8 @@ for_window [title="^Waypaper$"] floating enable
 for_window [title="^SimpleScreenRecorder$"] floating enable
 
 for_window [title="^SuperTuxKart$"] fullscreen enable
+
+for_window [title="^onboard$"] floating enable
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
