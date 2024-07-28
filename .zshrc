@@ -69,7 +69,7 @@ zstyle ':completion:*' menu no
 # preview directory's content with eza when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color=always $realpath'
 # switch group using `<` and `>`
-zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' switch-group ',' '.'
 #IDE suggest pop-up
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:cd:*' popup-pad 17 0
@@ -268,7 +268,8 @@ alias pwr-low="powerprofilesctl set power-saver"
 #key binding
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
-#bindkey '^ ' autosuggest-accept
+bindkey '^ ' autosuggest-accept
+bindkey '	' fzf-tab-complete
 
 #stuff
 # if type brew &>/dev/null
