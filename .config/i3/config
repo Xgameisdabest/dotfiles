@@ -66,9 +66,9 @@ bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow)
 bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)" && notify-send "Selected Area Screenshot'ed "
 
 # start a terminal
-bindsym $mod+t exec alacritty
-bindsym $mod+ctrl+t exec /usr/bin/alacritty 
-# bindsym $mod+t exec /usr/bin/alacritty
+#bindsym $mod+t exec alacritty
+#bindsym $mod+ctrl+t exec /usr/bin/alacritty 
+bindsym $mod+t exec /usr/bin/alacritty
 
 #wifi, bluetooth shortcut
 bindsym $mod+w exec ~/.config/rofi/modules/rofi-wifi-menu

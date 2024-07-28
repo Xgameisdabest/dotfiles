@@ -268,6 +268,7 @@ alias pwr-low="powerprofilesctl set power-saver"
 #key binding
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
+#bindkey '^ ' autosuggest-accept
 
 #stuff
 # if type brew &>/dev/null
