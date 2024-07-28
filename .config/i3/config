@@ -98,6 +98,8 @@ bindsym $alt+space exec --no-startup-id rofi -theme catppuccin-mocha-fullscreen.
 
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
+bindsym $mod+z exec --no-startup-id rofimoji
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
