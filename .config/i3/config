@@ -7,6 +7,8 @@ exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help me
 #exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id waypaper --restore
 
+exec_always libinput-gestures-setup start
+
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
 #exec --no-startup-id setxkbmap -layout us,vn && setxkbmap -option 'grp:win_space_toggle'
