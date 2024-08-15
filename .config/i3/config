@@ -2,12 +2,14 @@
 set $mod Mod4
 set $alt Mod1
 
+exec_always --no-startup-id xrandr --auto
+
 exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help menu!"
 
 #exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id waypaper --restore
 
-exec_always libinput-gestures-setup start
+exec_always --no-startup-id libinput-gestures-setup autostart start
 
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
@@ -141,7 +143,7 @@ bindsym $mod+f fullscreen toggle
 
 gaps outer 5
 gaps inner 5
-default_border pixel 4
+default_border pixel 3
 default_floating_border pixel 8
 
 # change container layout (stacked, tabbed, toggle split)
