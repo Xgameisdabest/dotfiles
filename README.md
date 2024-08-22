@@ -11,6 +11,7 @@ NOTE: only work on debian based distros
 - i3 (essential)
 - sway
 - hyprland
+- polybar waybar (essential)
 - pijulius picom (essential)
 - betterlockscreen (essential)
 - tmux neofetch(terminal util)
