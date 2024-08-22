@@ -56,11 +56,13 @@ calendar_menu() {
     fi
 
     if [[ $last_selected_option == $previous_month ]]; then
+	notify-send "Last Month" -t 535
         selected_row="-selected-row $previous_month_index"
     fi
 
     if [[ $last_selected_option == $next_month ]]; then
-        selected_row="-selected-row $next_month_index"
+      	notify-send "Next Month" -t 535
+	selected_row="-selected-row $next_month_index"
     fi
 
     echo -e "$calendar_body" | sed 's/\./__/g' | rofi -dmenu \
@@ -86,8 +88,18 @@ while [[ true ]]; do
                 ((year++))
             fi
             ;;
-        *)
+	$selected)
+		if [[ $selected == "__" ]] then
+			break
+		elif [[ $selected == "" ]] then
+			notify-send "Date not selected"
+		else
+			notify-send "Date selected is: $selected/$month/$year"
+		fi
     		break
     	    ;;
+	*)
+		break
+	    ;;
     esac
 done

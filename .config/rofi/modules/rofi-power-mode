@@ -20,13 +20,13 @@ run_cmd() {
 	if [[ "$selected" == "$yes" ]]; then
 		if [[ $1 == '--performance' ]]; then
 			powerprofilesctl set performance
-			notify-send "Power set to performance mode"
+			notify-send "Power set to performance mode 󰓅"
 		elif [[ $1 == '--medium' ]]; then
 			powerprofilesctl set balanced
-			notify-send "Power set to balance mode"
+			notify-send "Power set to balance mode 󰾅"
 		elif [[ $1 == '--power' ]]; then
 			powerprofilesctl set power-saver
-			notify-send "Power set to power-saver mode"
+			notify-send "Power set to power-saver mode 󰾆"
 		fi
 	else
 		exit 0
