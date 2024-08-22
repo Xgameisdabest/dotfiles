@@ -92,7 +92,7 @@ while [[ true ]]; do
 		if [[ $selected == "__" ]] then
 			break
 		elif [[ $selected == "" ]] then
-			notify-send "Date not selected"
+			break
 		else
 			notify-send "Date selected is: $selected/$month/$year"
 		fi
