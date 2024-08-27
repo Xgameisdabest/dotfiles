@@ -1,1 +1,0 @@
-dunst/noti-center.sh
