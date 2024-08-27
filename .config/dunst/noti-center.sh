@@ -1,10 +1,15 @@
-
-
 #!/bin/bash
 
-# Fetch the notification history and process it with jq
-notifications=$(dunstctl history | jq -r '.data[0][] | select(.summary.data | contains("%") | not) | "\(.summary.data)"')
-# Check if notifications are empty
+notifications=$(dunstctl history | jq -r '
+    .data[0][] |
+    select(
+        (.summary.data | contains("") | not) and
+        (.summary.data | contains("") | not) and
+        (.summary.data | contains("") | not) and
+	(.summary.data | contains("") | not)) |
+    "\(.summary.data)"
+')
+
 if [ -z "$notifications" ]; then
     echo "No notifications found."
     exit 1
