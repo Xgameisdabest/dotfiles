@@ -188,6 +188,7 @@ alias poweroff="sudo poweroff"
 alias cls=clear
 alias rm="rm -v"
 alias mdir="mkdir"
+alias mv="mv -v"
 
 # listing files, dirs
 alias ls=lsd
