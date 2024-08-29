@@ -114,8 +114,8 @@ bindsym $mod+z exec --no-startup-id rofimoji
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktp
 
 #switch between workspaces
-bindsym $alt+Right exec ~/.config/i3/swipe_desktop.sh next
-bindsym $alt+Left exec ~/.config/i3/swipe_desktop.sh prev
+bindsym $mod+$alt+Right exec ~/.config/i3/swipe_desktop.sh next
+bindsym $mod+$alt+Left exec ~/.config/i3/swipe_desktop.sh prev
 
 # you can use the cursor keys:
 bindsym $mod+Left focus left
