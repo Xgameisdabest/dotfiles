@@ -30,8 +30,8 @@ NOTE: only work on debian based distros, might as well change it on your own if 
 - tetris-thefenriswolf gambit (games)
 - solaar (logitech util setting)
 
-[!NOTE]
-Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
+> [!NOTE]
+> Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
 
 ## Installation
 
