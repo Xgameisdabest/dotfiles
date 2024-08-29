@@ -6,7 +6,8 @@ you may see there are some configs and dependencies for hyprland and sway, this 
 if you have any problems trying to understand my engligh then heres the __tldr__:
 __This whole config is mainly for i3wm, not for hyprland and sway.__
 
-NOTE: only work on debian based distros, might as well change it on your own if you use arch or Red Hat based os.
+> [!NOTE]
+> only work on debian based distros, might as well change it on your own if you use arch or Red Hat based os.
 
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular
