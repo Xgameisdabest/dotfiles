@@ -1,9 +1,15 @@
 ## about
 my i3 config, up to date as I change my shits
 
-NOTE: only work on debian based distros
+you may see there are some configs and dependencies for hyprland and sway, this is bc im too lazy to make a git repo for those so i decided to put them here. Also, it is highly recommend to use i3wm as it is the most up to date and also the main focus of this repo.
 
-## Dependencies for i3, some of the config files I put for hyprland and sway (NOT COMPLETE)
+if you have any problems trying to understand my engligh then heres the __tldr__:
+    __This whole config is mainly for i3wm, not for hyprland and sway.__
+
+NOTE: only work on debian based distros, might as well change it on your own if you use arch or Red Hat based os.
+
+## Dependencies for this dotfiles
+- FONT: Jetbrainsmono Nerd Font Regular
 - apt snap nala pacstall flatpak (essential)
 - ncal (essential)
 - neovim (essential)
@@ -23,6 +29,9 @@ NOTE: only work on debian based distros
 - cava (audio visualizer)
 - tetris-thefenriswolf gambit (games)
 - solaar (logitech util setting)
+
+NOTE: Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
+
 ## Installation
 
 1st, git clone the whole thing
@@ -35,4 +44,4 @@ use GNU stow to create symlink
 ~/dotfiles $ stow .
 ``````
 
-NI*** HAS NO IDEA WHAT IS HE TALKING ABOUT HAHAHAHAHAHAAAHAAAAAAAAAAAHAHAHAHAHAHAHAHAHAHAHAHHAAAAAAHAHAHAHAHAHAHA
+NI*** HAS NO IDEA WHAT IS HE TALKING ABOUT HAHAHAHAHAHAAAHAAAAAAAAAAAHAHAHAHAHAHAHAHAHAHAHAHHAAAAAAHAHAHAHAHAHAHA 💀💀💀💀💀💀💀💀💀
