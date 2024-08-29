@@ -30,4 +30,3 @@ if [ -n "$selected" ]; then
     # Display the clean body in rofi
     echo "Notification Body:\n$clean_body" | rofi -dmenu -i -p "Notification Body"
 fi
-
