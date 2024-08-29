@@ -4,7 +4,7 @@ my i3 config, up to date as I change my shits
 you may see there are some configs and dependencies for hyprland and sway, this is bc im too lazy to make a git repo for those so i decided to put them here. Also, it is highly recommend to use i3wm as it is the most up to date and also the main focus of this repo.
 
 if you have any problems trying to understand my engligh then heres the __tldr__:
-    __This whole config is mainly for i3wm, not for hyprland and sway.__
+__This whole config is mainly for i3wm, not for hyprland and sway.__
 
 NOTE: only work on debian based distros, might as well change it on your own if you use arch or Red Hat based os.
 
@@ -35,7 +35,8 @@ NOTE: Afaik, there are still some missing dependencies that are not in the list 
 ## Installation
 
 1st, git clone the whole thing
-cd into that shit
+
+2nd, cd into that shit
 
 
 use GNU stow to create symlink
