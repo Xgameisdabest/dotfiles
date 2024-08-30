@@ -37,7 +37,8 @@ find_day_index() {
 }
 
 calendar_menu() {
-    calendar_header=$(ncal -- $month $year | head -n 1)
+    #calendar_header=$(ncal -- $month $year | head -n 1)
+    calendar_header=$(date +" %R |  %d/%m/%Y")
 
     month_page="$(print_month $month $year)"
     calendar_body="\n\n\n$previous_month\n\n\n\n$month_page\n\n\n\n$next_month\n\n\n"
