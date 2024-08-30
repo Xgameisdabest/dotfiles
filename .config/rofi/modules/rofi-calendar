@@ -37,8 +37,8 @@ find_day_index() {
 }
 
 calendar_menu() {
-    #calendar_header=$(ncal -- $month $year | head -n 1)
-    calendar_header=$(date +" %R |  %d/%m/%Y")
+    calendar_header=$(ncal -- $month $year | head -n 1)
+    #calendar_header=$(printf "Current time: %s\nSelected time: %s\n" "$(date +" %d/%m/%Y")" "$(echo $month/$year )")
 
     month_page="$(print_month $month $year)"
     calendar_body="\n\n\n$previous_month\n\n\n\n$month_page\n\n\n\n$next_month\n\n\n"
@@ -57,12 +57,12 @@ calendar_menu() {
     fi
 
     if [[ $last_selected_option == $previous_month ]]; then
-	notify-send "Last Month" -t 535
+	#notify-send "Last Month" -t 535
         selected_row="-selected-row $previous_month_index"
     fi
 
     if [[ $last_selected_option == $next_month ]]; then
-      	notify-send "Next Month" -t 535
+      	#notify-send "Next Month" -t 535
 	selected_row="-selected-row $next_month_index"
     fi
 
