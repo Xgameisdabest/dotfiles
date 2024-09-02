@@ -238,7 +238,7 @@ show_menu() {
     if power_on; then
         power="Power: on"
 
-        devices="devices"
+        devices="Device list"
 
         scan=$(scan_on)
         pairable=$(pairable_on)
