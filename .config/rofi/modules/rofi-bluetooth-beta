@@ -160,8 +160,8 @@ device_list() {
             show_menu
             ;;
     *)
-	dev_list=$(bluetoothctl devices | grep "$select")
-        if [[ $dev_list ]]; then device_menu "$dev_list"; fi
+	dev_list_addr=$(bluetoothctl devices | grep "$select")
+        if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
 	;;
     esac
 }
