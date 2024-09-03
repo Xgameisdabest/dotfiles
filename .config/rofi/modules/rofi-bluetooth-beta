@@ -40,7 +40,7 @@ toggle_scan() {
         bluetoothctl scan off
         show_menu
     else
-	notify-send "Scanning nearby devices..."
+	notify-send "Scanning nearby devices..." -t 5000
         bluetoothctl --timeout 5 scan on
         echo "Scanning..."
 	show_menu
@@ -98,10 +98,14 @@ device_connected() {
 
 toggle_connection() {
     if device_connected "$1"; then
-        bluetoothctl disconnect "$1"
+       	notify-send "Cancelling connection with $dev_list"
+	bluetoothctl disconnect "$1"
+	notify-send "Successfully disconnected $dev_list"
         device_menu "$device"
     else
+	notify-send "Establishing connection with $dev_list"
         bluetoothctl connect "$1"
+	notify-send "Successfully connected to $dev_list"
         device_menu "$device"
     fi
 }
@@ -150,7 +154,7 @@ toggle_trust() {
 
 device_list() {
 	dev_list=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
-	 options="$dev_list\n$goback\nExit"
+	options="$dev_list\n$goback\nExit"
 	select=$(echo -e "$options" | $rofi_command "select")
 	case "$select" in
         "" | "$divider")
@@ -220,7 +224,7 @@ device_menu() {
             echo "No option chosen."
             ;;
         "$connected")
-            toggle_connection "$mac"
+            	toggle_connection "$mac"
             ;;
         "$paired")
             toggle_paired "$mac"
