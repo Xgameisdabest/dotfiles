@@ -2,11 +2,10 @@
 
 notify-send "Getting list of available Wi-Fi networks..."
 # Get a list of available wifi connections and morph it into a nice-looking list
-#wifi_list=$(nmcli --fields "IN-USE,BARS,SECURITY,SSID" device wifi list | sed '/^--/d' | sed 1d | sed -E "s/WPA*.?\S/~~/g" | sed "s/~~ ~~/~~/g;s/802\.1X//g;s/--/~~/g;s/  *~/~/g;s/~  */~/g;s/_/ /g" | column -t -s '~')
 
 wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/~~/g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d" | column -t -s '~')
 
-#wifi_list=$(nmcli --fields "IN-USE,,SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/~~/g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d" | column -t -s '~')
+wifi_list_display=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/~~/g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d" | column -t -s '~')
 
 connected=$(nmcli -fields WIFI g)
 if [[ "$connected" =~ "enabled" ]]; then
@@ -16,7 +15,7 @@ elif [[ "$connected" =~ "disabled" ]]; then
 fi
 
 # Use rofi to select wifi network
-chosen_network=$(echo -e "$toggle\n$wifi_list" | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " )
+chosen_network=$(echo -e "$toggle\n$wifi_list" | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " -theme-str "listview {columns: 1; layout: vertical;}")
 #chosen_network=$(echo -e "$wifi_list" | rofi -dmenu -i -p "Wi-Fi Network: ")
 # Get name of connection
 #read -r chosen_id <<< "${chosen_network:5}"

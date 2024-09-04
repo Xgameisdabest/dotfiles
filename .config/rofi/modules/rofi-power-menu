@@ -6,11 +6,16 @@ host=`hostname`
 
 # Options
 shutdown='  -> Shut Down'
+#shutdown=' '
 reboot='  -> Reboot'
+#reboot=' '
 lock='  -> Lock'
+#lock=' '
 suspend='󰤄 -> Sleep'
+#suspend='󰤄 '
 #logout='󰍃  -> Get the fuck out'
 logout='󰍃  -> Log out'
+#logout='󰍃 '
 yes='✔'
 no='✗'
 
@@ -19,13 +24,12 @@ rofi_cmd() {
 	rofi -dmenu \
 		-theme-str 'window {height: 385; width: 350px;}' \
 		-p "Select" \
-		-mesg "Uptime: $uptime" 
+		-mesg "Uptime: $uptime" }
 }
 
 # Confirmation CMD
 confirm_cmd() {
 	rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
-		-theme-str 'mainbox {children: [ "message", "listview" ];}' \
 		-theme-str 'listview {columns: 2; lines: 1;}' \
 		-theme-str 'element-text {horizontal-align: 0.5;}' \
 		-theme-str 'textbox {horizontal-align: 0.5;}' \

@@ -78,8 +78,8 @@ bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(d
 bindsym $mod+t exec /usr/bin/alacritty
 
 #wifi, bluetooth shortcut
-bindsym $mod+w exec ~/.config/rofi/modules/rofi-wifi-menu
-bindsym $mod+b exec ~/.config/rofi/modules/rofi-bluetooth
+#bindsym $mod+w exec ~/.config/rofi/modules/rofi-wifi-menu
+#bindsym $mod+b exec ~/.config/rofi/modules/rofi-bluetooth
 
 #rofi web search
 bindsym $mod+s exec ~/.config/rofi/modules/rofi-web-search
