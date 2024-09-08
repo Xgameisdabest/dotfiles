@@ -81,7 +81,7 @@ entry {
 
 listview {
     enabled:                     true;
-    columns:                     6;
+    columns:                     5;
     lines:                       3;
     cycle:                       true;
     dynamic:                     true;
@@ -125,7 +125,7 @@ element selected.normal {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        40px;
+    size:                        55px;
     cursor:                      inherit;
 }
 element-text {

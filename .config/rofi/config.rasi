@@ -5,7 +5,7 @@ configuration{
     display-run: "   Run ";
     display-window: "  Windows";
 
-    drun-display-format: "{icon} - {name}";
+    drun-display-format: "{icon} {name}";
 
     disable-history: true;
     hide-scrollbar: true;
