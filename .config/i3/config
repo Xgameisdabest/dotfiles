@@ -9,7 +9,8 @@ exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help me
 #exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id waypaper --restore
 
-exec_always --no-startup-id libinput-gestures-setup autostart start
+exec --no-startup-id libinput-gestures-setup stop
+exec --no-startup-id libinput-gestures-setup autostart start
 
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
