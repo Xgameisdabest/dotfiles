@@ -19,11 +19,11 @@ main() {
       xdg-open "$url"
 	
        else
-	texts=("Nigga wdym 💀" "Bro wasted my fucking time 🤬" "Fuck you 🖕" "Bitch did NOT have anything to say 🤡")
-	num_texts=${#texts[@]}
-	random_index=$(( RANDOM % num_texts ))
-	random_text=${texts[random_index]}
-	notify-send -t 1000 "$random_text"
+	# texts=("Nigga wdym 💀" "Bro wasted my fucking time 🤬" "Fuck you 🖕" "Bitch did NOT have anything to say 🤡")
+	# num_texts=${#texts[@]}
+	# random_index=$(( RANDOM % num_texts ))
+	# random_text=${texts[random_index]}
+	# notify-send -t 1000 "$random_text"
 		exit
 	      fi
 }
