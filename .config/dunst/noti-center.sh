@@ -11,26 +11,10 @@ notifications=$(dunstctl history | jq -r '
 ')
 
 cls_hist=$(echo "Clear history")
-options="$notifications\n$cls_hist"
-
+# options="$notifications\n$cls_hist"
+options="$cls_hist\n$notifications"
 # Use rofi to display notifications
-selected=$(echo -e "$options" | rofi -dmenu -i -p "Select notification")
-
-# Show selected notification body (for preview purposes)
-# if [ -n "$selected" ]; then
-#     # Extract and display the body of the selected notification
-#     body=$(dunstctl history | jq -r --arg summary "$selected" \
-#         '.data[0][] | select(.summary.data == $summary) | .body.data')
-#
-#     # Remove HTML tags from the body text
-#     clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
-#
-#     # Display the clean body in rofi
-#     echo "Notification Body:\n$clean_body" | rofi -dmenu -i -p "Notification Body"
-#
-# elif ["$selected" == "Clear history"]; then
-# 	dunstctl history-clear
-# fi
+selected=$(echo -e "$options" | rofi -dmenu -i -selected-row 1 -p "Select notification")
 
 case "$selected" in
 	"")

@@ -166,4 +166,3 @@ case $1 in
     # Pauses/resumes playback and displays the notification
     ;;
 esac
-
