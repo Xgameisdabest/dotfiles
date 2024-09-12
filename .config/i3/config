@@ -141,10 +141,10 @@ bindsym $mod+Shift+l move right
 bindsym $mod+Shift+j move down
 
 # split in horizontal orientation
-bindsym $mod+ctrl+h split h
+#bindsym $mod+ctrl+h split h
 
 # split in vertical orientation
-bindsym $mod+ctrl+v split v
+#bindsym $mod+ctrl+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -155,9 +155,9 @@ default_border pixel 3
 default_floating_border pixel 8
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+Shift+q layout stacking
-bindsym $mod+Shift+w layout tabbed
-bindsym $mod+Shift+e layout toggle split
+#bindsym $mod+Shift+q layout stacking
+#bindsym $mod+Shift+w layout tabbed
+#bindsym $mod+Shift+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+v floating toggle resize set 60ppt 60ppt
@@ -250,7 +250,7 @@ mode "resize" {
 	bindsym q mode "default"
 }
 
-bindsym $mod+ctrl+r mode "resize"
+bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send "RESIZE MODE. PRESS esc TO EXIT!"
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
