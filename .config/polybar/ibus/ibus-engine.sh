@@ -25,7 +25,7 @@ if [ -n "${IBUS_LAYOUT_VARIANT}" ] && [ "${IBUS_LAYOUT_VARIANT}" != "\n" ]
 then
     OUTPUT="${OUTPUT} ${LAYOUT_ICON} ${IBUS_LAYOUT} - ${IBUS_LAYOUT_VARIANT}"
 else
-    OUTPUT="${OUTPUT} ${LAYOUT_ICON} ${IBUS_LAYOUT}"
+    OUTPUT="${LAYOUT_ICON} ${IBUS_LAYOUT}"
 fi
 
 if [ -n "${IBUS_LANG}" ] && [ "${IBUS_LANG}" != "\n" ]
