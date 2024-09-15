@@ -189,6 +189,7 @@ alias cls=clear
 alias rm="rm -v"
 alias mdir="mkdir"
 alias mv="mv -v"
+alias du="du -h"
 
 # listing files, dirs
 alias ls=lsd
@@ -223,9 +224,7 @@ alias autoremove="sudo apt autoremove"
 
 #games
 alias games="ls /usr/games/"
-alias tetris=/snap/bin/tetris-thefenriswolf.tetris
 alias pacman=pacman4console
-alias aquarium=asciiquarium
 alias chess=gambit
 
 #fetching programs
@@ -254,9 +253,6 @@ alias usrbin="ls ~/.local/bin"
 
 #web
 alias unixporn="open https://reddit.com/r/unixporn/"
-
-#3d image
-alias blahaj="display3d ~/.models/blahaj/blahaj.obj"
 
 #fzf
 alias fzf="fzf --height 40% --layout=reverse --border"
