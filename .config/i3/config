@@ -22,7 +22,7 @@ exec --no-startup-id solaar --window=hide
 
 exec_always --no-startup-id ibus start
 
-exec --no-startup-id oneko -speed 20 -cursor 132
+#exec --no-startup-id oneko -speed 20 -cursor 132
 
 exec_always --no-startup-id ~/.config/i3/autotiling/main.py
 

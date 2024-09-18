@@ -14,7 +14,7 @@ cls_hist=$(echo "Clear history")
 # options="$notifications\n$cls_hist"
 options="$cls_hist\n$notifications"
 # Use rofi to display notifications
-selected=$(echo -e "$options" | rofi -dmenu -i -selected-row 1 -p "Select notification")
+selected=$(echo -e "$options" | rofi -dmenu -i -selected-row 1 -p "Select notification" -theme-str "listview {columns: 1;}")
 
 case "$selected" in
 	"")
