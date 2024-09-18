@@ -158,7 +158,7 @@ device_list() {
 	options="$dev_list\n$goback\n$quit"
 	select=$(echo -e "$options" | $rofi_command "select")
 	case "$select" in
-        "" | "$divider")
+        "" | "$divider" | "$quit")
             echo "No option chosen."
             ;;
         "$goback")
