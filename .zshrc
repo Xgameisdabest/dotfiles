@@ -295,9 +295,12 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" $fg_bold[red]✗"
 
 # printf '\e]12;#71adf4\007'
 #printf '\033[?25l'
-PROMPT=' $(git_prompt_info)
- %B%F{yellow} %f %F{white}%~%f
- ┗┅%B%F{red}%f '
+# PROMPT=' $(git_prompt_info)
+#  %B%F{yellow} %f %F{white}%~%f
+#  ┗┅%B%F{red}%f '
+
+PROMPT='  $(git_prompt_info)
+  %B%F{white}%~%f%b  %B%F{red}%f  '
 
 RPROMPT='%B%F{red}|%f%F{white}%f%T%F{red}|%f%b %(?:%{$fg_bold[green]%}%1{✔%}:%{$fg_bold[red]%}%1{✗%})%{$fg_bold[white]%} '
 

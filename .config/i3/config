@@ -10,7 +10,7 @@ exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help me
 exec_always --no-startup-id waypaper --restore
 
 exec --no-startup-id libinput-gestures-setup stop
-exec --no-startup-id libinput-gestures-setup autostart start
+exec --no-startup-id libinput-gestures-setup start
 
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
@@ -184,8 +184,6 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
-
-for_window [title="^Sober$"] floating enable
 
 for_window [title="^Waypaper$"] floating enable
 
