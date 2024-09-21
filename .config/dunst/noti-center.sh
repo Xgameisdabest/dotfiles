@@ -27,7 +27,7 @@ case "$selected" in
 		body=$(dunstctl history | jq -r --arg summary "$selected" \
 			'.data[0][] | select(.summary.data == $summary) | .body.data')
 	     	clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
-	     	echo -e "Notification Body:\n$clean_body" | rofi -dmenu -i -selected-row 1 -p "Notification Body"
+	     	echo -e "Notification Body 󰎟 :\n$clean_body" | rofi -dmenu -i -selected-row 1 -p "Notification Body"
 		;;
 esac
 
