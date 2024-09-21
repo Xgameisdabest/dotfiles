@@ -9,6 +9,8 @@ exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help me
 #exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id waypaper --restore
 
+exec_always --no-startup-id xfce4-power-manager
+
 exec --no-startup-id libinput-gestures-setup stop
 exec --no-startup-id libinput-gestures-setup start
 
@@ -252,7 +254,7 @@ mode "resize" {
 	bindsym q mode "default"
 }
 
-bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send "RESIZE MODE. PRESS esc TO EXIT!"
+bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send -t 5000 "RESIZE MODE. PRESS esc TO EXIT!"
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
