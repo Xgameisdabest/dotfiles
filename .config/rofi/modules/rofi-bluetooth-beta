@@ -224,7 +224,7 @@ device_menu() {
             echo "No option chosen."
             ;;
         "$connected")
-            	toggle_connection "$mac"
+            toggle_connection "$mac"
             ;;
         "$paired")
             toggle_paired "$mac"
@@ -242,14 +242,16 @@ show_menu() {
     if power_on; then
         power="Power  : on"
 
-        devices="Device list "
+        devices="Device list  "
+	
+	bluetooth_manager="Bluetooth Manager 󰖯 "
 
         scan=$(scan_on)
         pairable=$(pairable_on)
         discoverable=$(discoverable_on)
 
         #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
-	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$quit "
+	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$bluetooth_manager\n$quit"
     else
         power="Power  : off"
         options="$power\n$quit"
@@ -273,6 +275,9 @@ show_menu() {
         "$discoverable")
             toggle_discoverable
             ;;
+    "$bluetooth_manager")
+	    blueman-manager
+	    ;;
         "$pairable")
             toggle_pairable
             ;;
