@@ -30,7 +30,9 @@ if you have any problems trying to understand my English then heres the **tldr**
 - cava (audio visualizer)
 - tetris-thefenriswolf gambit (games)
 - solaar (logitech util setting)
+- blueman (essential for bluetooth connection)
 - xfce4-power-manager (essential for laptops)
+
 
 > [!NOTE]
 > Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
