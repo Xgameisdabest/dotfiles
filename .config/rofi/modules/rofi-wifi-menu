@@ -14,7 +14,7 @@ elif [[ "$connected" =~ "disabled" ]]; then
 	toggle="Enable Wi-Fi 󰤨 "
 fi
 
-connection_manager="Network Manager GUI 󰖯 "
+connection_manager="Network Manager 󰖯 "
 
 # Use rofi to select wifi network
 chosen_network=$(echo -e "$connection_manager\n$toggle\n$wifi_list" | rofi -dmenu -i -selected-row 2 -p "Wi-Fi SSID: " -theme-str "listview {columns: 1; layout: vertical;}")

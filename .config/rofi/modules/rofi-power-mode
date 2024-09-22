@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 
 # Options
-performance='󰓅 performance'
-medium='󰾅 balance'
-power='󰾆 power saver'
+performance='Performance 󰓅 '
+medium='Balance 󰾅 '
+power='Power Saver 󰾆 '
+power_manager="Power Manager 󰖯 "
 
 rofi_cmd() {
-	rofi -dmenu -theme-str 'window {height: 215px; width: 250px;}' -p "Mode:"
+	rofi -dmenu -theme-str 'window {height: 255px; width: 255px;}' -p "Mode:"  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 }
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$performance\n$medium\n$power" | rofi_cmd
+	echo -e "$power_manager\n$performance\n$medium\n$power" | rofi_cmd
 }
 
 # Execute Command
 run_cmd() {
-	selected="$yes"
-	if [[ "$selected" == "$yes" ]]; then
 		if [[ $1 == '--performance' ]]; then
 			powerprofilesctl set performance
 			notify-send "Power set to performance mode 󰓅"
@@ -28,14 +27,14 @@ run_cmd() {
 			powerprofilesctl set power-saver
 			notify-send "Power set to power-saver mode 󰾆"
 		fi
-	else
-		exit 0
-	fi
 }
 
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
+	"")
+		exit
+	;;
     $performance)
 		run_cmd --performance
         ;;
@@ -45,5 +44,7 @@ case ${chosen} in
     $power)
 		run_cmd --power
         ;;
+	$power_manager)
+		xfce4-power-manager-settings
+	;;
 esac
-
