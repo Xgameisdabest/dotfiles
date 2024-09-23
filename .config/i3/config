@@ -236,6 +236,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 bindsym $mod+Shift+Tab workspace back_and_forth
 
+bindsym $mod+$alt+Right exec ~/.config/i3/container_desktop.sh next
+bindsym $mod+$alt+Left exec ~/.config/i3/container_desktop.sh prev
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
