@@ -100,9 +100,7 @@
         "format-plugged": " {capacity}%  ",
         //"tooltip-format": " {time} {icon} ",
         "format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁽","󰁾","󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "on-click": "powerprofilesctl set performance && notify-send SET_PWR_PERFORMANCE ",
-        "on-click-right": "powerprofilesctl set power-saver && notify-send SET_PWR_SAVER",
-        "on-click-middle": "powerprofilesctl set balanced && notify-send SET_PWR_BALANCE"
+        "on-click": "~/.config/rofi/modules/rofi-power-mode",
     },
 
     "network": {
