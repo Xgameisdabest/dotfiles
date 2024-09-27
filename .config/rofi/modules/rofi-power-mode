@@ -7,7 +7,7 @@ power='Power Saver 󰾆 '
 power_manager="Power Manager 󰖯 "
 
 rofi_cmd() {
-	rofi -dmenu -theme-str 'window {height: 255px; width: 255px;}' -p "Mode:"  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+	rofi -dmenu -theme-str 'window {height: 255px; width: 255px;}' -p "Mode 󱐋"  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 }
 
 # Pass variables to rofi dmenu

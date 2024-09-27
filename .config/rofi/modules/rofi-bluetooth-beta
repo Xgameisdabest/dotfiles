@@ -156,7 +156,7 @@ toggle_trust() {
 device_list() {
 	dev_list=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command "select")
+	select=$(echo -e "$options" | $rofi_command "Select Device 󰾰 ")
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."
@@ -217,7 +217,7 @@ device_menu() {
     trusted=$(device_trusted "$mac")
     options="$connected\n$paired\n$trusted\n$goback\n$quit"
 
-    chosen="$(echo -e "$options" | $rofi_command "$device_name")"
+    chosen="$(echo -e "$options" | $rofi_command "$device_name 󰾰 ")"
 
     case "$chosen" in
         "" | "$divider")
@@ -257,7 +257,7 @@ show_menu() {
         options="$power\n$quit"
     fi
 
-    chosen="$(echo -e "$options" | $rofi_command "Bluetooth")"
+    chosen="$(echo -e "$options" | $rofi_command "Bluetooth ")"
 
     case "$chosen" in
         "" | "$divider")
