@@ -15,7 +15,7 @@ fi
 connection_manager="Network Manager 󰖯 "
 
 # Use rofi to select wifi network
-chosen_network=$(echo -e "$connection_manager\n$toggle\n$wifi_list" | rofi -dmenu -i -selected-row 2 -p "Wi-Fi SSID 󰤨 " -theme-str "listview {columns: 1; layout: vertical;}")
+chosen_network=$(echo -e "$connection_manager\n$toggle\n$wifi_list" | rofi -dmenu -i -selected-row 2 -p " Wi-Fi SSID 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}")
 #chosen_network=$(echo -e "$wifi_list" | rofi -dmenu -i -p "Wi-Fi Network: ")
 # Get name of connection
 #read -r chosen_id <<< "${chosen_network:5}"
