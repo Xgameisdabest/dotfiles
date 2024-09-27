@@ -3,7 +3,7 @@
 notify-send "Getting list of available Wi-Fi networks..." -t 5000
 # Get a list of available wifi connections and morph it into a nice-looking list
 
-wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/~~/g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d" | column -t -s '~')
+wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/^--/ /g" | sed "s/ //g" | sed "/--/d")
 
 connected=$(nmcli -fields WIFI g)
 if [[ "$connected" =~ "enabled" ]]; then
