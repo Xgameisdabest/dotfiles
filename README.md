@@ -9,6 +9,9 @@ if you have any problems trying to understand my English then heres the **tldr**
 > [!NOTE]
 > only work on debian based distros, might as well change it on your own if you use arch or Red Hat based os.
 
+## Preview
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview.jpg?raw=true)
+
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular
 - apt snap nala pacstall flatpak (essential)
