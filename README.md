@@ -1,4 +1,4 @@
-## about
+## About
 my i3 config, up to date as I change my shits
 
 you may see there are some configs and dependencies for hyprland and sway, this is bc im too lazy to make a git repo for those so i decided to put them here. Also, it is highly recommend to use i3wm as it is the most up to date and also the main focus of this repo.
@@ -8,6 +8,9 @@ if you have any problems trying to understand my English then heres the **tldr**
 
 > [!NOTE]
 > only work on debian based distros, might as well change it on your own if you use arch or Red Hat based os.
+
+## Preview
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview.jpg?raw=true)
 
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular
