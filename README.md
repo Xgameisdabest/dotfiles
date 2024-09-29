@@ -46,8 +46,7 @@ if you have any problems trying to understand my English then heres the **tldr**
 
 2nd, cd into that shit
 
-
-use GNU stow to create symlink
+3rd, use GNU stow to create symlink
 
 ``````
 ~/dotfiles $ stow .
