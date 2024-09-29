@@ -49,7 +49,10 @@ if you have any problems trying to understand my English then heres the **tldr**
 3rd, use GNU stow to create symlink
 
 ``````
-~/dotfiles $ stow .
+stow .
 ``````
-
+if you borrow some of mine:
+``````
+stow --adopt .
+``````
 NI*** HAS NO IDEA WHAT IS HE TALKING ABOUT HAHAHAHAHAHAAAHAAAAAAAAAAAHAHAHAHAHAHAHAHAHAHAHAHHAAAAAAHAHAHAHAHAHAHA 💀💀💀💀💀💀💀💀💀
