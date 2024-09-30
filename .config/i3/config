@@ -2,7 +2,7 @@
 set $mod Mod4
 set $alt Mod1
 
-exec_always --no-startup-id xrandr --auto
+#exec_always --no-startup-id xrandr --auto
 
 exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help menu!"
 

@@ -3,13 +3,13 @@
 notify-send "Getting list of available Wi-Fi networks..." -t 5000
 # Get a list of available wifi connections and morph it into a nice-looking list
 
-wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/^--/ /g" | sed "s/ //g" | sed "/--/d")
+wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/^--/ /g" | sed "s/ //g" | sed "/--/d")
 
 connected=$(nmcli -fields WIFI g)
 if [[ "$connected" =~ "enabled" ]]; then
-	toggle="Disable Wi-Fi 󰤭 "
+	toggle="Disable Wi-Fi 󱛅 "
 elif [[ "$connected" =~ "disabled" ]]; then
-	toggle="Enable Wi-Fi 󰤨 "
+	toggle="Enable Wi-Fi 󱚽 "
 fi
 
 connection_manager="Network Manager 󰖯 "
@@ -21,7 +21,7 @@ chosen_network=$(echo -e "$connection_manager\n$toggle\n$wifi_list" | rofi -dmen
 #read -r chosen_id <<< "${chosen_network:5}"
 #chosen_id=$(echo "$chosen_network" | awk '{print $1}')
 
-chosen_id="${chosen_network:5:${#chosen_network}-10}"
+chosen_id="${chosen_network:3:${#chosen_network}-17}"
 chosen_id="$(echo -e "$chosen_id" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 
 if [ "$chosen_network" = "" ]; then
