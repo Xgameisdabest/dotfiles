@@ -22,7 +22,8 @@ chosen_network=$(echo -e "$connection_manager\n$toggle\n$wifi_list" | rofi -dmen
 #read -r chosen_id <<< "${chosen_network:5}"
 #chosen_id=$(echo "$chosen_network" | awk '{print $1}')
 
-chosen_id="${chosen_network:3:${#chosen_network}-17}"
+#chosen_id="${chosen_network:3:${#chosen_network}-17}"
+chosen_id="${chosen_network:3:${#chosen_network}-15}"
 chosen_id="$(echo -e "$chosen_id" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 
 if [ "$chosen_network" = "" ]; then
