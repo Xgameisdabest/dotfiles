@@ -71,9 +71,9 @@ bindsym $mod+c exec google-chrome-stable
 bindsym $mod+m exec waypaper
 
 #screenshot
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)" && notify-send "Screenshot'ed"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)" && "Window Screenshot'ed"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)" && notify-send "Selected Area Screenshot'ed "
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png" && notify-send "Screenshot'ed"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png" && "Window Screenshot'ed"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png" && notify-send "Selected Area Screenshot'ed "
 
 # start a terminal
 #bindsym $mod+t exec alacritty
