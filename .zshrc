@@ -288,10 +288,10 @@ zstyle ':vcs_info:git:*' formats '%b '
 #PS1="%B%F{black}╭ %B%F{white}%n%F{red}@%F{white}%m%f%F{red} - %F{black}  %F{red}- %F{white}%B%~%b%f%F{black}%B "$'\n'"╰%F{white}%B%F{red}➜ %b%f"
 
 newline=$'\n'
-ZSH_THEME_GIT_PROMPT_PREFIX=" ${newline} $fg_bold[red]󰊢 $fg_bold[white]($fg_bold[cyan]"
-ZSH_THEME_GIT_PROMPT_SUFFIX="$fg_bold[white])"
-ZSH_THEME_GIT_PROMPT_CLEAN=" $fg_bold[green]✔"
-ZSH_THEME_GIT_PROMPT_DIRTY=" $fg_bold[red]✗"
+ZSH_THEME_GIT_PROMPT_PREFIX=" ${newline} $fg_bold[red]󰊢 $fg_bold[white]( $fg_bold[cyan]"
+ZSH_THEME_GIT_PROMPT_SUFFIX="$fg_bold[white] )"
+ZSH_THEME_GIT_PROMPT_CLEAN=" $fg_bold[green]"
+ZSH_THEME_GIT_PROMPT_DIRTY=" $fg_bold[red]"
 
 # printf '\e]12;#71adf4\007'
 #printf '\033[?25l'
