@@ -99,14 +99,14 @@ device_connected() {
 
 toggle_connection() {
     if device_connected "$1"; then
-       	notify-send "Cancelling connection with $dev_list"
+       	notify-send "Cancelling connection with $device"
 	bluetoothctl disconnect "$1"
-	notify-send "Successfully disconnected $dev_list"
+	notify-send "Successfully disconnected $device"
         device_menu "$device"
     else
-	notify-send "Establishing connection with $dev_list"
+	notify-send "Establishing connection with $device"
         bluetoothctl connect "$1"
-	notify-send "Successfully connected to $dev_list"
+	notify-send "Successfully connected to $device"
         device_menu "$device"
     fi
 }
