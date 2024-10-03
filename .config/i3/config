@@ -11,8 +11,7 @@ exec_always --no-startup-id waypaper --restore
 
 exec_always --no-startup-id xfce4-power-manager
 
-exec --no-startup-id libinput-gestures-setup stop
-exec --no-startup-id libinput-gestures-setup start
+exec_always --no-startup-id libinput-gestures-setup restart
 
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 
