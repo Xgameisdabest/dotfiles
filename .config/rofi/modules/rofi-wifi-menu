@@ -30,10 +30,10 @@ if [ "$chosen_network" = "" ]; then
 	exit
 elif [ "$chosen_network" = "$connection_manager" ]; then
 	nm-connection-editor
-elif [ "$chosen_network" = "Enable Wi-Fi 󰤨 " ]; then
+elif [ "$chosen_network" = "Enable Wi-Fi 󱚽 " ]; then
 	nmcli radio wifi on
 	notify-send "Wifi enabled!"
-elif [ "$chosen_network" = "Disable Wi-Fi 󰤭 " ]; then
+elif [ "$chosen_network" = "Disable Wi-Fi 󱛅 " ]; then
 	nmcli radio wifi off
 	notify-send "Wifi disabled!"
 else
