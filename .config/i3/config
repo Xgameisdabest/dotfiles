@@ -4,7 +4,7 @@ set $alt Mod1
 
 exec_always --no-startup-id xrandr --auto
 
-exec_always --no-startup-id notify-send -t 2000 "Press Mod+P to open the help menu!"
+exec_always --no-startup-id notify-send -t 2000 "Press 󰖳 + = to open the keybind menu!"
 
 #exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id waypaper --restore
@@ -170,7 +170,7 @@ bindsym $mod+Shift+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # show help menu
-bindsym $mod+p exec ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds.sh
+bindsym $mod+equal exec ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds.sh
 
 # focus the child container
 #bindsym $mod+d focus child
