@@ -98,7 +98,7 @@ bindsym $mod+x kill
 
 #scratchpad
 bindsym $mod+d move scratchpad
-bindsym $mod+Shift+d scratchpad show
+bindsym $mod+Shift+d scratchpad show, floating disable
 
 # start dmenu (a program launcher)
 #bindsym $mod+r exec --no-startup-id rofi -show drun
