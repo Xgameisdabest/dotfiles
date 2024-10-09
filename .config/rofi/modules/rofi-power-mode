@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+notify-send "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')"
+
 # Options
 performance='Performance 󰓅 '
 medium='Balance 󰾅 '
