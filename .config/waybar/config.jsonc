@@ -9,20 +9,20 @@
 
     // Choose the order of the modules
     "modules-left": ["custom/padd","battery","pulseaudio","bluetooth"],
-    "modules-center": ["sway/workspaces"],
+    "modules-center": ["hyprland/workspaces"],
     "modules-right": ["clock","network","custom/power","custom/padd"],
     
 
     // Modules configuration
      
 
-    "sway/language": {
+    "hyprland/language": {
         "format": "  : {} ",
         "keyboard-name": "at-translated-set-2-keyboard"
     },
 
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
       "format": "{name}",
       "format-icons": {
         "active": "",
@@ -42,7 +42,7 @@
         }
 },
     
-    "sway/window": {
+    "hyprland/window": {
         "format": " 󰘔  {class} "
     },
 
