@@ -65,8 +65,9 @@
         // "timezone": "Hanoi",
         "interval": 1,
         "format": "   {:%T} ",
-        "tooltip-format": "<big>{:%Y %B}</big>\n\n<tt><big>{calendar}</big></tt>",
-        "format-alt": "   {:%d-%m-%Y} "
+        // "tooltip-format": "<big>{:%Y %B}</big>\n\n<tt><big>{calendar}</big></tt>",
+        // "format-alt": "   {:%d-%m-%Y} "
+	"on-click": "~/.config/rofi/modules/rofi-calendar"
     },
     "cpu": {
         "interval": 15,
@@ -120,13 +121,13 @@
         "format": " {volume}% {icon} {format_source} ",
         "format-bluetooth": " {volume}% {icon} {format_source} ",
         "format-bluetooth-muted": " {icon} {format_source} ",
-        "format-muted": " 󰖁 {format_source} ",
+        "format-muted": " {volume}% 󰖁 {format_source} ",
         "format-source": " {volume}%  ",
         "format-source-muted": "",
         "format-icons": {
             "default": [" ", " ", " "]
         },
-        "on-click": "pamixer --toggle-mute",
+        "on-click": "~/.config/dunst/volume.sh volume_mute",
         "on-click-right": "pavucontrol"
         },
 
