@@ -134,7 +134,8 @@
     "custom/power": {
       "format": " {icon} ",
       "format-icons": "⏻",
-      "on-click": "~/.config/rofi/modules/rofi-power-menu"
+      // "on-click": "~/.config/rofi/modules/rofi-power-menu"
+      "on-click": "wlogout"
     },
   
    "backlight": {

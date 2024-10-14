@@ -9,7 +9,7 @@ exec_always --no-startup-id notify-send -t 2000 "Press 󰖳 + = to open the keyb
 #exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id waypaper --restore
 
-exec_always --no-startup-id xfce4-power-manager
+#exec_always --no-startup-id xfce4-power-manager
 
 exec_always --no-startup-id libinput-gestures-setup restart
 
@@ -87,7 +87,7 @@ bindsym $mod+t exec /usr/bin/alacritty
 bindsym $mod+s exec ~/.config/rofi/modules/rofi-web-search
 
 #lock the fucking screen
-bindsym $mod+q exec betterlockscreen -l --span
+bindsym $mod+q exec betterlockscreen -l
 exec_always --no-startup-id xss-lock  -- ~/.config/i3/lock.sh
 
 #i3 settings

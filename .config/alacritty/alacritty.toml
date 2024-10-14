@@ -14,7 +14,7 @@ builtin_box_drawing = true
 [font.normal]
 family = "JetBrainsMono Nerd Font"
 
-# [cursor]
+[cursor]
 # # Set to false to disable completely
 # smooth_motion = true
 # # 0.0 = cursor is not moving, 1.0 = cursor moves instantly
@@ -25,7 +25,7 @@ family = "JetBrainsMono Nerd Font"
 # smooth_motion_max_stretch_x = 2.0
 # smooth_motion_max_stretch_y = 2.0
 #
-# style = {shape = "beam", blinking = "off"}
+style = {shape = "beam", blinking = "off"}
 #
 [[hints.enabled]]
 command = "xdg-open" # On Linux/BSD
