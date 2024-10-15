@@ -97,7 +97,8 @@ while [[ true ]]; do
 			break
 		else
 			weekend_day=$(date -d "$year-$month-$selected" +%A)
-			notify-send "Date selected is: $weekend_day $selected/$month/$year"
+			#notify-send "Date selected is: $weekend_day $selected/$month/$year"
+			notify-send "$weekend_day $selected/$month/$year"
 		fi
     		break
     	    ;;
