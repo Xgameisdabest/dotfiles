@@ -22,7 +22,7 @@ if you have any problems trying to understand my English then heres the **tldr**
 - sway
 - hyprland
 - polybar waybar (essential)
-- pijulius picom (essential)
+- picom 12 (picom-git) (essential)
 - betterlockscreen (essential)
 - tmux neofetch(terminal util)
 - waypaper feh (wallpaper)
