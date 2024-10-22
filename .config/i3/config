@@ -13,7 +13,9 @@ exec_always --no-startup-id waypaper --restore
 
 exec_always --no-startup-id libinput-gestures-setup restart
 
-exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+#exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+
+exec --no-startup-id kdeconnectd
 
 #exec --no-startup-id setxkbmap -layout us,vn && setxkbmap -option 'grp:win_space_toggle'
 
