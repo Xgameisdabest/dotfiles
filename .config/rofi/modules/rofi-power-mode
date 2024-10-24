@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-notify-send "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')"
+notify-send "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $(powerprofilesctl get)"
 
 # Options
 performance='Performance 󰓅 '
