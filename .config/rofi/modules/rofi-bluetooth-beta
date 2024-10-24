@@ -41,7 +41,7 @@ toggle_scan() {
         bluetoothctl scan off
         show_menu
     else
-	notify-send "Scanning nearby devices..." -t 5000
+	notify-send "Scanning Nearby Devices 󰾰 ... " -t 5000
         bluetoothctl --timeout 5 scan on
         echo "Scanning..."
 	show_menu
@@ -99,14 +99,14 @@ device_connected() {
 
 toggle_connection() {
     if device_connected "$1"; then
-       	notify-send "Cancelling connection with $device"
+       	notify-send "Cancelling Connection With Device $device_name"
 	bluetoothctl disconnect "$1"
-	notify-send "Successfully disconnected $device"
+	notify-send "Successfully Disconnected Device $device_name"
         device_menu "$device"
     else
-	notify-send "Establishing connection with $device"
+	notify-send "Establishing Connection With Device $device_name"
         bluetoothctl connect "$1"
-	notify-send "Successfully connected to $device"
+	notify-send "Successfully Connected To Device $device_name"
         device_menu "$device"
     fi
 }
