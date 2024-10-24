@@ -1,6 +1,10 @@
 [FPS]
 framerate = auto
 
+[input]
+method = pulse
+source = auto
+
 [output]
 channels = stereo
 
