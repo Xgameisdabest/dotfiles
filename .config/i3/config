@@ -71,6 +71,9 @@ bindsym $mod+c exec google-chrome-stable
 #wallpaper
 bindsym $mod+m exec waypaper
 
+#window resolution
+bindsym $mod+n exec arandr
+
 #screenshot
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png" && notify-send "Screenshot'ed"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png" && "Window Screenshot'ed"
