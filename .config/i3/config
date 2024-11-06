@@ -96,7 +96,7 @@ bindsym $mod+q exec betterlockscreen -l
 exec_always --no-startup-id xss-lock  -- ~/.config/i3/lock.sh
 
 #i3 settings
-bindsym $mod+i exec alacritty -e nvim ~/.config/i3/config
+bindsym $mod+i exec ~/.config/i3/i3_rofi_settings.sh
 
 # kill focused window
 bindsym $mod+x kill
