@@ -9,7 +9,7 @@
 #   ["Youtube"]="https://www.youtube.com/results?search_query="
 # )
 
-web="Web  "
+web="Web Search  "
 yt="Youtube  "
 
 web(){
