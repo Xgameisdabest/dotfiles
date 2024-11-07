@@ -9,25 +9,47 @@
 #   ["Youtube"]="https://www.youtube.com/results?search_query="
 # )
 
-search=$( (echo ) | rofi -dmenu -theme-str "window {height: 90px;}" -p " Search   " )
-search_engine="https://www.google.com/search?q="
-#search_engine=https://duckduckgo.com/?q=""
+web="Web  "
+yt="Youtube  "
 
+web(){
+search=$( echo | rofi -dmenu -theme-str "window {height: 90px;}" -p " Search   " )
+search_engine="https://www.google.com/search?q="
 main() {
     if [[ -n "$search" ]]; then
       url="$search_engine$search"
       xdg-open "$url"
-	
-       else
-	# texts=("Nigga wdym 💀" "Bro wasted my fucking time 🤬" "Fuck you 🖕" "Bitch did NOT have anything to say 🤡")
-	# num_texts=${#texts[@]}
-	# random_index=$(( RANDOM % num_texts ))
-	# random_text=${texts[random_index]}
-	# notify-send -t 1000 "$random_text"
+    else
 		exit
 	      fi
 }
-
 main
-
 exit 0
+}
+
+yt(){
+search=$( echo | rofi -dmenu -theme-str "window {height: 90px;}" -p " Search   " )
+search_engine="https://www.youtube.com/results?search_query="
+main() {
+    if [[ -n "$search" ]]; then
+      url="$search_engine$search"
+      xdg-open "$url"
+    else
+		exit
+	      fi
+}
+main
+exit 0
+}
+
+
+select=$( echo -e "$web\n$yt" | rofi -dmenu -theme-str "window {height: 190px; width: 280px;}" -p " Select Search Mode ")
+
+case $select in
+	$web)
+		web
+		;;
+	$yt)
+		yt
+		;;
+esac
