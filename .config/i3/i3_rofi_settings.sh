@@ -19,8 +19,9 @@ rofi_submenu(){
 	web_search="  Web Search"
 	calendar="  Calendar"
 	i3_settings_menu="  i3 Settings"
+	notifications_hist="󰵙  Notification"
 
-	select2=$(echo -e "$rofi\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar" | rofi -dmenu -theme-str 'window {height: 370px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
+	select2=$(echo -e "$rofi\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist" | rofi -dmenu -theme-str 'window {height: 450px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
 	
 	case $select2 in
 		$rofi)
@@ -46,6 +47,9 @@ rofi_submenu(){
 			;;
 		$i3_settings_menu)
 			$TERMINAL -e nvim ~/.config/i3/i3_rofi_settings.sh
+			;;
+		$notifications_hist)
+			$TERMINAL -e nvim ~/.config/dunst/noti-center.sh
 			;;
 	esac
 
