@@ -3,6 +3,8 @@
 notifications=$(dunstctl history | jq -r '
     .data[0][] |
     select(
+	(.summary.data | contains("Press 󰖳 + = to open the keybind menu!") | not) and
+	(.summary.data | contains("Airplane Mode Toggled 󰀝 ") | not) and
         (.summary.data | contains("") | not) and
         (.summary.data | contains("") | not) and
         (.summary.data | contains("") | not) and
