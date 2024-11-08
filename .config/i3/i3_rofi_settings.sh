@@ -7,7 +7,7 @@ picomconfig="󰢹  Picom Config"
 arandr="󰨤  Resolution"
 wallpaper="  Wallpaper"
 gestures="󱠡  Gestures"
-rofi="󰮫  Menu"
+rofi="󰮫  Menu  "
 
 rofi_submenu(){
 	
