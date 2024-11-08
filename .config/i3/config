@@ -69,10 +69,10 @@ bindsym $mod+e exec thunar
 bindsym $mod+c exec google-chrome-stable
 
 #wallpaper
-bindsym $mod+m exec waypaper
+#bindsym $mod+m exec waypaper
 
 #window resolution
-bindsym $mod+n exec arandr
+#bindsym $mod+n exec arandr
 
 #screenshot
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png" && notify-send "Screenshot'ed"
