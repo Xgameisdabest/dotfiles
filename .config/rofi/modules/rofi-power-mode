@@ -3,10 +3,10 @@
 notify-send "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $(powerprofilesctl get)"
 
 # Options
-performance='Performance 󰓅 '
-medium='Balance 󰾅 '
-power='Power Saver 󰾆 '
-power_manager="Power Manager 󰖯 "
+performance='󰓅  Performance'
+medium='󰾅  Balance'
+power='󰾆  Power Saver'
+power_manager="󰖯  Power Manager"
 
 rofi_cmd() {
 	rofi -dmenu -theme-str 'window {height: 255px; width: 255px;}' -p " Mode 󱐋 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1

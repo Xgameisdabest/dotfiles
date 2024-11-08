@@ -9,8 +9,8 @@
 #   ["Youtube"]="https://www.youtube.com/results?search_query="
 # )
 
-web="Web Search  "
-yt="Youtube  "
+web="  Web Search"
+yt="  Youtube"
 
 web(){
 search=$( echo | rofi -dmenu -theme-str "window {height: 90px;}" -p " Search   " )
