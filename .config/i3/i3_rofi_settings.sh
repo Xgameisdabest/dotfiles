@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 i3config="󰨇  i3 Config"
-polybar="  Top Bar"
+polybar="  Polybar"
 btrlockscreen="󰷛  Lock Screen"
 picomconfig="󰢹  Picom Config"
 arandr="󰨤  Resolution"
