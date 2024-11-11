@@ -158,6 +158,7 @@ bindsym $mod+f fullscreen toggle
 #gaps outer 6
 gaps inner 6
 default_border pixel 3
+default_floating_border pixel 8
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+Shift+q layout stacking
