@@ -3,10 +3,9 @@
 killall -q polybar
 
 for m in $(polybar --list-monitors | cut -d":" -f1); do
-    MONITOR=$m polybar --reload example &
+    MONITOR=$m polybar --reload top &
+    MONITOR=$m polybar --reload bottom &
 done
-
-#polybar --reload example &
 
 #It's best to keep it here
 #
