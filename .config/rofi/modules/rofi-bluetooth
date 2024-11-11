@@ -257,7 +257,7 @@ show_menu() {
         options="$power\n$quit"
     fi
 
-    chosen="$(echo -e "$options" | $rofi_command " Bluetooth  ")"
+    chosen="$(echo -e "$options" | rofi -dmenu -theme-str 'window {height: 390; width: 350px;}' -p " Bluetooth  ")"
 
     case "$chosen" in
         "" | "$divider")

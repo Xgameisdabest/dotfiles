@@ -15,7 +15,7 @@ rofi_submenu(){
 	wifi="󱛃  Wifi"
 	bluetooth="󰂳  Bluetooth"
 	pwr_menu="  Power Menu"
-	pwr_mode="󰾅  Power Mode"
+	pwr_mode="󰾆  Power Mode"
 	web_search="  Web Search"
 	calendar="  Calendar"
 	i3_settings_menu="  i3 Settings"
