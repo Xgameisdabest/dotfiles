@@ -5,7 +5,16 @@ notifications=$(dunstctl history | jq -r '
     select(
 	(.summary.data | contains("Press 󰖳 + = to open the keybind menu!") | not) and
 	(.summary.data | contains("Airplane Mode Toggled 󰀝 ") | not) and
-        (.summary.data | contains("") | not) and
+	(.summary.data | contains("Battery Time Remaining: ") | not) and
+	(.summary.data | contains("Power set to performance mode 󰓅") | not) and
+	(.summary.data | contains("Power set to balance mode 󰾅") | not) and
+	(.summary.data | contains("Power set to power-saver mode 󰾆") | not) and
+	(.summary.data | contains("CONNECTING TO PHONE ") | not) and
+	(.summary.data | contains("Screenshotted") | not) and
+	(.summary.data | contains("Window Screenshotted") | not) and
+	(.summary.data | contains("Selected Area Screenshotted") | not) and
+        (.summary.data | contains("RESIZE MODE. PRESS esc TO EXIT!") | not) and
+	(.summary.data | contains("") | not) and
         (.summary.data | contains("") | not) and
         (.summary.data | contains("") | not) and
 	(.summary.data | contains("") | not)) |
