@@ -293,9 +293,9 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="$fg_bold[white] )"
 ZSH_THEME_GIT_PROMPT_CLEAN=" $fg_bold[green]"
 ZSH_THEME_GIT_PROMPT_DIRTY=" $fg_bold[red]"
 ZSH_THEME_GIT_PROMPT_AHEAD=" $fg_bold[cyan]"
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" $fg_bold[cyan]"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" $fg_bold[cyan] "
 ZSH_THEME_GIT_PROMPT_BEHIND=" $fg_bold[yellow]"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" $fg_bold[yellow]"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" $fg_bold[yellow] "
 
 # printf '\e]12;#71adf4\007'
 #printf '\033[?25l'
