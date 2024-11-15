@@ -14,14 +14,14 @@ if you have any problems trying to understand my English then heres the **tldr**
 
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular
-- apt snap nala pacstall flatpak (essential)
+- apt snap nala pacstall flatpak (essential for Debian based, for Arch just use anything that works for you)
 - chrome (i know but it works well for me, you might have to change some variables if you want to use a different browser)
 - ncal (essential)
 - neovim (essential)
 - alacritty/kitty (essential)
 - i3 (essential)
-- sway
-- hyprland
+- sway (optional)
+- hyprland (optional)
 - polybar waybar (essential)
 - picom 12 (picom-git) (essential)
 - betterlockscreen (essential)
