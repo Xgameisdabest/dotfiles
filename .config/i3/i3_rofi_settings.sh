@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-i3config="󰨇  i3 Config"
+i3config="󰨇  i3 Desktop"
 polybar="  Polybar"
 btrlockscreen="󰷛  Lock Screen"
-picomconfig="󰢹  Picom Config"
+picomconfig="󰢹  Picom"
 arandr="󰨤  Resolution"
 wallpaper="  Wallpaper"
 gestures="󱠡  Gestures"
