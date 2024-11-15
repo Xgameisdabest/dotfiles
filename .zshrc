@@ -292,6 +292,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX=" ${newline} $fg_bold[red]󰊢 $fg_bold[white]( $fg_
 ZSH_THEME_GIT_PROMPT_SUFFIX="$fg_bold[white] )"
 ZSH_THEME_GIT_PROMPT_CLEAN=" $fg_bold[green]"
 ZSH_THEME_GIT_PROMPT_DIRTY=" $fg_bold[red]"
+ZSH_THEME_GIT_PROMPT_ADDED=" $fg_bold[red]󰆺"
 ZSH_THEME_GIT_PROMPT_AHEAD=" $fg_bold[cyan]"
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" $fg_bold[cyan] "
 ZSH_THEME_GIT_PROMPT_BEHIND=" $fg_bold[yellow]"
