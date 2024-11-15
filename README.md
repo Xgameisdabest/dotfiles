@@ -56,4 +56,4 @@ if you borrow some of mine:
 ``````
 stow --adopt .
 ``````
-NI*** HAS NO IDEA WHAT IS HE TALKING ABOUT HAHAHAHAHAHAAAHAAAAAAAAAAAHAHAHAHAHAHAHAHAHAHAHAHHAAAAAAHAHAHAHAHAHAHA 💀💀💀💀💀💀💀💀💀
+have fun ~~suffering~~
