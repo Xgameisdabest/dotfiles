@@ -7,7 +7,7 @@ if you have any problems trying to understand my English then heres the **tldr**
 - **This whole config is mainly for i3wm, not for hyprland and sway.**
 
 > [!NOTE]
-> only work on debian based distros, might as well change it on your own if you use arch or Red Hat based os.
+> Only work on Debian based distros, might as well change it on your own if you use Arch or Red Hat based OS.
 
 ## Preview
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview.jpg?raw=true)
@@ -15,6 +15,7 @@ if you have any problems trying to understand my English then heres the **tldr**
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular
 - apt snap nala pacstall flatpak (essential)
+- chrome (i know but it works well for me, you might have to change some variables if you want to use a different browser)
 - ncal (essential)
 - neovim (essential)
 - alacritty/kitty (essential)
