@@ -10,7 +10,7 @@ fi
 
 MAX=$(i3-msg -t get_workspaces | jq '.[-1].num')
 if [ $CURRENT -eq $MAX ] && [ $DIRECTION = "next" ]; then
-	exit 0
+	DIRECTION=$((CURRENT+1))
 fi
 
 i3-msg move container to workspace $DIRECTION
