@@ -22,7 +22,7 @@ rofi_submenu(){
 	i3_settings_menu="  i3 Settings"
 	notifications_hist="󰵙  Notification"
 
-	select2=$(echo -e "$rofi\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist" | rofi -dmenu -theme-str 'window {height: 450px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
+	select2=$(echo -e "$rofi\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist" | rofi -dmenu -i -theme-str 'window {height: 450px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
 	
 	case $select2 in
 		$rofi)
@@ -56,7 +56,7 @@ rofi_submenu(){
 
 }
 
-select=$( echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr"  | rofi -dmenu -theme-str 'window {height: 455px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " )
+select=$( echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr"  | rofi -dmenu -i -theme-str 'window {height: 455px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " )
 
 case $select in
 	$i3config)

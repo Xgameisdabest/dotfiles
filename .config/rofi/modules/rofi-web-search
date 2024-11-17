@@ -13,7 +13,7 @@ web="  Web Search"
 yt="  Youtube"
 
 web(){
-search=$( echo | rofi -dmenu -theme-str "window {height: 90px;}" -p " Search   " )
+search=$( echo | rofi -dmenu -i -theme-str "window {height: 90px;}" -p " Search   " )
 search_engine="https://www.google.com/search?q="
 main() {
     if [[ -n "$search" ]]; then
