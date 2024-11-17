@@ -48,6 +48,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/dunst/volume.sh bri
 #Airplane mode
 bindsym XF86RFKill exec --no-startup-id notify-send "Airplane Mode Toggled 󰀝 " && toggle-airplane
 
+#Display settings
+bindsym XF86Display exec --no-startup-id arandr
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
