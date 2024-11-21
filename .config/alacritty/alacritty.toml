@@ -7,6 +7,7 @@ ipc_socket = true
 [window]
 title = "Alacritty  "
 dynamic_title = true
+opacity = 0.92
 
 [font]
 builtin_box_drawing = true
