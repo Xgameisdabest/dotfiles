@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 i3config="󰨇  i3 Desktop"
-polybar="  Polybar"
+polybar="  Polybar  "
 btrlockscreen="󰷛  Lock Screen"
 picomconfig="󰢹  Picom"
 arandr="󰨤  Resolution"
@@ -9,6 +9,8 @@ wallpaper="  Wallpaper"
 gestures="󱠡  Gestures"
 rofi="󰮫  Menu  "
 zshconfig="  Zsh"
+
+### ROFI SUBMENU
 
 rofi_submenu(){
 	
@@ -19,7 +21,7 @@ rofi_submenu(){
 	pwr_mode="󰾆  Power Mode"
 	web_search="  Web Search"
 	calendar="  Calendar"
-	i3_settings_menu="  i3 Settings"
+	i3_settings_menu="  This Menu"
 	notifications_hist="󰵙  Notification"
 
 	select2=$(echo -e "$rofi\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist" | rofi -dmenu -i -theme-str 'window {height: 450px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
@@ -56,7 +58,28 @@ rofi_submenu(){
 
 }
 
+### POLYBAR SUBMENU
+
+polybar_submenu(){
+	
+	polybar="  Polybar"
+	bar_start="󱓞  Bar Startup"
+	
+	select2=$(echo -e "$polybar\n$bar_start" | rofi -dmenu -i -theme-str 'window {height: 180px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+
+	case $select2 in 
+		$polybar)
+			$TERMINAL -e nvim ~/.config/polybar/config.ini
+			;;
+		$bar_start)
+			$TERMINAL -e nvim ~/.config/polybar/launch.sh
+			;;
+	esac
+}
+
 select=$( echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr"  | rofi -dmenu -i -theme-str 'window {height: 455px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " )
+
+### MAIN MENU
 
 case $select in
 	$i3config)
@@ -81,7 +104,7 @@ case $select in
 		$TERMINAL -e nvim ~/.config/betterlockscreen/betterlockscreenrc
 		;;
 	$polybar)
-		$TERMINAL -e nvim ~/.config/polybar/config.ini
+		polybar_submenu
 		;;
 	$zshconfig)
 		$TERMINAL -e nvim ~/.zshrc
