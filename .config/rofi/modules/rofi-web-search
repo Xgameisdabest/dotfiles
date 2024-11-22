@@ -12,7 +12,7 @@
 web="  Web Search"
 yt="  Youtube"
 github="  Github"
-this_dotfiles="󰌧  This Dotfile"
+this_dotfiles="󰌧  This Dotfiles"
 
 web(){
 search=$( echo | rofi -dmenu -i -theme-str "window {height: 90px;}" -p " Search   " )
