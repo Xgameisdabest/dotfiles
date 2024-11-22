@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 goback="Back 󰌍 "
+quit="Exit 󰈆 "
 
 i3config="󰨇  i3 Desktop"
 polybar="  Polybar  "
@@ -9,13 +10,13 @@ picomconfig="󰢹  Picom"
 arandr="󰨤  Resolution"
 wallpaper="  Wallpaper"
 gestures="󱠡  Gestures"
-rofi="󰮫  Menu  "
+rofi="󰮫  Rofi  "
 zshconfig="  Zsh"
 
 ### MAIN MENU
 
 main_menu(){
-	select=$(echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr"  | rofi -dmenu -i -theme-str 'window {height: 455px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
+	select=$(echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str 'window {height: 485px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
 
 	case $select in
 		$i3config)
@@ -44,6 +45,11 @@ main_menu(){
 			;;
 		$zshconfig)
 			$TERMINAL -e nvim ~/.zshrc
+			;;
+		$quit)
+			echo "exit"
+			exit 0
+			;;
 	esac
 }
 
