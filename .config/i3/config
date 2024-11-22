@@ -124,8 +124,10 @@ bindsym $mod+z exec --no-startup-id rofimoji
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktp
 
 #switch between workspaces
-bindsym ctrl+$mod+Right exec ~/.config/i3/swipe_desktop.sh next
-bindsym ctrl+$mod+Left exec ~/.config/i3/swipe_desktop.sh prev
+bindsym ctrl+$mod+Right exec ~/.config/i3/container_desktop.sh next
+bindsym ctrl+$mod+Left exec ~/.config/i3/container_desktop.sh prev
+bindsym ctrl+$alt+Right exec ~/.config/i3/swipe_desktop.sh next
+bindsym ctrl+$alt+Left exec ~/.config/i3/swipe_desktop.sh prev
 
 # you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -244,9 +246,6 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 bindsym $mod+Shift+Tab workspace back_and_forth
-
-bindsym $mod+$alt+Right exec ~/.config/i3/container_desktop.sh next
-bindsym $mod+$alt+Left exec ~/.config/i3/container_desktop.sh prev
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
