@@ -12,6 +12,7 @@
 web="  Web Search"
 yt="  Youtube"
 github="  Github"
+this_dotfiles="󰌧  This Dotfile"
 
 web(){
 search=$( echo | rofi -dmenu -i -theme-str "window {height: 90px;}" -p " Search   " )
@@ -58,7 +59,12 @@ main
 exit 0
 }
 
-select=$( echo -e "$web\n$yt\n$github" | rofi -dmenu -theme-str "window {height: 225px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode ")
+dotfiles(){
+xdg-open https://github.com/xgameisdabest/my-i3-config-dotfiles
+exit 0
+}
+
+select=$( echo -e "$web\n$yt\n$github\n$this_dotfiles" | rofi -dmenu -theme-str "window {height: 260px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode ")
 
 case $select in
 	$web)
@@ -69,5 +75,8 @@ case $select in
 		;;
 	$github)
 		github
+		;;
+	$this_dotfiles)
+		dotfiles
 		;;
 esac
