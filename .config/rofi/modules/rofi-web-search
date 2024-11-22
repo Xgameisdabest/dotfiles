@@ -11,6 +11,7 @@
 
 web="  Web Search"
 yt="  Youtube"
+github="  Github"
 
 web(){
 search=$( echo | rofi -dmenu -i -theme-str "window {height: 90px;}" -p " Search   " )
@@ -28,7 +29,7 @@ exit 0
 }
 
 yt(){
-search=$( echo | rofi -dmenu -theme-str "window {height: 90px;}" -p " Search   " )
+search=$( echo | rofi -dmenu -theme-str "window {height: 90px;}" -p " Videos   " )
 search_engine="https://www.youtube.com/results?search_query="
 main() {
     if [[ -n "$search" ]]; then
@@ -42,8 +43,22 @@ main
 exit 0
 }
 
+github(){
+search=$( echo | rofi -dmenu -theme-str "window {height: 90px;}" -p " User/Project   " )
+search_engine="https://github.com/"
+main() {
+    if [[ -n "$search" ]]; then
+      url="$search_engine$search"
+      xdg-open "$url"
+    else
+		exit
+	      fi
+}
+main
+exit 0
+}
 
-select=$( echo -e "$web\n$yt" | rofi -dmenu -theme-str "window {height: 190px; width: 280px;}" -p " Select Search Mode ")
+select=$( echo -e "$web\n$yt\n$github" | rofi -dmenu -theme-str "window {height: 225px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode ")
 
 case $select in
 	$web)
@@ -51,5 +66,8 @@ case $select in
 		;;
 	$yt)
 		yt
+		;;
+	$github)
+		github
 		;;
 esac
