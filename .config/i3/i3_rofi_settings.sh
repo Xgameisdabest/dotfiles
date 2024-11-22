@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+goback="Back 󰌍 "
+
 i3config="󰨇  i3 Desktop"
 polybar="  Polybar  "
 btrlockscreen="󰷛  Lock Screen"
@@ -10,11 +12,46 @@ gestures="󱠡  Gestures"
 rofi="󰮫  Menu  "
 zshconfig="  Zsh"
 
+### MAIN MENU
+
+main_menu(){
+	select=$(echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr"  | rofi -dmenu -i -theme-str 'window {height: 455px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
+
+	case $select in
+		$i3config)
+			$TERMINAL -e nvim ~/.config/i3/config
+			;;
+		$picomconfig)
+			$TERMINAL -e nvim ~/.config/picom/picom.conf
+			;;
+		$arandr)
+			arandr
+			;;
+		$wallpaper)
+			waypaper
+			;;
+		$gestures)
+			$TERMINAL -e nvim ~/.config/libinput-gestures.conf
+			;;
+		$rofi)
+			rofi_submenu
+			;;
+		$btrlockscreen)
+			$TERMINAL -e nvim ~/.config/betterlockscreen/betterlockscreenrc
+			;;
+		$polybar)
+			polybar_submenu
+			;;
+		$zshconfig)
+			$TERMINAL -e nvim ~/.zshrc
+	esac
+}
+
 ### ROFI SUBMENU
 
 rofi_submenu(){
 	
-	rofi="󰮫  Menu"
+	rofi_sub="󰮫  Menu"
 	wifi="󱛃  Wifi"
 	bluetooth="󰂳  Bluetooth"
 	pwr_menu="  Power Menu"
@@ -24,10 +61,10 @@ rofi_submenu(){
 	i3_settings_menu="  This Menu"
 	notifications_hist="󰵙  Notification"
 
-	select2=$(echo -e "$rofi\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist" | rofi -dmenu -i -theme-str 'window {height: 450px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
+	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$goback" | rofi -dmenu -i -theme-str 'window {height: 480px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
 	
 	case $select2 in
-		$rofi)
+		$rofi_sub)
 			$TERMINAL -e nvim ~/.config/rofi/config.rasi
 			;;
 		$wifi)
@@ -54,6 +91,9 @@ rofi_submenu(){
 		$notifications_hist)
 			$TERMINAL -e nvim ~/.config/dunst/noti-center.sh
 			;;
+		$goback)
+			main_menu
+			;;
 	esac
 
 }
@@ -62,50 +102,24 @@ rofi_submenu(){
 
 polybar_submenu(){
 	
-	polybar="  Polybar"
+	polybar_sub="  Polybar"
 	bar_start="󱓞  Bar Startup"
 	
-	select2=$(echo -e "$polybar\n$bar_start" | rofi -dmenu -i -theme-str 'window {height: 180px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	select2=$(echo -e "$polybar_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str 'window {height: 220px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
 
 	case $select2 in 
-		$polybar)
+		$polybar_sub)
 			$TERMINAL -e nvim ~/.config/polybar/config.ini
 			;;
 		$bar_start)
 			$TERMINAL -e nvim ~/.config/polybar/launch.sh
 			;;
+		$goback)
+			main_menu
+			;;
 	esac
 }
 
-select=$( echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr"  | rofi -dmenu -i -theme-str 'window {height: 455px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " )
+### PROGRAM MAIN EXEC
 
-### MAIN MENU
-
-case $select in
-	$i3config)
-		$TERMINAL -e nvim ~/.config/i3/config
-		;;
-	$picomconfig)
-		$TERMINAL -e nvim ~/.config/picom/picom.conf
-		;;
-	$arandr)
-		arandr
-		;;
-	$wallpaper)
-		waypaper
-		;;
-	$gestures)
-		$TERMINAL -e nvim ~/.config/libinput-gestures.conf
-		;;
-	$rofi)
-		rofi_submenu
-		;;
-	$btrlockscreen)
-		$TERMINAL -e nvim ~/.config/betterlockscreen/betterlockscreenrc
-		;;
-	$polybar)
-		polybar_submenu
-		;;
-	$zshconfig)
-		$TERMINAL -e nvim ~/.zshrc
-esac
+main_menu
