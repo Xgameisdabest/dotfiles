@@ -12,11 +12,11 @@ if you have any problems trying to understand my English then heres the **tldr**
 ## Preview
 V1 (use ```git checkout 4404458``` to use this version)
 
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview.jpg?raw=true)
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview_img/preview.jpg?raw=true)
 
 V2 (up-to-date)
 
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview_2.jpg?raw=true)
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview_img/preview_2.jpg?raw=true)
 
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular
