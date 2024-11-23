@@ -246,6 +246,8 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 bindsym $mod+Shift+Tab workspace back_and_forth
+bindsym $mod+Shift+grave exec ~/.config/rofi/modules/rofi-window-container/workspace_input_number_window_switch.sh
+bindsym $mod+grave exec ~/.config/rofi/modules/rofi-window-container/workspace_input_number_switch.sh
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
