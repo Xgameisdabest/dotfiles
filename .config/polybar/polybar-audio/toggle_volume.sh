@@ -16,7 +16,7 @@ check_volume_level(){
 
 }
 
-if [ $(pactl get-sink-mute @DEFAULT_SINK@ | sed 's/Mute: //g') = "no" ] 
+if [ $(pactl get-sink-mute @DEFAULT_SINK@ | sed 's/Mute: //g') = "no" ];
 then
   check_volume_level
 else
