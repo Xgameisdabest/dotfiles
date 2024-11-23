@@ -10,7 +10,7 @@ if you have any problems trying to understand my English then heres the **tldr**
 > Only work on Debian based distros, might as well change it on your own if you use Arch or Red Hat based OS.
 
 ## Preview
-V1 (last commit: 4404458)
+V1 (use ```git checkout 4404458``` to use this version)
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview.jpg?raw=true)
 
