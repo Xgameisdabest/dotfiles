@@ -1,5 +1,6 @@
 #!/bin/bash
 
+noti_main_menu(){
 notifications=$(dunstctl history | jq -r '
     .data[0][] |
     select(
@@ -26,6 +27,9 @@ cls_hist=$(echo "Clear History 󱏫")
 options="$cls_hist\n$notifications"
 # Use rofi to display notifications
 selected=$(echo -e "$options" | rofi -dmenu -i -selected-row 1 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}")
+}
+
+noti_main_menu
 
 case "$selected" in
 	"")
@@ -33,6 +37,7 @@ case "$selected" in
 		;;
 	"$cls_hist")
 		dunstctl history-clear
+		noti_main_menu
 		;;
 	*)
 		body=$(dunstctl history | jq -r --arg summary "$selected" \
