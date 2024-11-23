@@ -8,8 +8,10 @@ medium='󰾅  Balance'
 power='󰾆  Power Saver'
 power_manager="󰖯  Power Manager"
 
+bat_percentage=$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | sed 's/percentage//g' | sed 's/://g' | sed 's/  //g')
+
 rofi_cmd() {
-	rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px;}' -p " Mode 󱐋 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+	rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px;}' -p " $bat_percentage 󰁹 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 }
 
 # Pass variables to rofi dmenu
