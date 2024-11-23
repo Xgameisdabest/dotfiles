@@ -1,4 +1,7 @@
 ## About
+
+___DEVELOP ON UBUNTU 24.10___
+
 my i3 config, up to date as I change my shits
 
 you may see there are some configs and dependencies for hyprland and sway, this is bc im too lazy to make a git repo for those so i decided to put them here. Also, it is highly recommend to use i3wm as it is the most up to date and also the main focus of this repo.
