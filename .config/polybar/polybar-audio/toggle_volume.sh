@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 check_volume_level(){
 	
