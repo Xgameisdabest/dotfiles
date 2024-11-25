@@ -6,6 +6,8 @@ if [[ $status == "Discharging" ]]; then
 	notify-send "󰁹 Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $(powerprofilesctl get)"
 elif [[ $status == "Charging" ]]; then
 	notify-send "󱐋 Charge Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $(powerprofilesctl get)"
+elif [[ $status == "Full" ]]; then
+	notify-send "󰂄 Battery Full" "CURRENT PROFILE: $(powerprofilesctl get)"
 fi
 
 # Options
@@ -21,6 +23,8 @@ rofi_cmd() {
 		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px;}' -p " $bat_percentage 󰁹 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 	elif [[ $status == "Charging" ]]; then
 		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px;}' -p " $bat_percentage 󱐋 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+	elif [[ $status == "Full" ]]; then
+		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px;}' -p " Full 󰂄 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 	fi
 }
 
