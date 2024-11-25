@@ -12,11 +12,13 @@ wallpaper="  Wallpaper"
 gestures="󱠡  Gestures"
 rofi="󰮫  Rofi  "
 zshconfig="  Zsh"
+dunst="󰵙  Notification"
 
 ### MAIN MENU
 
 main_menu(){
-	select=$(echo -e "$i3config\n$polybar\n$rofi\n$picomconfig\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str 'window {height: 485px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
+	#when add new entry make sure to add 35 to height
+	select=$(echo -e "$i3config\n$rofi\n$polybar\n$picomconfig\n$zshconfig\n$dunst\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str 'window {height: 520px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
 
 	case $select in
 		$i3config)
@@ -45,6 +47,9 @@ main_menu(){
 			;;
 		$zshconfig)
 			$TERMINAL -e nvim ~/.zshrc
+			;;
+		$dunst)
+			$TERMINAL -e nvim ~/.config/dunst/dunstrc
 			;;
 		$quit)
 			echo "exit"
