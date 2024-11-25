@@ -9,6 +9,10 @@ separator_color= frame
 origin=bottom-center
 timeout = 2
 
+[play_sound]
+summary = "*"
+script = ~/.config/dunst/sound.sh
+
 [urgency_low]
 background = "#1e1e2e"
 foreground = "#cdd6f4"
