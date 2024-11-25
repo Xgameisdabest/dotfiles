@@ -13,7 +13,7 @@ fi
 
 connection_manager="󰖯  Network Manager"
 
-wifi_list="  Wifi List"
+wifi_list="  Wifi List  "
 
 select=$(echo -e "$wifi_list\n$toggle\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi SSID 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 300px; height: 260px;}")
 
