@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-notify-send "Getting list of available Wi-Fi networks..." -t 5000
+goback="Back 󰌍 "
+quit="Exit 󰈆 "
 
-wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/^--/ /g" | sed "s/ //g" | sed "/--/d" | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g")
-
+main_menu(){
 connected=$(nmcli -fields WIFI g)
 if [[ "$connected" =~ "enabled" ]]; then
 	toggle="󱛅  Disable Wi-Fi"
@@ -13,30 +13,59 @@ fi
 
 connection_manager="󰖯  Network Manager"
 
-chosen_network=$(echo -e "$connection_manager\n$toggle\n$wifi_list" | rofi -dmenu -i -selected-row 2 -p " Wi-Fi SSID 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}")
-chosen_id="${chosen_network:3:${#chosen_network}-15}"
-chosen_id="$(echo -e "$chosen_id" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+wifi_list="  Wifi List"
 
-if [ "$chosen_network" = "" ]; then
-	exit
-elif [ "$chosen_network" = "$connection_manager" ]; then
-	nm-connection-editor
-elif [ "$chosen_network" = "󱚽  Enable Wi-Fi" ]; then
+select=$(echo -e "$wifi_list\n$toggle\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi SSID 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 300px; height: 260px;}")
+
+if [ "$select" = "󱚽  Enable Wi-Fi" ]; then
 	nmcli radio wifi on
 	notify-send "Wifi enabled!"
-elif [ "$chosen_network" = "󱛅  Disable Wi-Fi" ]; then
+elif [ "$select" = "󱛅  Disable Wi-Fi" ]; then
 	nmcli radio wifi off
 	notify-send "Wifi disabled!"
-else
-  	success_message="You are now connected to the Wi-Fi network \"$chosen_id\"!"
+fi
+
+case $select in
+	$wifi_list)
+		wifi_list_fn
+		;;
+	$connection_manager)
+		nm-connection-editor
+		;;
+	$quit)
+		exit 0
+		;;
+esac
+}
+
+wifi_list_fn(){
+	notify-send "Getting list of available Wi-Fi networks..." -t 5000
+	echo "getting list of wifi networks"
+
+	wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/^--/ /g" | sed "s/ //g" | sed "/--/d" | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g")
+	
+	
+	chosen_network=$(echo -e "$wifi_list\n$goback\n$quit" | rofi -dmenu -i -p " Wi-Fi SSID 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}")
+	if [[ $chosen_network == $goback ]]; then
+		main_menu
+	elif [[ $chosen_network == $quit ]]; then
+		exit 0
+	fi
+	
+	chosen_id="${chosen_network:3:${#chosen_network}-15}"
+	chosen_id="$(echo -e "$chosen_id" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+	echo $chosen_id
+	success_message="You are now connected to Wi-Fi network \"$chosen_id\"!"
 	saved_connections=$(nmcli -g NAME connection)
+	
 	if [[ $(echo "$saved_connections" | grep -w "$chosen_id") = "$chosen_id" ]]; then
-		nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
+			nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
 	else
 		if [[ "$chosen_network" =~ "" ]]; then
 			wifi_password=$(rofi -dmenu -theme-str "window {height: 8%;}" -password "Password: " )
 		fi
 		nmcli device wifi connect "$chosen_id" password "$wifi_password" | grep "successfully" && notify-send "Connection Established!" "$success_message"
     fi
-fi
-echo $chosen_id
+}
+
+main_menu
