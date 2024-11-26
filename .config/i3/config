@@ -46,7 +46,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/dunst/volume.sh brigh
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/dunst/volume.sh brightness_down
 
 #Airplane mode
-bindsym XF86RFKill exec --no-startup-id notify-send "Airplane Mode Toggled 󰀝 " && toggle-airplane
+bindsym XF86RFKill exec --no-startup-id ~/.config/dunst/noti-airplane.sh
 
 #Display settings
 bindsym XF86Display exec --no-startup-id arandr
