@@ -19,7 +19,8 @@ notifications=$(dunstctl history | jq -r '
 	(.summary.data | contains("Selected Area Screenshotted") | not) and
         (.summary.data | contains("RESIZE MODE. PRESS esc TO EXIT!") | not) and
 	(.summary.data | contains("") | not) and
-        (.summary.data | contains("") | not) and
+        (.summary.data | contains("") | not) and
+	(.summary.data | contains("") | not) and
         (.summary.data | contains("") | not) and
 	(.summary.data | contains("") | not)) |
     "\(.summary.data)"
@@ -46,7 +47,7 @@ case "$selected" in
 		body=$(dunstctl history | jq -r --arg summary "$selected" \
 			'.data[0][] | select(.summary.data == $summary) | .body.data')
 	     	clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
-	     	echo -e "Notification Body 󰎟 :\n$clean_body" | rofi -dmenu -i -selected-row 1 -p "Notification Body"
+	     	echo -e "Notification Body 󰎟 :\n$clean_body" | rofi -dmenu -i -selected-row 1 -p "Notification Body" -theme-str "listview {columns: 1;}" -theme-str 'window {location: north east; x-offset: -10px; y-offset: 70px;}'
 		;;
 esac
 

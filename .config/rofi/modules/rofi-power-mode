@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 status=$(acpi | grep 'Battery 0'|awk '{print $3}' | sed 's/,//g')
+bat_percentage=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g')
+bat_percentage_number=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g' | sed 's/%//g')
 
 if [[ $status == "Discharging" ]]; then
 	notify-send "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $(powerprofilesctl get)"
@@ -15,9 +17,6 @@ performance='󰓅  Performance'
 medium='󰾅  Balance'
 power='󰾆  Power Saver'
 power_manager="󰖯  Power Manager"
-
-bat_percentage=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g')
-bat_percentage_number=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g' | sed 's/%//g')
 
 rofi_cmd() {
 	if [[ $status == "Discharging" ]]; then
@@ -63,7 +62,7 @@ case ${chosen} in
     $power)
 		run_cmd --power
         ;;
-	$power_manager)
+    $power_manager)
 		xfce4-power-manager-settings
 	;;
 esac
