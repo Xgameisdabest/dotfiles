@@ -16,14 +16,15 @@ medium='󰾅  Balance'
 power='󰾆  Power Saver'
 power_manager="󰖯  Power Manager"
 
-bat_percentage=$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | sed 's/percentage//g' | sed 's/://g' | sed 's/  //g')
+bat_percentage=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g')
+bat_percentage_number=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g' | sed 's/%//g')
 
 rofi_cmd() {
 	if [[ $status == "Discharging" ]]; then
 		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px; location: north east; x-offset: -70px; y-offset: 70px;}' -p " $bat_percentage 󰁹 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 	elif [[ $status == "Charging" ]]; then
 		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px; location: north east; x-offset: -70px; y-offset: 70px;}' -p " $bat_percentage 󱐋 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
-	elif [[ $status == "Full" ]]; then
+	elif [[ $status == "Full" ]] && [[ $bat_percentage_number -gt 98 ]]; then
 		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px; location: north east; x-offset: -70px; y-offset: 70px;}' -p " Full 󰂄 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 	fi
 }
