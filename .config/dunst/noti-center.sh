@@ -29,7 +29,7 @@ cls_hist=$(echo "Clear History 󱏫")
 # options="$notifications\n$cls_hist"
 options="$cls_hist\n$notifications"
 # Use rofi to display notifications
-selected=$(echo -e "$options" | rofi -dmenu -i -selected-row 1 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}")
+selected=$(echo -e "$options" | rofi -dmenu -i -selected-row 1 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}" -theme-str 'window {location: north east; x-offset: -10px; y-offset: 70px;}')
 }
 
 noti_main_menu

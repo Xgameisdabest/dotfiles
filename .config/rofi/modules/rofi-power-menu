@@ -23,7 +23,7 @@ no='✗'
 rofi_cmd() {
 	rofi -dmenu \
 		-i \
-		-theme-str 'window {height: 385; width: 350px;}' \
+		-theme-str 'window {height: 385; width: 350px; location: north east; x-offset: -10px; y-offset: 70px;}' \
 		-p " Select   " \
 		-mesg "Uptime: $uptime" }
 }
