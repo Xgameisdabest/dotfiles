@@ -24,6 +24,8 @@ function get_brightness {
     light | grep -Po '[0-9]{1,3}' | head -n 1
 }
 
+get_brightness_var=$(light | grep -Po '[0-9]{1,3}' | head -n 1)
+
 # Returns a mute icon, a volume-low icon, or a volume-high icon, depending on the volume
 function get_volume_icon {
     volume=$(get_volume)
@@ -148,8 +150,12 @@ case $1 in
 
     brightness_down)
     # Decreases brightness and displays the notification
-    light -U $brightness_step
-    show_brightness_notif
+    if [[ $get_brightness_var -gt 1 ]]; then
+    	light -U $brightness_step
+    	show_brightness_notif
+    elif [[ $get_brightness_var -lt 1 ]]; then
+	show_brightness_notif
+    fi
     ;;
 
     next_track)
