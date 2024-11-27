@@ -113,7 +113,21 @@ function show_brightness_notif {
     brightness=$(get_brightness)
     echo $brightness
     get_brightness_icon
-    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon $brightness%"
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon   $brightness%"
+}
+
+function show_brightness_notif_up {
+    brightness=$(get_brightness)
+    echo $brightness
+    get_brightness_icon
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon + $brightness%"
+}
+
+function show_brightness_notif_down {
+    brightness=$(get_brightness)
+    echo $brightness
+    get_brightness_icon
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon - $brightness%"
 }
 
 # Main function - Takes user input, "volume_up", "volume_down", "brightness_up", or "brightness_down"
@@ -144,16 +158,20 @@ case $1 in
 
     brightness_up)
     # Increases brightness and displays the notification
-    light -A $brightness_step 
-    show_brightness_notif
+    if [[ $get_brightness_var -lt 100 ]]; then
+    	light -A $brightness_step 
+    	show_brightness_notif_up
+    elif [[ $get_brightness_var -eq 100 ]]; then
+	show_brightness_notif
+    fi
     ;;
 
     brightness_down)
     # Decreases brightness and displays the notification
     if [[ $get_brightness_var -gt 1 ]]; then
     	light -U $brightness_step
-    	show_brightness_notif
-    elif [[ $get_brightness_var -lt 1 ]]; then
+    	show_brightness_notif_down
+    elif [[ $get_brightness_var -eq 1 ]]; then
 	show_brightness_notif
     fi
     ;;
@@ -171,8 +189,18 @@ case $1 in
     ;;
 
     play_pause)
+    # Pauses/resumes playback and displays the notification
     playerctl play-pause
     show_music_notif
-    # Pauses/resumes playback and displays the notification
+    ;;
+
+    # Display current volume percentage
+    brightness_status)
+    show_brightness_notif
+    ;;
+    
+    # Display current volume percentage
+    volume_status)
+    show_volume_notif
     ;;
 esac
