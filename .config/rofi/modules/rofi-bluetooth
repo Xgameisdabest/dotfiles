@@ -217,7 +217,7 @@ device_menu() {
     trusted=$(device_trusted "$mac")
     options="$connected\n$paired\n$trusted\n$goback\n$quit"
 
-    chosen="$(echo -e "$options" | $rofi_command " $device_name 󰾰  ")"
+    chosen="$(echo -e "$options" | $rofi_command " $device_name 󰾰  " -theme-str 'window {height: 390; width: 350px; location: north east; x-offset: -80px; y-offset: 70px;}')"
 
     case "$chosen" in
         "" | "$divider")
