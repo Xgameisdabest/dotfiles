@@ -5,6 +5,12 @@ notifications=$(dunstctl history | jq -r '
     .data[0][] |
     select(
 	(.summary.data | contains("Press 󰖳 + = to open the keybind menu!") | not) and
+	(.summary.data | contains("Wifi Enabled 󱚽 ") | not) and
+	(.summary.data | contains("Wifi Disabled 󱛅 ") | not) and
+	(.summary.data | contains("󰗨 Removed Network ") | not) and
+	(.summary.data | contains("Getting list of available Wi-Fi networks  ") | not) and
+	(.summary.data | contains("Connection Established!") | not) and
+	(.summary.data | contains("Attempting to connect to") | not) and
 	(.summary.data | contains("󰀝 Airplane Mode: Active") | not) and
 	(.summary.data | contains("󰀝 Airplane Mode: Inactive") | not) and
 	(.summary.data | contains("Battery Time Remaining: ") | not) and

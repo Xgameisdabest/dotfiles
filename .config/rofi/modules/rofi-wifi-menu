@@ -25,11 +25,11 @@ fi
 
 if [ "$select" = "󱚽  Enable Wi-Fi" ]; then
 	nmcli radio wifi on
-	notify-send "Wifi Enabled 󱚽 "
+	notify-send "Wifi Enabled 󱚽 " -t 600
 	main_menu
 elif [ "$select" = "󱛅  Disable Wi-Fi" ]; then
 	nmcli radio wifi off
-	notify-send "Wifi Disabled 󱛅 "
+	notify-send "Wifi Disabled 󱛅 " -t 600
 	main_menu
 fi
 
@@ -66,7 +66,7 @@ wifi_saved_fn(){
 		if [[ $selected_saved == $delete_saved_opt ]]; then
 			echo $chosen_saved
 			nmcli connection delete "$chosen_saved"
-			notify-send "Removed Network \"$chosen_saved\""
+			notify-send "󰗨 Removed Network \"$chosen_saved\""
 			wifi_saved_fn
 		elif [[ $selected_saved == $goback ]]; then
 			wifi_saved_fn
@@ -77,7 +77,7 @@ wifi_saved_fn(){
 }
 
 wifi_list_fn(){
-	notify-send "Getting list of available Wi-Fi networks..." -t 1500
+	notify-send "Getting list of available Wi-Fi networks  " -t 1500
 	echo "getting list of wifi networks"
 
 	wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/ //g" | sed "s/--/ /g" | sed 's/  //g' | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g" | sed -E "s/(2[4-6][0-9]{2}) MHz/ 2.4 GHz/g" | sed -E "s/(5[0-9]{3}) MHz/ 5.0 GHz/g" | awk '!seen[$3 $NF]++')
@@ -99,7 +99,7 @@ wifi_list_fn(){
 		saved_connections=$(nmcli -g NAME connection)
 		
 		if [[ $(echo "$saved_connections" | grep -w "$chosen_id") = "$chosen_id" ]]; then
-				nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
+				nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established!" "$success_message"
 		else
 			if [[ "$chosen_network" =~ "" ]]; then
 				wifi_password=$(rofi -dmenu -theme-str "window {height: 8%;}" -password -p "Password  " -theme-str "window {location: north east; x-offset: -10px; y-offset: 70px;}")
