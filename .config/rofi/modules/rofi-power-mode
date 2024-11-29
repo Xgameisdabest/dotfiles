@@ -9,7 +9,7 @@ if [[ $status == "Discharging" ]]; then
 elif [[ $status == "Charging" ]]; then
 	notify-send "Charge Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $(powerprofilesctl get)"
 elif [[ $status == "Full" ]]; then
-	notify-send "Battery Full" "CURRENT PROFILE: $(powerprofilesctl get)"
+	notify-send "Battery Full 󱐋" "CURRENT PROFILE: $(powerprofilesctl get)"
 fi
 
 # Options

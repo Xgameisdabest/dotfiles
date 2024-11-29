@@ -15,7 +15,7 @@ notifications=$(dunstctl history | jq -r '
 	(.summary.data | contains("󰀝 Airplane Mode: Inactive") | not) and
 	(.summary.data | contains("Battery Time Remaining: ") | not) and
 	(.summary.data | contains("Charge Time Remaining: ") | not) and
-	(.summary.data | contains("Battery Full") | not) and
+	(.summary.data | contains("Battery Full 󱐋") | not) and
 	(.summary.data | contains("Power set to performance mode 󰓅") | not) and
 	(.summary.data | contains("Power set to balance mode 󰾅") | not) and
 	(.summary.data | contains("Power set to power-saver mode 󰾆") | not) and
