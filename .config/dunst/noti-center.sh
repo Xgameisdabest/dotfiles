@@ -5,21 +5,21 @@ notifications=$(dunstctl history | jq -r '
     .data[0][] |
     select(
 	(.summary.data | contains("Press 󰖳 + = to open the keybind menu!") | not) and
-	(.summary.data | contains("Wifi Enabled 󱚽 ") | not) and
-	(.summary.data | contains("Wifi Disabled 󱛅 ") | not) and
-	(.summary.data | contains("󰗨 Removed Network ") | not) and
-	(.summary.data | contains("Getting list of available Wi-Fi networks  ") | not) and
+	(.summary.data | contains("Wifi Enabled") | not) and
+	(.summary.data | contains("Wifi Disabled") | not) and
+	(.summary.data | contains("Removed Network") | not) and
+	(.summary.data | contains("Getting list of available Wi-Fi networks") | not) and
 	(.summary.data | contains("Connection Established!") | not) and
 	(.summary.data | contains("Attempting to connect to") | not) and
-	(.summary.data | contains("󰀝 Airplane Mode: Active") | not) and
-	(.summary.data | contains("󰀝 Airplane Mode: Inactive") | not) and
+	(.summary.data | contains("Airplane Mode: Active") | not) and
+	(.summary.data | contains("Airplane Mode: Inactive") | not) and
 	(.summary.data | contains("Battery Time Remaining: ") | not) and
 	(.summary.data | contains("Charge Time Remaining: ") | not) and
-	(.summary.data | contains("Battery Full 󱐋") | not) and
-	(.summary.data | contains("Power set to performance mode 󰓅") | not) and
-	(.summary.data | contains("Power set to balance mode 󰾅") | not) and
-	(.summary.data | contains("Power set to power-saver mode 󰾆") | not) and
-	(.summary.data | contains("CONNECTING TO PHONE ") | not) and
+	(.summary.data | contains("Battery Full") | not) and
+	(.summary.data | contains("Power set to performance mode") | not) and
+	(.summary.data | contains("Power set to balance mode") | not) and
+	(.summary.data | contains("Power set to power-saver mode") | not) and
+	(.summary.data | contains("CONNECTING TO PHONE") | not) and
 	(.summary.data | contains("Screenshotted") | not) and
 	(.summary.data | contains("Window Screenshotted") | not) and
 	(.summary.data | contains("Selected Area Screenshotted") | not) and

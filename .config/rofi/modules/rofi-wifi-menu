@@ -25,11 +25,11 @@ fi
 
 if [ "$select" = "󱚽  Enable Wi-Fi" ]; then
 	nmcli radio wifi on
-	notify-send "Wifi Enabled 󱚽 " -t 600
+	notify-send "Wifi Enabled 󱚽 " -t 850
 	main_menu
 elif [ "$select" = "󱛅  Disable Wi-Fi" ]; then
 	nmcli radio wifi off
-	notify-send "Wifi Disabled 󱛅 " -t 600
+	notify-send "Wifi Disabled 󱛅 " -t 850
 	main_menu
 fi
 
