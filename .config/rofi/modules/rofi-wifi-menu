@@ -42,17 +42,18 @@ wifi_list_fn(){
 	notify-send "Getting list of available Wi-Fi networks..." -t 5000
 	echo "getting list of wifi networks"
 
-	wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/^--/ /g" | sed "s/ //g" | sed "/--/d" | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g")
+	wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed "s/ //g" | sed "s/--/ /g" | sed 's/  //g' | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g" | awk '$2 != ""' | sed -E "s/(2[4-6][0-9]{2}) MHz/2.4 GHz/g" | sed -E "s/(5[0-9]{3}) MHz/5 GHz/g" | awk '!seen[$3 $NF]++')
 	
-	
-	chosen_network=$(echo -e "$wifi_list\n$goback\n$quit" | rofi -dmenu -i -p " Wi-Fi SSID 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: north east; x-offset: -10px; y-offset: 70px;}")
+	current_wifi_ssid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d\' -f2 | sed 's/yes://g')
+	chosen_network=$(echo -e "$wifi_list\n$goback\n$quit" | rofi -dmenu -i -p " Current  : $current_wifi_ssid " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: north east; x-offset: -10px; y-offset: 70px;}")
+	echo $chosen_network
 	if [[ $chosen_network == $goback ]]; then
 		main_menu
 	elif [[ $chosen_network == $quit ]]; then
 		exit 0
 	fi
 	
-	chosen_id="${chosen_network:3:${#chosen_network}-15}"
+	chosen_id=$(echo -e $chosen_network | awk '{print $2}')
 	chosen_id="$(echo -e "$chosen_id" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 	echo $chosen_id
 	success_message="You are now connected to Wi-Fi network \"$chosen_id\"!"
