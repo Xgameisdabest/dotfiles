@@ -3,10 +3,10 @@
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
-playback_opt="playback"
-outputdev_opt="output devices"
-inputdev_opt="input devices"
-devconfig_opt="device configuration"
+playback_opt="Playback 󰐎"
+outputdev_opt="Output 󰜟"
+inputdev_opt="Input 󱦉"
+devconfig_opt="Configuration "
 
 opt_list="$playback_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$quit"
 
@@ -15,7 +15,7 @@ current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | 
 echo $current_ouput_dev
 
 main_menu(){
-	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str 'window {height: 320px; width: 400px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
+	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str 'window {height: 320px; width: 400px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   ")
 	
 	case $select in
 		$playback_opt)
@@ -34,10 +34,14 @@ main_menu(){
 }
 
 playback_func(){
-	mute="x"
-	up="+"
-	minus="-"
-	select_playback=$(echo -e "$up\n$minus\n$mute\n$goback"  | rofi -dmenu -i -theme-str 'window {height: 320px; width: 400px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " playback   ")
+	back="󰌍"
+	mute="󰝟"
+	up="󰝝"
+	minus="󰝞"
+	next_track_var="󰒭"
+	prev_track_var="󰒮"
+	pause_track_var="󰐎"
+	select_playback=$(echo -e "$minus\n$mute\n$up\n$back"  | rofi -dmenu -i -theme-str 'window {height: 150px; width: 270px;}' -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
 	
 	case $select_playback in
 		$up)
@@ -52,7 +56,16 @@ playback_func(){
 			~/.config/dunst/volume.sh volume_mute
 			playback_func
 		;;
-		$goback)
+		$next_track_var)
+			~/.config/dunst/volume.sh next_track
+		;;
+		$prev_track_var)
+			~/.config/dunst/volume.sh prev_track
+		;;
+		$pause_track_var)
+			~/.config/dunst/volume.sh play_pause
+		;;
+		$back)
 			main_menu
 		;;
 	esac
@@ -61,7 +74,7 @@ playback_func(){
 
 outputdev_func(){
 	outputdev_list=$(pactl list | grep node.name | grep -E "(alsa_output|bluez_output)" | sed 's/"//g' | sed 's/node.name = //g' | uniq -u | sed 's/alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.//g' | sed 's/bluez_output.//g' | sed 's/\t//g' | sort | uniq)
-	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " outputdev   ")
+	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  ")
 	#echo $select_output
 	if [[ $select_output == $goback ]]; then
 		main_menu
@@ -76,7 +89,7 @@ outputdev_func(){
 
 inputdev_func(){
 	inputdev_list=$(pactl list | grep node.name | grep -E "(alsa_input|bluez_input)" | sed 's/"//g' | sed 's/node.name = //g' | uniq -u | sed 's/alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.//g' | sed 's/bluez_input.//g' | sed 's/\t//g' | sort | uniq)
-	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " inputdev   ")
+	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Input 󱦉  ")
 	#echo $select_input
 	if [[ $select_input == $goback ]]; then
 		main_menu
@@ -91,7 +104,7 @@ inputdev_func(){
 
 devconfig_func(){
 	devconfig_list=$(pactl list cards | grep -A 15 "Profiles" | sed -n '/Profiles:/,/Active Profile:/p' | grep -E "(Profile:|Active Profile:|available:)" | sed -E 's/^[ \t]*//; s/\(available: .*\)//' | sed 's/Profile: //' | grep -v "Active" | awk -F':' '{print $1}')
-	select_profile=$(echo -e "$devconfig_list\n$goback"  | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " devconfig   ")
+	select_profile=$(echo -e "$devconfig_list\n$goback"  | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Configuration   ")
 	if [[ $select_profile == $goback ]]; then
 		main_menu
 	fi

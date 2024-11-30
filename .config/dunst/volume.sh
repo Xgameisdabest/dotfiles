@@ -219,13 +219,11 @@ case $1 in
     next_track)
     # Skips to the next song and displays the notification
     playerctl next
-    sleep 0.5 && show_music_notif
     ;;
 
     prev_track)
     # Skips to the previous song and displays the notification
     playerctl previous
-    sleep 0.5 && show_music_notif
     ;;
 
     play_pause)
