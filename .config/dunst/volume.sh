@@ -90,9 +90,9 @@ function show_volume_notif {
             get_album_art
         fi
 
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon $volume%" "$current_song"
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon   $volume%" "$current_song"
     else
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon $volume%"
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon   $volume%"
     fi
 }
 
@@ -169,7 +169,6 @@ function show_brightness_notif_down {
 case $1 in
     volume_up)
     # Unmutes and increases volume, then displays the notification
-    pactl set-sink-mute @DEFAULT_SINK@ 0
     volume=$(get_volume)
     if [[ $(( $volume + $volume_step )) -gt $max_volume ]]; then
         pactl set-sink-volume @DEFAULT_SINK@ $max_volume%
