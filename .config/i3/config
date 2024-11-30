@@ -80,9 +80,9 @@ bindsym $mod+c exec --no-startup-id google-chrome-stable
 #bindsym $mod+n exec arandr
 
 #screenshot
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png" && notify-send "Screenshotted 󰨇 "
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png" && "Window Screenshotted 󰖯 "
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png" && notify-send "Selected Area Screenshotted 󰨤 "
+bindsym Print exec --no-startup-id desktop="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_desktop').png" && maim "$desktop" && xclip -sel clip -t image/png -i "$desktop" && notify-send "Screenshotted 󰨇 "
+bindsym $mod+Print exec --no-startup-id focus_window="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_window').png" && maim --window $(xdotool getactivewindow) "$focus_window" && xclip -sel clip -t image/png -i "$focus_window" && notify-send "Window Screenshotted 󰖯 "
+bindsym Shift+Print exec --no-startup-id selected_area="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_area').png" && maim --select "$selected_area" && xclip -sel clip -t image/png -i "$selected_area" && notify-send "Selected Area Screenshotted 󰨤 "
 
 # start a terminal
 #bindsym $mod+t exec alacritty
@@ -209,6 +209,8 @@ for_window [title="^SuperTuxKart$"] fullscreen enable
 for_window [title="^onboard$"] floating enable
 
 for_window [title="^Screen Layout Editor$"] floating enable
+
+for_window [title="^Volume Control$"] floating enable
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
