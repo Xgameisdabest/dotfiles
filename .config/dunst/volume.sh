@@ -4,6 +4,7 @@
 volume_step=3
 brightness_step=3
 max_volume=153
+min_volume=0
 notification_timeout=900
 download_album_art=true
 show_album_art=true
@@ -30,7 +31,7 @@ get_brightness_var=$(light | grep -Po '[0-9]{1,3}' | head -n 1)
 function get_volume_icon {
     volume=$(get_volume)
     mute=$(get_mute)
-    if [ "$volume" -eq 0 ] || [ "$mute" == "yes" ] ; then
+    if [ "$mute" == "yes" ] ; then
         volume_icon=" "
     elif [ "$volume" -lt 25 ]; then
 	volume_icon=" "
@@ -95,6 +96,40 @@ function show_volume_notif {
     fi
 }
 
+function show_volume_notif_up {
+    volume=$(get_mute)
+    get_volume_icon
+
+    if [[ $show_music_in_volume_indicator == "true" ]]; then
+        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata)
+
+        if [[ $show_album_art == "true" ]]; then
+            get_album_art
+        fi
+
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon + $volume%" "$current_song"
+    else
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon + $volume%"
+    fi
+}
+
+function show_volume_notif_down {
+    volume=$(get_mute)
+    get_volume_icon
+
+    if [[ $show_music_in_volume_indicator == "true" ]]; then
+        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata)
+
+        if [[ $show_album_art == "true" ]]; then
+            get_album_art
+        fi
+
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon - $volume%" "$current_song"
+    else
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon - $volume%"
+    fi
+}
+
 # Displays a music notification
 function show_music_notif {
     song_title=$(playerctl -f "{{title}}" metadata)
@@ -136,18 +171,24 @@ case $1 in
     # Unmutes and increases volume, then displays the notification
     pactl set-sink-mute @DEFAULT_SINK@ 0
     volume=$(get_volume)
-    if [ $(( "$volume" + "$volume_step" )) -gt $max_volume ]; then
+    if [[ $(( $volume + $volume_step )) -gt $max_volume ]]; then
         pactl set-sink-volume @DEFAULT_SINK@ $max_volume%
+	show_volume_notif
     else
         pactl set-sink-volume @DEFAULT_SINK@ +$volume_step%
+	show_volume_notif_up
     fi
-    show_volume_notif
     ;;
 
     volume_down)
     # Raises volume and displays the notification
-    pactl set-sink-volume @DEFAULT_SINK@ -$volume_step%
-    show_volume_notif
+    volume=$(get_volume)
+    if [[ $(($volume - $volume_step)) -lt $min_volume ]]; then
+	show_volume_notif
+    else
+        pactl set-sink-volume @DEFAULT_SINK@ -$volume_step%
+	show_volume_notif_down
+    fi
     ;;
 
     volume_mute)
