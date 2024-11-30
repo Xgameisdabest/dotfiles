@@ -65,14 +65,16 @@ rofi_submenu(){
 	rofi_sub="󰮫  Menu"
 	wifi="󱛃  Wifi"
 	bluetooth="󰂳  Bluetooth"
+	sound_setting="󱄠  Audio"
 	pwr_menu="  Power Menu"
 	pwr_mode="󰾆  Power Mode"
 	web_search="  Web Search"
 	calendar="  Calendar"
 	i3_settings_menu="  This Menu"
 	notifications_hist="󰵙  Notification"
-
-	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$goback" | rofi -dmenu -i -theme-str 'window {height: 480px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu   ")
+	
+	#when add new entry make sure to add 35 to height
+	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$goback" | rofi -dmenu -i -theme-str 'window {height: 515px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
 	
 	case $select2 in
 		$rofi_sub)
@@ -102,6 +104,9 @@ rofi_submenu(){
 		$notifications_hist)
 			$TERMINAL -e nvim ~/.config/dunst/noti-center.sh
 			;;
+		$sound_setting)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
+			;;
 		$goback)
 			main_menu
 			;;
@@ -116,9 +121,10 @@ polybar_submenu(){
 	polybar_sub="  Polybar"
 	bar_start="󱓞  Bar Startup"
 	
-	select2=$(echo -e "$polybar_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str 'window {height: 220px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	#when add new entry make sure to add 35 to height
+	select3=$(echo -e "$polybar_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str 'window {height: 220px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
 
-	case $select2 in 
+	case $select3 in 
 		$polybar_sub)
 			$TERMINAL -e nvim ~/.config/polybar/config.ini
 			;;
