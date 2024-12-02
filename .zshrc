@@ -203,7 +203,7 @@ alias suv="sudo -e"
 alias vconfig="cd ~/.config/nvim/"
 
 #files
-alias df="duf"
+#alias df="duf"
 
 #binaries viewing
 alias lsbin="ls /usr/bin"

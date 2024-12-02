@@ -1,0 +1,24 @@
+#!/bin/bash
+
+point_icon=" "
+model_text=" Model 󰢹  "
+specs_text=" Specifications   "
+os_text=" Operating System   "
+
+get_os_name=$(echo "$point_icon  : $(grep -E '^(NAME)=' /etc/os-release | sed 's/=//g' | sed 's/\"//g' | sed 's/_/ /g' | sed 's/NAME//g')")
+
+get_os_version=$(echo "$point_icon  : $(grep -E '^(VERSION)=' /etc/os-release | sed 's/=//g' | sed 's/\"//g' | sed 's/_/ /g' | sed 's/VERSION//g')")
+
+get_os_birth=$(stat / | grep Birth | awk '{print $1$2}' | sed 's/:/: /g' | sed 's/Birth/Installation Date Y\/M\/D/g')
+
+get_os_arch=$(echo "$point_icon  : $(arch)")
+
+get_os_cpu=$(echo "$point_icon  : $(lscpu | grep "Model name" | sed 's/Model name:[ \t]*//')")
+
+get_os_mem=$(echo "$point_icon 󰘚 : $(free -h | awk '/Mem/ {print $2}' | sed 's/Gi/ GiB/g')")
+
+get_os_space=$(echo "$point_icon 󰨣 : $(df -h / | awk 'NR==2 {print $2}' | sed 's/G/ GiB/g') (/)")
+
+get_model_hw=$(echo "$point_icon $(hostnamectl | grep "Hardware Model" | sed 's/  Hardware Model: //g')")
+
+echo -e "$model_text\n$get_model_hw\n$specs_text\n$get_os_cpu\n$get_os_mem\n$get_os_space\n$get_os_arch\n$os_text\n$get_os_name\n$get_os_version" | rofi -dmenu -p " About 󰟀  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 580px; height: 500px;}" 
