@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+main_menu_height=300px
+main_menu_width=400px
+playback_menu_height=150px
+playback_menu_width=270px
+
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
@@ -15,7 +20,7 @@ current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | 
 echo $current_ouput_dev
 
 main_menu(){
-	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str 'window {height: 320px; width: 400px; location: north east; x-offset: -10px; y-offset: 70px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   ")
+	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -10px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   ")
 	
 	case $select in
 		$playback_opt)
@@ -41,7 +46,7 @@ playback_func(){
 	next_track_var="󰒭"
 	prev_track_var="󰒮"
 	pause_track_var="󰐎"
-	select_playback=$(echo -e "$minus\n$mute\n$up\n$back"  | rofi -dmenu -i -theme-str 'window {height: 150px; width: 270px; location: north east; x-offset: -10px; y-offset: 70px;}' -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
+	select_playback=$(echo -e "$minus\n$mute\n$up\n$back"  | rofi -dmenu -i -theme-str "window {height: $playback_menu_height; width: $playback_menu_width; location: north east; x-offset: -10px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
 	
 	case $select_playback in
 		$up)

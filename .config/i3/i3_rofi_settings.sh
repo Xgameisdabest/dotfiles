@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+#when add new entry make sure to add 35 to height
+main_menu_height=520px
+main_menu_width=260px
+rofi_submenu_height=520px
+rofi_submenu_width=260px
+polybar_submenu_height=220px
+polybar_submenu_width=260px
+
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
@@ -17,8 +25,7 @@ dunst="󰵙  Notification"
 ### MAIN MENU
 
 main_menu(){
-	#when add new entry make sure to add 35 to height
-	select=$(echo -e "$i3config\n$rofi\n$polybar\n$picomconfig\n$zshconfig\n$dunst\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str 'window {height: 520px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
+	select=$(echo -e "$i3config\n$rofi\n$polybar\n$picomconfig\n$zshconfig\n$dunst\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
 
 	case $select in
 		$i3config)
@@ -61,7 +68,6 @@ main_menu(){
 ### ROFI SUBMENU
 
 rofi_submenu(){
-	
 	rofi_sub="󰮫  Menu"
 	wifi="󱛃  Wifi"
 	bluetooth="󰂳  Bluetooth"
@@ -73,8 +79,7 @@ rofi_submenu(){
 	i3_settings_menu="  This Menu"
 	notifications_hist="󰵙  Notification"
 	
-	#when add new entry make sure to add 35 to height
-	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$goback" | rofi -dmenu -i -theme-str 'window {height: 515px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
+	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
 	
 	case $select2 in
 		$rofi_sub)
@@ -122,7 +127,7 @@ polybar_submenu(){
 	bar_start="󱓞  Bar Startup"
 	
 	#when add new entry make sure to add 35 to height
-	select3=$(echo -e "$polybar_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str 'window {height: 220px; width: 260px;}' -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	select3=$(echo -e "$polybar_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_submenu_height; width: $polybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
 
 	case $select3 in 
 		$polybar_sub)

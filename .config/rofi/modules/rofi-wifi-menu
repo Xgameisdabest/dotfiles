@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+main_menu_height=300px
+main_menu_width=300px
+
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
@@ -18,9 +21,9 @@ wifi_list_opt="  Wifi List  "
 saved_list_opt="  Saved Wifi  "
 
 if [[ $toggle == "󱛅  Disable Wi-Fi" ]]; then
-	select=$(echo -e "$wifi_list_opt\n$toggle\n$saved_list_opt\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 300px; height: 300px; location: north east; x-offset: -150px; y-offset: 70px;}")
+	select=$(echo -e "$wifi_list_opt\n$toggle\n$saved_list_opt\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: north east; x-offset: -150px; y-offset: 70px;}")
 else
-	select=$(echo -e "$toggle\n$saved_list_opt\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 300px; height: 300px; location: north east; x-offset: -150px; y-offset: 70px;}")
+	select=$(echo -e "$toggle\n$saved_list_opt\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: north east; x-offset: -150px; y-offset: 70px;}")
 fi
 
 if [ "$select" = "󱚽  Enable Wi-Fi" ]; then
