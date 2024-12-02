@@ -4,8 +4,8 @@ killall -q waybar
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m waybar --reload example &
+    MONITOR=$m waybar &
   done
 else
-  waybar --reload example &
+  waybar &
 fi
