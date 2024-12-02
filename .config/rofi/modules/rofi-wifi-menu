@@ -55,7 +55,6 @@ wifi_saved_fn(){
 	if [[ $chosen_saved == $goback ]]; then
 		main_menu
 	elif [[ $chosen_saved == $quit || $chosen_saved == "" ]]; then
-		echo out
 		exit 0
 	else
 	
