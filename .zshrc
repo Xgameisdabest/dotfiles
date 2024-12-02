@@ -264,7 +264,7 @@ ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" $fg_bold[yellow] "
 #  ┗┅%B%F{red}%f '
 
 PROMPT='  $(git_prompt_info)
-  %B%F{white}%~%f%b  %B%F{red}%f  '
+  %B%F{white}%~%f%b  %B%F{red}%f%b  '
 
 RPROMPT='%B%F{red}|%f%F{white}%f%T%F{red}|%f%b %(?:%{$fg_bold[green]%}%1{✔%}:%{$fg_bold[red]%}%1{✗%})%{$fg_bold[white]%} '
 
