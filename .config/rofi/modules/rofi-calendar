@@ -39,7 +39,7 @@ find_day_index() {
 
 calendar_menu() {
     header=$(ncal -- $month $year | head -n 1 | sed 's/\s\s//g')
-    calendar_header=$(echo -e "󰩔 Current: $current_day $current_month_full $current_year\n󱣿  Viewing: $header ")
+    calendar_header=$(echo -e "󰩔 Current: $current_day $current_month_full $current_year\n󱣿  Viewing:  $header ")
 
     month_page="$(print_month $month $year)"
     calendar_body="\n\n\n$previous_month\n\n\n\n$month_page\n\n\n\n$next_month\n\n\n"
