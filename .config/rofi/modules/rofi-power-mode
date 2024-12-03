@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+main_menu_height=255px
+main_menu_width=270px
+
 status=$(acpi | grep 'Battery 0'|awk '{print $3}' | sed 's/,//g')
 bat_percentage=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g')
 bat_percentage_number=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g' | sed 's/%//g')
@@ -20,11 +23,11 @@ power_manager="󰖯  Power Manager"
 
 rofi_cmd() {
 	if [[ $status == "Discharging" ]]; then
-		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px; location: north east; x-offset: -70px; y-offset: 70px;}' -p " $bat_percentage 󰁹 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -p " $bat_percentage 󰁹 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 	elif [[ $status == "Charging" ]]; then
-		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px; location: north east; x-offset: -70px; y-offset: 70px;}' -p " $bat_percentage 󱐋 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -p " $bat_percentage 󱐋 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 	elif [[ $status == "Full" ]] && [[ $bat_percentage_number -gt 98 ]]; then
-		rofi -dmenu -i -theme-str 'window {height: 255px; width: 270px; location: north east; x-offset: -70px; y-offset: 70px;}' -p " Full 󰂄 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -p " Full 󰂄 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
 	fi
 }
 

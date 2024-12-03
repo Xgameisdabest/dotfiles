@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+main_menu_height=390px
+main_menu_width=350px
+
 divider="---------"
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
@@ -257,7 +260,7 @@ show_menu() {
         options="$power\n$quit"
     fi
 
-    chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str 'window {height: 390px; width: 350px; location: north east; x-offset: -80px; y-offset: 70px;}' -p " Bluetooth  ")"
+    chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -80px; y-offset: 70px;}" -p " Bluetooth  ")"
 
     case "$chosen" in
         "" | "$divider")

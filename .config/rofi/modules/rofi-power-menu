@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+main_menu_height=385px
+main_menu_width=350px
+
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
 host=`hostname`
@@ -23,7 +26,7 @@ no='✗'
 rofi_cmd() {
 	rofi -dmenu \
 		-i \
-		-theme-str 'window {height: 385; width: 350px; location: north east; x-offset: -10px; y-offset: 70px;}' \
+		-theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -10px; y-offset: 70px;}" \
 		-p " Select   " \
 		-mesg "Uptime: $uptime" }
 }
