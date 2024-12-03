@@ -20,6 +20,11 @@ function get_mute {
     pactl get-sink-mute @DEFAULT_SINK@ | grep -Po '(?<=Mute: )(yes|no)'
 }
 
+# Uses regex to get mic mute status from pactl
+function get_mic_mute {
+    pactl get-source-mute @DEFAULT_SOURCE@ | grep -Po '(?<=Mute: )(yes|no)'
+}
+
 # Uses regex to get brightness from xbacklight
 function get_brightness {
     light | grep -Po '[0-9]{1,3}' | head -n 1
@@ -143,7 +148,17 @@ function show_music_notif {
     notify-send -t $notification_timeout -h string:x-dunst-stack-tag:music_notif -i "$album_art" "$song_title" "$song_artist - $song_album"
 }
 
-# Displays a brightness notification using dunstify
+# Displays a mic status notification
+function show_mic_status_notif() {
+	mic_status=$(get_mic_mute)
+	if [[ $mic_status == "yes" ]]; then
+		notify-send -t $notification_timeout -h string:x-dunst-stack-tag:mic_notif "   Mic Muted"
+	else
+		notify-send -t $notification_timeout -h string:x-dunst-stack-tag:mic_notif "   Mic Unmuted"
+	fi
+}
+
+# Displays a brightness notification using notify-send
 function show_brightness_notif {
     brightness=$(get_brightness)
     echo $brightness
@@ -194,6 +209,11 @@ case $1 in
     # Toggles mute and displays the notification
     pactl set-sink-mute @DEFAULT_SINK@ toggle
     show_volume_notif
+    ;;
+
+    mic_toggle)
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    show_mic_status_notif
     ;;
 
     brightness_up)

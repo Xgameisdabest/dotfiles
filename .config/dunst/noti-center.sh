@@ -30,6 +30,7 @@ notifications=$(dunstctl history | jq -r '
         (.summary.data | contains("") | not) and
 	(.summary.data | contains("") | not) and
         (.summary.data | contains("") | not) and
+	(.summary.data | contains("") | not) and
 	(.summary.data | contains("") | not)) |
     "\(.summary.data)"
 ')
