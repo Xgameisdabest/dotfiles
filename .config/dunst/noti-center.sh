@@ -8,6 +8,7 @@ notifications=$(dunstctl history | jq -r '
     .data[0][] |
     select(
 	(.summary.data | contains("Press 󰖳 + = to open the keybind menu!") | not) and
+	(.summary.data | contains("Dotfiles Update  ") | not) and
 	(.summary.data | contains("Wifi Enabled") | not) and
 	(.summary.data | contains("Wifi Disabled") | not) and
 	(.summary.data | contains("Removed Network") | not) and
