@@ -21,10 +21,10 @@ check_update=$(cd "$dtf_dir" && git status --short)
 # Check if there is any output indicating changes (uncommitted or untracked files)
 if [[ -z "$check_update" ]]; then
     # No changes detected, repository is up to date
-    notify-send "Dotfiles Update" "Your dotfiles are up to date!"
+    notify-send "Dotfiles Update  " "Your dotfiles are up to date!"
     echo "Dotfiles are up to date."
 else
     # There are changes, send a notification
-    notify-send "Dotfiles Update" "Your dotfiles are not up to date!"
+    notify-send "Dotfiles Update  " "Your dotfiles are not up to date!"
     echo "Dotfiles are not up to date!"
 fi
