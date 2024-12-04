@@ -4,8 +4,9 @@ set $alt Mod1
 
 exec_always --no-startup-id xrandr --auto
 
-exec_always --no-startup-id ~/.config/dunst/volume.sh volume_status
-exec_always --no-startup-id ~/.config/dunst/volume.sh brightness_status
+exec --no-startup-id ~/.config/dunst/volume.sh volume_status
+exec --no-startup-id ~/.config/dunst/volume.sh brightness_status
+exec_always --no-startup-id ~/.config/i3/i3_dtf_update.sh
 exec_always --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + = to open the keybind menu!"
 
 #exec_always --no-startup-id nitrogen --restore
