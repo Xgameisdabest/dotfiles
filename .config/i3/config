@@ -4,6 +4,8 @@ set $alt Mod1
 
 exec_always --no-startup-id xrandr --auto
 
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 exec --no-startup-id ~/.config/dunst/volume.sh volume_status
 exec --no-startup-id ~/.config/dunst/volume.sh brightness_status
 exec --no-startup-id ~/.config/i3/i3_dtf_update.sh
@@ -164,11 +166,6 @@ bindsym $mod+Shift+j move down
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-#gaps outer 6
-gaps inner 6
-default_border pixel 4
-default_floating_border pixel 8
-
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+Shift+q layout stacking
 #bindsym $mod+Shift+w layout tabbed
@@ -275,13 +272,16 @@ mode "resize" {
 
 bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send -t 5000 "RESIZE MODE. PRESS esc TO EXIT!"
 
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
 #COLORS
-client.focused #b4befe #b4befe #1e1e2e #b4befe #b4befe
-client.unfocused #585b70 #585b70 #b4befe
+client.focused #1e1e2e #1e1e2e #b4befe #1e1e2e #1e1e2e
+client.unfocused #1e1e2e #1e1e2e #b4befe #1e1e2e #1e1e2e
+client.focused_inactive #1e1e2e #1e1e2e #b4befe #1e1e2e #1e1e2e
 
-#bar
-# bar {
-#         status_command i3status
-# }
+#gaps outer 6
+gaps inner 6
+#default_border pixel 4
+#default_floating_border pixel 8
+default_border normal 2
+default_floating_border normal 2
+font pango: jetbrainsmono nerd font bold 15
+for_window [class=".*"] title_format "<span font='jetbrainsmono nerd font bold 15'>  %title</span>"
