@@ -13,14 +13,15 @@ if [[ -z "$dtf_dir" ]]; then
     exit 1
 fi
 
-# Check the git status in the found dotfiles directory
-check_update=$(cd "$dtf_dir" && git status --short)
+# Check if the git repository is ahead/behind with respect to the remote repository
+check_update=$(cd "$dtf_dir" && git status -uno)
 
-# Check if there is any output indicating changes (uncommitted or untracked files)
-if [[ -z "$check_update" ]]; then
-    # No changes detected, repository is up to date
+# Check if there is any output indicating the repository is behind or has diverged
+if [[ "$check_update" == *"Your branch is up to date with"* ]]; then
+    # No update required, repository is up to date
     notify-send "Dotfiles Update  " "Your dotfiles are up to date!"
 else
-    # There are changes, send a notification
+    # There are changes in the remote (e.g., behind, diverged), send a notification
     notify-send "Dotfiles Update  " "Your dotfiles are not up to date!"
 fi
+
