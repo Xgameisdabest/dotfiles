@@ -13,8 +13,7 @@ dtf_dir_detect=$(locate "$marker_file" | grep "$search_dir" | tail -n 1 | xargs 
 parent_dir=$(dirname "$dtf_dir_detect")
 
 # Change to the parent directory
-cd "$parent_dir" || { echo "Failed to change directory"; exit 1; }
+cd "$parent_dir"
 
 # Perform a git pull in the parent directory
-git pull || { echo "Git pull failed"; exit 1; }
-
+$TERMINAL -e git pull
