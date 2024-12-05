@@ -276,7 +276,7 @@ bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send -t 5000 "RESIZE MOD
 client.focused #211d30 #211d30 #b4befe #211d30 #211d30
 client.unfocused #211d30 #211d30 #b4befe #211d30 #211d30
 client.focused_inactive #211d30 #211d30 #b4befe #211d30 #211d30
-client.urgent #f38ba8 #f38ba8 #b4befe #f38ba8 #f38ba8
+client.urgent #f38ba8 #f38ba8 #211d30 #f38ba8 #f38ba8
 
 #gaps outer 6
 gaps inner 6
