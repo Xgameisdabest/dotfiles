@@ -286,3 +286,5 @@ default_border normal 2
 default_floating_border normal 3
 font pango: jetbrainsmono nerd font bold 15
 for_window [class=".*"] title_format "<span font='jetbrainsmono nerd font bold 15'>  %title</span>"
+for_window [class="^Steam$"] title_format "<span font='jetbrainsmono nerd font bold 15'> 󰺵  %title</span>"
+for_window [title="^Sober$"] title_format "<span font='jetbrainsmono nerd font bold 15'> 󰺵  %title</span>"
