@@ -1,5 +1,4 @@
 configuration {
-    font:                           "JetBrainsMono Nerd Font 14";
     show-icons:                     false;
     icon-theme: 					"Papirus";
     display-drun: 					":";
@@ -13,14 +12,18 @@ configuration {
 }
 
 * {
-background:			#1e1e2e;
+background-old:			#1e1e2e;
+background:			#211d30;
 foreground:			#cdd6f4;
-selected:			#89b4fa;
+selected:			#cba6f7;
 blue:			        #89b4fa;
+lavender:			#b4befe;
+mauve:				#cba6f7;
+pink:				#f5c2e7;
 grey: 				#6c7086;
 urgent:				#fab387;
 on:				#f38ba8;
-off:				#89b4fa;
+off:				#cba6f7;
 }
 
 window {
@@ -29,7 +32,7 @@ window {
     text-color:                     @foreground;
     border:			    3px;
     border-radius:                  0px;
-    border-color:		    @blue;
+    border-color:		    @lavender;
     width:                          384px;
     location:                       center;
     anchor:                         center;
@@ -38,8 +41,9 @@ window {
 }
 
 prompt {
+    font:                           "JetBrainsMono Nerd Font Bold 14";
     enabled: 						true;
-	padding: 						4px 4px 6px 6px;
+	padding: 					4px 4px 6px 6px;
 	background-color: 				@background;
 	text-color: 					@foreground;
 }
@@ -54,12 +58,12 @@ textbox-prompt-colon {
 }
 
 inputbar {
-	children: 						[ textbox-prompt-colon, prompt ];
+    children: 			    [ textbox-prompt-colon, prompt ];
     background-color:               @background;
     text-color:                     @foreground;
     expand:                         false;
-    border:                  		3px;
-    border-color:                  	@blue;
+    border:                  	    3px;
+    border-color:                   @lavender;
     margin:                         0px 0px 0px 0px;
     padding:                        0px 0px 0px 0px;
     position:                       center;
@@ -105,9 +109,9 @@ element {
     background-color:               @background;
     text-color:                     @foreground;
     orientation:                    horizontal;
-	border:							0px;
+    border:			    0px;
     border-radius:                  0px;
-    border-color:					@selected;
+    border-color:		    @selected;
     padding:                        5px 5px 5px 5px;
 }
 
@@ -117,7 +121,7 @@ element-icon {
 }
 
 element-text {
-    font:							"JetBrainsMono Nerd Font 12";
+    font:			   "JetBrainsMono Nerd Font Bold 13";
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0;
@@ -127,9 +131,9 @@ element-text {
 element selected {
     background-color:               @selected;
     text-color:                     @background;
-    border:                  		0px;
+    border:                  	    0px;
     border-radius:                  0px;
-    border-color:                  	@selected;
+    border-color:                   @selected;
 }
 
 element.active,

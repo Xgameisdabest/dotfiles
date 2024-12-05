@@ -5,10 +5,13 @@
     border-col: #1e1e2e;
     selected-col: #1e1e2e;
     blue: #89b4fa;
+    lavender: #b4befe;
+    mauve: #cba6f7;
+    pink: #f5c2e7;
+    red: #f38ba8;
     fg-col: #cdd6f4;
-    fg-col2: #f38ba8;
     grey: #6c7086;
-    font: "JetBrainsMono Nerd Font 14";
+    font: "JetBrainsMono Nerd Font Bold 14";
 }
 
 element-text, element-icon , mode-switcher {
@@ -20,7 +23,7 @@ window {
     width: 700;
     height: 450px;
     border: 3px;
-    border-color: @blue;
+    border-color: @lavender;
     background-color: @bg-col;
 }
 
@@ -36,7 +39,7 @@ inputbar {
 }
 
 prompt {
-    background-color: @blue;
+    background-color: @lavender;
     padding: 6px;
     text-color: @bg-col;
     border-radius: 3px;
@@ -56,6 +59,7 @@ entry {
 }
 
 listview {
+    scrollbar: true;
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
     margin: 10px 0px 0px 20px;
@@ -75,8 +79,8 @@ element-icon {
 }
 
 element selected {
-    background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    background-color:  @bg-col ;
+    text-color: @red  ;
 }
 
 mode-switcher {
@@ -93,7 +97,7 @@ button {
 
 button selected {
   background-color: @bg-col;
-  text-color: @blue;
+  text-color: @lavender;
 }
 
 message {
@@ -106,6 +110,16 @@ message {
 textbox {
     padding: 6px;
     margin: 20px 0px 0px 20px;
-    text-color: @blue;
+    text-color: @lavender;
     background-color: @bg-col-light;
 }
+
+scrollbar {
+    handle-color: @lavender;
+    background-color: @bg-col;
+    width:        5px ;
+    border:       0 ;
+    handle-width: 10px ;
+    padding:      0 ;
+}
+
