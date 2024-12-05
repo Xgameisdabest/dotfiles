@@ -1,23 +1,23 @@
 [global]
-font = Jetbrainsmono Nerd Font 13
+font = Jetbrainsmono Nerd Font Bold 13
 follow = mouse
 markup = full
 width = 350
-frame_color = "#89b4fa"
-highlight = "#89dceb"
+frame_color = "#b4befe"
+highlight = "#cba6f7"
 separator_color = frame
 origin = bottom-center
 timeout = 2
 
 [urgency_low]
-background = "#1e1e2e"
+background = "#211d30"
 foreground = "#cdd6f4"
 
 [urgency_normal]
-background = "#1e1e2e"
+background = "#211d30"
 foreground = "#cdd6f4"
 
 [urgency_critical]
-background = "#1e1e2e"
+background = "#211d30"
 foreground = "#cdd6f4"
 frame_color = "#fab387"
