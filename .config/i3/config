@@ -278,8 +278,8 @@ client.unfocused #211d30 #211d30 #b4befe #211d30 #211d30
 client.focused_inactive #211d30 #211d30 #b4befe #211d30 #211d30
 client.urgent #f38ba8 #f38ba8 #211d30 #f38ba8 #f38ba8
 
-#gaps outer 6
-gaps inner 6
+gaps outer 6
+#gaps inner 6
 #default_border pixel 4
 #default_floating_border pixel 8
 default_border normal 2
