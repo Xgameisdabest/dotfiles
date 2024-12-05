@@ -16,4 +16,4 @@ parent_dir=$(dirname "$dtf_dir_detect")
 cd "$parent_dir"
 
 # Perform a git pull in the parent directory
-$TERMINAL -e git pull
+$TERMINAL -e bash -c "git pull; read -p 'Update completed. Press Enter to exit...'"
