@@ -78,7 +78,7 @@ bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+c exec --no-startup-id google-chrome-stable
 
 #wallpaper
-#bindsym $mod+m exec waypaper
+bindsym $mod+m exec waypaper
 
 #window resolution
 #bindsym $mod+n exec arandr
