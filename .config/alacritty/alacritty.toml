@@ -8,6 +8,7 @@ ipc_socket = true
 title = "Alacritty  "
 dynamic_title = true
 #opacity = 0.94
+#blur = true
 
 [font]
 builtin_box_drawing = true
@@ -25,25 +26,28 @@ family = "JetBrainsMono Nerd Font"
 # # Limits how the cursor size may change
 # smooth_motion_max_stretch_x = 2.0
 # smooth_motion_max_stretch_y = 2.0
-#
 style = {shape = "beam", blinking = "off"}
-#
+thickness = 0.2
+
 [[hints.enabled]]
 command = "xdg-open" # On Linux/BSD
 # command = "open" # On macOS
 # command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
 hyperlinks = true
-post_processing = true
+post_processing = false
 persist = false
 mouse.enabled = true
 binding = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
 
-
 [mouse]
+hide_when_typing = true
 bindings = [
 	{ mouse = "Right", mods = "Control", action = "Paste" },
 ]
 
 [env]
 WINIT_X11_SCALE_FACTOR = "1.5"
+
+[debug]
+highlight_damage = false
