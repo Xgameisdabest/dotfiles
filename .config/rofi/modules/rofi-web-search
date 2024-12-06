@@ -61,7 +61,7 @@ exit 0
 }
 
 dotfiles(){
-xdg-open https://github.com/xgameisdabest/my-i3-config-dotfiles
+xdg-open https://github.com/xgameisdabest/dotfiles
 exit 0
 }
 
