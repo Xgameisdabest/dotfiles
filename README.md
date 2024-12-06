@@ -22,7 +22,7 @@ V2 (up-to-date)
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview_img/preview_2.jpg?raw=true)
 
 ## Dependencies for this dotfiles
-- FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold
+- FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip))
 - apt nala pacstall flatpak (essential for Debian based, for Arch just use anything that works for you)
 - chrome (i know but it works well for me, you might have to change the ```$mod+c``` keybind command execution in the i3/hyprland/sway config file if you want to use a different browser)
 - ncal (essential)
