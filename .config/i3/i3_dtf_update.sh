@@ -4,7 +4,7 @@
 search_dir="$HOME"
 
 # The special marker file to indicate the dotfiles directory
-marker_file="preview_img"
+marker_file=".dotfiles_target_file"
 
 # Search for the dotfiles directory that contains the marker file
 dtf_dir=$(locate "$marker_file" | grep "$search_dir" | tail -n 1 | xargs dirname)
