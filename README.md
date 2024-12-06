@@ -35,7 +35,7 @@ V2 (up-to-date)
 - picom 12 (picom-git) (essential)
 - betterlockscreen (essential)
 - tmux neofetch(terminal util)
-- waypaper feh (wallpaper)
+- waypaper feh (wallpaper) ([link to waypaper](https://github.com/anufrievroman/waypaper))
 - dunst (essential)
 - rofi (essential)
 - superfile nautilus thunar (file manager)
@@ -52,17 +52,13 @@ V2 (up-to-date)
 
 ## Installation
 
-1st, git clone the whole thing
-
-2nd, cd into that shit
-
-3rd, use GNU stow to create symlink
-
-``````
+```
+cd ~
+git clone https://github.com/Xgameisdabest/dotfiles.git
+cd dotfiles
 stow .
-``````
-if you borrow some of mine:
-``````
-stow --adopt .
-``````
+sudo updatedb
+i3-msg restart
+```
+
 have fun ~~suffering~~
