@@ -8,6 +8,46 @@ bat_percentage=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g')
 bat_percentage_number=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g' | sed 's/%//g')
 power_mode_status=$(powerprofilesctl get)
 
+set_mode_performace() {
+	powerprofilesctl set performance
+	notify-send "Power set to performance mode 󰓅"
+}
+
+set_mode_balanced() {
+	powerprofilesctl set balanced
+	notify-send "Power set to balance mode 󰾅"
+}
+
+set_mode_power_saver() {
+	powerprofilesctl set power-saver
+	notify-send "Power set to power-saver mode 󰾆"
+}
+
+if [[ $1 == "--scroll-up" ]]; then
+	if [[ $power_mode_status == "performance" ]]; then
+		set_mode_performace
+		exit 0
+	elif [[ $power_mode_status == "balanced" ]]; then
+		set_mode_performace
+		exit 0
+	elif [[ $power_mode_status == "power-saver" ]]; then
+		set_mode_balanced
+		exit 0
+	fi
+
+elif [[ $1 == "--scroll-down" ]]; then
+	if [[ $power_mode_status == "performance" ]]; then
+		set_mode_balanced
+		exit 0
+	elif [[ $power_mode_status == "balanced" ]]; then
+		set_mode_power_saver
+		exit 0
+	elif [[ $power_mode_status == "power-saver" ]]; then
+		exit 0
+		set_mode_power_saver
+	fi
+fi
+
 if [[ $status == "Discharging" ]]; then
 	notify-send "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $power_mode_status"
 elif [[ $status == "Charging" ]]; then
@@ -38,21 +78,6 @@ run_rofi() {
 }
 
 # Execute Command
-
-set_mode_performace() {
-	powerprofilesctl set performance
-	notify-send "Power set to performance mode 󰓅"
-}
-
-set_mode_balanced() {
-	powerprofilesctl set balanced
-	notify-send "Power set to balance mode 󰾅"
-}
-
-set_mode_power_saver() {
-	powerprofilesctl set power-saver
-	notify-send "Power set to power-saver mode 󰾆"
-}
 
 run_cmd() {
 		if [[ $1 == '--performance' ]]; then
