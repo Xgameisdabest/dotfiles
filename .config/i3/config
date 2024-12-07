@@ -7,6 +7,7 @@ exec_always --no-startup-id xrandr --auto
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+exec --no-startup-id dunst
 exec --no-startup-id ~/.config/dunst/volume.sh volume_status
 exec --no-startup-id ~/.config/dunst/volume.sh brightness_status
 exec --no-startup-id ~/.config/i3/i3_dtf_update.sh

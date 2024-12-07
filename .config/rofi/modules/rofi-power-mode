@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-main_menu_height=255px
+main_menu(){
+main_menu_height=330px
 main_menu_width=270px
+notification_timeout=1100
 
 status=$(acpi | grep 'Battery 0'|awk '{print $3}' | sed 's/,//g')
 bat_percentage=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g')
@@ -10,69 +12,68 @@ power_mode_status=$(powerprofilesctl get)
 
 set_mode_performace() {
 	powerprofilesctl set performance
-	notify-send "Power set to performance mode 󰓅"
+	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
 }
 
 set_mode_balanced() {
 	powerprofilesctl set balanced
-	notify-send "Power set to balance mode 󰾅"
+	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to balance mode 󰾅"
 }
 
 set_mode_power_saver() {
 	powerprofilesctl set power-saver
-	notify-send "Power set to power-saver mode 󰾆"
+	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to power-saver mode 󰾆"
 }
 
-if [[ $1 == "--scroll-up" ]]; then
-	if [[ $power_mode_status == "performance" ]]; then
-		set_mode_performace
-		exit 0
-	elif [[ $power_mode_status == "balanced" ]]; then
-		set_mode_performace
-		exit 0
-	elif [[ $power_mode_status == "power-saver" ]]; then
-		set_mode_balanced
-		exit 0
-	fi
-
-elif [[ $1 == "--scroll-down" ]]; then
-	if [[ $power_mode_status == "performance" ]]; then
-		set_mode_balanced
-		exit 0
-	elif [[ $power_mode_status == "balanced" ]]; then
-		set_mode_power_saver
-		exit 0
-	elif [[ $power_mode_status == "power-saver" ]]; then
-		exit 0
-		set_mode_power_saver
-	fi
-fi
-
-if [[ $status == "Discharging" ]]; then
-	notify-send "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $power_mode_status"
-elif [[ $status == "Charging" ]]; then
-	notify-send "Charge Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $power_mode_status"
-elif [[ $status == "Full" ]]; then
-	notify-send "Battery Full 󱐋" "CURRENT PROFILE: $power_mode_status"
-fi
-
-# Options
-performance='󰓅  Performance'
-medium='󰾅  Balance'
-power='󰾆  Power Saver'
-power_manager="󰖯  Power Manager"
+# if [[ $1 == "--scroll-up" ]]; then
+# 	if [[ $power_mode_status == "performance" ]]; then
+# 		set_mode_performace
+# 		exit 0
+# 	elif [[ $power_mode_status == "balanced" ]]; then
+# 		set_mode_performace
+# 		exit 0
+# 	elif [[ $power_mode_status == "power-saver" ]]; then
+# 		set_mode_balanced
+# 		exit 0
+# 	fi
+#
+# elif [[ $1 == "--scroll-down" ]]; then
+# 	if [[ $power_mode_status == "performance" ]]; then
+# 		set_mode_balanced
+# 		exit 0
+# 	elif [[ $power_mode_status == "balanced" ]]; then
+# 		set_mode_power_saver
+# 		exit 0
+# 	elif [[ $power_mode_status == "power-saver" ]]; then
+# 		exit 0
+# 		set_mode_power_saver
+# 	fi
+# fi
+#
+# if [[ $status == "Discharging" ]]; then
+# 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $power_mode_status"
+# elif [[ $status == "Charging" ]]; then
+# 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode "Charge Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $power_mode_status"
+# elif [[ $status == "Full" ]]; then
+# 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode "Battery Full 󱐋" "CURRENT PROFILE: $power_mode_status"
+# fi
 
 rofi_cmd() {
 	if [[ $status == "Discharging" ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -p " $bat_percentage 󰁹 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " $bat_percentage 󰁹 "
 	elif [[ $status == "Charging" ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -p " $bat_percentage 󰂅 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " $bat_percentage 󰂅 "
 	elif [[ $status == "Full" ]] && [[ $bat_percentage_number -gt 98 ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -p " Full 󱐋 "  -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " Full 󱐋 "
 	fi
 }
 
-# Pass variables to rofi dmenu
+# Options
+performance='󰓅  Performance'
+medium='󰾅  Balanced'
+power='󰾆  Power Saver'
+power_manager="󰖯  Power Manager"
+
 run_rofi() {
 	echo -e "$power_manager\n$performance\n$medium\n$power" | rofi_cmd
 }
@@ -97,14 +98,19 @@ case ${chosen} in
 	;;
     $performance)
 		run_cmd --performance
+		main_menu
         ;;
     $medium)
 		run_cmd --medium
+		main_menu
         ;;
     $power)
 		run_cmd --power
+		main_menu
         ;;
     $power_manager)
 		xfce4-power-manager-settings
 	;;
 esac
+}
+main_menu
