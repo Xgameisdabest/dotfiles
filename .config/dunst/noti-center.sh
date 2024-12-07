@@ -27,6 +27,9 @@ notifications=$(dunstctl history | jq -r '
 	(.summary.data | contains("Window Screenshotted") | not) and
 	(.summary.data | contains("Selected Area Screenshotted") | not) and
         (.summary.data | contains("RESIZE MODE. PRESS esc TO EXIT!") | not) and
+	(.summary.data | contains("Window stacking enabled 󰖲") | not) and
+	(.summary.data | contains("Window tab stacking enabled 󰖲") | not) and
+	(.summary.data | contains("Window split enabled 󰟘") | not) and
 	(.summary.data | contains("") | not) and
         (.summary.data | contains("") | not) and
 	(.summary.data | contains("") | not) and
