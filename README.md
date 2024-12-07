@@ -27,6 +27,12 @@ V2 (up-to-date)
 - chrome (i know but it works well for me, you might have to change the ```$mod+c``` keybind command execution in the i3/hyprland/sway config file if you want to use a different browser)
 - ncal (essential)
 - neovim (essential)
+- fzf (essential for zsh plugins)
+- oh-my-zsh (essential) ([link to install oh-my-zsh](https://ohmyz.sh/#install))
+    -> zsh-autopair (essential) ([link to install zsh-autopair](https://github.com/hlissner/zsh-autopair))
+    -> zsh-autosuggestions (essential) ([link to install zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions))
+    -> zsh-syntax-highlighting (essential) ([link to install zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting))
+    -> fzf-tab (essential) ([link to install fzf-tab](https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file))
 - alacritty/kitty (essential)
 - i3 (essential)
 - sway (optional)
@@ -47,16 +53,17 @@ V2 (up-to-date)
 - blueman (essential for bluetooth connection)
 - network-manager (essential for wifi connection)
 - arandr (essential)
-- pulseaudio alsa pipewire (essential, currently using pulseaudio)
+- pipewire (essential, currently using pipewire)
+- pipewire-pulse (essential)
 
 > [!NOTE]
 > Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
 
 ## Installation
 
-Install important dependencies
+Install most important dependencies
 ```
-sudo apt install i3 polybar rofi ncal neovim alacritty dunst thunar pulseaudio blueman network-manager
+sudo apt install i3 polybar rofi ncal neovim alacritty dunst thunar blueman pipewire-pulse pipewire network-manager fzf
 ```
 
 Install the dotfiles
