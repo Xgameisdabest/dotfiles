@@ -28,7 +28,7 @@ rofi_cmd() {
 		-i \
 		-theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -10px; y-offset: 70px;}" \
 		-p " Select   " \
-		-mesg "Uptime: $uptime" }
+		-mesg "Uptime: $uptime"
 }
 
 # Confirmation CMD
