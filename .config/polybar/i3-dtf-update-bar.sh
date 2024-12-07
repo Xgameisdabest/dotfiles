@@ -21,5 +21,5 @@ if [[ "$check_update" == *"Your branch is up to date with"* ]]; then
     # No changes detected, repository is up to date
     echo ""
 else
-    echo " "
+    echo " Update Available!"
 fi
