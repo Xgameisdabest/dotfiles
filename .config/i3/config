@@ -96,6 +96,7 @@ bindsym Shift+Print exec --no-startup-id selected_area="/home/$USER/Pictures/$(d
 #bindsym $mod+t exec alacritty
 #bindsym $mod+ctrl+t exec /usr/bin/alacritty 
 bindsym $mod+t exec --no-startup-id /usr/bin/alacritty
+bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
 
 #wifi, bluetooth shortcut
 #bindsym $mod+w exec ~/.config/rofi/modules/rofi-wifi-menu
@@ -294,3 +295,4 @@ for_window [title="^SuperTuxKart$"] fullscreen enable
 for_window [title="^onboard$"] floating enable
 for_window [title="^Screen Layout Editor$"] floating enable
 for_window [title="^Volume Control$"] floating enable
+for_window [title=".*byobu"] fullscreen enable
