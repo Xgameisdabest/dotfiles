@@ -5,7 +5,7 @@ main_menu_height=520px
 main_menu_width=260px
 rofi_submenu_height=520px
 rofi_submenu_width=260px
-polybar_submenu_height=220px
+polybar_submenu_height=255px
 polybar_submenu_width=260px
 
 goback="Back 󰌍 "
@@ -123,15 +123,19 @@ rofi_submenu(){
 
 polybar_submenu(){
 	
-	polybar_sub="  Polybar"
+	polybar_sub="  Bar"
+	polybar_color_sub="  Colors"
 	bar_start="󱓞  Bar Startup"
 	
 	#when add new entry make sure to add 35 to height
-	select3=$(echo -e "$polybar_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_submenu_height; width: $polybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	select3=$(echo -e "$polybar_sub\n$polybar_color_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_submenu_height; width: $polybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
 
 	case $select3 in 
 		$polybar_sub)
 			$TERMINAL -e nvim ~/.config/polybar/config.ini
+			;;
+		$polybar_color_sub)
+			$TERMINAL -e nvim ~/.config/polybar/colors.ini
 			;;
 		$bar_start)
 			$TERMINAL -e nvim ~/.config/polybar/launch.sh
