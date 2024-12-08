@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 main_menu(){
-main_menu_height=330px
+#when add new entry make sure to add 35 to height
+main_menu_height=365px
 main_menu_width=270px
 notification_timeout=1100
 
@@ -69,13 +70,14 @@ rofi_cmd() {
 }
 
 # Options
+quit="Exit 󰈆 "
 performance='󰓅  Performance'
 medium='󰾅  Balanced'
 power='󰾆  Power Saver'
 power_manager="󰖯  Power Manager"
 
 run_rofi() {
-	echo -e "$power_manager\n$performance\n$medium\n$power" | rofi_cmd
+	echo -e "$power_manager\n$performance\n$medium\n$power\n$quit" | rofi_cmd
 }
 
 # Execute Command
@@ -94,7 +96,10 @@ run_cmd() {
 chosen="$(run_rofi)"
 case ${chosen} in
 	"")
-		exit
+	    exit
+	;;
+    $quit)
+	    exit
 	;;
     $performance)
 		run_cmd --performance
