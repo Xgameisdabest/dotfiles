@@ -1,5 +1,6 @@
 import = [
 	"~/.config/alacritty/catppuccin-mocha.toml",
+	"~/.config/alacritty/keybindings.toml",
 ]
 
 ipc_socket = true
@@ -39,12 +40,6 @@ persist = false
 mouse.enabled = true
 binding = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
-
-[mouse]
-hide_when_typing = true
-bindings = [
-	{ mouse = "Right", mods = "Control", action = "Paste" },
-]
 
 [env]
 WINIT_X11_SCALE_FACTOR = "1.5"
