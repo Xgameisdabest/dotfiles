@@ -6,10 +6,10 @@ main_menu_height=365px
 main_menu_width=270px
 notification_timeout=1100
 
-status=$(acpi | grep 'Battery 0'|awk '{print $3}' | sed 's/,//g')
-bat_percentage=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g')
-bat_percentage_number=$(acpi | grep 'Battery 0'|awk '{print $4}' | sed 's/,//g' | sed 's/%//g')
-power_mode_status=$(powerprofilesctl get)
+status="$(acpi | sed 's/Not charging/Charging/g' | grep 'Battery 0' | awk '{print $3}' | sed 's/,//g')"
+bat_percentage="$(acpi | sed 's/Not charging//g' | grep 'Battery 0' | awk '{print $4}' | sed 's/,//g')"
+bat_percentage_number="$(acpi | sed 's/Not charging//g' | grep 'Battery 0' | awk '{print $4}' | sed 's/,//g' | sed 's/%//g')"
+power_mode_status="$(powerprofilesctl get)"
 
 set_mode_performace() {
 	powerprofilesctl set performance
