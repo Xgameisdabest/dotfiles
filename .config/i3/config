@@ -113,7 +113,7 @@ exec_always --no-startup-id xss-lock  -- ~/.config/i3/lock.sh
 bindsym $mod+i exec --no-startup-id ~/.config/i3/i3_rofi_settings.sh
 
 # kill focused window
-bindsym $mod+x kill
+bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/mouse_change_windows_when_focus.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+r exec --no-startup-id rofi -show drun
