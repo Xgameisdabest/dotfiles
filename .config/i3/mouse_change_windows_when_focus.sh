@@ -9,4 +9,6 @@ eval `xdotool getwindowgeometry --shell $WINDOW`
 TX=`expr $WIDTH / 2`
 TY=`expr $HEIGHT / 2`
 
-$XDT mousemove -window $WINDOW $TX $TY
+if [[ $WINDOW != 4194398 ]]; then
+	$XDT mousemove -window $WINDOW $TX $TY
+fi
