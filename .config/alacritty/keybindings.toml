@@ -3,3 +3,11 @@ hide_when_typing = true
 bindings = [
 	{ mouse = "Right", mods = "Control", action = "Paste" },
 ]
+
+[keyboard]
+bindings = [
+{ key= "Back", mods= "Alt", chars= "\u0015" }, # Delete line
+{ key= "Back", mods= "Control", chars= "\u001b\u007f" }, # Delete word
+]
+
+
