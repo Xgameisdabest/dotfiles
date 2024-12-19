@@ -56,6 +56,8 @@ entry {
     margin: 20px 0px 0px 10px;
     text-color: @fg-col;
     background-color: @bg-col;
+    //placeholder: "Type here to search";
+    //placeholder-color: @grey;
 }
 
 listview {
