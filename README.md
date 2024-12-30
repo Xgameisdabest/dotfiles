@@ -66,6 +66,22 @@ Install most important dependencies
 sudo apt install i3 polybar rofi ncal neovim alacritty dunst thunar blueman pipewire-pulse pipewire network-manager fzf
 ```
 
+Install oh-my-zsh (command taken from the official page)
+```
+sudo apt install curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+```
+
+Install zsh plugins (zsh-autopair zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
+```
+cd ~/.oh-my-zsh/plugins/
+git clone https://github.com/hlissner/zsh-autopair.git
+git clone https://github.com/zsh-users/zsh-autosuggestions.git
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+git clone https://github.com/Aloxaf/fzf-tab.git
+```
+
 Install the dotfiles
 ```
 cd ~
