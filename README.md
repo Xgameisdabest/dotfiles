@@ -15,11 +15,11 @@ if you have any problems trying to understand my English then heres the **tldr**
 ## Preview
 V1 (use ```git checkout 4404458``` (use ```git checkout 08e8942``` if you want bottom bar) to use this version and ```git checkout main``` if you want to use the latest)
 
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview_img/preview.jpg?raw=true)
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview.jpg?raw=true)
 
 V2 (up-to-date)
 
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/preview_img/preview_2.jpg?raw=true)
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_2.jpg?raw=true)
 
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
