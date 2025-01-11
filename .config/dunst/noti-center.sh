@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
+
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 

@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+#THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
+
 main_menu_height=300px
 main_menu_width=400px
 playback_menu_height=150px

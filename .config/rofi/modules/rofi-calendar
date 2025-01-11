@@ -1,4 +1,9 @@
 #!/bin/bash
+
+#ORIGINAL IDEAS WAS MADE BY THIS GUY, NOT ME
+#link to the king: https://github.com/ghost-in-the-machine-86/rofi-calendar
+#THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
+
 current_day=$(date +"%e")
 current_month=$(date +"%m")
 current_month_full=$(date +"%B")

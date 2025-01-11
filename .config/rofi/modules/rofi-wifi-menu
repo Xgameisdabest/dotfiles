@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#ORIGINAL IDEAS WAS MADE BY THIS GUY, NOT ME
+#link to the king: https://github.com/ericmurphyxyz/rofi-wifi-menu
+#THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
+
 main_menu_height=300px
 main_menu_width=300px
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
+
 #when add new entry make sure to add 35 to height
 main_menu_height=520px
 main_menu_width=260px
