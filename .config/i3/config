@@ -296,3 +296,4 @@ for_window [title="^onboard$"] floating enable
 for_window [title="^Screen Layout Editor$"] floating enable
 for_window [title="^Volume Control$"] floating enable
 for_window [title=".*byobu"] fullscreen enable
+for_window [title="^Proton VPN$"] floating enable
