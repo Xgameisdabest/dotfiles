@@ -11,7 +11,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "bashls" , "biome" , "lua_ls" , "pyright", "clangd" },
+				ensure_installed = { "bashls", "biome", "lua_ls", "pyright", "clangd" },
 			})
 		end,
 	},
@@ -36,8 +36,6 @@ return {
 			lspconfig.biome.setup({
 				capabilities = capabilities
 			})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 		end,
 	},
 }
