@@ -1,7 +1,11 @@
+-- general configs and keybinds
+
+-- variables
 local o = vim.o
 local g = vim.g
 local km = vim.keymap
 
+-- general config
 g.mapleader = " "
 g.termguicolors = true
 
@@ -12,6 +16,7 @@ o.ruler = true
 o.cursorline = true
 o.guifont = "Jetbrainsmono Nerd Font:h10"
 
+-- keybinds
 km.set("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", { noremap = true })
 km.set("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", { noremap = true })
 
