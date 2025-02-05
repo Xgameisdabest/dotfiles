@@ -36,6 +36,9 @@ return {
 			lspconfig.biome.setup({
 				capabilities = capabilities
 			})
+			lspconfig.sqls.setup({
+				capabilities = capabilities
+			})
 		end,
 	},
 }

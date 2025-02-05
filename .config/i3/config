@@ -79,7 +79,8 @@ bindsym $mod+e exec --no-startup-id thunar
 
 #start browser
 #bindsym $mod+c exec librewolf
-bindsym $mod+c exec --no-startup-id google-chrome-stable
+bindsym $mod+$alt+c exec --no-startup-id google-chrome-stable
+bindsym $mod+c exec --no-startup-id firefox
 
 #wallpaper
 bindsym $mod+m exec waypaper
