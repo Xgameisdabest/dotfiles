@@ -118,6 +118,7 @@ bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/mouse_change_win
 
 # start dmenu (a program launcher)
 bindsym $mod+r exec --no-startup-id rofi -show drun
+bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
 #bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/rofi_drun/rofi-drun-w-bg.rasi -show drun
 bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
 

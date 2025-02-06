@@ -16,6 +16,8 @@ o.ruler = true
 o.cursorline = true
 o.guifont = "Jetbrainsmono Nerd Font:h10"
 
+g.goyo_width = 120
+
 -- keybinds
 km.set("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", { noremap = true })
 km.set("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", { noremap = true })
