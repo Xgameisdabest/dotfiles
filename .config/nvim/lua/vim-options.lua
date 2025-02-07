@@ -34,6 +34,8 @@ km.set("n", "<C-e>", ":Neotree filesystem reveal <CR>", {})
 km.set("n", ":", "<cmd>FineCmdline<CR>")
 km.set("n", "/", ":SearchBoxMatchAll<CR>")
 
+km.set("n", "<leader>db", ":DBUIToggle<CR>")
+
 km.set("n", "<leader>/", function()
 		require("Comment.api").toggle.linewise.current()
 	end, { desc = "comment toggle" }
