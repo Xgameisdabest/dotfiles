@@ -31,7 +31,8 @@ km.set("n", "<C-0>", "<cmd>:GUIFontSizeSet<CR>")
 
 km.set("n", "<C-e>", ":Neotree filesystem reveal <CR>", {})
 
-km.set("n", ":", "<cmd>FineCmdline<CR>")
+km.set("n", ":", "<cmd>FineCmdline<CR>", {noremap = true})
+km.set("n", "/", ":SearchBoxMatchAll<CR>")
 
 km.set("n", "<leader>/", function()
 		require("Comment.api").toggle.linewise.current()
