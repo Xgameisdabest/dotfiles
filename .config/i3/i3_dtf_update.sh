@@ -14,7 +14,7 @@ if [[ -z "$dtf_dir" ]]; then
 fi
 
 # Check if the git repository is ahead/behind with respect to the remote repository
-check_update=$(cd "$dtf_dir" && git status -uno)
+check_update=$(cd "$dtf_dir" && git fetch && git status -uno)
 
 # Check if there is any output indicating the repository is behind or has diverged
 if [[ "$check_update" == *"Your branch is up to date with"* ]]; then
