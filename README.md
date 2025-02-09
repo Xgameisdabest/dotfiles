@@ -66,7 +66,7 @@ V2 (up-to-date)
 
 Install most important dependencies
 ```
-sudo apt install i3 polybar rofi ncal neovim alacritty dunst libnotify-bin thunar blueman pipewire-pulse pipewire network-manager fzf xdotool
+sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin thunar blueman pipewire-pulse pipewire network-manager fzf xdotool 
 ```
 
 Install oh-my-zsh (command taken from the official page)
