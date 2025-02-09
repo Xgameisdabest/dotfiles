@@ -73,7 +73,6 @@ Install oh-my-zsh (command taken from the official page)
 ```
 sudo apt install curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 ```
 
 Install zsh plugins (zsh-autopair zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
@@ -94,5 +93,7 @@ stow .
 sudo updatedb
 i3-msg restart
 ```
+
+REMEMBER TO ADD TERMINAL=/usr/bin/alacritty TO /etc/environment 
 
 have fun ~~suffering~~
