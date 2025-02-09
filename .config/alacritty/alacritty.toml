@@ -6,7 +6,7 @@ import = [
 ipc_socket = true
 
 [window]
-title = "Alacritty  "
+#title = "Alacritty  "
 dynamic_title = true
 #opacity = 0.94
 #blur = true
