@@ -83,10 +83,10 @@ bindsym $mod+$alt+c exec --no-startup-id google-chrome-stable
 bindsym $mod+c exec --no-startup-id firefox
 
 #wallpaper
-bindsym $mod+m exec waypaper
+bindsym $mod+m exec --no-startup-id waypaper
 
 #window resolution
-#bindsym $mod+n exec arandr
+#bindsym $mod+n exec --no-startup-id arandr
 
 #screenshot
 bindsym Print exec --no-startup-id desktop="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_desktop').png" && maim "$desktop" && xclip -sel clip -t image/png -i "$desktop" && notify-send "Screenshotted 󰨇 "
