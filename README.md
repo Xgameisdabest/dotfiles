@@ -61,6 +61,9 @@ V2 (up-to-date)
 
 ## Installation
 
+> [!NOTE]
+> picom is a dependency that needs to install and build from source in order to work correctly, it has already been listed in the dependencies list so go check it out
+
 Install most important dependencies
 ```
 sudo apt install i3 polybar rofi ncal neovim alacritty dunst thunar blueman pipewire-pulse pipewire network-manager fzf
