@@ -22,8 +22,12 @@ g.goyo_width = 120
 km.set("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", { noremap = true })
 km.set("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", { noremap = true })
 
-km.set("n","<TAB>","<Cmd>BufferLineCycleNext<CR>")
-km.set("n","<S-TAB>","<Cmd>BufferLineCyclePrev<CR>")
+km.set("n", "<leader>[", "<cmd>FineCmdline split <CR>")
+km.set("n", "<leader>]", "<cmd>FineCmdline vsplit <CR>")
+km.set("n", "<leader><bs>", ":q<CR>")
+
+-- km.set("n","<TAB>","<Cmd>BufferLineCycleNext<CR>")
+-- km.set("n","<S-TAB>","<Cmd>BufferLineCyclePrev<CR>")
 
 km.set("n", "<C-=>", "<cmd>:GUIFontSizeUp<CR>")
 km.set("n", "<C-->", "<cmd>:GUIFontSizeDown<CR>")
