@@ -10,8 +10,6 @@ main_menu_width=300px
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
-current_wifi_ssid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d\' -f2 | sed 's/yes://g')
-
 main_menu(){
 connected=$(nmcli -fields WIFI g)
 if [[ "$connected" =~ "enabled" ]]; then
