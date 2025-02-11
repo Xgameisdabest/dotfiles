@@ -161,9 +161,9 @@ toggle_trust() {
 }
 
 device_list() {
-	dev_list=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
+	dev_list=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: north east; x-offset: -30px; y-offset: 70px;}")
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: north east; x-offset: -30px; y-offset: 70px;}" | sed 's///g')
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."
