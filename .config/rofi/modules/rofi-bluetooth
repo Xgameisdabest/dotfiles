@@ -248,8 +248,9 @@ device_menu() {
 show_menu() {
     if power_on; then
         power="  Power: On"
-
-        devices="  Device List  "
+	
+	device_count=$(bluetoothctl devices | wc -l)
+	devices="  Device List ($device_count)  "
 	
 	bluetooth_manager="󰖯  Bluetooth Manager"
 
