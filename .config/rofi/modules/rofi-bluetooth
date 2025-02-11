@@ -5,7 +5,7 @@
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
 #when add new entry make sure to add 35 to height
-main_menu_height=425px
+main_menu_height=460px
 main_menu_width=350px
 
 divider="---------"
@@ -197,6 +197,24 @@ device_list_trusted() {
     esac
 }
 
+device_list_paired() {
+	dev_list=$(bluetoothctl devices Paired | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	options="$dev_list\n$goback\n$quit"
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: north east; x-offset: -30px; y-offset: 70px;}" | sed 's///g')
+	case "$select" in
+        "" | "$divider" | "$quit")
+            echo "No option chosen."
+            ;;
+        "$goback")
+            show_menu
+            ;;
+    *)
+	dev_list_addr=$(bluetoothctl devices | grep "$select")
+        if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+	;;
+    esac
+}
+
 device_menu() {
     device=$1
 
@@ -239,8 +257,11 @@ show_menu() {
 	
 	device_count=$(bluetoothctl devices | wc -l)
 	trusted_device_count=$(bluetoothctl devices Trusted | wc -l)
+	paired_device_count=$(bluetoothctl devices Paired | wc -l)
+
 	devices="  Device List ($device_count)  "
 	devices_trusted="  Trusted Device ($trusted_device_count) "
+	devices_paired="  Paired Device ($paired_device_count) "
 
 	bluetooth_manager="󰖯  Bluetooth Manager"
 
@@ -249,7 +270,7 @@ show_menu() {
         discoverable=$(discoverable_on)
 
         #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
-	options="$devices_trusted\n$devices\n$power\n$scan\n$pairable\n$discoverable\n$bluetooth_manager\n$quit"
+	options="$devices_trusted\n$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_paired\n$bluetooth_manager\n$quit"
     else
         power="  Power: Off"
         options="$power\n$quit"
@@ -266,6 +287,9 @@ show_menu() {
 	;;
 	"$devices_trusted")
 	device_list_trusted
+	;;
+	"$devices_paired")
+	device_list_paired
 	;;
         "$power")
             toggle_power
