@@ -4,7 +4,8 @@
 #link to the king: https://github.com/nickclyde/rofi-bluetooth
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
-main_menu_height=390px
+#when add new entry make sure to add 35 to height
+main_menu_height=425px
 main_menu_width=350px
 
 divider="---------"
@@ -178,35 +179,22 @@ device_list() {
     esac
 }
 
-print_status() {
-    if power_on; then
-        printf ''
-
-        paired_devices_cmd="devices Paired"
-        if (( $(echo "$(bluetoothctl version | cut -d ' ' -f 2) < 5.65" | bc -l) )); then
-            paired_devices_cmd="paired-devices"
-        fi
-
-        mapfile -t paired_devices < <(bluetoothctl $paired_devices_cmd | grep Device | cut -d ' ' -f 2)
-        counter=0
-
-        for device in "${paired_devices[@]}"; do
-            if device_connected "$device"; then
-                device_alias=$(bluetoothctl info "$device" | grep "Alias" | cut -d ' ' -f 2-)
-
-                if [ $counter -gt 0 ]; then
-                    printf ", %s" "$device_alias"
-                else
-                    printf " %s" "$device_alias"
-                fi
-
-                ((counter++))
-            fi
-        done
-        printf "\n"
-    else
-        echo ""
-    fi
+device_list_trusted() {
+	dev_list=$(bluetoothctl devices Trusted | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	options="$dev_list\n$goback\n$quit"
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: north east; x-offset: -30px; y-offset: 70px;}" | sed 's///g')
+	case "$select" in
+        "" | "$divider" | "$quit")
+            echo "No option chosen."
+            ;;
+        "$goback")
+            show_menu
+            ;;
+    *)
+	dev_list_addr=$(bluetoothctl devices | grep "$select")
+        if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+	;;
+    esac
 }
 
 device_menu() {
@@ -250,8 +238,10 @@ show_menu() {
         power="  Power: On"
 	
 	device_count=$(bluetoothctl devices | wc -l)
+	trusted_device_count=$(bluetoothctl devices Trusted | wc -l)
 	devices="  Device List ($device_count)  "
-	
+	devices_trusted="  Trusted Device ($trusted_device_count) "
+
 	bluetooth_manager="󰖯  Bluetooth Manager"
 
         scan=$(scan_on)
@@ -259,7 +249,7 @@ show_menu() {
         discoverable=$(discoverable_on)
 
         #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
-	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$bluetooth_manager\n$quit"
+	options="$devices_trusted\n$devices\n$power\n$scan\n$pairable\n$discoverable\n$bluetooth_manager\n$quit"
     else
         power="  Power: Off"
         options="$power\n$quit"
@@ -273,6 +263,9 @@ show_menu() {
             ;;
 	"$devices")
 	device_list
+	;;
+	"$devices_trusted")
+	device_list_trusted
 	;;
         "$power")
             toggle_power
