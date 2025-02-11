@@ -270,7 +270,7 @@ show_menu() {
         discoverable=$(discoverable_on)
 
         #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
-	options="$devices_trusted\n$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_paired\n$bluetooth_manager\n$quit"
+	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_trusted\n$devices_paired\n$bluetooth_manager\n$quit"
     else
         power="  Power: Off"
         options="$power\n$quit"
