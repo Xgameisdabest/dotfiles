@@ -15,6 +15,7 @@ previous_month="◀"
 next_month=" ▶"
 last_selected_option=""
 quit=""
+options="󰇘"
 
 format_calendar () {
     echo "$1" \
@@ -48,12 +49,12 @@ calendar_menu() {
     calendar_header=$(echo -e "󰩔 Current: $current_day $current_month_full $current_year\n󱣿  Viewing:  $header ")
 
     month_page="$(print_month $month $year)"
-    calendar_body="$quit\n\n\n$previous_month\n\n\n\n$month_page\n\n\n\n$next_month\n\n\n"
+    calendar_body="$quit\n$options\n\n$previous_month\n\n\n\n$month_page\n\n\n\n$next_month\n\n\n"
 
     previous_month_index="3"
     next_month_index="59"
     calendar_body_column="7"
-    urgent="-u $previous_month_index,$next_month_index,$quit"
+    urgent="-u $previous_month_index,$next_month_index,$quit,$options"
     active=""
     selected_row=""
 
@@ -105,6 +106,8 @@ while [[ true ]]; do
 		elif [[ $selected == "Su" || $selected == "Mo" || $selected == "Tu" || $selected == "We" || $selected == "Th" || $selected == "Fr" || $selected == "Sa" ]] then
 			break
 		elif [[ $selected == "$quit" ]] then
+			break
+		elif [[ $selected == "$options" ]] then
 			break
 		else
 			weekend_day=$(date -d "$year-$month-$selected" +%A)
