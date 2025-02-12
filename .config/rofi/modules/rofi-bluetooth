@@ -6,6 +6,7 @@
 
 #when add new entry make sure to add 35 to height
 main_menu_height=460px
+main_menu_height_off=195px
 main_menu_width=350px
 
 divider="---------"
@@ -271,12 +272,7 @@ show_menu() {
 
         #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
 	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_trusted\n$devices_paired\n$bluetooth_manager\n$quit"
-    else
-        power="  Power: Off"
-        options="$power\n$quit"
-    fi
-
-    chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -80px; y-offset: 70px;}" -p " Bluetooth  ")"
+	chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -80px; y-offset: 70px;}" -p " Bluetooth  ")"
 
     case "$chosen" in
         "" | "$divider")
@@ -300,7 +296,7 @@ show_menu() {
         "$discoverable")
             toggle_discoverable
             ;;
-    "$bluetooth_manager")
+    	"$bluetooth_manager")
 	    blueman-manager
 	    ;;
         "$pairable")
@@ -312,6 +308,22 @@ show_menu() {
             if [[ $device ]]; then device_menu "$device"; fi
             ;;
     esac
+
+    else
+        power="  Power: Off"
+        options_off="$power\n$quit"
+	chosen="$(echo -e "$options_off" | rofi -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: north east; x-offset: -80px; y-offset: 70px;}" -p " Bluetooth  ")"
+	
+	case "$chosen" in
+        "" | "$divider")
+        echo "No option chosen."
+        ;;
+        "$power")
+        toggle_power
+        ;;
+	esac
+
+    fi
 }
 
 rofi_command="rofi -dmenu -i $* -p"
