@@ -186,6 +186,7 @@ bindsym $mod+a focus parent
 
 # show help menu
 bindsym $mod+equal exec --no-startup-id ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds.sh
+bindsym $mod+minus exec --no-startup-id polybar-msg cmd toggle
 
 # hide window
 bindsym $mod+d move scratchpad
