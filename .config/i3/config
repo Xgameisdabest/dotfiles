@@ -7,8 +7,8 @@ exec_always --no-startup-id xrandr --auto
 
 exec_always --no-startup-id pidof picom 1> /dev/null || picom --config ~/.config/picom/picom.conf &
 
-exec_always --no-startup-id ~/.config/polybar/launch.sh &
-exec_always --no-startup-id ~/.config/polybar/authide.sh &
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+#exec --no-startup-id ~/.config/polybar/authide.sh
 
 exec --no-startup-id dunst
 exec --no-startup-id ~/.config/dunst/volume.sh volume_status

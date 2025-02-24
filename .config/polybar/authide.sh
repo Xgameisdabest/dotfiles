@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOP_MARGIN=65
+TOP_MARGIN=105
 
 while true; do
     MOUSE_POSITION=$(xdotool getmouselocation --shell)
