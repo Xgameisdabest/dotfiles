@@ -98,6 +98,6 @@ sudo updatedb
 i3-msg restart
 ```
 
-REMEMBER TO ADD TERMINAL=/usr/bin/alacritty TO /etc/environment 
+REMEMBER TO ADD ```TERMINAL=/usr/bin/alacritty``` TO ```/etc/environment```
 
 have fun ~~suffering~~
