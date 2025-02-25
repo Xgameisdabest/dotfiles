@@ -10,14 +10,17 @@ origin = bottom-center
 timeout = 2
 
 [urgency_low]
-background = "#211d30"
+; background = "#211d30"
+background = "#000000"
 foreground = "#cdd6f4"
 
 [urgency_normal]
-background = "#211d30"
+; background = "#211d30"
+background = "#000000"
 foreground = "#cdd6f4"
 
 [urgency_critical]
-background = "#211d30"
+; background = "#211d30"
+background = "#000000"
 foreground = "#cdd6f4"
 frame_color = "#fab387"
