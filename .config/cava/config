@@ -1,5 +1,5 @@
-[FPS]
-framerate = auto
+[general]
+bar_width = 1
 
 [input]
 method = pulse
