@@ -264,10 +264,15 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 #COLORS
-client.focused #211d30 #211d30 #b4befe #211d30 #211d30
-client.unfocused #211d30 #211d30 #b4befe #211d30 #211d30
-client.focused_inactive #211d30 #211d30 #b4befe #211d30 #211d30
-client.urgent #f38ba8 #f38ba8 #211d30 #f38ba8 #f38ba8
+# client.focused #211d30 #211d30 #b4befe #211d30 #211d30
+# client.unfocused #211d30 #211d30 #b4befe #211d30 #211d30
+# client.focused_inactive #211d30 #211d30 #b4befe #211d30 #211d30
+# client.urgent #f38ba8 #f38ba8 #211d30 #f38ba8 #f38ba8
+
+client.focused #000000 #000000 #b4befe #000000 #000000
+client.unfocused #000000 #000000 #b4befe #000000 #000000
+client.focused_inactive #000000 #000000 #b4befe #000000 #000000
+client.urgent #f38ba8 #f38ba8 #000000 #f38ba8 #f38ba8
 
 #border and gaps
 #gaps outer 6
