@@ -76,7 +76,7 @@ calendar_menu() {
 
     echo -e "$calendar_body" | sed 's/\./__/g' | rofi -dmenu \
     -theme-str "window {location: north east; x-offset: -370px; y-offset: 255px;}" \
-    -theme ~/.config/rofi/rofi_theme/calendar.rasi \
+    -theme ~/.config/rofi/rofi_theme/calendar_black_and_white.rasi \
     -p "$calendar_header" $urgent $active $selected_row
 }
 
