@@ -269,16 +269,16 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # client.focused_inactive #211d30 #211d30 #b4befe #211d30 #211d30
 # client.urgent #f38ba8 #f38ba8 #211d30 #f38ba8 #f38ba8
 
-client.focused #000000 #000000 #b4befe #000000 #000000
-client.unfocused #000000 #000000 #b4befe #000000 #000000
-client.focused_inactive #000000 #000000 #b4befe #000000 #000000
+client.focused #b4befe #000000 #b4befe #b4befe #b4befe
+client.unfocused #cdd6f4 #000000 #cdd6f4 #000000 #000000
+client.focused_inactive #cdd6f4 #000000 #cdd6f4 #000000 #000000
 client.urgent #f38ba8 #f38ba8 #000000 #f38ba8 #f38ba8
 
 #border and gaps
-#gaps outer 6
+gaps outer 6
 gaps inner 6
-#default_border pixel 4
-#default_floating_border pixel 8
+default_border pixel 2
+default_floating_border pixel 3
 default_border normal 2
 default_floating_border normal 3
 
