@@ -5,6 +5,18 @@
 menu_width=585px
 menu_height=490px
 
+#for top
+# location="north west"
+#
+# main_menu_x_offset=10px
+# main_menu_y_offset=70px
+
+#for bottom
+location="south west"
+ 
+main_menu_x_offset=10px
+main_menu_y_offset=-70px
+
 point_icon=" "
 model_text=" Model 󰢹  "
 specs_text=" Specifications   "
@@ -26,4 +38,4 @@ get_os_space=$(echo "$point_icon 󰨣 : $(df -h / | awk 'NR==2 {print $2}' | sed
 
 get_model_hw=$(echo "$point_icon $(hostnamectl | grep "Hardware Model" | sed 's/  Hardware Model: //g')")
 
-echo -e "$model_text\n$get_model_hw\n$specs_text\n$get_os_cpu\n$get_os_mem\n$get_os_space\n$get_os_arch\n$os_text\n$get_os_name\n$get_os_version" | rofi -dmenu -p " About 󰟀  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $menu_width; height: $menu_height; location: north west; x-offset: 10px; y-offset: 70px;}" 
+echo -e "$model_text\n$get_model_hw\n$specs_text\n$get_os_cpu\n$get_os_mem\n$get_os_space\n$get_os_arch\n$os_text\n$get_os_name\n$get_os_version" | rofi -dmenu -p " About 󰟀  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $menu_width; height: $menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" 

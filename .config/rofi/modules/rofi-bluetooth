@@ -9,6 +9,42 @@ main_menu_height=460px
 main_menu_height_off=195px
 main_menu_width=350px
 
+#for top
+# location="north east"
+#
+# main_menu_x_offset=-80px
+# main_menu_y_offset=70px
+#
+# device_list_menu_x_offset=-30px
+# device_list_menu_y_offset=70px
+#
+# device_list_trusted_menu_x_offset=-30px
+# device_list_trusted_menu_y_offset=70px
+#
+# device_list_paired_menu_x_offset=-30px
+# device_list_paired_menu_y_offset=70px
+#
+# device_menu_x_offset=-80px
+# device_menu_y_offset=70px
+
+#for bottom
+location="south east"
+                                        
+main_menu_x_offset=-80px
+main_menu_y_offset=-70px
+                                        
+device_list_menu_x_offset=-30px
+device_list_menu_y_offset=-70px
+                                        
+device_list_trusted_menu_x_offset=-30px
+device_list_trusted_menu_y_offset=-70px
+                                        
+device_list_paired_menu_x_offset=-30px
+device_list_paired_menu_y_offset=-70px
+                                        
+device_menu_x_offset=-80px
+device_menu_y_offset=-70px
+
 divider="---------"
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
@@ -165,7 +201,7 @@ toggle_trust() {
 device_list() {
 	dev_list=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: north east; x-offset: -30px; y-offset: 70px;}" | sed 's///g')
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_menu_x_offset; y-offset: $device_list_menu_y_offset;}" | sed 's///g')
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."
@@ -183,7 +219,7 @@ device_list() {
 device_list_trusted() {
 	dev_list=$(bluetoothctl devices Trusted | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: north east; x-offset: -30px; y-offset: 70px;}" | sed 's///g')
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_trusted_menu_x_offset; y-offset: $device_list_trusted_menu_y_offset;}" | sed 's///g')
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."
@@ -201,7 +237,7 @@ device_list_trusted() {
 device_list_paired() {
 	dev_list=$(bluetoothctl devices Paired | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: north east; x-offset: -30px; y-offset: 70px;}" | sed 's///g')
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_paired_menu_x_offset; y-offset: $device_list_paired_menu_y_offset;}" | sed 's///g')
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."
@@ -231,7 +267,7 @@ device_menu() {
     trusted=$(device_trusted "$mac")
     options="$connected\n$paired\n$trusted\n$goback\n$quit"
 
-    chosen="$(echo -e "$options" | $rofi_command " $device_name 󰾰  " -theme-str 'window {height: 390; width: 350px; location: north east; x-offset: -80px; y-offset: 70px;}')"
+    chosen="$(echo -e "$options" | $rofi_command " $device_name 󰾰  " -theme-str "window {height: 390; width: 350px; location: $location; x-offset: $device_menu_x_offset; y-offset: $device_menu_y_offset;}")"
 
     case "$chosen" in
         "" | "$divider")
@@ -272,7 +308,7 @@ show_menu() {
 
         #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
 	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_trusted\n$devices_paired\n$bluetooth_manager\n$quit"
-	chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -80px; y-offset: 70px;}" -p " Bluetooth  ")"
+	chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Bluetooth  ")"
 
     case "$chosen" in
         "" | "$divider")
@@ -312,7 +348,7 @@ show_menu() {
     else
         power="  Power: Off"
         options_off="$power\n$quit"
-	chosen="$(echo -e "$options_off" | rofi -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: north east; x-offset: -80px; y-offset: 70px;}" -p " Bluetooth  ")"
+	chosen="$(echo -e "$options_off" | rofi -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Bluetooth  ")"
 	
 	case "$chosen" in
         "" | "$divider")

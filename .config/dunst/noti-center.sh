@@ -5,6 +5,18 @@
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
+#for top
+# location="north east"
+#                          
+# main_menu_x_offset=-10px
+# main_menu_y_offset=70px
+
+#for bottom
+location="south east"
+                         
+main_menu_x_offset=-10px
+main_menu_y_offset=-70px
+
 noti_main_menu(){
 notifications=$(dunstctl history | jq -r '
     .data[0][] |
@@ -45,7 +57,7 @@ cls_hist=$(echo "Clear History 󱏫")
 # options="$notifications\n$cls_hist"
 options="$cls_hist\n$notifications"
 # Use rofi to display notifications
-selected=$(echo -e "$quit\n$options" | rofi -dmenu -i -selected-row 2 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}" -theme-str 'window {location: north east; x-offset: -10px; y-offset: 70px;}')
+selected=$(echo -e "$quit\n$options" | rofi -dmenu -i -selected-row 2 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 
 case $selected in
 	"")

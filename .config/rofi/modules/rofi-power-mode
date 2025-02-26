@@ -9,6 +9,18 @@ main_menu_height=365px
 main_menu_width=270px
 notification_timeout=1100
 
+#for top
+# location="north east"
+#
+# main_menu_x_offset=-70px
+# main_menu_y_offset=70px
+
+#for bottom
+location="south east"
+                         
+main_menu_x_offset=-70px
+main_menu_y_offset=-70px
+
 status="$(acpi | sed 's/Not charging/Charging/g' | grep 'Battery 0' | awk '{print $3}' | sed 's/,//g')"
 bat_percentage="$(acpi | sed 's/Not charging//g' | grep 'Battery 0' | awk '{print $4}' | sed 's/,//g')"
 bat_percentage_number="$(acpi | sed 's/Not charging//g' | grep 'Battery 0' | awk '{print $4}' | sed 's/,//g' | sed 's/%//g')"
@@ -64,11 +76,11 @@ set_mode_power_saver() {
 
 rofi_cmd() {
 	if [[ $status == "Discharging" ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " $bat_percentage 󰁹 "
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " $bat_percentage 󰁹 "
 	elif [[ $status == "Charging" ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " $bat_percentage 󰂅 "
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " $bat_percentage 󰂅 "
 	elif [[ $status == "Full" ]] && [[ $bat_percentage_number -gt 98 ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -70px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " Full 󱐋 "
+		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg " MODE: $power_mode_status" -p " Full 󱐋 "
 	fi
 }
 

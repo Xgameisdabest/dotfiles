@@ -7,6 +7,42 @@ main_menu_width=400px
 playback_menu_height=150px
 playback_menu_width=270px
 
+#for top
+# location="north east"
+#
+# main_menu_x_offset=-10px
+# main_menu_y_offset=70px
+#
+# playback_menu_x_offset=-10px
+# playback_menu_y_offset=70px
+#
+# ouputdev_menu_x_offset=-10px
+# ouputdev_menu_y_offset=70px
+#
+# inputdev_menu_x_offset=-10px
+# inputdev_menu_y_offset=70px
+#
+# devconfig_menu_x_offset=-10px
+# devconfig_menu_y_offset=70px
+
+#for bottom
+location="south east"
+
+main_menu_x_offset=-10px
+main_menu_y_offset=-70px
+
+playback_menu_x_offset=-10px
+playback_menu_y_offset=-70px
+
+ouputdev_menu_x_offset=-10px
+ouputdev_menu_y_offset=-70px
+
+inputdev_menu_x_offset=-10px
+inputdev_menu_y_offset=-70px
+
+devconfig_menu_x_offset=-10px
+devconfig_menu_y_offset=-70px
+
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
@@ -22,7 +58,7 @@ current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | 
 echo $current_ouput_dev
 
 main_menu(){
-	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: north east; x-offset: -10px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   ")
+	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   ")
 	
 	case $select in
 		$playback_opt)
@@ -48,7 +84,7 @@ playback_func(){
 	next_track_var="󰒭"
 	prev_track_var="󰒮"
 	pause_track_var="󰐎"
-	select_playback=$(echo -e "$minus\n$mute\n$up\n$back"  | rofi -dmenu -i -theme-str "window {height: $playback_menu_height; width: $playback_menu_width; location: north east; x-offset: -10px; y-offset: 70px;}" -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
+	select_playback=$(echo -e "$minus\n$mute\n$up\n$back"  | rofi -dmenu -i -theme-str "window {height: $playback_menu_height; width: $playback_menu_width; location: $location; x-offset: $playback_menu_x_offset; y-offset: $playback_menu_y_offset;}" -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
 	
 	case $select_playback in
 		$up)
@@ -81,7 +117,7 @@ playback_func(){
 
 outputdev_func(){
 	outputdev_list=$(pactl list | grep node.name | grep -E "(alsa_output|bluez_output)" | sed 's/"//g' | sed 's/node.name = //g' | uniq -u | sed 's/alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.//g' | sed 's/bluez_output.//g' | sed 's/\t//g' | sort | uniq)
-	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  " -theme-str 'window {location: north east; x-offset: -10px; y-offset: 70px;}')
+	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  " -theme-str "window {location: $location; x-offset: $ouputdev_menu_x_offset; y-offset: $ouputdev_menu_y_offset;}")
 	#echo $select_output
 	if [[ $select_output == $goback ]]; then
 		main_menu
@@ -96,7 +132,7 @@ outputdev_func(){
 
 inputdev_func(){
 	inputdev_list=$(pactl list | grep node.name | grep -E "(alsa_input|bluez_input)" | sed 's/"//g' | sed 's/node.name = //g' | uniq -u | sed 's/alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.//g' | sed 's/bluez_input.//g' | sed 's/\t//g' | sort | uniq)
-	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str 'window {location: north east; x-offset: -10px; y-offset: 70px;}' -p " Input 󱦉  ")
+	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $inputdev_menu_x_offset; y-offset: $inputdev_menu_y_offset;}" -p " Input 󱦉  ")
 	#echo $select_input
 	if [[ $select_input == $goback ]]; then
 		main_menu
@@ -111,7 +147,7 @@ inputdev_func(){
 
 devconfig_func(){
 	devconfig_list=$(pactl list cards | grep -A 15 "Profiles" | sed -n '/Profiles:/,/Active Profile:/p' | grep -E "(Profile:|Active Profile:|available:)" | sed -E 's/^[ \t]*//; s/\(available: .*\)//' | sed 's/Profile: //' | grep -v "Active" | awk -F':' '{print $1}')
-	select_profile=$(echo -e "$devconfig_list\n$goback"  | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str 'window {location: north east; x-offset: -10px; y-offset: 70px;}' -p " Configuration   ")
+	select_profile=$(echo -e "$devconfig_list\n$goback"  | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $devconfig_menu_x_offset; y-offset: $devconfig_menu_y_offset;}" -p " Configuration   ")
 	if [[ $select_profile == $goback ]]; then
 		main_menu
 	fi

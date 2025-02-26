@@ -5,8 +5,10 @@
 #when add new entry make sure to add 35 to height
 main_menu_height=520px
 main_menu_width=260px
-rofi_submenu_height=520px
+
+rofi_submenu_height=555px
 rofi_submenu_width=260px
+
 polybar_submenu_height=255px
 polybar_submenu_width=260px
 
@@ -80,8 +82,9 @@ rofi_submenu(){
 	calendar="  Calendar"
 	i3_settings_menu="  This Menu"
 	notifications_hist="󰵙  Notification"
+	os_about="󰟀  Machine Info"
 	
-	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
+	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$os_about\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
 	
 	case $select2 in
 		$rofi_sub)
@@ -113,6 +116,9 @@ rofi_submenu(){
 			;;
 		$sound_setting)
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
+			;;
+		$os_about)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-os-about
 			;;
 		$goback)
 			main_menu

@@ -6,7 +6,7 @@ width = 350
 frame_color = "#b4befe"
 highlight = "#cba6f7"
 separator_color = frame
-origin = bottom-center
+origin = top-center
 timeout = 2
 
 [urgency_low]
