@@ -7,7 +7,7 @@
     fg-col: #cdd6f4;
     fg-col2: #f38ba8;
     grey: #6c7086;
-    font: "JetBrainsMono Nerd Font 14";
+    font: "JetBrainsMono Nerd Font Bold 14";
 }
 
 element-text, element-icon , mode-switcher {
