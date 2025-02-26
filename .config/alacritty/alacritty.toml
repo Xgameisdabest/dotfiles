@@ -8,7 +8,7 @@ ipc_socket = true
 [window]
 #title = "Alacritty  "
 dynamic_title = true
-#opacity = 0.94
+opacity = 0.93
 #blur = true
 
 [font]

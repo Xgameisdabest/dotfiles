@@ -3,7 +3,12 @@ set $mod Mod4
 set $alt Mod1
 
 #launch at startup
-exec_always --no-startup-id xrandr --auto
+exec_always --no-startup-id xrandr --output HDMI-1 --right-of eDP-1 --auto
+
+exec_always --no-startup-id xrandr --output DP-1 --right-of eDP-1 --auto
+exec_always --no-startup-id xrandr --output DP-2 --right-of eDP-1 --auto
+exec_always --no-startup-id xrandr --output DP-3 --right-of eDP-1 --auto
+exec_always --no-startup-id xrandr --output DP-4 --right-of eDP-1 --auto
 
 exec_always --no-startup-id pidof picom 1> /dev/null || picom --config ~/.config/picom/picom.conf &
 
@@ -120,10 +125,15 @@ bindsym $mod+i exec --no-startup-id ~/.config/i3/i3_rofi_settings.sh
 bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/mouse_change_windows_when_focus.sh
 
 # start dmenu (a program launcher)
-bindsym $mod+r exec --no-startup-id rofi -show drun
-bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
-#bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/rofi_drun/rofi-drun-w-bg.rasi -show drun
-bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
+#bindsym $mod+r exec --no-startup-id rofi -show drun
+#bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
+
+bindsym $mod+g exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -drun-categories Game -show drun
+bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+bindsym $alt+space exec --no-startup-id rofi -show drun
 
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
