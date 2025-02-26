@@ -4,6 +4,18 @@
 #link to the king: https://github.com/ghost-in-the-machine-86/rofi-calendar
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
+#for top
+# location="north east"
+#
+# main_menu_x_offset=-370px
+# main_menu_y_offset=255px
+
+#for bottom
+location="south east"
+
+main_menu_x_offset=-370px
+main_menu_y_offset=-255px
+
 current_day=$(date +"%e")
 current_month=$(date +"%m")
 current_month_full=$(date +"%B")
@@ -75,7 +87,7 @@ calendar_menu() {
     fi
 
     echo -e "$calendar_body" | sed 's/\./__/g' | rofi -dmenu \
-    -theme-str "window {location: north east; x-offset: -370px; y-offset: 255px;}" \
+    -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" \
     -theme ~/.config/rofi/rofi_theme/calendar_black_and_white.rasi \
     -p "$calendar_header" $urgent $active $selected_row
 }
