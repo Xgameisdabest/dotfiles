@@ -20,7 +20,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id dunst
 exec --no-startup-id ~/.config/dunst/volume.sh volume_status
 exec --no-startup-id ~/.config/dunst/volume.sh brightness_status
-exec_always --no-startup-id ~/.config/i3/i3_dtf_update.sh
+exec_always --no-startup-id ~/.config/i3/scripts/i3_dtf_update.sh
 exec --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + = to open the keybind menu!"
 
 #exec_always --no-startup-id nitrogen --restore
@@ -44,7 +44,7 @@ exec_always --no-startup-id ibus start
 
 #exec --no-startup-id oneko -speed 20 -cursor 132
 
-exec_always --no-startup-id ~/.config/i3/autotiling/main.py
+exec_always --no-startup-id ~/.config/i3/scripts/autotiling/main.py
 
 #KEYBINDS
 
@@ -118,13 +118,13 @@ bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
 
 #lock the fucking screen
 bindsym $mod+q exec --no-startup-id betterlockscreen -l
-exec_always --no-startup-id xss-lock  -- ~/.config/i3/lock.sh
+exec_always --no-startup-id xss-lock  -- ~/.config/i3/scripts/lock.sh
 
 # i3 settings
-bindsym $mod+i exec --no-startup-id ~/.config/i3/i3_rofi_settings.sh
+bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3_rofi_settings.sh
 
 # kill focused window
-bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/mouse_change_windows_when_focus.sh
+bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 
 # start dmenu (a program launcher)
 #bindsym $mod+r exec --no-startup-id rofi -show drun
@@ -148,16 +148,16 @@ bindsym $mod+z exec --no-startup-id rofimoji
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktp
 
 #switch between workspaces
-bindsym ctrl+$mod+Right exec --no-startup-id ~/.config/i3/container_desktop.sh next
-bindsym ctrl+$mod+Left exec --no-startup-id ~/.config/i3/container_desktop.sh prev
-bindsym ctrl+$alt+Right exec --no-startup-id ~/.config/i3/swipe_desktop.sh next
-bindsym ctrl+$alt+Left exec --no-startup-id ~/.config/i3/swipe_desktop.sh prev
+bindsym ctrl+$mod+Right exec --no-startup-id ~/.config/i3/scripts/container_desktop.sh next
+bindsym ctrl+$mod+Left exec --no-startup-id ~/.config/i3/scripts/container_desktop.sh prev
+bindsym ctrl+$alt+Right exec --no-startup-id ~/.config/i3/scripts/swipe_desktop.sh next
+bindsym ctrl+$alt+Left exec --no-startup-id ~/.config/i3/scripts/swipe_desktop.sh prev
 
 # you can use the cursor keys:
-bindsym $mod+Left exec --no-startup-id i3-msg focus left && ~/.config/i3/mouse_change_windows_when_focus.sh
-bindsym $mod+Down exec --no-startup-id i3-msg focus down && ~/.config/i3/mouse_change_windows_when_focus.sh
-bindsym $mod+Up exec --no-startup-id i3-msg focus up && ~/.config/i3/mouse_change_windows_when_focus.sh
-bindsym $mod+Right exec --no-startup-id i3-msg focus right && ~/.config/i3/mouse_change_windows_when_focus.sh
+bindsym $mod+Left exec --no-startup-id i3-msg focus left && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Down exec --no-startup-id i3-msg focus down && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Up exec --no-startup-id i3-msg focus up && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Right exec --no-startup-id i3-msg focus right && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 
 bindsym $mod+k focus up
 bindsym $mod+h focus left
@@ -165,10 +165,10 @@ bindsym $mod+l focus right
 bindsym $mod+j focus down
 
 # use the cursor keys to move windows position:
-bindsym $mod+Shift+Left exec --no-startup-id i3-msg move left && ~/.config/i3/mouse_change_windows_when_focus.sh
-bindsym $mod+Shift+Down exec --no-startup-id i3-msg move down && ~/.config/i3/mouse_change_windows_when_focus.sh
-bindsym $mod+Shift+Up exec --no-startup-id i3-msg move up && ~/.config/i3/mouse_change_windows_when_focus.sh
-bindsym $mod+Shift+Right exec --no-startup-id i3-msg move right && ~/.config/i3/mouse_change_windows_when_focus.sh
+bindsym $mod+Shift+Left exec --no-startup-id i3-msg move left && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Shift+Down exec --no-startup-id i3-msg move down && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Shift+Up exec --no-startup-id i3-msg move up && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Shift+Right exec --no-startup-id i3-msg move right && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+h move left
