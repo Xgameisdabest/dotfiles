@@ -4,14 +4,14 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# enter fullscreen mode for the focused container
+#enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# hide window
+#hide window
 bindsym $mod+d move scratchpad
 bindsym $mod+Shift+d scratchpad show, floating disable
 
-# hide polybar
+#toggle show/hide polybar
 bindsym $mod+minus exec --no-startup-id polybar-msg cmd toggle
 
 #switch window
@@ -19,20 +19,26 @@ bindsym $alt+Tab workspace back_and_forth
 bindsym $mod+Shift+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window-container/workspace_input_number_window_switch.sh
 bindsym $mod+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window-container/workspace_input_number_switch.sh
 
-# toggle tiling / floating
+#toggle tiling/floating
 bindsym $mod+v floating toggle resize set 60ppt 60ppt
 
-# change focus between tiling / floating windows
+# change focus between tiling/floating windows
 bindsym $mod+Shift+space focus mode_toggle
 
-# focus the parent container
+#focus the parent container
 bindsym $mod+a focus parent
 
-# exit i3 (logs you out of your X session)
-# bindsym $mod+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/modules/rofi-power-menu
+#focus the child container
+bindsym $alt+a focus child
 
-# resize window (you can also use the mouse for that)
+#exit i3 (logs you out of your X session)
+bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/modules/rofi-power-menu
+# bindsym $mod+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'" #alternative version
+
+#resize window (you can also use the mouse to do that)
+
+bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send -t 5000 "RESIZE MODE. PRESS esc TO EXIT!" #switch to resize mode
+
 mode "resize" {
 	bindsym Right resize shrink width 10 px or 10 ppt
         bindsym Up resize grow height 10 px or 10 ppt
@@ -43,18 +49,13 @@ mode "resize" {
 	bindsym q mode "default"
 }
 
-bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send -t 5000 "RESIZE MODE. PRESS esc TO EXIT!"
-
-# focus the child container
-#bindsym $mod+d focus child
-
 #switch between workspaces
 bindsym ctrl+$mod+Right exec --no-startup-id ~/.config/i3/scripts/container_desktop.sh next
 bindsym ctrl+$mod+Left exec --no-startup-id ~/.config/i3/scripts/container_desktop.sh prev
 bindsym ctrl+$alt+Right exec --no-startup-id ~/.config/i3/scripts/swipe_desktop.sh next
 bindsym ctrl+$alt+Left exec --no-startup-id ~/.config/i3/scripts/swipe_desktop.sh prev
 
-# you can use the cursor keys:
+#you can use the cursor keys
 bindsym $mod+Left exec --no-startup-id i3-msg focus left && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 bindsym $mod+Down exec --no-startup-id i3-msg focus down && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 bindsym $mod+Up exec --no-startup-id i3-msg focus up && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
@@ -65,7 +66,7 @@ bindsym $mod+h focus left
 bindsym $mod+l focus right
 bindsym $mod+j focus down
 
-# use the cursor keys to move windows position:
+#use the cursor keys to move windows position
 bindsym $mod+Shift+Left exec --no-startup-id i3-msg move left && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 bindsym $mod+Shift+Down exec --no-startup-id i3-msg move down && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 bindsym $mod+Shift+Up exec --no-startup-id i3-msg move up && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
@@ -76,7 +77,7 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+l move right
 bindsym $mod+Shift+j move down
 
-# change container layout (stacked, tabbed, toggle split)
+#change container layout (stacked, tabbed, toggle split)
 bindsym $alt+q exec --no-startup-id i3-msg layout stacking && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window stacking enabled "
 bindsym $alt+w exec --no-startup-id i3-msg layout tabbed && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window tab stacking enabled 󰖲"
 bindsym $alt+e exec --no-startup-id i3-msg layout toggle split && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window split enabled 󰟘"

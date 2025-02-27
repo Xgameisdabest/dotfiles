@@ -163,7 +163,7 @@ i3_submenu(){
 
 	i3_sub="  Main Config"
 	i3_workspace="  Workspaces"
-	exec="  Execution"
+	exec="  Launch On Startup"
 	coloring="  Colors"
 	for_window_rules="!  Window Rules"
 	system_keybinds="  System Keybinds 󰌏 "

@@ -1,20 +1,18 @@
-#scrpy
+#share android screen
 bindsym $alt+p exec --no-startup-id notify-send "CONNECTING TO PHONE " && scrcpy --select-usb
 
-#start file manager
+#file manager
 bindsym $mod+e exec --no-startup-id thunar
 
-#start browser
+#browser
 #bindsym $mod+c exec librewolf
-bindsym $mod+$alt+c exec --no-startup-id google-chrome-stable
+bindsym $alt+c exec --no-startup-id google-chrome-stable
 bindsym $mod+c exec --no-startup-id firefox
 
 #wallpaper
 bindsym $mod+m exec --no-startup-id waypaper
 
-# start a terminal
-#bindsym $mod+t exec alacritty
-#bindsym $mod+ctrl+t exec /usr/bin/alacritty 
+#terminal
 bindsym $mod+t exec --no-startup-id /usr/bin/alacritty
 bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
 
@@ -24,13 +22,13 @@ bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
 #lock the fucking screen
 bindsym $mod+q exec --no-startup-id betterlockscreen -l
 
-# i3 settings
+#i3 settings
 bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3_rofi_settings.sh
 
-# kill focused window
+#close focused window
 bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 
-# start dmenu (a program launcher)
+#start dmenu (a program launcher)
 #bindsym $mod+r exec --no-startup-id rofi -show drun
 #bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
 
@@ -41,9 +39,8 @@ bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-
 #bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
 bindsym $alt+space exec --no-startup-id rofi -show drun
 
+#show all opened windows, programs in rofi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
+#access emoji icon (REQUIRES rofimoji program)
 bindsym $mod+z exec --no-startup-id rofimoji
-
-# show help menu
-bindsym $mod+equal exec --no-startup-id ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds.sh
