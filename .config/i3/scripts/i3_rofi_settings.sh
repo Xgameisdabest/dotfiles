@@ -109,7 +109,7 @@ rofi_submenu(){
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-calendar
 			;;
 		$i3_settings_menu)
-			$TERMINAL -e nvim ~/.config/i3/i3_rofi_settings.sh
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3_rofi_settings.sh
 			;;
 		$notifications_hist)
 			$TERMINAL -e nvim ~/.config/dunst/noti-center.sh
