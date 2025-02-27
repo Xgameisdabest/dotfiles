@@ -1,5 +1,7 @@
-#DEFAULT MODIFIER KEY
+#MODIFIER KEYS
+#the windows key
 set $mod Mod4
+#the alt key
 set $alt Mod1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -8,6 +10,8 @@ floating_modifier $mod
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
+
+# the config uses modular type settings, making it more flexible and managable
 
 include ~/.config/i3/i3-config-modules/exec
 include ~/.config/i3/i3-config-modules/keybinds

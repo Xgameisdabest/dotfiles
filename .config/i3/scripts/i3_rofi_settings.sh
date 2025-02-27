@@ -13,7 +13,7 @@ polybar_submenu_height=255px
 polybar_submenu_width=260px
 
 i3_submenu_height=440px
-i3_submenu_width=350px
+i3_submenu_width=385px
 
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
@@ -165,10 +165,10 @@ i3_submenu(){
 	i3_workspace="  Workspaces"
 	exec="  Execution"
 	coloring="  Colors"
-	for_window_rules="󰅰  Window Rules"
-	system_keybinds="󰌏  System Keybinds"
-	app_keybinds="󰌏  App Keybinds"
-	special_key_keybinds="󰌏  Special Key Keybinds"
+	for_window_rules="!  Window Rules"
+	system_keybinds="  System Keybinds 󰌏 "
+	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
+	special_key_keybinds="󰘲  Special Key Keybinds 󰌏 "
 
 	select4=$(echo -e "$i3_sub\n$i3_workspace\n$exec\n$coloring\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $i3_submenu_height; width: $i3_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " i3wm   ")
 
