@@ -81,3 +81,6 @@ bindsym $mod+Shift+j move down
 bindsym $alt+q exec --no-startup-id i3-msg layout stacking && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window stacking enabled "
 bindsym $alt+w exec --no-startup-id i3-msg layout tabbed && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window tab stacking enabled 󰖲"
 bindsym $alt+e exec --no-startup-id i3-msg layout toggle split && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window split enabled 󰟘"
+
+# show help menu
+bindsym $mod+equal exec --no-startup-id ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds.sh

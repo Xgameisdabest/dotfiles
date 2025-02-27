@@ -12,6 +12,7 @@ exec --no-startup-id dunst
 exec --no-startup-id ~/.config/dunst/volume.sh volume_status
 exec --no-startup-id ~/.config/dunst/volume.sh brightness_status
 exec_always --no-startup-id ~/.config/i3/scripts/i3_dtf_update.sh
+exec --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + = to open the keybind menu!"
 exec_always --no-startup-id waypaper --restore
 exec_always --no-startup-id libinput-gestures-setup restart
 exec --no-startup-id kdeconnectd
