@@ -16,3 +16,4 @@ include ~/.config/i3/i3-config-modules/coloring
 include ~/.config/i3/i3-config-modules/workspace
 include ~/.config/i3/i3-config-modules/for_window_rules
 include ~/.config/i3/i3-config-modules/gaps_and_border
+include ~/.config/i3/i3-config-modules/special_keys_keybinds

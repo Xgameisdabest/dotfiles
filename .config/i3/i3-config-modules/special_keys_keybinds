@@ -1,0 +1,27 @@
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.53 @DEFAULT_AUDIO_SINK@ 5%+
+# bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume -l 1.53 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/dunst/volume.sh volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/dunst/volume.sh volume_down
+#bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle 
+bindsym XF86AudioMute exec --no-startup-id ~/.config/dunst/volume.sh volume_mute
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
+bindsym XF86AudioMicMute exec --no-startup-id ~/.config/dunst/volume.sh mic_toggle
+#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+#bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+#bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/dunst/volume.sh brightness_up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/dunst/volume.sh brightness_down
+
+#Airplane mode
+bindsym XF86RFKill exec --no-startup-id ~/.config/dunst/noti-airplane.sh
+
+#Display settings
+bindsym XF86Display exec --no-startup-id arandr
+
+#screenshot
+bindsym Print exec --no-startup-id desktop="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_desktop').png" && maim "$desktop" && xclip -sel clip -t image/png -i "$desktop" && notify-send "Screenshotted 󰨇 "
+bindsym $mod+Print exec --no-startup-id focus_window="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_window').png" && maim --window $(xdotool getactivewindow) "$focus_window" && xclip -sel clip -t image/png -i "$focus_window" && notify-send "Window Screenshotted 󰖯 "
+bindsym Shift+Print exec --no-startup-id selected_area="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_area').png" && maim --select "$selected_area" && xclip -sel clip -t image/png -i "$selected_area" && notify-send "Selected Area Screenshotted 󰨤 "
