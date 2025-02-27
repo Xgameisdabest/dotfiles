@@ -1,0 +1,25 @@
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+# bindsym $mod+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/modules/rofi-power-menu
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	bindsym Right resize shrink width 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Left resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+	bindsym q mode "default"
+}
+
+bindsym $mod+ctrl+r exec i3-msg mode "resize" && notify-send -t 5000 "RESIZE MODE. PRESS esc TO EXIT!"
+
+# focus the child container
+#bindsym $mod+d focus child

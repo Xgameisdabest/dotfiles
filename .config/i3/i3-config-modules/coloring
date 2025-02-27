@@ -1,0 +1,10 @@
+#COLORS
+# client.focused #211d30 #211d30 #b4befe #211d30 #211d30
+# client.unfocused #211d30 #211d30 #b4befe #211d30 #211d30
+# client.focused_inactive #211d30 #211d30 #b4befe #211d30 #211d30
+# client.urgent #f38ba8 #f38ba8 #211d30 #f38ba8 #f38ba8
+
+client.focused #b4befe #000000 #b4befe #b4befe #b4befe
+client.unfocused #cdd6f4 #000000 #cdd6f4 #000000 #000000
+client.focused_inactive #cdd6f4 #000000 #cdd6f4 #000000 #000000
+client.urgent #f38ba8 #f38ba8 #000000 #f38ba8 #f38ba8

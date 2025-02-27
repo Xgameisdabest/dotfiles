@@ -1,0 +1,156 @@
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.53 @DEFAULT_AUDIO_SINK@ 5%+
+# bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume -l 1.53 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/dunst/volume.sh volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/dunst/volume.sh volume_down
+#bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle 
+bindsym XF86AudioMute exec --no-startup-id ~/.config/dunst/volume.sh volume_mute
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
+bindsym XF86AudioMicMute exec --no-startup-id ~/.config/dunst/volume.sh mic_toggle
+#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+#bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+#bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/dunst/volume.sh brightness_up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/dunst/volume.sh brightness_down
+
+#Airplane mode
+bindsym XF86RFKill exec --no-startup-id ~/.config/dunst/noti-airplane.sh
+
+#Display settings
+bindsym XF86Display exec --no-startup-id arandr
+
+#keyboard layout
+#bindsym $mod+space exec ~/.config/polybar/ibus/ibus-switch.sh
+
+#scrpy
+bindsym $alt+p exec --no-startup-id notify-send "CONNECTING TO PHONE " && scrcpy --select-usb
+
+#start file manager
+bindsym $mod+e exec --no-startup-id thunar
+
+#start browser
+#bindsym $mod+c exec librewolf
+bindsym $mod+$alt+c exec --no-startup-id google-chrome-stable
+bindsym $mod+c exec --no-startup-id firefox
+
+#wallpaper
+bindsym $mod+m exec --no-startup-id waypaper
+
+#window resolution
+#bindsym $mod+n exec --no-startup-id arandr
+
+#screenshot
+bindsym Print exec --no-startup-id desktop="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_desktop').png" && maim "$desktop" && xclip -sel clip -t image/png -i "$desktop" && notify-send "Screenshotted 󰨇 "
+bindsym $mod+Print exec --no-startup-id focus_window="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_window').png" && maim --window $(xdotool getactivewindow) "$focus_window" && xclip -sel clip -t image/png -i "$focus_window" && notify-send "Window Screenshotted 󰖯 "
+bindsym Shift+Print exec --no-startup-id selected_area="/home/$USER/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_area').png" && maim --select "$selected_area" && xclip -sel clip -t image/png -i "$selected_area" && notify-send "Selected Area Screenshotted 󰨤 "
+
+# start a terminal
+#bindsym $mod+t exec alacritty
+#bindsym $mod+ctrl+t exec /usr/bin/alacritty 
+bindsym $mod+t exec --no-startup-id /usr/bin/alacritty
+bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
+
+#wifi, bluetooth shortcut
+#bindsym $mod+w exec ~/.config/rofi/modules/rofi-wifi-menu
+#bindsym $mod+b exec ~/.config/rofi/modules/rofi-bluetooth
+
+#rofi web search
+bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
+
+#lock the fucking screen
+bindsym $mod+q exec --no-startup-id betterlockscreen -l
+exec_always --no-startup-id xss-lock  -- ~/.config/i3/scripts/lock.sh
+
+# i3 settings
+bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3_rofi_settings.sh
+
+# kill focused window
+bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+
+# start dmenu (a program launcher)
+#bindsym $mod+r exec --no-startup-id rofi -show drun
+#bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
+
+bindsym $mod+g exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -drun-categories Game -show drun
+bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+bindsym $alt+space exec --no-startup-id rofi -show drun
+
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+
+bindsym $mod+z exec --no-startup-id rofimoji
+
+# A more modern dmenu replacement is rofi:
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# There also is i3-dmenu-desktop which only displays applications shipping a
+# .desktop file. It is a wrapper around dmenu, so you need that installed.
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktp
+
+#switch between workspaces
+bindsym ctrl+$mod+Right exec --no-startup-id ~/.config/i3/scripts/container_desktop.sh next
+bindsym ctrl+$mod+Left exec --no-startup-id ~/.config/i3/scripts/container_desktop.sh prev
+bindsym ctrl+$alt+Right exec --no-startup-id ~/.config/i3/scripts/swipe_desktop.sh next
+bindsym ctrl+$alt+Left exec --no-startup-id ~/.config/i3/scripts/swipe_desktop.sh prev
+
+# you can use the cursor keys:
+bindsym $mod+Left exec --no-startup-id i3-msg focus left && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Down exec --no-startup-id i3-msg focus down && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Up exec --no-startup-id i3-msg focus up && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Right exec --no-startup-id i3-msg focus right && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+
+bindsym $mod+k focus up
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+j focus down
+
+# use the cursor keys to move windows position:
+bindsym $mod+Shift+Left exec --no-startup-id i3-msg move left && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Shift+Down exec --no-startup-id i3-msg move down && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Shift+Up exec --no-startup-id i3-msg move up && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+bindsym $mod+Shift+Right exec --no-startup-id i3-msg move right && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+j move down
+
+# split in horizontal orientation
+#bindsym $mod+ctrl+h split h
+
+# split in vertical orientation
+#bindsym $mod+ctrl+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $alt+q exec --no-startup-id i3-msg layout stacking && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window stacking enabled "
+bindsym $alt+w exec --no-startup-id i3-msg layout tabbed && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window tab stacking enabled 󰖲"
+bindsym $alt+e exec --no-startup-id i3-msg layout toggle split && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window split enabled 󰟘"
+
+# toggle tiling / floating
+bindsym $mod+v floating toggle resize set 60ppt 60ppt
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# show help menu
+bindsym $mod+equal exec --no-startup-id ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds.sh
+bindsym $mod+minus exec --no-startup-id polybar-msg cmd toggle
+
+# hide window
+bindsym $mod+d move scratchpad
+bindsym $mod+Shift+d scratchpad show, floating disable
+
+#switch window
+bindsym $alt+Tab workspace back_and_forth
+bindsym $mod+Shift+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window-container/workspace_input_number_window_switch.sh
+bindsym $mod+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window-container/workspace_input_number_switch.sh
+
