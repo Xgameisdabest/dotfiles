@@ -1,0 +1,19 @@
+#!/bin/bash
+
+main_menu_height=220px
+main_menu_width=300px
+
+apps_kbdn="󰀻  Apps Keybinds"
+sys_kbdn="  System Keybinds"
+quit="Exit 󰈆 "
+
+select=$(echo -e "$sys_kbdn\n$apps_kbdn\n$quit" | rofi -dmenu -i -p '   Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}")
+
+case $select in
+	$apps_kbdn)
+		~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds-apps.sh
+		;;
+	$sys_kbdn)
+		~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds-system.sh
+		;;
+esac

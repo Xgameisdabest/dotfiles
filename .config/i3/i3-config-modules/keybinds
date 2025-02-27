@@ -1,4 +1,15 @@
-#share android screen
+#start dmenu (a program launcher)
+#bindsym $mod+r exec --no-startup-id rofi -show drun
+#bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
+
+bindsym $mod+g exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -drun-categories Game -show drun
+bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+bindsym $alt+space exec --no-startup-id rofi -show drun
+
+#share android screen (REQUIRES scrcpy TO FUNCTION)
 bindsym $alt+p exec --no-startup-id notify-send "CONNECTING TO PHONE " && scrcpy --select-usb
 
 #file manager
@@ -27,17 +38,6 @@ bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3_rofi_settings.sh
 
 #close focused window
 bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
-
-#start dmenu (a program launcher)
-#bindsym $mod+r exec --no-startup-id rofi -show drun
-#bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
-
-bindsym $mod+g exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -drun-categories Game -show drun
-bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
-
-#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
-#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
-bindsym $alt+space exec --no-startup-id rofi -show drun
 
 #show all opened windows, programs in rofi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
