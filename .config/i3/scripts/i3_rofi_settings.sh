@@ -4,7 +4,7 @@
 
 #when add new entry make sure to add 35 to height
 main_menu_height=520px
-main_menu_width=260px
+main_menu_width=265px
 
 rofi_submenu_height=555px
 rofi_submenu_width=260px
@@ -12,10 +12,13 @@ rofi_submenu_width=260px
 polybar_submenu_height=255px
 polybar_submenu_width=260px
 
+i3_submenu_height=440px
+i3_submenu_width=350px
+
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
-i3config="󰨇  i3 Desktop"
+i3config="󰨇  i3 Desktop  "
 polybar="  Polybar  "
 btrlockscreen="󰷛  Lock Screen"
 picomconfig="󰢹  Picom"
@@ -33,7 +36,7 @@ main_menu(){
 
 	case $select in
 		$i3config)
-			$TERMINAL -e nvim ~/.config/i3/config
+			i3_submenu
 			;;
 		$picomconfig)
 			$TERMINAL -e nvim ~/.config/picom/picom.conf
@@ -153,6 +156,55 @@ polybar_submenu(){
 			;;
 	esac
 }
+
+### I3 SUBMENU
+
+i3_submenu(){
+
+	i3_sub="  Main Config"
+	i3_workspace="  Workspaces"
+	exec="  Execution"
+	coloring="  Colors"
+	for_window_rules="󰅰  Window Rules"
+	system_keybinds="󰌏  System Keybinds"
+	app_keybinds="󰌏  App Keybinds"
+	special_key_keybinds="󰌏  Special Key Keybinds"
+
+	select4=$(echo -e "$i3_sub\n$i3_workspace\n$exec\n$coloring\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $i3_submenu_height; width: $i3_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " i3wm   ")
+
+	case $select4 in
+		$i3_sub)
+			$TERMINAL -e nvim ~/.config/i3/config
+			;;
+		$i3_workspace)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/workspace
+			;;
+		$exec)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/exec
+			;;
+		$coloring)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/coloring
+			;;
+		$for_window_rules)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/for_window_rules
+			;;
+		$system_keybinds)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/i3_system_keybinds
+			;;
+		$special_key_keybinds)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/special_keys_keybinds
+			;;
+		$app_keybinds)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/keybinds
+			;;
+		$goback)
+			main_menu
+			;;
+	esac
+
+
+}
+
 
 ### PROGRAM MAIN EXEC
 
