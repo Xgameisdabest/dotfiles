@@ -10,6 +10,8 @@ exec_always --no-startup-id xrandr --output DP-2 --right-of eDP-1 --auto
 exec_always --no-startup-id xrandr --output DP-3 --right-of eDP-1 --auto
 exec_always --no-startup-id xrandr --output DP-4 --right-of eDP-1 --auto
 
+exec_always --no-startup-id xrandr --auto
+
 exec_always --no-startup-id pidof picom 1> /dev/null || picom --config ~/.config/picom/picom.conf &
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
