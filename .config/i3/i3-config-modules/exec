@@ -13,6 +13,7 @@ exec --no-startup-id ~/.config/dunst/volume.sh volume_status #show volume curren
 exec --no-startup-id ~/.config/dunst/volume.sh brightness_status #show screen brightness current level on startup, laptop only
 exec_always --no-startup-id ~/.config/i3/scripts/i3_dtf_update.sh #check for dotfiles update
 exec --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + = to open the keybind menu!"
+exec --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + i to open the settings menu!"
 exec_always --no-startup-id waypaper --restore #restore applied wallpaper
 exec_always --no-startup-id libinput-gestures-setup restart #restart gestures
 exec --no-startup-id kdeconnectd #connect to phone app (REQUIRES KDECONNECT DEPENDENCY)
