@@ -16,15 +16,15 @@ bindsym $alt+p exec --no-startup-id notify-send "CONNECTING TO PHONE " && scr
 bindsym $mod+e exec --no-startup-id thunar
 
 #browser
-#bindsym $mod+c exec librewolf
 bindsym $alt+c exec --no-startup-id google-chrome-stable
-bindsym $mod+c exec --no-startup-id firefox
+bindsym $mod+c exec --no-startup-id librewolf
 
 #wallpaper
 bindsym $mod+m exec --no-startup-id waypaper
 
 #terminal
-bindsym $mod+t exec --no-startup-id /usr/bin/alacritty
+bindsym $mod+t exec --no-startup-id alacritty
+bindsym $alt+t exec --no-startup-id alacritty-smooth #alacritty smooth cursor dependency
 bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
 
 #rofi web search
