@@ -28,7 +28,7 @@ V2 (up-to-date)
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 - apt nala pacstall flatpak (essential for Debian based, for Arch just use anything that works for you)
-- firefox
+- librewolf (fuck firefox)
 - ncal (essential)
 - neovim (essential)
 - fzf (essential for zsh plugins)
