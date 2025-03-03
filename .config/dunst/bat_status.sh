@@ -16,9 +16,9 @@ BATTERY_STATE=$1
 BATTERY_LEVEL=$(acpi -b | grep "Battery 0" | grep -P -o '[0-9]+(?=%)')
 # My battery takes a couple of seconds to recognize as charging, so this is a hacky way to deal with it
 case "$BATTERY_STATE" in
-	"charging") BATTERY_CHARGING="Charging" ; BATTERY_ICON="charging" ;;
-	"discharging") BATTERY_CHARGING="Disharging" ; BATTERY_ICON="discharging" ;;
+	"charging") BATTERY_CHARGING="Charging 󰂅" ;;
+	"discharging") BATTERY_CHARGING="Discharging 󰁹" ;;
 esac
 
 # Send notification
-notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -u normal -i "battery-${BATTERY_ICON}" -t 5000 -r 9991
+notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 5000
