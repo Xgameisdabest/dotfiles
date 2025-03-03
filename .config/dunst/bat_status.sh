@@ -36,9 +36,9 @@ case "$BATTERY_STATE" in
 		;;
 	"status")
 		icon_state_func
-		notify-send "$CURRENT_STATE $ICON" "${BATTERY_LEVEL}% of battery charged." -t 5000
+		notify-send "$CURRENT_STATE $ICON" "${BATTERY_LEVEL}% of battery charged." -t 2500
 		;;
 esac
 
 # Send notification
-notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 5000
+notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
