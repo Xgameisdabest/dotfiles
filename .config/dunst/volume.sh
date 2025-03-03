@@ -37,21 +37,21 @@ function get_volume_icon {
     volume=$(get_volume)
     mute=$(get_mute)
     if [ "$mute" == "yes" ] ; then
-        volume_icon=" "
+        volume_icon="Volume:   "
     elif [ "$volume" -lt 25 ]; then
-	volume_icon=" "
+	volume_icon="Volume:   "
     elif [ "$volume" -lt 50 ]; then
-        volume_icon=" "
+        volume_icon="Volume:   "
     elif [ "$volume" -le 100 ]; then 
-        volume_icon=" "
+        volume_icon="Volume:   "
     else 
-	volume_icon=" "
+	volume_icon="Volume:   "
     fi
 }
 
 # Always returns the same icon - I couldn't get the brightness-low icon to work with fontawesome
 function get_brightness_icon {
-    brightness_icon=""
+    brightness_icon="Brightness:  "
 }
 
 function get_album_art {
