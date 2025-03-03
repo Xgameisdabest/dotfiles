@@ -81,7 +81,7 @@ noti_body_menu(){
 body=$(dunstctl history | jq -r --arg summary "$selected" \
 			'.data[0][] | select(.summary.data == $summary) | .body.data')
 	     	clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
-		choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -dmenu -i -selected-row 3 -p "Notification Body" -theme-str "listview {columns: 1;}" -theme-str 'window {location: north east; x-offset: -10px; y-offset: 70px;}')
+		choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -dmenu -i -selected-row 3 -p "Notification Body" -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 		case $choose_opt in
 			$goback)
 				noti_main_menu
