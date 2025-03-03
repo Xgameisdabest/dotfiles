@@ -1,6 +1,7 @@
 #!/bin/sh
 
 #this script is made by eric murphy, go check him out on youtube
+#modified by me, xytozine
 
 # Send a notification when the laptop is plugged in/unplugged
 # Add the following to /etc/udev/rules.d/60-power.rules (replace USERNAME with your user)
@@ -13,11 +14,30 @@ export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 
 BATTERY_STATE=$1
-BATTERY_LEVEL=$(acpi -b | grep "Battery 0" | grep -P -o '[0-9]+(?=%)')
+BATTERY_LEVEL="$(acpi -b | grep "Battery 0" | grep -P -o '[0-9]+(?=%)')"
+CURRENT_STATE="$(acpi | sed 's/Not charging/Charging/g' | grep 'Battery 0' | awk '{print $3}' | sed 's/,//g')"
+icon_state_func(){
+	case $CURRENT_STATE in
+		"Charging")
+			ICON="󰂅"
+			;;
+		"Discharging")
+			ICON="󰁹"
+			;;
+	esac
+}
 # My battery takes a couple of seconds to recognize as charging, so this is a hacky way to deal with it
 case "$BATTERY_STATE" in
-	"charging") BATTERY_CHARGING="Charging 󰂅" ;;
-	"discharging") BATTERY_CHARGING="Discharging 󰁹" ;;
+	"charging") 
+		BATTERY_CHARGING="Charging 󰂅"
+		;;
+	"discharging") 
+		BATTERY_CHARGING="Discharging 󰁹"
+		;;
+	"status")
+		icon_state_func
+		notify-send "$CURRENT_STATE $ICON" "${BATTERY_LEVEL}% of battery charged." -t 5000
+		;;
 esac
 
 # Send notification

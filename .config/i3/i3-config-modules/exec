@@ -11,6 +11,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh #init polybar
 exec --no-startup-id dunst #init notification daemon
 exec --no-startup-id ~/.config/dunst/volume.sh volume_status #show volume current level on startup
 exec --no-startup-id ~/.config/dunst/volume.sh brightness_status #show screen brightness current level on startup, laptop only
+exec --no-startup-id ~/.config/dunst/bat_status.sh status #show current battery status
 exec_always --no-startup-id ~/.config/i3/scripts/i3_dtf_update.sh #check for dotfiles update
 exec --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + = to open the keybind menu!"
 exec --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + i to open the settings menu!"
