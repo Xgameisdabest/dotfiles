@@ -19,7 +19,7 @@ this_dotfiles="󰌧  This Dotfiles"
 
 web(){
 search=$( echo | rofi -dmenu -i -theme-str "window {height: 90px;}" -p " Search   " )
-search_engine="https://www.google.com/search?q="
+search_engine="https://search.brave.com/search?q="
 main() {
     if [[ -n "$search" ]]; then
       url="$search_engine$search"
