@@ -2,11 +2,12 @@
 #bindsym $mod+r exec --no-startup-id rofi -show drun
 #bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
 
-# bindsym $mod+g exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -drun-categories Game -show drun
-# bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+bindsym $mod+g exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -drun-categories Game -show drun
+bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
 
-bindsym $mod+g exec --no-startup-id ~/.config/rofi/scripts/fullscreen-game.sh
-bindsym $mod+r exec --no-startup-id ~/.config/rofi/scripts/fullscreen.sh
+# bindsym $mod+g exec --no-startup-id ~/.config/rofi/scripts/fullscreen-game.sh
+# bindsym $mod+r exec --no-startup-id ~/.config/rofi/scripts/fullscreen.sh
+bindsym $alt+r exec --no-startup-id rofi -show drun
 
 #bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
 #bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
