@@ -6,13 +6,7 @@
     fg-col: #cdd6f4;
     fg-col2: #f38ba8;
     grey: #6c7086;
-
-   font: "JetBrainsMono Nerd Font 13";
-}
-
-mode-switcher {
-    background-color: inherit;
-    text-color:       inherit;
+    font: "JetBrainsMono Nerd Font 13";
 }
 
 window {
@@ -59,9 +53,13 @@ inputbar {
 
 prompt {
     enabled:                     true;
-    background-color:            transparent;
-    text-color:                  inherit;
+    background-color:            @blue;
+    text-color:                  @bg-col;
+    padding: 			 6px;
+    border-radius: 		 4px;
+    margin: 			 -5px 0px 0px 20px;
 }
+
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
@@ -69,13 +67,17 @@ textbox-prompt-colon {
     background-color:            transparent;
     text-color:                  inherit;
 }
+
 entry {
     enabled:                     true;
-    background-color:            transparent;
+    background-color:            @border-col;
     text-color:                  inherit;
     cursor:                      text;
-    placeholder:                 "Search";
+    placeholder:                 "Type To Search";
     placeholder-color:           inherit;
+    padding: 			 8px;
+    border-radius: 		 4px;
+    margin: 			 -5px 0px 0px 20px;
 }
 
 listview {
@@ -107,7 +109,7 @@ element {
     padding:                     30px 30px;
     border:                      0px;
     border-radius:               3px;
-   background-color:            transparent;
+    background-color:            transparent;
     text-color:                  @fg-col;
     orientation:                 vertical;
     cursor:                      pointer;
@@ -119,6 +121,7 @@ element normal.normal {
 element selected.normal {
     background-color:            @selected-col;
     border:                      0px 0px 4px 0px;
+    border-radius: 		 8px;
     text-color:                  @fg-col2;
 }
 element-icon {
