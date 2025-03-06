@@ -21,7 +21,7 @@ bindsym $mod+e exec --no-startup-id thunar
 
 #browser
 bindsym $alt+c exec --no-startup-id google-chrome-stable
-bindsym $mod+c exec --no-startup-id librewolf
+bindsym $mod+c exec --no-startup-id zen
 
 #wallpaper
 bindsym $mod+m exec --no-startup-id waypaper
