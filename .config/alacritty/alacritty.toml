@@ -1,9 +1,10 @@
+[general]
+
+ipc_socket = true
 import = [
 	"~/.config/alacritty/black-and-white.toml",
 	"~/.config/alacritty/keybindings.toml",
 ]
-
-ipc_socket = true
 
 [window]
 #title = "Alacritty  "
