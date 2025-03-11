@@ -4,6 +4,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# right click on title bar for floating
+bindsym button3 floating toggle resize set 70ppt 70ppt
+
 #enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -20,7 +23,7 @@ bindsym $mod+Shift+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window
 bindsym $mod+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window-container/workspace_input_number_switch.sh
 
 #toggle tiling/floating
-bindsym $mod+v floating toggle resize set 60ppt 60ppt
+bindsym $mod+v floating toggle resize set 70ppt 70ppt
 
 # change focus between tiling/floating windows
 bindsym $mod+Shift+space focus mode_toggle

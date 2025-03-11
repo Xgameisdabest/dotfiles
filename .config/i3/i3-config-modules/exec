@@ -18,7 +18,7 @@ exec --no-startup-id sleep 0.2 && notify-send -t 2500 "Press 󰖳 + i to open th
 exec_always --no-startup-id waypaper --restore #restore applied wallpaper
 exec_always --no-startup-id libinput-gestures-setup restart #restart gestures
 exec --no-startup-id kdeconnectd #connect to phone app (REQUIRES KDECONNECT DEPENDENCY)
-exec --no-startup-id solaar --window=hide #logitech app
+#exec --no-startup-id solaar --window=hide #logitech app
 exec_always --no-startup-id ibus start #keyboard for multi-language typing
 exec_always --no-startup-id ~/.config/i3/scripts/autotiling/main.py #autotiling script
 exec_always --no-startup-id xss-lock  -- ~/.config/i3/scripts/lock.sh #autolock thing
