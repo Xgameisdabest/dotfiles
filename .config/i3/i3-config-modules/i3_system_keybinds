@@ -4,6 +4,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# middle click on title bar for killing
+bindsym --release button2 kill
+
 # right click on title bar for floating
 bindsym button3 floating toggle resize set 70ppt 70ppt
 
