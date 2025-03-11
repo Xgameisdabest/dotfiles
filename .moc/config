@@ -1,5 +1,4 @@
 theme = nightly_enhanced
-MusicDir = ~/Music/Blue Archive Soundtrack Reboot/
 XTerms = xterm
 XTerms += xterm-colour:xterm-color
 XTerms += xterm-256colour:xterm-256color
