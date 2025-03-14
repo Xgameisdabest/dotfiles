@@ -21,9 +21,12 @@ V1 (use ```git checkout 4404458``` (use ```git checkout 08e8942``` if you want b
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview.jpg?raw=true)
 
-V2 (up-to-date)
+V2 (use ```git checkout f82e277``` to use this version and ```git checkout main``` if you want to use the latest)
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_2.jpg?raw=true)
+
+V3 (up-to-date)
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_3.jpg?raw=true)
 
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
