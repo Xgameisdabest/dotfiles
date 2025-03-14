@@ -13,7 +13,7 @@
 #for bottom
 location="south east"
 
-main_menu_x_offset=-370px
+main_menu_x_offset=-610px
 main_menu_y_offset=-263px
 
 current_day=$(date +"%e")
