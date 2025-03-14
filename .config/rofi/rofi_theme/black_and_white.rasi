@@ -1,6 +1,6 @@
 * {
     bg-col-old:  #1e1e2e;
-    bg-col: #000000;
+    bg-col: #16161d;
     bg-col-light: #1e1e2e;
     border-col: #1e1e2e;
     selected-col: #1e1e2e;
