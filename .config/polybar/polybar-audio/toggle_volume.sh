@@ -20,5 +20,6 @@ if [ $(pactl get-sink-mute @DEFAULT_SINK@ | sed 's/Mute: //g') = "no" ];
 then
   check_volume_level
 else
-  echo "%{F#7f849c} "
+  #echo "%{F#7f849c} "
+  echo " "
 fi
