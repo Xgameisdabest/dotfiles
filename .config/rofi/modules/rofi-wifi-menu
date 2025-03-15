@@ -82,23 +82,29 @@ esac
 }
 
 wifi_saved_fn(){
-	saved_list=$(nmcli -t -f NAME,TYPE connection show | grep -i wireless | cut -d ':' -f1)
-	chosen_saved=$(echo -e "$saved_list\n$goback\n$quit" | rofi -dmenu -i -p " Saved Wifi  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $saved_menu_x_offset; y-offset: $saved_menu_y_offset;}")
-	if [[ $chosen_saved == $goback ]]; then
+	saved_list=$(nmcli -t -f NAME,TYPE connection show | grep -i wireless | cut -d ':' -f1 | awk '{print $0 " "}')
+	chosen_saved_select=$(echo -e "$saved_list\n$goback\n$quit" | rofi -dmenu -i -p " Saved Wifi  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $saved_menu_x_offset; y-offset: $saved_menu_y_offset;}")
+	if [[ $chosen_saved_select == $goback ]]; then
 		main_menu
-	elif [[ $chosen_saved == $quit || $chosen_saved == "" ]]; then
+	elif [[ $chosen_saved_select == $quit || $chosen_saved_select == "" ]]; then
 		exit 0
 	else
 	
-	delete_saved_opt="󰗨 Remove"
+	chosen_saved=$(echo $chosen_saved_select | sed 's///g')
+	connect_saved_opt="󰌹  Connect"
+	delete_saved_opt="󰗨  Remove"
 	
-	selected_saved=$(echo -e "$delete_saved_opt\n$goback\n$quit" | rofi -dmenu -i -p " $chosen_saved  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $saved_menu_x_offset; y-offset: $saved_menu_y_offset;}")
+	selected_saved=$(echo -e "$connect_saved_opt\n$delete_saved_opt\n$goback\n$quit" | rofi -dmenu -i -p " $chosen_saved  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $saved_menu_x_offset; y-offset: $saved_menu_y_offset;}")
 	
 		if [[ $selected_saved == $delete_saved_opt ]]; then
 			echo $chosen_saved
 			nmcli connection delete "$chosen_saved"
 			notify-send "󰗨 Removed Network \"$chosen_saved\""
 			wifi_saved_fn
+		elif [[ $selected_saved == $connect_saved_opt ]]; then
+			attempt_message="Attempting to connect to \"$chosen_saved\""
+			success_message="You are now connected to Wi-Fi network \"$chosen_saved\"!"
+			notify-send "$attempt_message" && nmcli connection up id "$chosen_saved" | grep "successfully" && notify-send "Connection Established!" "$success_message"
 		elif [[ $selected_saved == $goback ]]; then
 			wifi_saved_fn
 		elif [[ $selected_saved == $quit || $selected_saved == "" ]]; then
