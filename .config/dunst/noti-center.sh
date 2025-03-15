@@ -24,7 +24,8 @@ notifications=$(dunstctl history | jq -r '
 	(.summary.data | contains("Dotfiles Update  ") | not) and
 	(.summary.data | contains("Wifi Enabled") | not) and
 	(.summary.data | contains("Wifi Disabled") | not) and
-	(.summary.data | contains("Removed Network") | not) and
+	(.summary.data | contains("󰗨 Removed Network") | not) and
+	(.summary.data | contains("󰗨 Removing Network") | not) and
 	(.summary.data | contains("Getting list of available Wi-Fi networks") | not) and
 	(.summary.data | contains("Scanning Nearby Devices") | not) and
 	(.summary.data | contains("Attempting to connect to") | not) and
