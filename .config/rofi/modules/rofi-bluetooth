@@ -30,7 +30,7 @@ main_menu_width=350px
 #for bottom
 location="south east"
                                         
-main_menu_x_offset=-225px
+main_menu_x_offset=-180px
 main_menu_y_offset=-70px
                                         
 device_list_menu_x_offset=-30px

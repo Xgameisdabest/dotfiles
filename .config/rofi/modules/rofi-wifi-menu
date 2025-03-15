@@ -23,7 +23,7 @@ main_menu_width=300px
 #for bottom
 location="south east"
 
-main_menu_x_offset=-335px
+main_menu_x_offset=-275px
 main_menu_y_offset=-70px
                           
 saved_menu_x_offset=-10px
