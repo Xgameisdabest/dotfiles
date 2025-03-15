@@ -90,7 +90,7 @@ wifi_saved_fn(){
 		exit 0
 	else
 	
-	chosen_saved=$(echo $chosen_saved_select | sed 's///g')
+	chosen_saved=$(echo $chosen_saved_select | sed 's/ //g')
 	connect_saved_opt="󰌹  Connect"
 	delete_saved_opt="󰗨  Remove"
 	
