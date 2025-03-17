@@ -12,9 +12,9 @@ quit="Exit 󰈆 "
 # main_menu_y_offset=70px
 
 #for bottom
-location="south east"
+location="south west"
                          
-main_menu_x_offset=-10px
+main_menu_x_offset=10px
 main_menu_y_offset=-70px
 
 noti_main_menu(){
