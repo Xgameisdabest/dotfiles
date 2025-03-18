@@ -51,44 +51,12 @@ HISTSIZE=9999
 source $ZSH/oh-my-zsh.sh
 
 #ALIASES
-
-#system configuration
 alias consoleconfig="sudo dpkg-reconfigure console-setup "
-
-#i3
 alias i3config="cd ~/.config/i3/"
-
-#rofi
-alias roficonfig="cd ~/.config/rofi/"
-
-#polybar
-alias polybarconfig="cd ~/.config/polybar/"
-
-#cava
-alias cavawindow="alacritty cava"
-alias cavaconfig="nvim ~/.config/cava/config"
-
-#exit terminal
-#alias exit="echo && echo '[Process completed - Press <ENTER> to comfirm]' && read && exit"
 alias out="exit"
 alias quit="exit"
-
-#exit i3
-alias logout="i3-msg exit"
-
-# --------------------------------
-#system related
-
-# zsh
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
-alias ohmyzsh="cd ~/.oh-my-zsh"
-
-# tmux
-alias tmuxconfig="nvim ~/.config/tmux/tmux.conf"
-
-# system related
-#alias cat=batcat
 alias open=xdg-open
 alias poweroff="sudo poweroff"
 alias cls=clear
@@ -96,24 +64,9 @@ alias rm="rm -v"
 alias mdir="mkdir"
 alias mv="mv -v"
 alias du="du -h"
-
-# listing files, dirs
 alias ls=lsd
 alias lss=/usr/bin/ls
-
-#jump between dirs
-
-alias programmingdir="cd ~/programming/"
-alias cdir="cd ~/programming/c/"
-alias luadir="cd ~/programming/lua/"
-alias pythondir="cd ~/programming/python/"
-alias pydir="cd ~/programming/python/"
-alias usrbindir="cd ~/.local/bin/"
-
-#dev, programming
 alias py=python3
-
-#package management
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
 alias update-all="sudo apt update && sudo apt upgrade && pacstall -U && pacstall -Up && python -m pip install --upgrade pip"
@@ -122,19 +75,10 @@ alias reinstall="sudo apt reinstall"
 alias remove="sudo apt remove"
 alias autoclean="sudo apt autoclean"
 alias autoremove="sudo apt autoremove"
-
-#fetching programs
 alias nfetch=neofetch
-
-# clock
-alias clock="tty-clock -cC7Ss"
-
-#neovide/nvim/vim
 alias v=nvim
 alias suv="sudo -e"
 alias vconfig="cd ~/.config/nvim/"
-
-#power
 alias pwr-max="powerprofilesctl set performance"
 alias pwr-mid="powerprofilesctl set balanced"
 alias pwr-low="powerprofilesctl set power-saver"
