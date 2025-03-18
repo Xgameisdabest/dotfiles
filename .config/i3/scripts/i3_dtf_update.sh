@@ -22,6 +22,6 @@ if [[ "$check_update" == *"Your branch is up to date with"* ]]; then
     notify-send "Dotfiles Update  " "Your dotfiles are up to date!"
 else
     # There are changes in the remote (e.g., behind, diverged), send a notification
-    notify-send "Dotfiles Update  " "Your dotfiles are not up to date!"
+    notify-send "Dotfiles Update  " "Update available!"
 fi
 
