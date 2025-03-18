@@ -92,24 +92,29 @@ zstyle ':vcs_info:git:*' formats '%b '
 #PS1="%B%F{black}╭ %B%F{white}%n%F{red}@%F{white}%m%f%F{red} - %F{black}  %F{red}- %F{white}%B%~%b%f%F{black}%B "$'\n'"╰%F{white}%B%F{red}➜ %b%f"
 
 newline=$'\n'
-ZSH_THEME_GIT_PROMPT_PREFIX=" ${newline} $fg_bold[red]󰊢 $fg_bold[white]( $fg_bold[cyan]"
-ZSH_THEME_GIT_PROMPT_SUFFIX="$fg_bold[white] )"
-ZSH_THEME_GIT_PROMPT_CLEAN=" $fg_bold[green]"
-ZSH_THEME_GIT_PROMPT_DIRTY=" $fg_bold[red]"
-ZSH_THEME_GIT_PROMPT_ADDED=" $fg_bold[red]󰆺"
-ZSH_THEME_GIT_PROMPT_AHEAD=" $fg_bold[cyan]"
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" $fg_bold[cyan] "
-ZSH_THEME_GIT_PROMPT_BEHIND=" $fg_bold[yellow]"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" $fg_bold[yellow] "
+ZSH_THEME_GIT_PROMPT_PREFIX="${newline} %F{#ff6f91}%B󰊢%f%b %F{#e0e6ed}%B(%f%b %F{#94e2d5}%B"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%f%b%F{#e0e6ed}%B )%f%b"
+ZSH_THEME_GIT_PROMPT_CLEAN=" %F{#a6e3a1}%B%f%b"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %F{#ff6f91}%B%f%b"
+ZSH_THEME_GIT_PROMPT_ADDED=" %F{#ff6f91}%B󰆺%f%b"
+ZSH_THEME_GIT_PROMPT_AHEAD=" %F{#94e2d5}%B%f%b"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %F{#94e2d5}%B %f%b"
+ZSH_THEME_GIT_PROMPT_BEHIND=" %F{#f9e2af}%B%f%b"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %F{#f9e2af}%B %f%b"
 
 # PROMPT=' $(git_prompt_info)
 #  %B%F{yellow} %f %F{white}%~%f
 #  ┗┅%B%F{red}%f '
 
-PROMPT='  $(git_prompt_info)
-  %B%F{white}%~%f%b  %B%F{red}λ%f%b  '
+# PROMPT='  $(git_prompt_info)
+#   %B%F{white}%~%f%b  %B%F{red}λ%f%b  '
+
+PROMPT='$(git_prompt_info)
+  %B%F{#ff6f91} %f%F{#f7a8b8}%n%f %F{#797d8a}-%f %F{#89b4fa} %f%F{#94e2d5}%m%f%b
+  %B%F{#e0e6ed}%~%f  %(?:%F{#a6e3a1}λ%f%b:%F{#ff6f91}λ%f%b)  '
+
 
 #PROMPT='  $(git_prompt_info)
 #  %B%F{white}%~%f%b  %B%F{red}%f%b  '
 
-RPROMPT='%B%F{red}|%f%F{white}%f%T%F{red}|%f%b %(?:%{$fg_bold[green]%}%1{✔%}:%{$fg_bold[red]%}%1{✗%})%{$fg_bold[white]%} '
+RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%b:%B%F{#ff6f91}|%f%F{#e0e6ed}%f%T%F{#ff6f91}|%f%b %B%F{#ff6f91}✗%f%b)%F{#e0e6ed}%f '
