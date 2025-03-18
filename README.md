@@ -17,11 +17,11 @@ if you have any problems trying to understand my English then heres the **tldr**
 > Only work on Debian based distros, might as well change it on your own if you use Arch or Red Hat based OS.
 
 ## Preview
-V1 (use ```git checkout 4404458``` (use ```git checkout 08e8942``` if you want bottom bar) to use this version and ```git checkout main``` if you want to use the latest
+V1 - use ```git checkout 4404458``` (use ```git checkout 08e8942``` if you want bottom bar) to use this version and ```git checkout main``` if you want to use the latest
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview.jpg?raw=true)
 
-V2 (use ```git checkout f82e277``` to use this version and ```git checkout main``` if you want to use the latest
+V2 - use ```git checkout f82e277``` to use this version and ```git checkout main``` if you want to use the latest
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_2.jpg?raw=true)
 
