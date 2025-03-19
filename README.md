@@ -62,6 +62,7 @@ V3 (up-to-date)
 - arandr (essential)
 - pipewire (essential, currently using pipewire)
 - pipewire-pulse (essential)
+- redshift (quite essential)
 
 > [!NOTE]
 > Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
@@ -71,9 +72,9 @@ V3 (up-to-date)
 > [!NOTE]
 > picom is a dependency that needs to install and build from source in order to work correctly, it has already been listed in the dependencies list so go check it out
 
-Install most important dependencies
+Install most important dependencies (for ```apt```)
 ```
-sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev
+sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift
 ```
 
 Install oh-my-zsh (command taken from the official page)
