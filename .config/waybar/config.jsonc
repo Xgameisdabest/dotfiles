@@ -1,9 +1,9 @@
 {
    
-    "layer": "top", "position": "top", //(top|bottom|left|right)
-    //"height": 30, //(removed for auto height)
-    "width": 1900, // Waybar width
-    "spacing": 8, // Gaps between modules (4px)
+    "layer": "top", 
+    "position": "bottom",
+    "width": 1900, 
+    "spacing": 8, 
     "margin-top": 14,
     "margin-bottom": 0,
 
