@@ -49,14 +49,15 @@ dev_icon_connected() {
 	fi
 }
 
+connected_devices_count=$(bluetoothctl devices Connected | grep Device | cut -d ' ' -f 3- | wc -l)
 if [[ $(bluetoothctl show | grep "Powered: yes" | wc -c) -eq 0 ]]; then
   echo "%{B#7f849c} 󰂲 "
 else
-	if [[ $(bluetoothctl devices Connected | grep Device | cut -d ' ' -f 3- | wc -l) -eq 0 ]]; then 
+	if [[ $connected_devices_count -eq 0 ]]; then 
 		echo "%{B#74c7ec} 󰂳 "
-	elif [[ $(bluetoothctl devices Connected | grep Device | cut -d ' ' -f 3- | wc -l) -eq 1 ]]; then 
+	elif [[ $connected_devices_count -eq 1 ]]; then 
 		dev_icon_connected
 	else
-		echo "%{B#2193ff} 󰂱 "
+		echo "%{B#2193ff} 󰂱 $connected_devices_count "
 	fi
 fi
