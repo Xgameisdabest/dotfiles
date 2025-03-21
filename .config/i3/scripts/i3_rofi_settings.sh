@@ -2,12 +2,12 @@
 
 #THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
 
-#when add new entry make sure to add 35 to height
+#when add new entry make sure to add 40 to height
 main_menu_height=520px
 main_menu_width=265px
 
-rofi_submenu_height=555px
-rofi_submenu_width=260px
+rofi_submenu_height=595px
+rofi_submenu_width=270px
 
 polybar_submenu_height=255px
 polybar_submenu_width=260px
@@ -83,11 +83,12 @@ rofi_submenu(){
 	pwr_mode="󰾆  Power Mode"
 	web_search="  Web Search"
 	calendar="  Calendar"
-	i3_settings_menu="  This Menu"
+	i3_settings_menu="  Settings Menu"
 	notifications_hist="󰵙  Notification"
 	os_about="󰟀  Machine Info"
+	redshift="  Night Mode"
 	
-	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$os_about\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
+	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$os_about\n$redshift\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
 	
 	case $select2 in
 		$rofi_sub)
@@ -122,6 +123,9 @@ rofi_submenu(){
 			;;
 		$os_about)
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-os-about
+			;;
+		$redshift)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-redshift
 			;;
 		$goback)
 			main_menu
