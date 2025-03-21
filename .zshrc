@@ -106,12 +106,12 @@ ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %F{#f9e2af}%B %f%b"
 #  %B%F{yellow} %f %F{white}%~%f
 #  ┗┅%B%F{red}%f '
 
-# PROMPT='  $(git_prompt_info)
-#   %B%F{white}%~%f%b  %B%F{red}λ%f%b  '
-
-PROMPT='$(git_prompt_info)
-  %B%F{#ff6f91} %f%F{#f7a8b8}%n%f %F{#797d8a}-%f %F{#89b4fa} %f%F{#94e2d5}%m%f%b
+ PROMPT='$(git_prompt_info)
   %B%F{#e0e6ed}%~%f  %(?:%F{#a6e3a1}λ%f%b:%F{#ff6f91}λ%f%b)  '
+
+# PROMPT='$(git_prompt_info)
+#   %B%F{#ff6f91} %f%F{#f7a8b8}%n%f %F{#797d8a}-%f %F{#89b4fa} %f%F{#94e2d5}%m%f%b
+#   %B%F{#e0e6ed}%~%f  %(?:%F{#a6e3a1}λ%f%b:%F{#ff6f91}λ%f%b)  '
 
 
 #PROMPT='  $(git_prompt_info)
