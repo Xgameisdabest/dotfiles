@@ -45,7 +45,7 @@ dev_icon_connected() {
 	elif [[ $icon_dev_type =~ "scanner" ]]; then
 		echo "%{B#2193ff} 󰮄 "
 	else
-		echo "%{B#2193ff}  "
+		echo "%{B#2193ff} 󰂱 "
 	fi
 }
 
@@ -57,6 +57,6 @@ else
 	elif [[ $(bluetoothctl devices Connected | grep Device | cut -d ' ' -f 3- | wc -l) -eq 1 ]]; then 
 		dev_icon_connected
 	else
-		echo "%{B#2193ff}  "
+		echo "%{B#2193ff} 󰂱 "
 	fi
 fi
