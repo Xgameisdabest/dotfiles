@@ -1,0 +1,7 @@
+#border and gaps
+gaps outer 6
+gaps inner 6
+default_border pixel 2
+default_floating_border pixel 3
+default_border normal 1
+default_floating_border normal 3

@@ -1,0 +1,50 @@
+#start dmenu (a program launcher)
+#bindsym $mod+r exec --no-startup-id rofi -show drun
+#bindsym $mod+g exec --no-startup-id rofi -drun-categories Game -show drun
+
+bindsym $mod+g exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -drun-categories Game -show drun
+bindsym $mod+r exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+
+# bindsym $mod+g exec --no-startup-id ~/.config/rofi/scripts/fullscreen-game.sh
+# bindsym $mod+r exec --no-startup-id ~/.config/rofi/scripts/fullscreen.sh
+bindsym $alt+r exec --no-startup-id rofi -show drun
+
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/catppuccin-mocha-fullscreen.rasi -show drun
+#bindsym $alt+space exec --no-startup-id rofi -theme ~/.config/rofi/rofi_theme/black-and-white-theme-fullscreen.rasi -show drun
+bindsym $alt+space exec --no-startup-id rofi -show drun
+
+#share android screen (REQUIRES scrcpy TO FUNCTION)
+bindsym $alt+p exec --no-startup-id notify-send "CONNECTING TO PHONE " && scrcpy --select-usb
+
+#file manager
+bindsym $mod+e exec --no-startup-id thunar
+
+#browser
+bindsym $alt+c exec --no-startup-id google-chrome-stable
+bindsym $mod+c exec --no-startup-id librewolf
+
+#wallpaper
+bindsym $mod+m exec --no-startup-id waypaper
+
+#terminal
+bindsym $mod+t exec --no-startup-id alacritty
+bindsym $alt+t exec --no-startup-id alacritty-smooth #alacritty smooth cursor dependency
+bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
+
+#rofi web search
+bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
+
+#lock the fucking screen
+bindsym $mod+q exec --no-startup-id betterlockscreen -l
+
+#i3 settings
+bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3_rofi_settings.sh
+
+#close focused window
+bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
+
+#show all opened windows, programs in rofi
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+
+#access emoji icon (REQUIRES rofimoji program)
+bindsym $mod+z exec --no-startup-id rofimoji

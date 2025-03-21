@@ -1,0 +1,11 @@
+#COLORS
+# for older version
+# client.focused #211d30 #211d30 #b4befe #211d30 #211d30
+# client.unfocused #211d30 #211d30 #b4befe #211d30 #211d30
+# client.focused_inactive #211d30 #211d30 #b4befe #211d30 #211d30
+# client.urgent #f38ba8 #f38ba8 #211d30 #f38ba8 #f38ba8
+
+client.focused #b4befe #16161d #b4befe #b4befe #b4befe
+client.unfocused #cdd6f4 #16161d #cdd6f4 #16161d #16161d
+client.focused_inactive #cdd6f4 #16161d #cdd6f4 #16161d #16161d
+client.urgent #f38ba8 #f38ba8 #16161d #f38ba8 #f38ba8
