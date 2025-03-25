@@ -73,7 +73,8 @@ V3 (up-to-date)
 ## Installation
 
 > [!NOTE]
-> picom is a dependency that needs to install and build from source in order to work correctly, it has already been listed in the dependencies list so go check it out
+> picom is a dependency that needs to install and build from source in order to work correctly.
+> [Install and build picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)
 
 Install most important dependencies (for ```apt```)
 ```
@@ -116,7 +117,8 @@ It is highly recommend to go on the web to search [what is a tiling window manag
 Here are a list of keybinds for this dotfiles (all of this can be viewed in the desktop itself):
 - Press (win/mod + shift + r) to reload the tiling window manager (i3wm)
 > [!NOTE]
-> helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload. Do it multiple times if the bar is glitching!
+> helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload.
+> ***Do it multiple times if the bar is glitching!***
 
 - Press (win/mod + =) to open the keybinds menu
 - Press (win/mod + i) to open the settings menu (require some knowledge of bash scripting and specific program config syntax)
