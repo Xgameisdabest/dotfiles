@@ -3,6 +3,9 @@
 ___DEVELOP ON UBUNTU 24.10___
 
 > [!NOTE]
+> THIS PROJECT IS NEARLY A DESKTOP ENVIRONMENT, NO LONGER A TYPICAL LINUX CUSTOM WINDOW MANAGER (I know that might sound funny but it really feels like it)
+
+> [!NOTE]
 > This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.
 > I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.
 
