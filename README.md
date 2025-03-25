@@ -34,7 +34,7 @@ V3 (up-to-date)
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 - apt nala pacstall flatpak (essential for Debian based, for Arch just use anything that works for you)
-- librewolf (fuck firefox)
+- librewolf (it works)
 - ncal (essential)
 - neovim (essential)
 - fzf (essential for zsh plugins)
@@ -107,6 +107,28 @@ i3-msg restart
 
 REMEMBER TO ADD ```TERMINAL=/usr/bin/alacritty``` TO ```/etc/environment```
 
+## USAGE
+
+THIS IS ***NOT*** YOUR NORMAL TYPICAL ***DESKTOP*** (the desktop interface on W*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ***TILING WINDOW MANAGER*** (i3, hyprland, sway, dwm...).
+
+It is highly recommend to go on the web to search [what is a tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager) and its usage so you can know the basics of a ***TILING WINDOW MANAGER***.
+
+Here are a list of keybinds for this dotfiles (all of this can be viewed in the desktop itself):
+- Press (win/mod + shift + r) to reload the tiling window manager (i3wm)
+> [!NOTE]
+> helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload. Do it multiple times if the bar is glitching!
+
+- Press (win/mod + =) to open the keybinds menu
+- Press (win/mod + i) to open the settings menu (require some knowledge of bash scripting and specific program config syntax)
+- Press (win/mod + r) to open the app menu (alternatively, this can be launched via clicking on the app title on the bar)
+- Press (win/mod + -) to toggle the visibility of the bar
+- Press (win/mod + [1 -> 0]) to change the workspace
+- Press (win/mod + shift + [1 -> 0] to move/drop the focused window to the selected number workspace)
+- Press (win/mod + v) to toggle between tiling mode (the mode that place windows/programs side by side) and floating mode (the mode you can drag windows/programs around by hold left click on the title)
+- Press (win/mod + tab) to open the opened windows menu, select and press ENTER to switch to the opened windows
+- Press (win/mod + ARROW_KEYS) to change focus between the tiled windows.
+- Press (ctrl + win/mod + ARROW_LEFT/ARROW_RIGHT) to send the focused window to the next numerical workspace.
+
 ## CONFIGURATION
 > [!NOTE]
 > This is a work-in-progress thing and it only appears on v3 and above
@@ -123,7 +145,7 @@ KEY=VALUE (no space before and after the equal sign)
 > [!NOTE]
 > MAKE SURE TO RELOAD (win/mod + shift + r) TO APPLY THE CHANGES
 
-AVAILABLE KEYS:
+AVAILABLE CONFIG KEYS:
 ```
 polybar_color=white/black (DEFAULT: black)
 picom_enable=true/false (DEFAULT: true)
