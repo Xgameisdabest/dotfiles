@@ -123,4 +123,5 @@ KEY=VALUE (no space before and after the equal sign)
 AVAILABLE KEYS:
 ```
 polybar_color=white/black (DEFAULT: black)
+picom_enable=true/false (DEFAULT: true)
 ```
