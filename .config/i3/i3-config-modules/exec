@@ -5,7 +5,7 @@ exec_always --no-startup-id xrandr --output DP-2 --right-of eDP-1 --auto #for au
 exec_always --no-startup-id xrandr --output DP-3 --right-of eDP-1 --auto #for auto monitor detect, laptop only
 exec_always --no-startup-id xrandr --output DP-4 --right-of eDP-1 --auto #for auto monitor detect, laptop only
 exec_always --no-startup-id xrandr --auto #for auto monitor detect
-exec_always --no-startup-id pidof picom 1> /dev/null || picom --config ~/.config/picom/picom.conf & #init picom
+exec_always --no-startup-id ~/.config/picom/picom_launch.sh #init picom
 exec_always --no-startup-id ~/.config/polybar/launch.sh #init polybar
 #exec --no-startup-id ~/.config/polybar/authide.sh # uncomment for autohide feature
 exec --no-startup-id dunst #init notification daemon
