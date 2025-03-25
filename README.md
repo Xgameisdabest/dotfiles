@@ -80,7 +80,7 @@ Install most important dependencies (for ```apt```)
 sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift
 ```
 
-Install oh-my-zsh (command taken from the official page)
+Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
 ```
 sudo apt install curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
