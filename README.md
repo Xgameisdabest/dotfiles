@@ -115,9 +115,10 @@ mkdir ~/.config/dtf-config/
 touch ~/.config/dtf-config/config
 ```
 FORMAT CONFIG
->KEY=VALUE (no space before and after the equal sign)
-
+```
+KEY=VALUE (no space before and after the equal sign)
+```
 AVAILABLE KEYS:
->polybar_color=white/black
-
-have fun ~~suffering~~
+```
+polybar_color=white/black
+```
