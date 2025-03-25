@@ -107,4 +107,17 @@ i3-msg restart
 
 REMEMBER TO ADD ```TERMINAL=/usr/bin/alacritty``` TO ```/etc/environment```
 
+## CONFIGURATION
+This is a work-in-progress thing and it only appears on v3 and above
+Run this command to generate the config dir and the file itself:
+```
+mkdir ~/.config/dtf-config/
+touch ~/.config/dtf-config/config
+```
+FORMAT CONFIG
+KEY=VALUE (no space before and after the equal sign)
+
+AVAILABLE KEYS:
+polybar_color=white/black
+
 have fun ~~suffering~~
