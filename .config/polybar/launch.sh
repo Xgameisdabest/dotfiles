@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/.config/xytozine-dotfiles-config/config
+source ~/.config/dtf-config/config
 
 polybar_color=${polybar_color:-black}
 
