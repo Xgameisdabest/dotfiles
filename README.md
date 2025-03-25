@@ -122,5 +122,5 @@ KEY=VALUE (no space before and after the equal sign)
 ```
 AVAILABLE KEYS:
 ```
-polybar_color=white/black
+polybar_color=white/black (DEFAULT: black)
 ```
