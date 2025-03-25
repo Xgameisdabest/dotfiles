@@ -108,7 +108,8 @@ i3-msg restart
 REMEMBER TO ADD ```TERMINAL=/usr/bin/alacritty``` TO ```/etc/environment```
 
 ## CONFIGURATION
-This is a work-in-progress thing and it only appears on v3 and above
+> [!NOTE]
+> This is a work-in-progress thing and it only appears on v3 and above
 
 Run this command to generate the config dir and the file itself:
 ```
