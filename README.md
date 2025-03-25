@@ -120,6 +120,9 @@ FORMAT CONFIG
 ```
 KEY=VALUE (no space before and after the equal sign)
 ```
+> [!NOTE]
+> MAKE SURE TO RELOAD (win/mod + shift + r) TO APPLY THE CHANGES
+
 AVAILABLE KEYS:
 ```
 polybar_color=white/black (DEFAULT: black)
