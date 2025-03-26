@@ -12,6 +12,9 @@ rofi_submenu_width=270px
 polybar_submenu_height=255px
 polybar_submenu_width=260px
 
+polybar_bar_config_submenu_height=220px
+polybar_bar_config_submenu_width=260px
+
 i3_submenu_height=480px
 i3_submenu_width=385px
 
@@ -136,9 +139,28 @@ rofi_submenu(){
 
 ### POLYBAR SUBMENU
 
+polybar_bar_config_submenu(){
+	polybar_cfg_sub_black="  Black Bar"
+	polybar_cfg_sub_white="  White Bar"
+	select3_sub=$(echo -e "$polybar_cfg_sub_black\n$polybar_cfg_sub_white\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_bar_config_submenu_height; width: $polybar_bar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	
+	case $select3_sub in
+		$polybar_cfg_sub_black)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_black.ini
+			;;
+		$polybar_cfg_sub_white)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_white.ini
+			;;
+		$goback)
+			polybar_submenu
+			;;
+	esac
+
+}
+
 polybar_submenu(){
 	
-	polybar_sub="  Bar"
+	polybar_sub="  Bar  "
 	polybar_color_sub="  Colors"
 	bar_start="󱓞  Bar Startup"
 	
@@ -147,7 +169,7 @@ polybar_submenu(){
 
 	case $select3 in 
 		$polybar_sub)
-			$TERMINAL -e nvim ~/.config/polybar/config.ini
+			polybar_bar_config_submenu
 			;;
 		$polybar_color_sub)
 			$TERMINAL -e nvim ~/.config/polybar/theme/colors.ini
