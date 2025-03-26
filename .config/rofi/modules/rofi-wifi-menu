@@ -15,7 +15,7 @@ polybar_top=${polybar_top:-false}
 if [[ $polybar_top == "true" ]]; then
 	location="north east"
 
-	main_menu_x_offset=-150px
+	main_menu_x_offset=-275px
 	main_menu_y_offset=70px
 
 	saved_menu_x_offset=-10px

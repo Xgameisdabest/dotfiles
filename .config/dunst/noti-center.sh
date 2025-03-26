@@ -7,9 +7,9 @@ source ~/.config/dtf-config/config
 polybar_top=${polybar_top:-false}
 
 if [[ $polybar_top == "true" ]]; then
-	location="north east"
+	location="north west"
 				 
-	main_menu_x_offset=-10px
+	main_menu_x_offset=10px
 	main_menu_y_offset=70px
 else
 	location="south west"
