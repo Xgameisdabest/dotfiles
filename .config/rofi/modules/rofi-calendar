@@ -4,17 +4,23 @@
 #link to the king: https://github.com/ghost-in-the-machine-86/rofi-calendar
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
-#for top
-# location="north east"
-#
-# main_menu_x_offset=-370px
-# main_menu_y_offset=255px
+source ~/.config/dtf-config/config
 
-#for bottom
-location="south east"
+polybar_top=${polybar_top:-false}
 
-main_menu_x_offset=-610px
-main_menu_y_offset=-263px
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
+
+	main_menu_x_offset=-610px
+	main_menu_y_offset=263px
+else
+	location="south east"
+
+	main_menu_x_offset=-610px
+	main_menu_y_offset=-263px
+fi
+
+#main
 
 current_day=$(date +"%e")
 current_month=$(date +"%m")

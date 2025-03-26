@@ -2,46 +2,52 @@
 
 #THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
 
+source ~/.config/dtf-config/config
+
 main_menu_height=300px
 main_menu_width=400px
 playback_menu_height=150px
 playback_menu_width=270px
 
-#for top
-# location="north east"
-#
-# main_menu_x_offset=-10px
-# main_menu_y_offset=70px
-#
-# playback_menu_x_offset=-10px
-# playback_menu_y_offset=70px
-#
-# ouputdev_menu_x_offset=-10px
-# ouputdev_menu_y_offset=70px
-#
-# inputdev_menu_x_offset=-10px
-# inputdev_menu_y_offset=70px
-#
-# devconfig_menu_x_offset=-10px
-# devconfig_menu_y_offset=70px
+polybar_top=${polybar_top:-false}
 
-#for bottom
-location="south east"
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
 
-main_menu_x_offset=-10px
-main_menu_y_offset=-70px
+	main_menu_x_offset=-10px
+	main_menu_y_offset=70px
 
-playback_menu_x_offset=-10px
-playback_menu_y_offset=-70px
+	playback_menu_x_offset=-10px
+	playback_menu_y_offset=70px
 
-ouputdev_menu_x_offset=-10px
-ouputdev_menu_y_offset=-70px
+	ouputdev_menu_x_offset=-10px
+	ouputdev_menu_y_offset=70px
 
-inputdev_menu_x_offset=-10px
-inputdev_menu_y_offset=-70px
+	inputdev_menu_x_offset=-10px
+	inputdev_menu_y_offset=70px
 
-devconfig_menu_x_offset=-10px
-devconfig_menu_y_offset=-70px
+	devconfig_menu_x_offset=-10px
+	devconfig_menu_y_offset=70px
+else
+	location="south east"
+
+	main_menu_x_offset=-10px
+	main_menu_y_offset=-70px
+
+	playback_menu_x_offset=-10px
+	playback_menu_y_offset=-70px
+
+	ouputdev_menu_x_offset=-10px
+	ouputdev_menu_y_offset=-70px
+
+	inputdev_menu_x_offset=-10px
+	inputdev_menu_y_offset=-70px
+
+	devconfig_menu_x_offset=-10px
+	devconfig_menu_y_offset=-70px
+fi
+
+#main
 
 goback="Back 󰌍 "
 quit="Exit 󰈆 "

@@ -7,17 +7,21 @@ main_menu_width=375px
 value_menu_height=90px
 value_menu_width=600px
 
-#for top
-# location="north east"
-#
-# main_menu_x_offset=-70px
-# main_menu_y_offset=70px
+source ~/.config/dtf-config/config
 
-#for bottom
-location="south west"
-                         
-main_menu_x_offset=10px
-main_menu_y_offset=-70px
+polybar_top=${polybar_top:-false}
+
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
+
+	main_menu_x_offset=-70px
+	main_menu_y_offset=70px
+else
+	location="south west"
+
+	main_menu_x_offset=10px
+	main_menu_y_offset=-70px
+fi
 
 start="  Start (Default: 4800)"
 start_custom="󱤵  Start Custom"

@@ -4,34 +4,40 @@
 #link to the king: https://github.com/ericmurphyxyz/rofi-wifi-menu
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
+source ~/.config/dtf-config/config
+
 main_menu_height=300px
 main_menu_disabled_height=265px
 main_menu_width=300px
 
-#for top
-#location="north east"
-#
-# main_menu_x_offset=-150px
-# main_menu_y_offset=70px
-#
-# saved_menu_x_offset=-10px
-# saved_menu_y_offset=70px
-#
-# list_menu_x_offset=-10px
-# list_menu_y_offset=70px
+polybar_top=${polybar_top:-false}
 
-#for bottom
-location="south east"
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
 
-main_menu_x_offset=-275px
-main_menu_y_offset=-70px
-                          
-saved_menu_x_offset=-10px
-saved_menu_y_offset=-70px
-                          
-list_menu_x_offset=-10px
-list_menu_y_offset=-70px
+	main_menu_x_offset=-150px
+	main_menu_y_offset=70px
 
+	saved_menu_x_offset=-10px
+	saved_menu_y_offset=70px
+
+	list_menu_x_offset=-10px
+	list_menu_y_offset=70px
+
+else
+	location="south east"
+
+	main_menu_x_offset=-275px
+	main_menu_y_offset=-70px
+				  
+	saved_menu_x_offset=-10px
+	saved_menu_y_offset=-70px
+				  
+	list_menu_x_offset=-10px
+	list_menu_y_offset=-70px
+fi
+
+#main
 connected_symbol="󰓢󱚽 "
 goback="Back 󰌍 "
 quit="Exit 󰈆 "

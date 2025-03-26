@@ -2,21 +2,26 @@
 
 #THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
 
+source ~/.config/dtf-config/config
+
+polybar_top=${polybar_top:-false}
+
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
+				 
+	main_menu_x_offset=-10px
+	main_menu_y_offset=70px
+else
+	location="south west"
+				 
+	main_menu_x_offset=10px
+	main_menu_y_offset=-70px
+fi
+
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
-#for top
-# location="north east"
-#                          
-# main_menu_x_offset=-10px
-# main_menu_y_offset=70px
-
-#for bottom
-location="south west"
-                         
-main_menu_x_offset=10px
-main_menu_y_offset=-70px
-
+#main
 noti_main_menu(){
 notifications=$(dunstctl history | jq -r '
     .data[0][] |

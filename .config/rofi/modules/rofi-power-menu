@@ -3,20 +3,24 @@
 #COULD NOT FIND THE ORIGINAL AUTHOR
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
+source ~/.config/dtf-config/config
+
 main_menu_height=385px
 main_menu_width=350px
 
-#for top
-# location="north east"
-#
-# main_menu_x_offset=-10px
-# main_menu_y_offset=70px
+polybar_top=${polybar_top:-false}
 
-#for bottom
-location="south east"
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
 
-main_menu_x_offset=-10px
-main_menu_y_offset=-70px
+	main_menu_x_offset=-10px
+	main_menu_y_offset=70px
+else
+	location="south east"
+
+	main_menu_x_offset=-10px
+	main_menu_y_offset=-70px
+fi
 
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
