@@ -114,11 +114,10 @@ THIS IS ***NOT*** YOUR NORMAL TYPICAL ***DESKTOP*** (the desktop interface on W*
 
 It is highly recommend to go on the web to search [what is a tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager) and its usage so you can know the basics of a ***TILING WINDOW MANAGER***.
 
-Here are a list of keybinds for this dotfiles (all of this can be viewed in the desktop itself):
+Here is the list of keybinds for this dotfiles (all of this can be viewed in the desktop itself):
 - Press (win/mod + shift + r) to reload the tiling window manager (i3wm)
 > [!NOTE]
-> helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload.
-> ***Do it multiple times if the bar is glitching!***
+> helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload. ***Do it multiple times if the bar is glitching!***
 
 - Press (win/mod + =) to open the keybinds menu
 - Press (win/mod + i) to open the settings menu (require some knowledge of bash scripting and specific program config syntax)
