@@ -9,11 +9,14 @@ main_menu_width=265px
 rofi_submenu_height=595px
 rofi_submenu_width=270px
 
-polybar_submenu_height=255px
+polybar_submenu_height=295px
 polybar_submenu_width=260px
 
-polybar_bar_config_submenu_height=600px
+polybar_bar_config_submenu_height=450px
 polybar_bar_config_submenu_width=420px
+
+polybar_module_config_submenu_height=300px
+polybar_module_config_submenu_width=420px
 
 i3_submenu_height=480px
 i3_submenu_width=385px
@@ -148,7 +151,7 @@ polybar_bar_config_submenu(){
 	polybar_cfg_sub_white_top="  White Bar Top"
 	polybar_cfg_sub_black_compact_top="  Black Bar Compact Top"
 	polybar_cfg_sub_white_compact_top="  White Bar Compact Top"
-	select3_sub=$(echo -e "$polybar_cfg_sub_black_bottom\n$polybar_cfg_sub_white_bottom\n$polybar_cfg_sub_black_compact_bottom\n$polybar_cfg_sub_white_compact_bottom\n$polybar_cfg_sub_black_top\n$polybar_cfg_sub_white_top\n$polybar_cfg_sub_black_compact_top\n$polybar_cfg_sub_white_compact_top\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_bar_config_submenu_height; width: $polybar_bar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	select3_sub=$(echo -e "$polybar_cfg_sub_black_bottom\n$polybar_cfg_sub_white_bottom\n$polybar_cfg_sub_black_compact_bottom\n$polybar_cfg_sub_white_compact_bottom\n$polybar_cfg_sub_black_top\n$polybar_cfg_sub_white_top\n$polybar_cfg_sub_black_compact_top\n$polybar_cfg_sub_white_compact_top\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_bar_config_submenu_height; width: $polybar_bar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Bars   ")
 	
 	case $select3_sub in
 		$polybar_cfg_sub_black_bottom)
@@ -182,18 +185,48 @@ polybar_bar_config_submenu(){
 
 }
 
+polybar_module_config_submenu(){
+	polybar_module_sub_black="󰾍  Module (Black Bar)"
+	polybar_module_sub_white="󰾍  Module (White Bar)"
+	polybar_module_sub_black_compact="󰾍  Module (Black Compact Bar)"
+	polybar_module_sub_white_compact="󰾍  Module (White Compact Bar)"
+	select3_module=$(echo -e "$polybar_module_sub_black\n$polybar_module_sub_white\n$polybar_module_sub_black_compact\n$polybar_module_sub_white_compact\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_module_config_submenu_height; width: $polybar_module_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar Modules   ")
+		case $select3_module in
+		$polybar_module_sub_black)
+			$TERMINAL -e nvim ~/.config/polybar/modules/modules_black.ini
+			;;
+		$polybar_module_sub_white)
+			$TERMINAL -e nvim ~/.config/polybar/modules/modules_white.ini
+			;;
+		$polybar_module_sub_black_compact)
+			$TERMINAL -e nvim ~/.config/polybar/modules/modules_black_compact.ini
+			;;
+		$polybar_module_sub_white_compact)
+			$TERMINAL -e nvim ~/.config/polybar/modules/modules_white_compact.ini
+			;;
+		$goback)
+			polybar_submenu
+			;;
+	esac
+}
+
 polybar_submenu(){
 	
+	polybar_main_cfg_sub="  Main Config"
 	polybar_sub="  Bar  "
+	polybar_module_sub="󰾍  Modules  "
 	polybar_color_sub="  Colors"
 	bar_start="󱓞  Bar Startup"
 	
 	#when add new entry make sure to add 35 to height
-	select3=$(echo -e "$polybar_sub\n$polybar_color_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_submenu_height; width: $polybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	select3=$(echo -e "$polybar_sub\n$polybar_module_sub\n$polybar_color_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_submenu_height; width: $polybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
 
 	case $select3 in 
 		$polybar_sub)
 			polybar_bar_config_submenu
+			;;
+		$polybar_module_sub)
+			polybar_module_config_submenu
 			;;
 		$polybar_color_sub)
 			$TERMINAL -e nvim ~/.config/polybar/theme/colors.ini
