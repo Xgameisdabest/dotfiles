@@ -150,5 +150,6 @@ KEY=VALUE (no space before and after the equal sign)
 AVAILABLE CONFIG KEYS:
 ```
 polybar_color=white/black (DEFAULT: black)
+polybar_compact=true/false (DEFAULT: false)
 picom_enable=true/false (DEFAULT: true)
 ```
