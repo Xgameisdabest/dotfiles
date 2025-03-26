@@ -148,7 +148,8 @@ KEY=VALUE (no space before and after the equal sign)
 
 AVAILABLE CONFIG KEYS:
 ```
-polybar_color=white/black (DEFAULT: black)
-polybar_compact=true/false (DEFAULT: false)
-picom_enable=true/false (DEFAULT: true)
+polybar_color=black #(OPTIONS: white/black)
+polybar_compact=false #(OPTIONS: true/false)
+polybar_top=false #(OPTIONS: true/false)
+picom_enable=true #(OPTIONS: true/false)
 ```
