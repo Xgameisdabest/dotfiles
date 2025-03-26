@@ -8,7 +8,7 @@ killall -q polybar
 
 if [[ $polybar_color == "black" ]]; then
 for m in $(polybar --list-monitors | cut -d":" -f1); do
-    MONITOR=$m polybar --reload main &
+    MONITOR=$m polybar --reload main_black &
 done
 
 elif [[ $polybar_color == "white" ]]; then
@@ -18,7 +18,7 @@ done
 
 else
 for m in $(polybar --list-monitors | cut -d":" -f1); do
-    MONITOR=$m polybar --reload main &
+    MONITOR=$m polybar --reload main_black &
 done
 
 fi
