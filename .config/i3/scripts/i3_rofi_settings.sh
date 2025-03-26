@@ -12,8 +12,8 @@ rofi_submenu_width=270px
 polybar_submenu_height=255px
 polybar_submenu_width=260px
 
-polybar_bar_config_submenu_height=300px
-polybar_bar_config_submenu_width=320px
+polybar_bar_config_submenu_height=600px
+polybar_bar_config_submenu_width=420px
 
 i3_submenu_height=480px
 i3_submenu_width=385px
@@ -140,24 +140,40 @@ rofi_submenu(){
 ### POLYBAR SUBMENU
 
 polybar_bar_config_submenu(){
-	polybar_cfg_sub_black="  Black Bar"
-	polybar_cfg_sub_white="  White Bar"
-	polybar_cfg_sub_black_compact="  Black Bar Compact"
-	polybar_cfg_sub_white_compact="  White Bar Compact"
-	select3_sub=$(echo -e "$polybar_cfg_sub_black\n$polybar_cfg_sub_white\n$polybar_cfg_sub_black_compact\n$polybar_cfg_sub_white_compact\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_bar_config_submenu_height; width: $polybar_bar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	polybar_cfg_sub_black_bottom="  Black Bar Bottom"
+	polybar_cfg_sub_white_bottom="  White Bar Bottom"
+	polybar_cfg_sub_black_compact_bottom="  Black Bar Compact Bottom"
+	polybar_cfg_sub_white_compact_bottom="  White Bar Compact Bottom"
+	polybar_cfg_sub_black_top="  Black Bar Top"
+	polybar_cfg_sub_white_top="  White Bar Top"
+	polybar_cfg_sub_black_compact_top="  Black Bar Compact Top"
+	polybar_cfg_sub_white_compact_top="  White Bar Compact Top"
+	select3_sub=$(echo -e "$polybar_cfg_sub_black_bottom\n$polybar_cfg_sub_white_bottom\n$polybar_cfg_sub_black_compact_bottom\n$polybar_cfg_sub_white_compact_bottom\n$polybar_cfg_sub_black_top\n$polybar_cfg_sub_white_top\n$polybar_cfg_sub_black_compact_top\n$polybar_cfg_sub_white_compact_top\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_bar_config_submenu_height; width: $polybar_bar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
 	
 	case $select3_sub in
-		$polybar_cfg_sub_black)
-			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_black.ini
+		$polybar_cfg_sub_black_bottom)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_black_bottom.ini
 			;;
-		$polybar_cfg_sub_white)
-			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_white.ini
+		$polybar_cfg_sub_white_bottom)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_white_bottom.ini
 			;;
-		$polybar_cfg_sub_black_compact)
-			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_black_compact.ini
+		$polybar_cfg_sub_black_compact_bottom)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_black_compact_bottom.ini
 			;;
-		$polybar_cfg_sub_white_compact)
-			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_white_compact.ini
+		$polybar_cfg_sub_white_compact_bottom)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_white_compact_bottom.ini
+			;;
+		$polybar_cfg_sub_black_top)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_black_top.ini
+			;;
+		$polybar_cfg_sub_white_top)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_white_top.ini
+			;;
+		$polybar_cfg_sub_black_compact_top)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_black_compact_top.ini
+			;;
+		$polybar_cfg_sub_white_compact_top)
+			$TERMINAL -e nvim ~/.config/polybar/polybar-config/main_white_compact_top.ini
 			;;
 		$goback)
 			polybar_submenu
