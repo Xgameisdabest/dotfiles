@@ -150,7 +150,7 @@ polybar_submenu(){
 			$TERMINAL -e nvim ~/.config/polybar/config.ini
 			;;
 		$polybar_color_sub)
-			$TERMINAL -e nvim ~/.config/polybar/colors.ini
+			$TERMINAL -e nvim ~/.config/polybar/theme/colors.ini
 			;;
 		$bar_start)
 			$TERMINAL -e nvim ~/.config/polybar/launch.sh
