@@ -9,8 +9,8 @@ main_menu_width=265px
 rofi_submenu_height=595px
 rofi_submenu_width=270px
 
-polybar_submenu_height=295px
-polybar_submenu_width=260px
+polybar_submenu_height=335px
+polybar_submenu_width=280px
 
 polybar_bar_config_submenu_height=450px
 polybar_bar_config_submenu_width=420px
@@ -219,9 +219,12 @@ polybar_submenu(){
 	bar_start="󱓞  Bar Startup"
 	
 	#when add new entry make sure to add 35 to height
-	select3=$(echo -e "$polybar_sub\n$polybar_module_sub\n$polybar_color_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_submenu_height; width: $polybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
+	select3=$(echo -e "$polybar_main_cfg_sub\n$polybar_sub\n$polybar_module_sub\n$polybar_color_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $polybar_submenu_height; width: $polybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   ")
 
 	case $select3 in 
+		$polybar_main_cfg_sub)
+			$TERMINAL -e nvim ~/.config/polybar/config.ini
+			;;
 		$polybar_sub)
 			polybar_bar_config_submenu
 			;;
