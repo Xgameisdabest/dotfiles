@@ -28,7 +28,7 @@ if [[ $polybar_top == "true" ]]; then
 	device_list_paired_menu_x_offset=-30px
 	device_list_paired_menu_y_offset=70px
 
-	device_menu_x_offset=-80px
+	device_menu_x_offset=-180px
 	device_menu_y_offset=70px
 else
 	location="south east"
@@ -45,7 +45,7 @@ else
 	device_list_paired_menu_x_offset=-30px
 	device_list_paired_menu_y_offset=-70px
 						
-	device_menu_x_offset=-80px
+	device_menu_x_offset=-180px
 	device_menu_y_offset=-70px
 fi
 
