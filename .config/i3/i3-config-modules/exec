@@ -7,6 +7,7 @@ exec_always --no-startup-id xrandr --output DP-4 --right-of eDP-1 --auto #for au
 exec_always --no-startup-id xrandr --auto #for auto monitor detect
 exec_always --no-startup-id ~/.config/picom/picom_launch.sh #init picom
 exec_always --no-startup-id ~/.config/polybar/launch.sh #init polybar
+exec_always --no-startup-id ~/.config/i3/scripts/redshift_launch.sh #init redshift aka night/eye comfort mode
 #exec --no-startup-id ~/.config/polybar/authide.sh # uncomment for autohide feature
 exec --no-startup-id dunst #init notification daemon
 exec --no-startup-id ~/.config/dunst/volume.sh volume_status #show volume current level on startup
