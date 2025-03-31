@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$PATH:/home/xytozine/.spicetify
+export PATH=$HOME/.spicetify:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 export GTK_IM_MODULE=ibus
