@@ -122,6 +122,7 @@ Here is the list of keybinds for this dotfiles (all of this can be viewed in the
 - Press (win/mod + =) to open the keybinds menu
 - Press (win/mod + i) to open the settings menu (require some knowledge of bash scripting and specific program config syntax)
 - Press (win/mod + r) to open the app menu (alternatively, this can be launched via clicking on the app title on the bar)
+- Press (win/mod + s) to open the web search menu
 - Press (win/mod + -) to toggle the visibility of the bar
 - Press (win/mod + [1 -> 0]) to change the workspace
 - Press (win/mod + shift + [1 -> 0] to move/drop the focused window to the selected number workspace)
