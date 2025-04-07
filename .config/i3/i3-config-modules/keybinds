@@ -34,9 +34,6 @@ bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
 #rofi web search
 bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
 
-#lock the fucking screen
-bindsym $mod+q exec --no-startup-id betterlockscreen -l
-
 #i3 settings
 bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3_rofi_settings.sh
 
