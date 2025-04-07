@@ -22,4 +22,5 @@ exec --no-startup-id kdeconnectd #connect to phone app (REQUIRES KDECONNECT DEPE
 #exec --no-startup-id solaar --window=hide #logitech app
 exec_always --no-startup-id fcitx5 -d #keyboard for multi-language typing
 exec_always --no-startup-id ~/.config/i3/scripts/autotiling/main.py #autotiling script
-exec_always --no-startup-id xss-lock  -- ~/.config/i3/scripts/lock.sh #autolock thing
+exec_always --no-startup-id xss-lock  -- ~/.config/i3/scripts/lock.sh #lock when laptop lid is closed
+exec_always --no-startup-id ~/.config/i3/scripts/auto_sleep.sh #auto sleep, timeout when not used
