@@ -15,6 +15,7 @@ bindsym $mod+f fullscreen toggle
 
 #lock the screen
 bindsym $mod+q exec --no-startup-id betterlockscreen -l
+bindsym $alt+q exec --no-startup-id $TERMINAL -e bash -c "i3-msg fullscreen toggle && tty-clock -cC7Ss"
 
 #hide window
 bindsym $mod+d move scratchpad
