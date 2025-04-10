@@ -102,6 +102,8 @@ ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %F{#94e2d5}%B %f%b"
 ZSH_THEME_GIT_PROMPT_BEHIND=" %F{#f9e2af}%B%f%b"
 ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %F{#f9e2af}%B %f%b"
 
+PS2='%B%F{#797d8a}     ↪%f%b '
+
 # PROMPT=' $(git_prompt_info)
 #  %B%F{yellow} %f %F{white}%~%f
 #  ┗┅%B%F{red}%f '
