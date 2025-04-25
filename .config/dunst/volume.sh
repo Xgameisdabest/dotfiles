@@ -8,7 +8,7 @@ min_volume=0
 notification_timeout=900
 download_album_art=true
 show_album_art=true
-show_music_in_volume_indicator=true
+show_music_in_volume_indicator=false
 
 # Uses regex to get volume from pactl
 function get_volume {
