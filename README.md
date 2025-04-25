@@ -1,6 +1,6 @@
 ## About
 
-___DEVELOP ON UBUNTU 24.10___
+___DEVELOP ON UBUNTU 25.04___
 
 > [!NOTE]
 > THIS PROJECT IS NEARLY A DESKTOP ENVIRONMENT, NO LONGER A TYPICAL LINUX CUSTOM WINDOW MANAGER (I know that might sound funny but it really feels like it)
