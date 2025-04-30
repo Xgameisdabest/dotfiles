@@ -6,9 +6,6 @@ brightness_step=3
 max_volume=153
 min_volume=0
 notification_timeout=900
-download_album_art=true
-show_album_art=true
-show_music_in_volume_indicator=false
 
 # Uses regex to get volume from pactl
 function get_volume {
@@ -54,98 +51,23 @@ function get_brightness_icon {
     brightness_icon=" "
 }
 
-function get_album_art {
-    url=$(playerctl -f "{{mpris:artUrl}}" metadata)
-    if [[ $url == "file://"* ]]; then
-        album_art="${url/file:\/\//}"
-    elif [[ $url == "http://"* ]] && [[ $download_album_art == "true" ]]; then
-        # Identify filename from URL
-        filename="$(echo $url | sed "s/.*\///")"
-
-        # Download file to /tmp if it doesn't exist
-        if [ ! -f "/tmp/$filename" ]; then
-            wget -O "/tmp/$filename" "$url"
-        fi
-
-        album_art="/tmp/$filename"
-    elif [[ $url == "https://"* ]] && [[ $download_album_art == "true" ]]; then
-        # Identify filename from URL
-        filename="$(echo $url | sed "s/.*\///")"
-        
-        # Download file to /tmp if it doesn't exist
-        if [ ! -f "/tmp/$filename" ]; then
-            wget -O "/tmp/$filename" "$url"
-        fi
-
-        album_art="/tmp/$filename"
-    else
-        album_art=""
-    fi
-}
-
 # Displays a volume notification
 function show_volume_notif {
     volume=$(get_mute)
     get_volume_icon
-
-    if [[ $show_music_in_volume_indicator == "true" ]]; then
-        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata)
-
-        if [[ $show_album_art == "true" ]]; then
-            get_album_art
-        fi
-
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" " $volume_icon   $volume%" "$current_song"
-    else
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume " $volume_icon   $volume%"
-    fi
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume " $volume_icon   $volume%"
 }
 
 function show_volume_notif_up {
     volume=$(get_mute)
     get_volume_icon
-
-    if [[ $show_music_in_volume_indicator == "true" ]]; then
-        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata)
-
-        if [[ $show_album_art == "true" ]]; then
-            get_album_art
-        fi
-
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon   $volume%" "$current_song"
-    else
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon   $volume%"
-    fi
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon   $volume%"
 }
 
 function show_volume_notif_down {
     volume=$(get_mute)
     get_volume_icon
-
-    if [[ $show_music_in_volume_indicator == "true" ]]; then
-        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata)
-
-        if [[ $show_album_art == "true" ]]; then
-            get_album_art
-        fi
-
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon   $volume%" "$current_song"
-    else
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon   $volume%"
-    fi
-}
-
-# Displays a music notification
-function show_music_notif {
-    song_title=$(playerctl -f "{{title}}" metadata)
-    song_artist=$(playerctl -f "{{artist}}" metadata)
-    song_album=$(playerctl -f "{{album}}" metadata)
-
-    if [[ $show_album_art == "true" ]]; then
-        get_album_art
-    fi
-
-    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:music_notif -i "$album_art" "$song_title" "$song_artist - $song_album"
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon   $volume%"
 }
 
 # Displays a mic status notification
