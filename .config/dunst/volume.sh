@@ -37,21 +37,21 @@ function get_volume_icon {
     volume=$(get_volume)
     mute=$(get_mute)
     if [ "$mute" == "yes" ] ; then
-        volume_icon="Volume:   "
+        volume_icon="  "
     elif [ "$volume" -lt 25 ]; then
-	volume_icon="Volume:   "
+	volume_icon="  "
     elif [ "$volume" -lt 50 ]; then
-        volume_icon="Volume:   "
+        volume_icon="  "
     elif [ "$volume" -le 100 ]; then 
-        volume_icon="Volume:   "
+        volume_icon="   "
     else 
-	volume_icon="Volume:   "
+	volume_icon="   "
     fi
 }
 
 # Always returns the same icon - I couldn't get the brightness-low icon to work with fontawesome
 function get_brightness_icon {
-    brightness_icon="Brightness:  "
+    brightness_icon="  "
 }
 
 function get_album_art {
@@ -112,9 +112,9 @@ function show_volume_notif_up {
             get_album_art
         fi
 
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon + $volume%" "$current_song"
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon  $volume%" "$current_song"
     else
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon + $volume%"
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon  $volume%"
     fi
 }
 
@@ -129,9 +129,9 @@ function show_volume_notif_down {
             get_album_art
         fi
 
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon - $volume%" "$current_song"
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon  $volume%" "$current_song"
     else
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon - $volume%"
+        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon  $volume%"
     fi
 }
 
@@ -170,14 +170,14 @@ function show_brightness_notif_up {
     brightness=$(get_brightness)
     echo $brightness
     get_brightness_icon
-    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon + $brightness%"
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon  $brightness%"
 }
 
 function show_brightness_notif_down {
     brightness=$(get_brightness)
     echo $brightness
     get_brightness_icon
-    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon - $brightness%"
+    notify-send -t $notification_timeout -h string:x-dunst-stack-tag:brightness_notif -h int:value:$brightness "$brightness_icon  $brightness%"
 }
 
 # Main function - Takes user input, "volume_up", "volume_down", "brightness_up", or "brightness_down"
