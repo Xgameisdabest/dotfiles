@@ -4,10 +4,14 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=300px
+main_menu_height=335px
 main_menu_width=400px
 playback_menu_height=150px
 playback_menu_width=270px
+manual_menu_height=90px
+manual_menu_width=480px
+
+volume_script=~/.config/dunst/volume.sh
 
 polybar_top=${polybar_top:-false}
 
@@ -28,6 +32,10 @@ if [[ $polybar_top == "true" ]]; then
 
 	devconfig_menu_x_offset=-10px
 	devconfig_menu_y_offset=70px
+
+	manual_menu_x_offset=-20px
+	manual_menu_y_offset=70px
+
 else
 	location="south east"
 
@@ -45,6 +53,10 @@ else
 
 	devconfig_menu_x_offset=-10px
 	devconfig_menu_y_offset=-70px
+
+	manual_menu_x_offset=-20px
+	manual_menu_y_offset=-70px
+
 fi
 
 #main
@@ -56,8 +68,9 @@ playback_opt="Playback 󰐎"
 outputdev_opt="Output 󰜟"
 inputdev_opt="Input 󱦉"
 devconfig_opt="Configuration "
+manual_volume_opt="Volume "
 
-opt_list="$playback_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$quit"
+opt_list="$manual_volume_opt\n$playback_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$quit"
 
 ouput_dev_card=$(pactl list cards | grep "device.name" | sed 's/device.name =//g' | sed 's/"//g' | sed 's/\t//g' | sed 's/ //g')
 current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | sed 's/bluez_output.//g' |  sed 's/\..*//')
@@ -79,7 +92,26 @@ main_menu(){
 		$devconfig_opt)
 			devconfig_func
 			;;
+		$manual_volume_opt)
+			manual_set_volume_func
+			;;
 	esac
+}
+
+manual_set_volume_func(){
+	input_vol_percent=$(rofi -dmenu -i -p " Volume   (From 0 -> 153) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $manual_menu_height; width: $manual_menu_width; location: $location; x-offset: $manual_menu_x_offset; y-offset: $manual_menu_y_offset;}")
+	case $input_vol_percent in
+	"")
+		exit 0
+		;;
+	esac
+	if [[ $input_vol_percent -lt 0 ]] || [[ $input_vol_percent -gt 153 ]]; then
+		main_menu
+	else
+		pactl set-sink-volume @DEFAULT_SINK@ $input_vol_percent%
+		$volume_script volume_status
+		main_menu
+	fi
 }
 
 playback_func(){
@@ -90,29 +122,32 @@ playback_func(){
 	next_track_var="󰒭"
 	prev_track_var="󰒮"
 	pause_track_var="󰐎"
-	select_playback=$(echo -e "$minus\n$mute\n$up\n$back"  | rofi -dmenu -i -theme-str "window {height: $playback_menu_height; width: $playback_menu_width; location: $location; x-offset: $playback_menu_x_offset; y-offset: $playback_menu_y_offset;}" -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
+	select_playback=$(echo -e "$prev_track_var\n$mute\n$next_track_var\n$back"  | rofi -dmenu -i -theme-str "window {height: $playback_menu_height; width: $playback_menu_width; location: $location; x-offset: $playback_menu_x_offset; y-offset: $playback_menu_y_offset;}" -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
 	
 	case $select_playback in
 		$up)
-			~/.config/dunst/volume.sh volume_up
+			$volume_script volume_up
 			playback_func
 		;;
 		$minus)
-			~/.config/dunst/volume.sh volume_down
+			$volume_script volume_down
 			playback_func
 		;;
 		$mute)
-			~/.config/dunst/volume.sh volume_mute
+			$volume_script volume_mute
 			playback_func
 		;;
 		$next_track_var)
-			~/.config/dunst/volume.sh next_track
+			$volume_script next_track
+			playback_func
 		;;
 		$prev_track_var)
-			~/.config/dunst/volume.sh prev_track
+			$volume_script prev_track
+			playback_func
 		;;
 		$pause_track_var)
-			~/.config/dunst/volume.sh play_pause
+			$volume_script play_pause
+			playback_func
 		;;
 		$back)
 			main_menu
