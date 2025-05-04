@@ -50,6 +50,23 @@ HIST_STAMPS="%T %d/%m/%y"
 HISTSIZE=9999
 source $ZSH/oh-my-zsh.sh
 
+#function for verbose cd command
+vcd() {
+    local home_dir="$HOME"
+
+    if [ -z "$1" ]; then
+        local prev_dir=$(pwd)
+        cd ~ && echo "Jumped from: $(echo "$prev_dir" | sed "s|^$home_dir|~|") -> $(pwd | sed "s|^$home_dir|~|")"
+
+    elif [ "$1" = "." ]; then
+        echo "Already in the current directory: $(pwd | sed "s|^$home_dir|~|")"
+
+    else
+        local prev_dir=$(pwd)
+        cd "$1" && echo "Jumped from: $(echo "$prev_dir" | sed "s|^$home_dir|~|") -> $(pwd | sed "s|^$home_dir|~|")"
+    fi
+}
+
 #ALIASES
 alias consoleconfig="sudo dpkg-reconfigure console-setup "
 alias i3config="cd ~/.config/i3/"
@@ -65,6 +82,7 @@ alias rmdir="rmdir -v"
 alias mkdir="mkdir -v"
 alias mv="mv -v"
 alias cp="cp -v"
+alias cd="vcd" #calls the above cd verbose function
 alias du="du -h"
 alias ls=lsd
 alias lss=/usr/bin/ls
