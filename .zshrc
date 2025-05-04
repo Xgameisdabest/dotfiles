@@ -61,7 +61,7 @@ vcd() {
 
     local home_dir="$HOME"
     if [ -z "$1" ]; then
-	    if [ "$(pwd)" != "$home_dir" ]; then
+	if [ "$(pwd)" != "$home_dir" ]; then
         	local prev_dir=$(pwd)
         	cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
 	else
