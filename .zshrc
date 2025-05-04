@@ -54,16 +54,23 @@ source $ZSH/oh-my-zsh.sh
 vcd() {
     local home_dir="$HOME"
 
+    # color codes
+    local green='\033[1;32m'
+    local red='\033[1;31m'
+    local cyan='\033[0;36m'
+    local yellow='\e[0;33m'
+    local reset='\033[0m'
+
     if [ -z "$1" ]; then
         local prev_dir=$(pwd)
-        cd ~ && echo "Jumped from: $(echo "$prev_dir" | sed "s|^$home_dir|~|") -> $(pwd | sed "s|^$home_dir|~|")"
+        cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
 
     elif [ "$1" = "." ]; then
-        echo "Already in the current directory: $(pwd | sed "s|^$home_dir|~|")"
+        echo "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$home_dir|~|")"${reset}
 
     else
         local prev_dir=$(pwd)
-        cd "$1" && echo "Jumped from: $(echo "$prev_dir" | sed "s|^$home_dir|~|") -> $(pwd | sed "s|^$home_dir|~|")"
+        cd "$1" && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
     fi
 }
 
