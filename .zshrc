@@ -52,8 +52,6 @@ source $ZSH/oh-my-zsh.sh
 
 #function for verbose cd command
 vcd() {
-    local home_dir="$HOME"
-
     # color codes
     local green='\033[1;32m'
     local red='\033[1;31m'
@@ -61,16 +59,25 @@ vcd() {
     local yellow='\e[0;33m'
     local reset='\033[0m'
 
+    local home_dir="$HOME"
     if [ -z "$1" ]; then
-        local prev_dir=$(pwd)
-        cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
+	    if [ "$(pwd)" != "$home_dir" ]; then
+        	local prev_dir=$(pwd)
+        	cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
+	else
+		echo "${yellow}Already in the ${green}home${yellow} directory!${reset}"
+	fi
 
     elif [ "$1" = "." ]; then
         echo "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$home_dir|~|")"${reset}
 
     else
         local prev_dir=$(pwd)
-        cd "$1" && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
+        if cd "$1" 2>/dev/null; then
+            echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
+        else
+            echo -e "${red}Failed to change directory to '$1'!${reset}"
+        fi
     fi
 }
 
