@@ -59,8 +59,8 @@ source ~/.config/dtf-config/config
 if [[ "$verbose_coreutils_output" == "true" ]]; then
 	source ~/.coreutils_vb_rework.sh
 	alias cd="cd_verbose" # Calls the verbose cd function
-	alias mkdir="mkdir -v" # Calls the verbose mkdir function
-	#alias touch="touch_verbose" # Calls the verbose touch function
+	alias mkdir="mkdir_rework_verbose"
+	alias touch="touch_verbose" # Calls the verbose touch function
 	alias rm="rm -v"
 	alias rmdir="rmdir -v"
 	alias mv="mv -v"

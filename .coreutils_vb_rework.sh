@@ -55,8 +55,11 @@ mkdir_rework_verbose() {
         else
             mkdir -m "$mode" "$1" && echo -e "${cyan}Directory created with permission ${green}$mode${cyan}! Name: ${green}$1${reset}"
         fi
-    elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    elif [ "$1" = "--help" ]; then
         command mkdir --help
+        return 0
+    elif [ "$1" = "--version" ]; then
+        command mkdir --version
         return 0
     else
         mkdir "$1" && echo -e "${cyan}Directory created! Name: ${green}$1${reset}"
@@ -85,9 +88,13 @@ touch_verbose() {
         else
             touch -t "$timestamp" "$1" && echo -e "${cyan}File touched with timestamp ${green}$timestamp${cyan}. File: ${green}$1${reset}"
         fi
-    elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    elif [ "$1" = "--help" ]; then
         command touch --help
         return 0
+    elif [ "$1" = "--version" ]; then
+        command touch --version
+        return 0
+
     else
         touch "$1" && echo -e "${cyan}File created/touched! Name: ${green}$1${reset}"
     fi
