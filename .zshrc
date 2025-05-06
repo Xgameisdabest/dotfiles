@@ -14,6 +14,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export MANPATH="/usr/local/man:$MANPATH"
 
+#PACSTALL COMPLETION
 autoload bashcompinit
 bashcompinit
 source /usr/share/bash-completion/completions/pacstall
@@ -51,36 +52,20 @@ HISTSIZE=9999
 source $ZSH/oh-my-zsh.sh
 
 #function for verbose cd command
-vcd() {
-    # color codes
-    local green='\033[1;32m'
-    local red='\033[1;31m'
-    local cyan='\033[0;36m'
-    local yellow='\e[0;33m'
-    local reset='\033[0m'
+source ~/.config/dtf-config/config
 
-    local home_dir="$HOME"
-    if [ -z "$1" ] || [ "$1" = ~ ]; then
-	if [ "$(pwd)" != "$home_dir" ]; then
-        	local prev_dir=$(pwd)
-        	cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
-	else
-		echo "${yellow}Already in the ${green}home${yellow} directory!${reset}"
-	fi
+: ${verbose_coreutils_output:=true}
 
-    elif [ "$1" = "." ]; then
-        echo "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$home_dir|~|")"${reset}
-
-    else
-        local prev_dir=$(pwd)
-        if cd "$1" 2>/dev/null; then
-            echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
-        else
-            echo -e "${red}Failed to change directory to '$1'!${reset}"
-	    echo -e "${red}Maybe create it with ${green}'mkdir $1/'${red}?${reset}"
-        fi
-    fi
-}
+if [[ "$verbose_coreutils_output" == "true" ]]; then
+	source ~/.coreutils_vb_rework.sh
+	alias cd="cd_verbose" # Calls the verbose cd function
+	alias mkdir="mkdir_rework_verbose" # Calls the verbose mkdir function
+	alias touch="touch_verbose" # Calls the verbose touch function
+	alias rm="rm -v"
+	alias rmdir="rmdir -v"
+	alias mv="mv -v"
+	alias cp="cp -v"
+fi
 
 #ALIASES
 alias consoleconfig="sudo dpkg-reconfigure console-setup "
@@ -92,12 +77,6 @@ alias zshreload="source ~/.zshrc"
 alias open=xdg-open
 alias poweroff="sudo poweroff"
 alias cls=clear
-alias rm="rm -v"
-alias rmdir="rmdir -v"
-alias mkdir="mkdir -v"
-alias mv="mv -v"
-alias cp="cp -v"
-alias cd="vcd" #calls the above cd verbose function
 alias du="du -h"
 alias ls=lsd
 alias lss=/usr/bin/ls
