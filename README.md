@@ -78,7 +78,7 @@ V3 (up-to-date)
 
 Install most important dependencies (for ```apt```)
 ```
-sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light
+sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty
 ```
 
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
@@ -106,7 +106,8 @@ sudo updatedb
 i3-msg restart
 ```
 
-REMEMBER TO ADD ```TERMINAL=/usr/bin/alacritty``` TO ```/etc/environment```
+> [!NOTE]
+> REMEMBER TO ADD ```TERMINAL=/usr/bin/alacritty``` TO ```/etc/environment``` OR IF YOU USE KITTY ```TERMINAL=/usr/bin/kitty``` TO ```/etc/environment``` OR ANY TERMINAL APP PATH TO ```/etc/environment```
 
 ## USAGE
 
