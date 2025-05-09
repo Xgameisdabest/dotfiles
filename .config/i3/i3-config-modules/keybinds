@@ -27,7 +27,8 @@ bindsym $mod+c exec --no-startup-id librewolf
 bindsym $mod+m exec --no-startup-id waypaper
 
 #terminal
-bindsym $mod+t exec --no-startup-id alacritty
+#bindsym $mod+t exec --no-startup-id alacritty
+bindsym $mod+t exec --no-startup-id kitty
 bindsym $alt+t exec --no-startup-id alacritty-smooth #alacritty smooth cursor dependency
 bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
 
