@@ -73,8 +73,30 @@ V3 (up-to-date)
 ## Installation
 
 > [!NOTE]
-> picom is a dependency that needs to install and build from source in order to work correctly.
+> ```Picom``` is a dependency that needs to be installed and build from source in order to work correctly.
 > [Install and build picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)
+
+> [!NOTE]
+> From what I have experienced, the terminal emulator ```kitty``` starts quite slow when installed from apt (from apt is 0.50 seconds, from source is 0.15 seconds), so it is highly recommend to build it from source.
+> [Link to build kitty from source](https://sw.kovidgoyal.net/kitty/build/)
+
+My way to install and build kitty from source:
+```
+mkdir testenv && cd testenv
+git clone https://github.com/kovidgoyal/kitty.git && cd kitty
+./dev.sh build
+ln -s ~/testenv/kitty/kitty/launcher/kitty ~/.local/bin/
+```
+
+To maintain kitty, I created a file in kitty repo directory and named it as update_kitty.sh and give it permission to run ```chmod +x update_kitty.sh```
+```
+#!/bin/bash
+
+git pull
+./dev.sh deps
+./dev.sh build --debug
+sudo rm -rf ~/go/ && echo "Build deps removed!"
+```
 
 Install most important dependencies (for ```apt```)
 ```
