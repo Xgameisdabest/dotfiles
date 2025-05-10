@@ -107,7 +107,8 @@ i3-msg restart
 ```
 
 > [!NOTE]
-> REMEMBER TO ADD ```TERMINAL=/usr/bin/alacritty``` TO ```/etc/environment``` OR IF YOU USE KITTY ```TERMINAL=/usr/bin/kitty``` TO ```/etc/environment``` OR ANY TERMINAL APP PATH TO ```/etc/environment```
+> REMEMBER TO ADD ```TERMINAL=alacritty``` TO ```/etc/environment``` OR IF YOU USE KITTY ```TERMINAL=kitty``` TO ```/etc/environment``` OR ANY TERMINAL APP PATH TO ```/etc/environment```
+> IT IS HIGHLY RECOMMENDED TO USE KITTY AS THIS DOTFILES IS USING KITTY! SO PUT ```TERMINAL=kitty``` INTO ```/etc/environment```
 
 ## USAGE
 
