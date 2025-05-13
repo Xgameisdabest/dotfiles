@@ -15,6 +15,9 @@ case $SELECTED in
 	$goback)
 		~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds
 		;;
+	"")
+		exit 0
+		;;
 	*)
 		notify-send "$SELECTED"
 		;;
