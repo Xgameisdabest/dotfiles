@@ -30,9 +30,11 @@ icon_state_func(){
 case "$BATTERY_STATE" in
 	"charging") 
 		BATTERY_CHARGING="Charging 󰂅"
+		notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
 		;;
 	"discharging") 
 		BATTERY_CHARGING="Discharging 󰁹"
+		notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
 		;;
 	"status")
 		icon_state_func
