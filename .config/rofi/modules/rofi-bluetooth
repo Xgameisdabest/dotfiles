@@ -149,19 +149,37 @@ device_connected() {
 }
 
 toggle_connection() {
+    # Ensure the agent is active and automatically accepts requests
+    bluetoothctl default-agent
+    bluetoothctl agent on
+
     if device_connected "$1"; then
-       	notify-send "Cancelling Connection With Device $device_name"
-	bluetoothctl disconnect "$1"
-	notify-send "Successfully Disconnected Device $device_name"
+        # If already connected, disconnect it
+        notify-send "Cancelling Connection With Device $device_name"
+        bluetoothctl disconnect "$1"
+        notify-send "Successfully Disconnected Device $device_name"
         device_menu "$device"
     else
-	notify-send "Establishing Connection With Device $device_name"
+        # If not connected, connect and ensure the device is paired and trusted
+        notify-send "Establishing Connection With Device $device_name"
+	
+	# The magic line that solves everything
+	bluetoothctl pairable on
+
+	# Pair the device if not already paired
+        bluetoothctl pair "$1"
+        notify-send "Paired with Device $device_name"
+
+	# Trust the device if not already trusted
+        bluetoothctl trust "$1"
+        notify-send "Trusted Device $device_name"
+
+        # Connect to the device
         bluetoothctl connect "$1"
-	notify-send "Successfully Connected To Device $device_name"
+        notify-send "Successfully Connected To Device $device_name"
         device_menu "$device"
     fi
 }
-
 device_paired() {
     device_info=$(bluetoothctl info "$1")
     if echo "$device_info" | grep -q "Paired: yes"; then

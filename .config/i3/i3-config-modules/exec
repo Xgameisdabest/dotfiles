@@ -5,7 +5,7 @@ exec_always --no-startup-id xrandr --output DP-2 --right-of eDP-1 --auto #for au
 exec_always --no-startup-id xrandr --output DP-3 --right-of eDP-1 --auto #for auto monitor detect, laptop only
 exec_always --no-startup-id xrandr --output DP-4 --right-of eDP-1 --auto #for auto monitor detect, laptop only
 exec_always --no-startup-id xrandr --auto #for auto monitor detect
-exec --no-startup-id autorandr --change #for an already preconfigured monitor setup. Require autorandr. One time thing
+exec_always --no-startup-id autorandr --change --default default #for an already preconfigured monitor setup. Require autorandr.
 exec_always --no-startup-id ~/.config/picom/picom_launch.sh #init picom
 exec_always --no-startup-id ~/.config/polybar/launch.sh #init polybar
 exec_always --no-startup-id ~/.config/i3/scripts/redshift_launch.sh #init redshift aka night/eye comfort mode
