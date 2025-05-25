@@ -168,7 +168,7 @@ toggle_connection() {
 
 	# Pair the device if not already paired
         bluetoothctl pair "$1"
-        notify-send "Paired with Device $device_name"
+        notify-send "Paired With Device $device_name"
 
 	# Trust the device if not already trusted
         bluetoothctl trust "$1"
