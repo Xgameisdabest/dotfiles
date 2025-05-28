@@ -30,7 +30,7 @@ bindsym $mod+m exec --no-startup-id waypaper
 #bindsym $mod+t exec --no-startup-id alacritty
 bindsym $mod+t exec --no-startup-id kitty
 bindsym $alt+t exec --no-startup-id alacritty-smooth #alacritty smooth cursor dependency
-bindsym $mod+Shift+t exec --no-startup-id alacritty -e byobu
+bindsym $mod+Shift+t exec --no-startup-id kitty -e byobu
 
 #rofi web search
 bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
