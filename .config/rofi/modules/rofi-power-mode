@@ -36,16 +36,19 @@ power_mode_status="$(powerprofilesctl get)"
 
 set_mode_performace() {
 	powerprofilesctl set performance
+	light -S 100
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
 }
 
 set_mode_balanced() {
 	powerprofilesctl set balanced
+	light -S 79
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to balance mode 󰾅"
 }
 
 set_mode_power_saver() {
 	powerprofilesctl set power-saver
+	light -S 61
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to power-saver mode 󰾆"
 }
 
