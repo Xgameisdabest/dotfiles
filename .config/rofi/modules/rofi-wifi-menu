@@ -40,6 +40,7 @@ fi
 #main
 connected_symbol="󰓢󱚽 "
 goback="Back 󰌍 "
+goback_wifilist="Back 󰌍 (To Refresh)"
 quit="Exit 󰈆 "
 
 main_menu(){
@@ -128,9 +129,9 @@ wifi_list_fn(){
 
 	wifi_list=$(nmcli --fields "IN-USE,SECURITY,SSID,BARS,FREQ" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S//g" | sed 's/802.1X/ /g' | sed "s/ / /g" | sed "s/--/ /g" | sed "s/  //g" | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g" | sed -E "s/(2[4-6][0-9]{2}) MHz/ 2.4 GHz/g" | sed -E "s/(5[0-9]{3}) MHz/ 5.0 GHz/g" | awk '!seen[$3 $NF]++' | sed "s/*/$connected_symbol/g")
 	
-	chosen_network=$(echo -e "$wifi_list\n$goback\n$quit" | rofi -dmenu -i -p " Wifi 󱚻 : " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
+	chosen_network=$(echo -e "$wifi_list\n$goback_wifilist\n$quit" | rofi -dmenu -i -p " Wifi 󱚻 : " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
 	echo $chosen_network
-	if [[ $chosen_network == $goback ]]; then
+	if [[ $chosen_network == $goback_wifilist ]]; then
 		main_menu
 	elif [[ $chosen_network == $quit || $chosen_network == "" ]]; then
 		exit 0
