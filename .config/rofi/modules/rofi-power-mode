@@ -55,39 +55,6 @@ set_mode_power_saver() {
 	~/.config/dunst/volume.sh brightness_status
 }
 
-# if [[ $1 == "--scroll-up" ]]; then
-# 	if [[ $power_mode_status == "performance" ]]; then
-# 		set_mode_performace
-# 		exit 0
-# 	elif [[ $power_mode_status == "balanced" ]]; then
-# 		set_mode_performace
-# 		exit 0
-# 	elif [[ $power_mode_status == "power-saver" ]]; then
-# 		set_mode_balanced
-# 		exit 0
-# 	fi
-#
-# elif [[ $1 == "--scroll-down" ]]; then
-# 	if [[ $power_mode_status == "performance" ]]; then
-# 		set_mode_balanced
-# 		exit 0
-# 	elif [[ $power_mode_status == "balanced" ]]; then
-# 		set_mode_power_saver
-# 		exit 0
-# 	elif [[ $power_mode_status == "power-saver" ]]; then
-# 		exit 0
-# 		set_mode_power_saver
-# 	fi
-# fi
-#
-# if [[ $status == "Discharging" ]]; then
-# 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode "Battery Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $power_mode_status"
-# elif [[ $status == "Charging" ]]; then
-# 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode "Charge Time Remaining: $(acpi -b | grep -oP '\d{1,2}:\d{2}:\d{2}')" "CURRENT PROFILE: $power_mode_status"
-# elif [[ $status == "Full" ]]; then
-# 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode "Battery Full 󱐋" "CURRENT PROFILE: $power_mode_status"
-# fi
-
 rofi_cmd() {
 	if [[ $status == "Discharging" ]]; then
 		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
