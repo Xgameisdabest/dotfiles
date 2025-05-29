@@ -138,7 +138,7 @@ sudo touch /etc/udev/rules.d/60-power.rules
 
 # Add the following to /etc/udev/rules.d/60-power.rules (replace USERNAME with your current username)
 ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/USERNAME/.Xauthority" RUN+="/usr/bin/su USERNAME -c '/home/USERNAME/.config/dunst/bat_status.sh discharging'"
-ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/USERNAME/.Xauthority" RUN+="/usr/bin/su USERNAME -c '/home/USERNAME/.config/dunst/bat_status.sh charging && /home/USERNAME/.config/dunst/power_mode_change.sh --performance'"
+ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/USERNAME/.Xauthority" RUN+="/usr/bin/su USERNAME -c '/home/USERNAME/.config/dunst/bat_status.sh charging'"
 
 #idea from eric murphy, go check him out on youtube
 ```
@@ -191,5 +191,4 @@ picom_enable=true #(OPTIONS: true/false)
 autostart_night_mode=false #(OPTIONS: true/false)
 auto_sleep=true #(OPTIONS: true/false)
 verbose_coreutils_output=true #(OPTIONS: true/false)
-performance_mode_when_plugged=false #(OPTIONS: true/false)
 ```
