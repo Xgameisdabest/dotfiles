@@ -191,4 +191,5 @@ picom_enable=true #(OPTIONS: true/false)
 autostart_night_mode=false #(OPTIONS: true/false)
 auto_sleep=true #(OPTIONS: true/false)
 verbose_coreutils_output=true #(OPTIONS: true/false)
+autorandr_on_reload=false #(OPTIONS: true/false)
 ```
