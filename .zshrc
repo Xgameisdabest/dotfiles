@@ -67,15 +67,6 @@ if [[ "$verbose_coreutils_output" == "true" ]]; then
 	alias cp="cp -v"
 fi
 
-#for the custom alternative ls command, a good fix.
-lsd_check() {
-if command -v lsd &> /dev/null; then
-    lsd
-else
-    ls
-fi
-}
-
 #ALIASES
 alias consoleconfig="sudo dpkg-reconfigure console-setup "
 alias i3config="cd ~/.config/i3/"
@@ -87,7 +78,7 @@ alias open=xdg-open
 alias poweroff="sudo poweroff"
 alias cls=clear
 alias du="du -h"
-alias ls=lsd_check
+alias ls=lsd
 alias lss=/usr/bin/ls
 alias py=python3
 alias update="sudo apt update"
