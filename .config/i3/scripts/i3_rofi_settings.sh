@@ -18,6 +18,9 @@ polybar_bar_config_submenu_width=420px
 polybar_module_config_submenu_height=300px
 polybar_module_config_submenu_width=420px
 
+picom_submenu_height=255px
+picom_submenu_width=465px
+
 i3_submenu_height=480px
 i3_submenu_width=385px
 
@@ -27,7 +30,7 @@ quit="Exit 󰈆 "
 i3config="󰨇  i3 Desktop  "
 polybar="  Polybar  "
 btrlockscreen="󰷛  Lock Screen"
-picomconfig="󰢹  Picom"
+picomconfig="󰢹  Picom  "
 arandr="󰨤  Resolution"
 wallpaper="  Wallpaper"
 gestures="󱠡  Gestures"
@@ -45,7 +48,7 @@ main_menu(){
 			i3_submenu
 			;;
 		$picomconfig)
-			$TERMINAL -e nvim ~/.config/picom/picom.conf
+			picom_submenu
 			;;
 		$arandr)
 			arandr
@@ -74,6 +77,31 @@ main_menu(){
 		$quit)
 			echo "exit"
 			exit 0
+			;;
+	esac
+}
+
+### PICOM SUBMENU
+
+picom_submenu(){
+	trans_when_unfocused="󰢹  Transparent When Unfocused"
+	not_trans_when_unfocused="󰢹  Not Transparent When Unfocused"
+	picom_start="󱓞  Compositor Launch"
+	
+	select5=$(echo -e "$trans_when_unfocused\n$not_trans_when_unfocused\n$picom_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $picom_submenu_height; width: $picom_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Picom   ")
+
+	case $select5 in
+		$trans_when_unfocused)
+			$TERMINAL -e nvim ~/.config/picom/picom_trans_unfocus.conf
+			;;
+		$not_trans_when_unfocused)
+			$TERMINAL -e nvim ~/.config/picom/picom_no_trans_unfocus.conf
+			;;
+		$picom_start)
+			$TERMINAL -e nvim ~/.config/picom/picom_launch.sh
+			;;
+		$goback)
+			main_menu
 			;;
 	esac
 }
