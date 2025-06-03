@@ -1,0 +1,65 @@
+#!/bin/bash
+### ROFI SUBMENU
+
+rofi_submenu_height=595px
+rofi_submenu_width=270px
+
+rofi_submenu(){
+	rofi_sub="󰮫  Config"
+	wifi="󱛃  Wifi"
+	bluetooth="󰂳  Bluetooth"
+	sound_setting="󱄠  Audio"
+	pwr_menu="  Power Menu"
+	pwr_mode="󰾆  Power Mode"
+	web_search="  Web Search"
+	calendar="  Calendar"
+	i3_settings_menu="  Settings Menu"
+	notifications_hist="󰵙  Notification"
+	os_about="󰟀  Machine Info"
+	redshift="  Night Mode"
+	
+	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$os_about\n$redshift\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
+	
+	case $select2 in
+		$rofi_sub)
+			$TERMINAL -e nvim ~/.config/rofi/config.rasi
+			;;
+		$wifi)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-wifi-menu
+			;;
+		$bluetooth)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-bluetooth
+			;;
+		$pwr_menu)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-menu
+			;;
+		$pwr_mode)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-mode
+			;;
+		$web_search)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-web-search
+			;;
+		$calendar)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-calendar
+			;;
+		$i3_settings_menu)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-i3-settings
+			;;
+		$notifications_hist)
+			$TERMINAL -e nvim ~/.config/dunst/noti-center.sh
+			;;
+		$sound_setting)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
+			;;
+		$os_about)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-os-about
+			;;
+		$redshift)
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-redshift
+			;;
+		$goback)
+			main_menu
+			;;
+	esac
+
+}

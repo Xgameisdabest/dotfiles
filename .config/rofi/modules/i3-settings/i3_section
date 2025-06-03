@@ -1,0 +1,54 @@
+#!/bin/bash
+### I3 SUBMENU
+
+i3_submenu_height=480px
+i3_submenu_width=385px
+
+i3_submenu(){
+
+	i3_sub="  Main Config"
+	i3_workspace="  Workspaces"
+	exec="  Launch On Startup"
+	coloring="  Colors"
+	gaps_border="󰃐  Gaps And Border"
+	for_window_rules="!  Window Rules"
+	system_keybinds="  System Keybinds 󰌏 "
+	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
+	special_key_keybinds="󰘲  Special Key Keybinds 󰌏 "
+
+	select4=$(echo -e "$i3_sub\n$i3_workspace\n$exec\n$coloring\n$gaps_border\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $i3_submenu_height; width: $i3_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " i3wm   ")
+
+	case $select4 in
+		$i3_sub)
+			$TERMINAL -e nvim ~/.config/i3/config
+			;;
+		$i3_workspace)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/workspace
+			;;
+		$exec)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/exec
+			;;
+		$coloring)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/coloring
+			;;
+		$for_window_rules)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/for_window_rules
+			;;
+		$system_keybinds)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/i3_system_keybinds
+			;;
+		$special_key_keybinds)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/special_keys_keybinds
+			;;
+		$app_keybinds)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/keybinds
+			;;
+		$gaps_border)
+			$TERMINAL -e nvim ~/.config/i3/i3-config-modules/gaps_and_border
+			;;
+		$goback)
+			main_menu
+			;;
+	esac
+}
+

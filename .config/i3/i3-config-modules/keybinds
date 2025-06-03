@@ -35,9 +35,6 @@ bindsym $mod+Shift+t exec --no-startup-id kitty -e byobu
 #rofi web search
 bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
 
-#i3 settings
-bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3_rofi_settings.sh
-
 #close focused window
 bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 

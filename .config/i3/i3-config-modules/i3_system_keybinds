@@ -92,5 +92,8 @@ bindsym $alt+comma exec --no-startup-id i3-msg layout stacking && notify-send -h
 bindsym $alt+period exec --no-startup-id i3-msg layout tabbed && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window tab stacking enabled 󰖲"
 bindsym $alt+slash exec --no-startup-id i3-msg layout toggle split && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window split enabled 󰟘"
 
+#i3 settings
+bindsym $mod+i exec --no-startup-id ~/.config/rofi/modules/i3-settings/rofi-i3-settings
+
 # show help menu
 bindsym $mod+equal exec --no-startup-id ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds
