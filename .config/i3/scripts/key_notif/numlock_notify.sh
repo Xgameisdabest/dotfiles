@@ -4,6 +4,13 @@ notification_timeout=750
 prev_state=""
 
 while true; do
+source ~/.config/dtf-config/config
+
+num_lock_notification=${num_lock_notification:-true}
+
+if [[ $num_lock_notification == "false" ]]; then
+	break
+else
     current_state=$(xset q | grep "Num Lock" | awk '{print $8}')
     
     if [ "$current_state" != "$prev_state" ]; then
@@ -16,4 +23,5 @@ while true; do
     fi
 
     sleep 0.2
+fi
 done

@@ -57,8 +57,8 @@ notifications=$(dunstctl history | jq -r '
 	(.summary.data | contains("") | not) and
 	(.summary.data | contains("Charging 󰂅") | not) and
 	(.summary.data | contains("Discharging 󰁹") | not) and
-	(.summary.data | contains("󰪛 ") | not) and
-	(.summary.data | contains("󰪛 ") | not) and
+	(.summary.data | contains("") | not) and
+	(.summary.data | contains("") | not) and
 	(.summary.data | contains("") | not)) |
     "\(.summary.data)"
 ')

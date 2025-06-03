@@ -25,5 +25,5 @@ exec_always --no-startup-id fcitx5 -d #keyboard for multi-language typing
 exec_always --no-startup-id ~/.config/i3/scripts/autotiling/main.py #autotiling script
 exec_always --no-startup-id xss-lock  -- ~/.config/i3/scripts/lock.sh #lock when laptop lid is closed
 exec_always --no-startup-id ~/.config/i3/scripts/auto_sleep.sh #auto sleep, timeout when not used
-exec --no-startup-id ~/.config/i3/scripts/key_notif/capslock_notify.sh #caps lock notification
-exec --no-startup-id ~/.config/i3/scripts/key_notif/numlock_notify.sh #numlock notification
+exec_always --no-startup-id ~/.config/i3/scripts/key_notif/capslock_notify.sh #caps lock notification
+exec_always --no-startup-id ~/.config/i3/scripts/key_notif/numlock_notify.sh #numlock notification

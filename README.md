@@ -188,4 +188,6 @@ auto_sleep=true #(OPTIONS: true/false)
 verbose_coreutils_output=true #(OPTIONS: true/false)
 autorandr_on_reload=false #(OPTIONS: true/false)
 transparent_window_when_unfocus=true #(OPTIONS: true/false)
+caps_lock_notification=true #(OPTIONS: true/false)
+num_lock_notification=true #(OPTIONS: true/false)
 ```
