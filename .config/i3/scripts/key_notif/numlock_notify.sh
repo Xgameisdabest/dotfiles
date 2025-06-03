@@ -1,14 +1,6 @@
 #!/bin/bash
 
 notification_timeout=750
-
-# Check if dependencies are available
-if ! command -v xset &> /dev/null || ! command -v notify-send &> /dev/null; then
-    echo "Error: This script requires 'xset' and 'notify-send'."
-    exit 1
-fi
-
-# Initialize previous state
 prev_state=""
 
 while true; do
