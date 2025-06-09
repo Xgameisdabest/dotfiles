@@ -1,7 +1,7 @@
 #!/bin/bash
 ### DUNST SUBMENU
 
-i3_setting_submenu_height=400px
+i3_setting_submenu_height=405px
 i3_setting_submenu_width=285px
 
 i3_setting_submenu(){
@@ -13,7 +13,7 @@ i3_setting_submenu(){
 	polybar_section="󰅍  Polybar"
 	i3_settings_section="󰅍  This Menu"
 
-	select10=$(echo -e "$main_config\n$i3_section\n$dunst_section\n$picom_section\n$rofi_section\n$polybar_section\n$i3_settings_section\n$goback" | rofi -dmenu -i -theme-str "window {height: $i3_setting_submenu_height; width: $i3_setting_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu Config   ")
+	select10=$(echo -e "$main_config\n$i3_settings_section\n$i3_section\n$dunst_section\n$picom_section\n$rofi_section\n$polybar_section\n$goback" | rofi -dmenu -i -theme-str "window {height: $i3_setting_submenu_height; width: $i3_setting_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu Config   ")
 
 	case $select10 in
 		$i3_section)
