@@ -3,23 +3,16 @@
 # default options
 display_on=0
 span_image=false
-lock_timeout=10
 dim_level=40
 blur_level=1
 pixel_scale=10,1000
 wallpaper_cmd="feh --bg-fill"
 quiet=false
-#
-# default theme
-#loginbox=#00000000
-#loginshadow=#1e1e2e
+
 locktext="Type password to unlock"
 font="jetbrainsmono nerd font"
 ringcolor=#00000000
-#insidecolor=#1e1e2e
-#separatorcolor=#1e1e2e
 ringvercolor=#89b4fa
-#insidevercolor=#1e1e2e
 ringwrongcolor=#f38ba8
 insidewrongcolor=#00000000
 timecolor=#cdd6f4
@@ -35,14 +28,5 @@ wrongcolor=#f38ba8
 modifcolor=#00000000
 bgcolor=#000000ff
 
-
-#
-# expert options (change at own risk!)
-#
-
-# i3lockcolor_bin="i3lock-color"      # Manually set command for i3lock-color
-# suspend_command="systemctl suspend" # Manually change action e.g. hibernate/suspend-command
-
-# i3lock-color - custom arguments
-# lockargs=() 						  # overwriting default "(-n)"
-# lockargs+=(--ignore-empty-password) # appending new argument
+# add args to i3lock-color (betterlockscreen's engine)
+lockargs+=(--ignore-empty-password) # ignore empty password
