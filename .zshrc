@@ -52,12 +52,20 @@ HISTSIZE=9999
 source $ZSH/oh-my-zsh.sh
 
 #function for verbose cd command
-source ~/.config/dtf-config/config
+#
+# Check for config file if it exists
+if [[ -f "$HOME/.config/dtf-config/config" ]]; then
+    source "$HOME/.config/dtf-config/config"
+fi
 
 : ${verbose_coreutils_output:=true}
 
 if [[ "$verbose_coreutils_output" == "true" ]]; then
-	source ~/.coreutils_vb_rework.sh
+	# Source verbose wrapper script if it exists
+	if [[ -f "$HOME/.coreutils_vb_rework.sh" ]]; then
+		source "$HOME/.coreutils_vb_rework.sh"
+	fi
+
 	alias cd="cd_verbose" # Calls the verbose cd function
 	alias mkdir="mkdir_rework_verbose"
 	alias touch="touch_verbose" # Calls the verbose touch function
