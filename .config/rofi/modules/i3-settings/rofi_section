@@ -50,7 +50,7 @@ rofi_submenu(){
 			i3_setting_submenu
 			;;
 		$notifications_hist)
-			$TERMINAL -e nvim ~/.config/dunst/noti-center.sh
+			$TERMINAL -e nvim ~/.config/dunst/scripts/noti-center.sh
 			;;
 		$sound_setting)
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
