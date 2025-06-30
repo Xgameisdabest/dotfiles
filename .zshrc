@@ -17,7 +17,9 @@ export MANPATH="/usr/local/man:$MANPATH"
 #PACSTALL COMPLETION
 autoload bashcompinit
 bashcompinit
-source /usr/share/bash-completion/completions/pacstall
+if [[ -f "/usr/share/bash-completion/completions/pacstall" ]]; then
+	source /usr/share/bash-completion/completions/pacstall
+fi
 
 #KEYBINDINGS
 bindkey '^[[1~' beginning-of-line
