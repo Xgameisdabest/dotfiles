@@ -6,12 +6,8 @@ source ~/.config/dtf-config/config
 
 main_menu_height=295px
 main_menu_width=290px
-playback_menu_height=150px
-playback_menu_width=270px
 manual_menu_height=90px
 manual_menu_width=480px
-
-volume_script=~/.config/dunst/volume.sh
 
 polybar_top=${polybar_top:-false}
 
