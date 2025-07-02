@@ -4,8 +4,8 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=335px
-main_menu_width=400px
+main_menu_height=295px
+main_menu_width=290px
 playback_menu_height=150px
 playback_menu_width=270px
 manual_menu_height=90px
@@ -68,9 +68,9 @@ playback_opt="Playback 󰐎"
 outputdev_opt="Output 󰜟"
 inputdev_opt="Input 󱦉"
 devconfig_opt="Configuration "
-manual_volume_opt="Volume "
+manual_volume_opt="Volume Level "
 
-opt_list="$manual_volume_opt\n$playback_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$quit"
+opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$quit"
 
 ouput_dev_card=$(pactl list cards | grep "device.name" | sed 's/device.name =//g' | sed 's/"//g' | sed 's/\t//g' | sed 's/ //g')
 current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | sed 's/bluez_output.//g' |  sed 's/\..*//')
@@ -112,48 +112,6 @@ manual_set_volume_func(){
 		$volume_script volume_status
 		main_menu
 	fi
-}
-
-playback_func(){
-	back="󰌍"
-	mute="󰝟"
-	up="󰝝"
-	minus="󰝞"
-	next_track_var="󰒭"
-	prev_track_var="󰒮"
-	pause_track_var="󰐎"
-	select_playback=$(echo -e "$prev_track_var\n$mute\n$next_track_var\n$back"  | rofi -dmenu -i -theme-str "window {height: $playback_menu_height; width: $playback_menu_width; location: $location; x-offset: $playback_menu_x_offset; y-offset: $playback_menu_y_offset;}" -theme-str "listview {columns: 1; layout: horizontal;}" -p " Playback 󰐎  ")
-	
-	case $select_playback in
-		$up)
-			$volume_script volume_up
-			playback_func
-		;;
-		$minus)
-			$volume_script volume_down
-			playback_func
-		;;
-		$mute)
-			$volume_script volume_mute
-			playback_func
-		;;
-		$next_track_var)
-			$volume_script next_track
-			playback_func
-		;;
-		$prev_track_var)
-			$volume_script prev_track
-			playback_func
-		;;
-		$pause_track_var)
-			$volume_script play_pause
-			playback_func
-		;;
-		$back)
-			main_menu
-		;;
-	esac
-
 }
 
 outputdev_func(){
