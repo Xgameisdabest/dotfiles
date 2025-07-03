@@ -104,11 +104,13 @@ alias pwr-low="powerprofilesctl set power-saver"
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
     distro="${ID}"
+
     if [[ -n "${ID_LIKE}" ]]; then
-    	distro_like="${ID}"
+	distro_like="${ID_LIKE}"
     else
-    	distro_like="${ID_LIKE}"
+	distro_like="${ID}"
     fi
+
 else
     echo "Cannot detect Linux distribution!"
     return 1
