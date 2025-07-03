@@ -171,7 +171,7 @@ elif [[ "$distro" == "fedora" || "$distro_like" == *"fedora"* ]]; then
 elif [[ "$distro" == "arch" || "$distro_like" == *"arch"* ]]; then
     set_arch_aliases
 else
-    echo "Unsupported distribution: $distro"
+    echo " \033[1;31m\033[0m \033[1;31mUnsupported distribution:\033[0m $distro"
 fi
 
 #PROMPT
