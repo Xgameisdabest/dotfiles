@@ -30,7 +30,7 @@ cd_verbose() {
             echo -e "${red}Maybe create it with ${green}'mkdir -p $target'${red}?${reset}"
 
         elif [ ! -d "$target" ]; then
-            echo -e "${red}'$target' exists but is not a directory!${reset}"
+            echo -e "${red}'$target' ${green}exists${red} but is not a directory!${reset}"
 
         elif [ ! -x "$target" ]; then
             echo -e "${red}Permission denied:${reset} You don't have execute permission to access '$target'."
