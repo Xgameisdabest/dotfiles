@@ -112,7 +112,7 @@ if [[ -f /etc/os-release ]]; then
     fi
 
 else
-    echo "Cannot detect Linux distribution!"
+    echo " \033[1;31m\033[0m \033[1;31mCannot detect Linux distribution!\033[0m"
 fi
 
 # Define aliases for APT (Debian-based)
