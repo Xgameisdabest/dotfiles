@@ -1,6 +1,7 @@
 ## About
 
-___DEVELOP ON UBUNTU 25.04___
+___DEVELOP ON UBUNTU 25.04___<BR>
+___TESTED ON ARCH LINUX___
 
 > [!NOTE]
 > THIS PROJECT IS NEARLY A DESKTOP ENVIRONMENT, NO LONGER A TYPICAL LINUX CUSTOM WINDOW MANAGER (I know that might sound funny but it really feels like it)
@@ -53,14 +54,13 @@ V3 (up-to-date)
 - superfile nautilus thunar (file manager)
 - spotify (music player)
 - cava (audio visualizer)
-- tetris-thefenriswolf gambit (games) ([link to tetris](https://github.com/samtay/tetris)) ([link to gambit](https://github.com/maaslalani/gambit))
 - solaar (logitech util setting)
 - blueman (essential for bluetooth connection)
 - network-manager (essential for wifi connection)
 - arandr (essential)
 - pipewire (essential, currently using pipewire)
 - pipewire-pulse (essential)
-- redshift (quite essential)
+- redshift (essential)
 
 > [!NOTE]
 > Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
@@ -160,6 +160,21 @@ Here is the list of keybinds for this dotfiles (all of this can be viewed in the
 - Press (win/mod + tab) to open the opened windows menu, select and press ENTER to switch to the opened windows
 - Press (win/mod + ARROW_KEYS) to change focus between the tiled windows.
 - Press (ctrl + win/mod + ARROW_LEFT/ARROW_RIGHT) to send the focused window to the next numerical workspace.
+
+__EASY PACKAGE MANAGER (COMMAND LINE)__ (Only available on v3)<BR>
+Supported Distros (and package managers):
+- Arch (yay, pacman)
+- Fedora (dnf)
+- Debian/Ubuntu (apt)
+
+__USAGE__
+- ```update```: update the repo
+- ```upgrade```: upgrade the packages
+- ```install <package name>```: install the package
+- ```reinstall <package name>```: reinstall the package
+- ```remove <package name>```: uninstall the package
+- ```autoclean```: remove old packages
+- ```autoremove```: remove unused packages
 
 ## CONFIGURATION
 > [!NOTE]
