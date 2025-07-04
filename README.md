@@ -22,7 +22,7 @@ V2 - use ```git checkout f82e277``` to use this version and ```git checkout main
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_2.jpg?raw=true)
 
-V3 (up-to-date) (Bar now can be on top or bottom, white or black color. Change it via the specified dotfiles config file, more information at the ___Configuration___ section)
+V3 - (up-to-date)  (Bar now can be on top or bottom, white or black color. Change it via the specified dotfiles config file, more information at the ___Configuration___ section)
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_3.jpg?raw=true)
 
 ## Dependencies for this dotfiles
