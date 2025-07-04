@@ -10,25 +10,38 @@ yellow='\e[0;33m'
 reset='\033[0m'
 
 cd_verbose() {
-    local home_dir="$HOME"
     if [ -z "$1" ] || [ "$1" = ~ ]; then
-	if [ "$(pwd)" != "$home_dir" ]; then
-        	local prev_dir=$(pwd)
-        	cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
-	else
-		echo "${yellow}Already in the ${green}home${yellow} directory!${reset}"
-	fi
+        if [ "$(pwd)" != "$HOME" ]; then
+            local prev_dir=$(pwd)
+            cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$HOME|~|")${reset}"
+        else
+            echo -e "${yellow}Already in the ${green}home${yellow} directory!${reset}"
+        fi
 
     elif [ "$1" = "." ]; then
-        echo "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$home_dir|~|")"${reset}
+        echo -e "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$HOME|~|")${reset}"
 
     else
+        local target="$1"
         local prev_dir=$(pwd)
-        if cd "$1" 2>/dev/null; then
-            echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$home_dir|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$home_dir|~|")${reset}"
+
+        if [ ! -e "$target" ]; then
+            echo -e "${red}Failed to change directory to '$target' — directory does not exist!${reset}"
+            echo -e "${red}Maybe create it with ${green}'mkdir -p $target'${red}?${reset}"
+
+        elif [ ! -d "$target" ]; then
+            echo -e "${red}'$target' exists but is not a directory!${reset}"
+
+        elif [ ! -x "$target" ]; then
+            echo -e "${red}Permission denied:${reset} You don't have execute permission to access '$target'."
+            echo -e "${yellow}Try:${reset} ${green}sudo chmod +x '$target'${reset} ${yellow}or check directory ownership.${reset}"
+
         else
-            echo -e "${red}Failed to change directory to '$1'!${reset}"
-	    echo -e "${red}Maybe create it with ${green}'mkdir $1/'${red}?${reset}"
+            if cd "$target" 2>/dev/null; then
+                echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$HOME|~|")${reset}"
+            else
+                echo -e "${red}Unexpected error: could not change directory to '$target'.${reset}"
+            fi
         fi
     fi
 }
