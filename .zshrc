@@ -103,7 +103,12 @@ alias pwr-low="powerprofilesctl set power-saver"
 # Load OS info
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
-    distro="${ID}"
+    
+    if [[ -n "${ID}" ]]; then
+    	distro="${ID}"
+    else
+	distro="Unknown"
+    fi
 
     if [[ -n "${ID_LIKE}" ]]; then
 	distro_like="${ID_LIKE}"
