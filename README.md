@@ -3,14 +3,12 @@
 ___DEVELOP ON UBUNTU 25.04___<BR>
 ___TESTED ON ARCH LINUX___
 
+The purpose of this project is to share my configs, my ideas as openly as possible. Feel free open a VM or try it on your own machine!<BR>
+If you encounter any issue just open an issue on the github page, thanks!
+
 > [!NOTE]
 > This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.
 > I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.
-
-The purpose of this project is to share my configs, my ideas as openly as possible. Feel free open a VM, and try it on your machine! If you encounter any issue just open an issue on the github page, thanks!
-
-> [!NOTE]
-> Only work on Debian based distros, might as well change it on your own if you use Arch or Red Hat based OS.
 
 ## Preview
 V1 - use ```git checkout 4404458``` (use ```git checkout 08e8942``` if you want bottom bar) to use this version and ```git checkout main``` if you want to use the latest
