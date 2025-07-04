@@ -4,9 +4,6 @@ ___DEVELOP ON UBUNTU 25.04___<BR>
 ___TESTED ON ARCH LINUX___
 
 > [!NOTE]
-> THIS PROJECT IS NEARLY A DESKTOP ENVIRONMENT, NO LONGER A TYPICAL LINUX CUSTOM WINDOW MANAGER (I know that might sound funny but it really feels like it)
-
-> [!NOTE]
 > This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.
 > I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.
 
@@ -69,7 +66,7 @@ V3 (up-to-date)
 
 > [!NOTE]
 > ```Picom``` is a dependency that needs to be installed and build from source in order to work correctly.
-> [Install and build picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)
+> [Install and build Picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)
 
 > [!NOTE]
 > From what I have experienced, the terminal emulator ```kitty``` starts quite slow when installed from apt (from apt is 0.50 seconds, from source is 0.15 seconds), so it is highly recommend to build it from source.
