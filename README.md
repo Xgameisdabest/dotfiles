@@ -3,8 +3,11 @@
 ___DEVELOP ON UBUNTU 25.04___<BR>
 ___TESTED ON ARCH LINUX___
 
-The purpose of this project is to share my configs, my ideas as openly as possible. Feel free open a VM or try it on your own machine!<BR>
-If you encounter any issue just open an issue on the github page, thanks!
+__About:__<BR>
+The purpose of this project is to share my configs, my ideas as openly as possible. Feel free to open a VM or try it on your own machine!<BR>
+<BR>
+__If you encounter any issue just open an issue on the github page, thanks!__<BR>
+<BR>
 
 > [!NOTE]
 > This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.
