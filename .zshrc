@@ -117,7 +117,7 @@ if [[ -f /etc/os-release ]]; then
     fi
 
 else
-    echo " \033[1;31m\033[0m \033[1;31mCannot detect Linux distribution!\033[0m"
+    echo " \033[1;31m\033[0m \033[1;31mEasy Package Manager: ERROR - Cannot detect Linux distribution!\033[0m"
 fi
 
 # Define aliases for APT (Debian-based)
@@ -129,7 +129,7 @@ set_apt_aliases() {
     alias remove="sudo apt remove"
     alias autoclean="sudo apt autoclean"
     alias autoremove="sudo apt autoremove"
-    echo " \033[1;32m\033[0m \033[1;33mPackage manager:\033[0m \033[1;36mapt\033[0m for $distro (${distro_like})"
+    echo " \033[1;32m\033[0m \033[1;33mEasy Package Manager:\033[0m \033[1;36mapt\033[0m for $distro (${distro_like})"
 }
 
 # Define aliases for DNF (Fedora-based)
@@ -141,7 +141,7 @@ set_dnf_aliases() {
     alias remove="sudo dnf remove"
     alias autoclean="echo 'dnf does not require autoclean'"
     alias autoremove="sudo dnf autoremove"
-    echo " \033[1;32m\033[0m \033[1;33mPackage manager:\033[0m \033[1;36mdnf\033[0m for $distro (${distro_like})"
+    echo " \033[1;32m\033[0m \033[1;33mEasy Package Manager:\033[0m \033[1;36mdnf\033[0m for $distro (${distro_like})"
 }
 
 # Define aliases for yay or pacman (Arch-based)
@@ -154,7 +154,7 @@ set_arch_aliases() {
         alias remove="yay -R"
         alias autoclean="yay -Sc"
         alias autoremove="yay -Rns \$(pacman -Qdtq)"
-	echo " \033[1;32m\033[0m \033[1;33mPackage manager:\033[0m \033[1;36myay\033[0m for $distro (${distro_like})"
+	echo " \033[1;32m\033[0m \033[1;33mEasy Package Manager:\033[0m \033[1;36myay\033[0m for $distro (${distro_like})"
     elif command -v pacman &>/dev/null; then
         alias update="sudo pacman -Sy"
         alias upgrade="sudo pacman -Su"
@@ -163,7 +163,7 @@ set_arch_aliases() {
         alias remove="sudo pacman -R"
         alias autoclean="sudo pacman -Sc"
         alias autoremove="sudo pacman -Rns \$(pacman -Qdtq)"
-	echo " \033[1;32m\033[0m \033[1;33mPackage manager:\033[0m \033[1;36mpacman\033[0m for $distro (${distro_like})"
+	echo " \033[1;32m\033[0m \033[1;33mEasy Package Manager:\033[0m \033[1;36mpacman\033[0m for $distro (${distro_like})"
     fi
 }
 
@@ -175,7 +175,7 @@ elif [[ "$distro" == "fedora" || "$distro_like" == *"fedora"* ]]; then
 elif [[ "$distro" == "arch" || "$distro_like" == *"arch"* ]]; then
     set_arch_aliases
 else
-    echo " \033[1;31m\033[0m \033[1;31mUnsupported distribution:\033[0m $distro"
+    echo " \033[1;31m\033[0m \033[1;31mEasy Package Manager: ERROR - Unsupported distribution:\033[0m $distro"
 fi
 
 #PROMPT
