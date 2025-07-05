@@ -138,7 +138,7 @@ wifi_list_fn(){
 	notify-send "Getting list of available Wi-Fi networks  " -t 1500
 	echo "getting list of wifi networks"
 
-	wifi_list=$(nmcli -t -f IN-USE,SECURITY,SSID,BARS,FREQ device wifi list | awk -F: -v symbol="$connected_symbol" '!seen[$3 $5]++ { selected = ($1 == "*") ? symbol : "   "; if ($2 == "") sec = ""; else if ($2 ~ /WPA/) sec = ""; else if ($2 ~ /802\\.1X/) sec = ""; else sec = $2; print selected ":" sec ":" $3 ":" $4 ":" $5; }' | sed "s/ //g" | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__$/󰤢 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g" | sed -E "s/(2[4-6][0-9]{2}) MHz/ 2.4 GHz/g" | sed -E "s/(5[0-9]{3}) MHz/ 5.0 GHz/g" | sed "s/:/ /g")
+	wifi_list=$(nmcli -t -f IN-USE,SECURITY,BARS,SSID,FREQ device wifi list | awk -F: -v symbol="$connected_symbol" '$4 != "" && !seen[$3 $5]++ { selected = ($1 == "*") ? symbol : "   "; if ($2 == "") sec = " "; else if ($2 ~ /WPA/) sec = " "; else if ($2 ~ /802\\.1X/) sec = " "; else sec = $2; print selected ":" sec ":" $3 ":" $4 ":" $5; }' | sed "s/ / /g" | sed "s/▂▄▆█/󰤨 /g" | sed "s/▂▄▆_/󰤥 /g" | sed "s/▂▄__$/󰤢 /g" | sed "s/▂▄__/󰤢 /g" | sed "s/▂___/󰤟 /g" | sed "s/____/󰤯 /g" | sed -E "s/(2[4-6][0-9]{2}) MHz/ 2.4 GHz/g" | sed -E "s/(5[0-9]{3}) MHz/ 5.0 GHz/g" | sed "s/:/ /g")
 	
 	chosen_network=$(echo -e "$wifi_list\n$goback_wifilist\n$quit" | rofi -dmenu -i -p " Wifi 󱚻 : " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
 	echo $chosen_network
