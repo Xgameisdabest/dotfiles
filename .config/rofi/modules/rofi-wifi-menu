@@ -6,7 +6,7 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=300px
+main_menu_height=335px
 main_menu_disabled_height=265px
 main_menu_width=300px
 
@@ -63,13 +63,12 @@ elif [[ "$connected" =~ "disabled" ]]; then
 fi
 
 connection_manager="󰖯  Network Manager"
-
 wifi_list_opt="  Wifi List  "
-
 saved_list_opt="  Saved Wifi  "
+hidden_network_connect="󰈉  Hidden Wifi  "
 
 if [[ $toggle == "󱛅  Disable Wi-Fi" ]]; then
-	select=$(echo -e "$wifi_list_opt\n$toggle\n$saved_list_opt\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+	select=$(echo -e "$wifi_list_opt\n$toggle\n$hidden_network_connect\n$saved_list_opt\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 else
 	select=$(echo -e "$toggle\n$saved_list_opt\n$connection_manager\n$quit" | rofi -dmenu -i -p " Wi-Fi 󱛃  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_disabled_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 fi
@@ -93,6 +92,9 @@ case $select in
 		;;
 	$connection_manager)
 		nm-connection-editor
+		;;
+	$hidden_network_connect)
+		connect_hidden_network
 		;;
 	$quit)
 		exit 0
@@ -170,6 +172,24 @@ wifi_list_fn(){
 				notify-send "$attempt_message" && nmcli device wifi connect "$chosen_id" | grep "successfully" && notify-send "Connection Established!" "$success_message"
 			fi
 	    fi
+	fi
+}
+
+connect_hidden_network(){
+	h_network_ssid=$(rofi -dmenu -theme-str "window {height: 8%;}" -p "SSID 󰓹 " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
+	h_network_password=$(rofi -dmenu -theme-str "window {height: 8%;}" -password -p "Password  " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
+	
+	if [[ -z $h_network_ssid ]] && [[ -z $h_network_password ]]; then
+		notify-send "Network not specified!"
+		main_menu
+	elif [[ -n $h_network_ssid ]] && [[ -z $h_network_password ]]; then
+		attempt_message="Attempting to connect to \"$chosen_id\""
+		success_message="You are now connected to Wi-Fi network \"$h_network_ssid\"!"
+		notify-send "$attempt_message" && nmcli device wifi connect "$chosen_id" hidden yes | grep "successfully" && notify-send "Connection Established!" "$success_message"
+	else
+		attempt_message="Attempting to connect to \"$chosen_id\""
+		success_message="You are now connected to Wi-Fi network \"$h_network_ssid\"!"
+		notify-send "$attempt_message" && nmcli device wifi connect "$chosen_id" hidden yes | grep "successfully" && notify-send "Connection Established!" "$success_message"
 	fi
 }
 
