@@ -148,8 +148,8 @@ wifi_list_fn(){
 		exit 0
 	else
 		
-		chosen_id=$(echo "$chosen_network" | sed 's///g' | sed 's///g' | sed 's///g' | sed 's///g' | sed 's/󰤨//g' | sed 's/󰤥//g' | sed 's/󰤢//g' | sed 's/󰤟//g' | sed 's/󰤯//g' | sed 's/ 5.0 GHz//g' | sed 's/ 2.4 GHz//g')
-		chosen_id="$(echo $chosen_id | sed "s/$connected_symbol//g")"
+		chosen_id=$(echo "$chosen_network" | sed "s///g" | sed "s///g" | sed "s///g" | sed "s///g" | sed "s/󰤨//g" | sed "s/󰤥//g" | sed "s/󰤢//g" | sed "s/󰤟//g" | sed "s/󰤯//g" | sed "s/ 5.0 GHz//g" | sed "s/ 2.4 GHz//g" | sed 's/^[ \t]*//; s/[ \t]*$//')
+		chosen_id="$(echo "$chosen_id" | sed "s/$connected_symbol//g")"
 		echo $chosen_id
 		attempt_message="Attempting to connect to \"$chosen_id\""
 		success_message="You are now connected to Wi-Fi network \"$chosen_id\"!"
