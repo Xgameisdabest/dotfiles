@@ -136,7 +136,7 @@ ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}==
 #idea from eric murphy, go check him out on youtube
 ```
 
-## USAGE
+## USAGE ([link to the wiki (still under development)](https://github.com/Xgameisdabest/dotfiles/wiki))
 
 THIS IS ***NOT*** YOUR NORMAL TYPICAL ***DESKTOP*** (the desktop interface on W*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ***TILING WINDOW MANAGER*** (i3, hyprland, sway, dwm...).
 
