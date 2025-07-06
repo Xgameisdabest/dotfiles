@@ -176,8 +176,13 @@ toggle_connection() {
 
         # Connect to the device
         bluetoothctl connect "$1"
-        notify-send "Successfully Connected To Device $device_name"
-        device_menu "$device"
+	if bluetoothctl info "$1" | grep -q "Connected: yes"; then
+	    notify-send "Successfully Connected To Device $device_name"
+	    device_menu "$device"	
+    	else
+	    notify-send "Failed To Connect To Device $device_name"
+	    device_menu "$device"
+	fi
     fi
 }
 device_paired() {
