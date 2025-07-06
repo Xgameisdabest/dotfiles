@@ -43,9 +43,9 @@ CURRENT_INTERFACE=$(ip route | grep '^default' | awk '{print $5}' | head -n1)
 INTERFACE_TYPE=$(nmcli device show $CURRENT_INTERFACE | sed -n 's/GENERAL.TYPE:*//p' | sed 's/[[:space:]]//g')
 
 if [[ $INTERFACE_TYPE == "wifi" ]]; then
-	notify-send "Current Network Using Is Wifi 󰖩 "
+	notify-send "Current Network Is Using Wifi 󰖩 "
 elif [[ $INTERFACE_TYPE == "ethernet" ]]; then
-	notify-send "Current Network Using Is Ethernet  "
+	notify-send "Current Network Is Using Ethernet  "
 fi
 
 
