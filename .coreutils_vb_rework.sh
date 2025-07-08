@@ -289,10 +289,8 @@ touch_verbose() {
 
 rm_verbose() {
     local force=false
-    local dry_run=false
     local recursive=false
-    local trash_mode=false
-    local log_file="$HOME/.rm_verbose.log"
+    local dry_run=false
     local paths=()
     local args=("$@")
 
@@ -301,98 +299,68 @@ rm_verbose() {
         return 1
     fi
 
-    # 🧱 Block ultra-dangerous patterns
+    # Block dangerous root-deleting patterns
     local full_cmd="${args[*]}"
     if [[ "$full_cmd" =~ (^| )(--no-preserve-root)( |$) ]] && [[ "$full_cmd" =~ (^| )/( |$) ]]; then
-        echo -e "${red}Blocked:${reset} rm -rf --no-preserve-root /"
-        echo "[BLOCKED] $full_cmd" >> "$log_file"
+        echo -e "${red}❌ Blocked:${reset} rm -rf --no-preserve-root /"
         return 1
     elif [[ "$full_cmd" =~ (^| )(-[rRfF]+)( |$) ]] && [[ "$full_cmd" =~ (^| )/( |$) ]]; then
-        echo -e "${red}Blocked:${reset} rm -rf /"
-        echo "[BLOCKED] $full_cmd" >> "$log_file"
-        return 1
-    elif [[ "$full_cmd" =~ (\*/|\*/\*|/\*) ]]; then
-        echo -e "${red}Blocked:${reset} Wildcard path: ${yellow}$full_cmd${reset}"
-        echo "[BLOCKED] $full_cmd" >> "$log_file"
-        return 1
-    elif [[ "$full_cmd" =~ (~|\$HOME) ]]; then
-        echo -e "${red}Blocked:${reset} Attempt to remove home directory."
-        echo "[BLOCKED] $full_cmd" >> "$log_file"
+        echo -e "${red}❌ Blocked:${reset} rm -rf /"
         return 1
     fi
 
-    # Parse safe flags
+    # Parse flags and paths
     while [[ $# -gt 0 ]]; do
         case "$1" in
             -f) force=true; shift ;;
             -r|-R) recursive=true; shift ;;
             --dry-run) dry_run=true; shift ;;
-            --trash) trash_mode=true; shift ;;
-            --help) command rm --help; return 0 ;;
-            --version) command rm --version; return 0 ;;
+            --help) command rm --help 2>/dev/null; return 0 ;;
+            --version) command rm --version 2>/dev/null; return 0 ;;
             --*)
-                echo -e "${red}Error:${reset} Unknown option: ${yellow}$1${reset}"
-                return 1
-                ;;
+                echo -e "${red}Error:${reset} Unknown option: $1"
+                return 1 ;;
             -*)
-                echo -e "${red}Error:${reset} Unsupported flag: ${yellow}$1${reset}"
-                echo -e "${yellow}Tip:${reset} Use ${green}-f${reset}, ${green}-r${reset}, ${green}--dry-run${reset}, or ${green}--trash${reset}."
-                return 1
-                ;;
+                echo -e "${red}Error:${reset} Unsupported flag: $1"
+                return 1 ;;
             *)
                 paths+=("$1")
-                shift
-                ;;
+                shift ;;
         esac
     done
-
-    mkdir -p "$HOME/.Trash"
 
     for target in "${paths[@]}"; do
         if [ ! -e "$target" ]; then
             if [ "$force" = true ]; then
                 continue
             else
-                echo -e "${red}Error:${reset} '$target' does not exist."
+                echo -e "${yellow}Warning:${reset} '$target' does not exist."
                 continue
             fi
         fi
 
         if [ -d "$target" ] && [ "$recursive" = false ]; then
-            echo -e "${yellow}Refused:${reset} '$target' is a directory. Use ${green}-r${reset} to remove directories."
+            echo -e "${red}Refused:${reset} '$target' is a directory. Use -r to remove directories."
             continue
         fi
 
         if [ "$dry_run" = true ]; then
-            echo -e "${cyan}[dry-run]${reset} Would remove: ${yellow}$target${reset}"
+            echo -e "${cyan}[dry-run]${reset} Would remove: $target"
             continue
         fi
 
         if [ "$force" = false ]; then
             read -p "Remove '$target'? [y/N]: " confirm
             if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
-                echo -e "${yellow}Skipped:${reset} $target"
+                echo "Skipped: $target"
                 continue
             fi
         fi
 
-        if [ "$trash_mode" = true ]; then
-            mv -- "$target" "$HOME/.Trash/" 2>err.log
-            if [ $? -eq 0 ]; then
-                echo -e "${cyan}Moved to Trash:${reset} ${green}$target${reset}"
-                echo "[TRASHED] $target → ~/.Trash/" >> "$log_file"
-            else
-                echo -e "${red}Trash failed:${reset} $(<err.log)"
-            fi
+        if rm ${recursive:+-r} ${force:+-f} -- "$target" 2>/dev/null; then
+            echo -e "${green}Removed:${reset} $target"
         else
-            if rm ${recursive:+-r} ${force:+-f} -- "$target" 2>err.log; then
-                echo -e "${cyan}Removed:${reset} ${green}$target${reset}"
-                echo "[REMOVED] $target" >> "$log_file"
-            else
-                echo -e "${red}rm failed:${reset} $(<err.log)"
-            fi
+            echo -e "${red}Error:${reset} Failed to remove '$target'"
         fi
-
-        rm -f err.log
     done
 }
