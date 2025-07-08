@@ -6,7 +6,7 @@
 # I had to use AI (ChatGPT) to write this code since it just too complicated to me, im a noob
 
 echo " \033[1;31m\033[0m \033[1;31mYou are using an experimental feature: Core utils verbose rework!\033[0m"
-echo " \033[1;31m\033[0m \033[1;31mThese only affect the cd, mkdir, touch, rm commands\033[0m"
+echo " \033[1;31m\033[0m \033[1;31mThese only affect the cd, mkdir, touch commands\033[0m"
 echo " \033[1;31m\033[0m \033[1;31mUse it at your own risks!\033[0m"
 echo ""
 
@@ -283,84 +283,4 @@ touch_verbose() {
         fi
         rm -f err.log
     fi
-}
-
-## RM (not tested)
-
-rm_verbose() {
-    local force=false
-    local recursive=false
-    local dry_run=false
-    local paths=()
-    local args=("$@")
-
-    if [ $# -eq 0 ]; then
-        echo -e "${red}Error:${reset} No file or directory specified to remove."
-        return 1
-    fi
-
-    # Block dangerous root-deleting patterns
-    local full_cmd="${args[*]}"
-    if [[ "$full_cmd" =~ (^| )(--no-preserve-root)( |$) ]] && [[ "$full_cmd" =~ (^| )/( |$) ]]; then
-        echo -e "${red}❌ Blocked:${reset} rm -rf --no-preserve-root /"
-        return 1
-    elif [[ "$full_cmd" =~ (^| )(-[rRfF]+)( |$) ]] && [[ "$full_cmd" =~ (^| )/( |$) ]]; then
-        echo -e "${red}❌ Blocked:${reset} rm -rf /"
-        return 1
-    fi
-
-    # Parse flags and paths
-    while [[ $# -gt 0 ]]; do
-        case "$1" in
-            -f) force=true; shift ;;
-            -r|-R) recursive=true; shift ;;
-            --dry-run) dry_run=true; shift ;;
-            --help) command rm --help 2>/dev/null; return 0 ;;
-            --version) command rm --version 2>/dev/null; return 0 ;;
-            --*)
-                echo -e "${red}Error:${reset} Unknown option: $1"
-                return 1 ;;
-            -*)
-                echo -e "${red}Error:${reset} Unsupported flag: $1"
-                return 1 ;;
-            *)
-                paths+=("$1")
-                shift ;;
-        esac
-    done
-
-    for target in "${paths[@]}"; do
-        if [ ! -e "$target" ]; then
-            if [ "$force" = true ]; then
-                continue
-            else
-                echo -e "${yellow}Warning:${reset} '$target' does not exist."
-                continue
-            fi
-        fi
-
-        if [ -d "$target" ] && [ "$recursive" = false ]; then
-            echo -e "${red}Refused:${reset} '$target' is a directory. Use -r to remove directories."
-            continue
-        fi
-
-        if [ "$dry_run" = true ]; then
-            echo -e "${cyan}[dry-run]${reset} Would remove: $target"
-            continue
-        fi
-
-        if [ "$force" = false ]; then
-            read -p "Remove '$target'? [y/N]: " confirm
-            if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
-                echo "Skipped: $target"
-                continue
-            fi
-        fi
-
-        if rm ${recursive:+-r} ${force:+-f} -- "$target" 2>/dev/null; then
-            echo -e "${green}Removed:${reset} $target"
-        else
-            echo -e "${red}Error:${reset} Failed to remove '$target'"
-        fi
-    done
 }
