@@ -304,19 +304,19 @@ rm_verbose() {
     # 🧱 Block ultra-dangerous patterns
     local full_cmd="${args[*]}"
     if [[ "$full_cmd" =~ (^| )(--no-preserve-root)( |$) ]] && [[ "$full_cmd" =~ (^| )/( |$) ]]; then
-        echo -e "${red}❌ Blocked:${reset} rm -rf --no-preserve-root /"
+        echo -e "${red}Blocked:${reset} rm -rf --no-preserve-root /"
         echo "[BLOCKED] $full_cmd" >> "$log_file"
         return 1
     elif [[ "$full_cmd" =~ (^| )(-[rRfF]+)( |$) ]] && [[ "$full_cmd" =~ (^| )/( |$) ]]; then
-        echo -e "${red}❌ Blocked:${reset} rm -rf /"
+        echo -e "${red}Blocked:${reset} rm -rf /"
         echo "[BLOCKED] $full_cmd" >> "$log_file"
         return 1
     elif [[ "$full_cmd" =~ (\*/|\*/\*|/\*) ]]; then
-        echo -e "${red}❌ Blocked:${reset} Wildcard path: ${yellow}$full_cmd${reset}"
+        echo -e "${red}Blocked:${reset} Wildcard path: ${yellow}$full_cmd${reset}"
         echo "[BLOCKED] $full_cmd" >> "$log_file"
         return 1
     elif [[ "$full_cmd" =~ (~|\$HOME) ]]; then
-        echo -e "${red}❌ Blocked:${reset} Attempt to remove home directory."
+        echo -e "${red}Blocked:${reset} Attempt to remove home directory."
         echo "[BLOCKED] $full_cmd" >> "$log_file"
         return 1
     fi
