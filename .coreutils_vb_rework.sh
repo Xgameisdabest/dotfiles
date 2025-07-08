@@ -5,10 +5,6 @@
 # Does not affect the system since all it does is just works on the interactive shellL.
 # I had to use AI (ChatGPT) to write this code since it just too complicated to me, im a noob
 
-echo " \033[1;31m\033[0m \033[1;31mYou are using an experimental feature: Core utils verbose rework!\033[0m"
-echo " \033[1;31m\033[0m \033[1;31mThese only affect the cd, mkdir, touch commands\033[0m"
-echo " \033[1;31m\033[0m \033[1;31mUse it at your own risks!\033[0m"
-echo ""
 
 # color codes
 green='\033[1;32m'
@@ -16,6 +12,12 @@ red='\033[1;31m'
 cyan='\033[0;36m'
 yellow='\e[0;33m'
 reset='\033[0m'
+
+## Message
+echo -e " ${red} You are using an experimental feature: Core utils verbose rework!${reset}"
+echo -e " ${red} These only affect the ${green}cd, mkdir, touch${red} commands${reset}"
+echo -e " ${red} Use it at your own risks!${reset}"
+echo ""
 
 ## CD
 
