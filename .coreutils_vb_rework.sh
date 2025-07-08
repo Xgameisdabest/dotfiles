@@ -14,10 +14,13 @@ yellow='\e[0;33m'
 reset='\033[0m'
 
 ## Message
-echo -e " ${red} You are using an experimental feature: Core utils verbose rework!${reset}"
+echo -e " ${red} You are using an experimental feature: Coreutils verbose rework!${reset}"
 echo -e " ${red} These only affect the ${green}cd, mkdir, touch${red} commands${reset}"
 echo -e " ${red} Use it at your own risks!${reset}"
 echo ""
+echo -n " > Press ${green}Enter${reset} to continue"
+read
+clear
 
 ## CD
 
