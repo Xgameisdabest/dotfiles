@@ -17,7 +17,7 @@ fi
 check_update=$(cd "$dtf_dir" && git fetch && git status -uno)
 
 # Check if there is any output indicating the repository is behind or has diverged
-if [[ "$check_update" == *"Your branch is up to date with"* ]]; then
+if [[ "$check_update" == *"Your branch is up-to-date with"* ]]; then
     # No update required, repository is up to date
     notify-send "Dotfiles Update  " "Your dotfiles are up to date!"
 else
