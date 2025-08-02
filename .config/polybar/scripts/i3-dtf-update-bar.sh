@@ -17,8 +17,7 @@ fi
 check_update=$(cd "$dtf_dir" && git fetch && git status -uno)
 
 # Check if there is any output indicating changes (uncommitted or untracked files)
-if [[ "$check_update" == *"Your branch is up-to-date with"* ]]; then
-    # No changes detected, repository is up to date
+if [[ "$check_update" == *"Your branch is up-to-date with"* ]] || [[ "$check_update" == *"Your branch is up to date with"* ]]; then
     echo ""
 else
     echo " Update Available!"
