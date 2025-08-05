@@ -8,7 +8,7 @@ system_monitor="  Htop (Legacy Process Manager)"
 system_monitor2="  Btop (Newer Process Manager)"
 quit="Exit 󰈆 "
 
-select=$(echo -e "$temperature\n$system_monitor2\n$system_monitor\n$quit" | rofi -dmenu -i -p " Monitors " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}")
+select=$(echo -e "$temperature\n$system_monitor2\n$system_monitor\n$quit" | rofi -dmenu -i -p " Monitors   " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}")
 
 case $select in
 	$temperature)
