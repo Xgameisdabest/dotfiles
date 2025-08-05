@@ -8,7 +8,7 @@ main_menu(){
 source ~/.config/dtf-config/config
 
 #when add new entry make sure to add 35 to height
-main_menu_height=390px
+main_menu_height=430px
 main_menu_width=270px
 notification_timeout=1100
 
@@ -71,9 +71,10 @@ performance='󰓅  Performance'
 medium='󰾅  Balanced'
 power='󰾆  Power Saver'
 power_manager="󰖯  Power Manager"
+auto_cpufreq="󰖯  auto-cpufreq"
 
 run_rofi() {
-	echo -e "$power_manager\n$performance\n$medium\n$power\n$quit" | rofi_cmd
+	echo -e "$power_manager\n$auto_cpufreq\n$performance\n$medium\n$power\n$quit" | rofi_cmd
 }
 
 # Execute Command
@@ -111,6 +112,9 @@ case ${chosen} in
         ;;
     $power_manager)
 		xfce4-power-manager-settings
+	;;
+    $auto_cpufreq)
+		auto-cpufreq-gtk
 	;;
 esac
 }
