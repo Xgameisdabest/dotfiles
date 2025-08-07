@@ -14,7 +14,7 @@ if [[ -z "$dtf_dir" ]]; then
 fi
 
 # Check the git status in the found dotfiles directory
-check_update=$(cd "$dtf_dir" && git fetch && git status -uno)
+check_update=$(cd "$dtf_dir" && git fetch >/dev/null 2>&1 && git status -uno)
 
 # Check if there is any output indicating changes (uncommitted or untracked files)
 if [[ "$check_update" == *"Your branch is up-to-date with"* ]] || [[ "$check_update" == *"Your branch is up to date with"* ]]; then
