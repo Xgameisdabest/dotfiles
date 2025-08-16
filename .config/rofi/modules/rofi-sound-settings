@@ -10,6 +10,7 @@ manual_menu_height=90px
 manual_menu_width=480px
 
 polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
 
 if [[ $polybar_top == "true" ]]; then
 	location="north east"
@@ -55,6 +56,12 @@ else
 
 fi
 
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
 #main
 
 goback="Back 󰌍 "
@@ -73,7 +80,7 @@ current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | 
 echo $current_ouput_dev
 
 main_menu(){
-	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   ")
+	select=$(echo -e "$opt_list"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   " -theme $path_to_theme)
 	
 	case $select in
 		$playback_opt)
@@ -95,7 +102,7 @@ main_menu(){
 }
 
 manual_set_volume_func(){
-	input_vol_percent=$(rofi -dmenu -i -p " Volume   (From 0 -> 153) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $manual_menu_height; width: $manual_menu_width; location: $location; x-offset: $manual_menu_x_offset; y-offset: $manual_menu_y_offset;}")
+	input_vol_percent=$(rofi -dmenu -i -p " Volume   (From 0 -> 153) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $manual_menu_height; width: $manual_menu_width; location: $location; x-offset: $manual_menu_x_offset; y-offset: $manual_menu_y_offset;}" -theme $path_to_theme)
 	case $input_vol_percent in
 	"")
 		exit 0
@@ -112,7 +119,7 @@ manual_set_volume_func(){
 
 outputdev_func(){
 	outputdev_list=$(pactl list | grep node.name | grep -E "(alsa_output|bluez_output)" | sed 's/"//g' | sed 's/node.name = //g' | uniq -u | sed 's/alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.//g' | sed 's/bluez_output.//g' | sed 's/\t//g' | sort | uniq)
-	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  " -theme-str "window {location: $location; x-offset: $ouputdev_menu_x_offset; y-offset: $ouputdev_menu_y_offset;}")
+	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  " -theme-str "window {location: $location; x-offset: $ouputdev_menu_x_offset; y-offset: $ouputdev_menu_y_offset;}" -theme $path_to_theme)
 	#echo $select_output
 	if [[ $select_output == $goback ]]; then
 		main_menu
@@ -127,7 +134,7 @@ outputdev_func(){
 
 inputdev_func(){
 	inputdev_list=$(pactl list | grep node.name | grep -E "(alsa_input|bluez_input)" | sed 's/"//g' | sed 's/node.name = //g' | uniq -u | sed 's/alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.//g' | sed 's/bluez_input.//g' | sed 's/\t//g' | sort | uniq)
-	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $inputdev_menu_x_offset; y-offset: $inputdev_menu_y_offset;}" -p " Input 󱦉  ")
+	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $inputdev_menu_x_offset; y-offset: $inputdev_menu_y_offset;}" -p " Input 󱦉  " -theme $path_to_theme)
 	#echo $select_input
 	if [[ $select_input == $goback ]]; then
 		main_menu
@@ -142,7 +149,7 @@ inputdev_func(){
 
 devconfig_func(){
 	devconfig_list=$(pactl list cards | grep -A 15 "Profiles" | sed -n '/Profiles:/,/Active Profile:/p' | grep -E "(Profile:|Active Profile:|available:)" | sed -E 's/^[ \t]*//; s/\(available: .*\)//' | sed 's/Profile: //' | grep -v "Active" | awk -F':' '{print $1}')
-	select_profile=$(echo -e "$devconfig_list\n$goback"  | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $devconfig_menu_x_offset; y-offset: $devconfig_menu_y_offset;}" -p " Configuration   ")
+	select_profile=$(echo -e "$devconfig_list\n$goback"  | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $devconfig_menu_x_offset; y-offset: $devconfig_menu_y_offset;}" -p " Configuration   " -theme $path_to_theme)
 	if [[ $select_profile == $goback ]]; then
 		main_menu
 	fi

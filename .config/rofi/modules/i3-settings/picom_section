@@ -1,6 +1,15 @@
 #!/bin/bash
 ### PICOM SUBMENU
 
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
 picom_submenu_height=255px
 picom_submenu_width=465px
 
@@ -9,7 +18,7 @@ picom_submenu(){
 	not_trans_when_unfocused="󰢹  Not Transparent When Unfocused"
 	picom_start="󱓞  Compositor Launch"
 	
-	select5=$(echo -e "$trans_when_unfocused\n$not_trans_when_unfocused\n$picom_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $picom_submenu_height; width: $picom_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Picom   ")
+	select5=$(echo -e "$trans_when_unfocused\n$not_trans_when_unfocused\n$picom_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $picom_submenu_height; width: $picom_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Picom   " -theme $path_to_theme)
 
 	case $select5 in
 		$trans_when_unfocused)

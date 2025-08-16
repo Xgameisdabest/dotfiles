@@ -2,6 +2,14 @@
 
 #THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
 
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
 
 I3_SETTINGS_PATH=~/.config/rofi/modules/i3-settings
 
@@ -30,7 +38,7 @@ rofi="󰮫  Rofi  "
 zshconfig="  Zsh"
 dunst="󰵙  Notification "
 main_menu(){
-	select=$(echo -e "$i3config\n$rofi\n$polybar\n$picomconfig\n$dunst\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   ")
+	select=$(echo -e "$i3config\n$rofi\n$polybar\n$picomconfig\n$dunst\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
 
 	case $select in
 		$i3config)

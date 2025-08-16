@@ -1,6 +1,15 @@
 #!/bin/bash
 ### I3 SUBMENU
 
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
 i3_submenu_height=480px
 i3_submenu_width=385px
 
@@ -16,7 +25,7 @@ i3_submenu(){
 	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
 	special_key_keybinds="󰘲  Special Key Keybinds 󰌏 "
 
-	select4=$(echo -e "$i3_sub\n$i3_workspace\n$exec\n$coloring\n$gaps_border\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $i3_submenu_height; width: $i3_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " i3wm   ")
+	select4=$(echo -e "$i3_sub\n$i3_workspace\n$exec\n$coloring\n$gaps_border\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $i3_submenu_height; width: $i3_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " i3wm   " -theme $path_to_theme)
 
 	case $select4 in
 		$i3_sub)

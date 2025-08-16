@@ -9,6 +9,7 @@ main_menu_height=385px
 main_menu_width=350px
 
 polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
 
 if [[ $polybar_top == "true" ]]; then
 	location="north east"
@@ -20,6 +21,12 @@ else
 
 	main_menu_x_offset=-10px
 	main_menu_y_offset=-70px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
 # CMDs
@@ -46,24 +53,9 @@ rofi_cmd() {
 	rofi -dmenu \
 		-i \
 		-theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" \
+		-theme $path_to_theme \
 		-p " Select   " \
 		-mesg "Uptime: $uptime"
-}
-
-# Confirmation CMD
-confirm_cmd() {
-	rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
-		-theme-str 'listview {columns: 2; lines: 1;}' \
-		-theme-str 'element-text {horizontal-align: 0.5;}' \
-		-theme-str 'textbox {horizontal-align: 0.5;}' \
-		-dmenu \
-		-p 'Confirmation' \
-		-mesg 'Are you Sure?'
-}
-
-# Ask for confirmation
-confirm_exit() {
-	echo -e "$yes\n$no" | confirm_cmd
 }
 
 # Pass variables to rofi dmenu

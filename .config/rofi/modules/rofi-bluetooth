@@ -12,6 +12,7 @@ main_menu_width=350px
 source ~/.config/dtf-config/config
 
 polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
 
 if [[ $polybar_top == "true" ]]; then
 	location="north east"
@@ -47,6 +48,12 @@ else
 						
 	device_menu_x_offset=-180px
 	device_menu_y_offset=-70px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
 #main
@@ -337,7 +344,7 @@ show_menu() {
 
         #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
 	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_trusted\n$devices_paired\n$bluetooth_manager\n$quit"
-	chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Bluetooth  ")"
+	chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
 
     case "$chosen" in
         "" | "$divider")
@@ -377,7 +384,7 @@ show_menu() {
     else
         power="  Power: Off"
         options_off="$power\n$quit"
-	chosen="$(echo -e "$options_off" | rofi -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Bluetooth  ")"
+	chosen="$(echo -e "$options_off" | rofi -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
 	
 	case "$chosen" in
         "" | "$divider")
@@ -391,7 +398,7 @@ show_menu() {
     fi
 }
 
-rofi_command="rofi -dmenu -i $* -p"
+rofi_command="rofi -dmenu -i -theme $path_to_theme -p "
 
 case "$1" in
     --status)

@@ -5,6 +5,7 @@
 source ~/.config/dtf-config/config
 
 polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
 
 if [[ $polybar_top == "true" ]]; then
 	location="north west"
@@ -16,6 +17,12 @@ else
 				 
 	main_menu_x_offset=10px
 	main_menu_y_offset=-70px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
 goback="Back 󰌍 "
@@ -69,7 +76,7 @@ cls_hist=$(echo "Clear History 󱏫")
 # options="$notifications\n$cls_hist"
 options="$cls_hist\n$notifications"
 # Use rofi to display notifications
-selected=$(echo -e "$quit\n$options" | rofi -dmenu -i -selected-row 2 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+selected=$(echo -e "$quit\n$options" | rofi -dmenu -theme $path_to_theme -i -selected-row 2 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 
 case $selected in
 	"")
@@ -93,7 +100,7 @@ noti_body_menu(){
 body=$(dunstctl history | jq -r --arg summary "$selected" \
 			'.data[0][] | select(.summary.data == $summary) | .body.data')
 	     	clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
-		choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -dmenu -i -selected-row 3 -p "Notification Body" -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+		choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -dmenu -theme $path_to_theme -i -selected-row 3 -p "Notification Body" -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 		case $choose_opt in
 			$goback)
 				noti_main_menu

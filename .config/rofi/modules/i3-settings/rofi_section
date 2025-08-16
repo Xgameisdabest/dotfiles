@@ -1,6 +1,15 @@
 #!/bin/bash
 ### ROFI SUBMENU
 
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
 I3_SETTINGS_PATH=~/.config/rofi/modules/i3-settings
 
 source $I3_SETTINGS_PATH/i3-settings_section
@@ -22,7 +31,7 @@ rofi_submenu(){
 	os_about="󰟀  Machine Info"
 	redshift="  Night Mode"
 	
-	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$os_about\n$redshift\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   ")
+	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$os_about\n$redshift\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   " -theme $path_to_theme)
 	
 	case $select2 in
 		$rofi_sub)

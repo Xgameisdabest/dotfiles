@@ -13,6 +13,7 @@ main_menu_width=270px
 notification_timeout=1100
 
 polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
 
 if [[ $polybar_top == "true" ]]; then
 	location="north east"
@@ -24,6 +25,12 @@ else
 				 
 	main_menu_x_offset=-150px
 	main_menu_y_offset=-70px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
 #main
@@ -57,11 +64,11 @@ set_mode_power_saver() {
 
 rofi_cmd() {
 	if [[ $status == "Discharging" ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
+		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
 	elif [[ $status == "Charging" ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n FULL: $charged_left")" -p " $bat_percentage 󰂅 "
+		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n FULL: $charged_left")" -p " $bat_percentage 󰂅 "
 	elif [[ $status == "Full" ]]; then
-		rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status")" -p " Full 󱐋 "
+		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status")" -p " Full 󱐋 "
 	fi
 }
 

@@ -7,6 +7,7 @@
 source ~/.config/dtf-config/config
 
 polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
 
 if [[ $polybar_top == "true" ]]; then
 	location="north east"
@@ -18,6 +19,12 @@ else
 
 	main_menu_x_offset=-610px
 	main_menu_y_offset=-263px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/calendar_white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/calendar_black.rasi"
 fi
 
 #main
@@ -94,7 +101,7 @@ calendar_menu() {
 
     echo -e "$calendar_body" | sed 's/\./__/g' | rofi -dmenu \
     -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" \
-    -theme ~/.config/rofi/rofi_theme/calendar_black_and_white.rasi \
+    -theme $path_to_theme \
     -p "$calendar_header" $urgent $active $selected_row
 }
 
