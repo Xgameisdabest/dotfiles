@@ -41,8 +41,8 @@ km.set("n", "/", ":SearchBoxMatchAll<CR>")
 km.set("n", "<leader>db", ":DBUIToggle<CR>")
 
 km.set("n", "<leader>/", function()
-		require("Comment.api").toggle.linewise.current()
-	end, { desc = "comment toggle" }
+	require("Comment.api").toggle.linewise.current()
+end, { desc = "comment toggle" }
 )
 
 km.set(
@@ -53,10 +53,14 @@ km.set(
 )
 
 km.set("n", "<leader>gf", vim.lsp.buf.format, {})
-
 km.set("n", "K", vim.lsp.buf.hover, {})
 km.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 km.set("n", "<leader>SO", "<cmd>source %<CR>")
 km.set("n", "<leader>L", "<cmd>Lazy<CR>")
 km.set("n", "<leader>M", "<cmd>Mason<CR>")
+
+km.set("n", "<leader><Tab>", "<cmd>Telescope buffers<CR>")
+km.set("n", "<leader>F", "<cmd>Telescope find_files<CR>")
+km.set("n", "<leader>H", "<cmd>Telescope command_history<CR>")
+km.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>")
