@@ -33,7 +33,7 @@ bindsym $mod+s exec --no-startup-id ~/.config/rofi/modules/rofi-web-search
 bindsym $mod+x exec --no-startup-id i3-msg kill && ~/.config/i3/scripts/mouse_change_windows_when_focus.sh
 
 #show all opened windows, programs in rofi
-bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+Tab exec --no-startup-id ~/.config/rofi/scripts/window_list.sh
 
 #access emoji icon (REQUIRES rofimoji program)
 bindsym $mod+z exec --no-startup-id rofimoji
