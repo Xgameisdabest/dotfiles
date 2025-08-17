@@ -93,7 +93,7 @@ sudo rm -rf ~/go/ && echo "Build deps removed!"
 
 Install most important dependencies (for ```apt```)
 ```
-sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty
+sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty x11-utils
 ```
 
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))

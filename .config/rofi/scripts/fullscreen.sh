@@ -7,4 +7,13 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black-fullscreen.rasi"
 fi
 
+polybar_status=$(xwininfo -id $(xdotool search -name polybar | head -n1) | grep IsViewable)
+
+polybar-msg cmd hide
+
 rofi -theme $path_to_theme -show drun
+
+#check if it is hidden or not
+if [[ -n $polybar_status ]]; then
+    polybar-msg cmd show
+fi
