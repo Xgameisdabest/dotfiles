@@ -1,10 +1,10 @@
 * {
     bg-col:  #000000dd;
     border-col: #1e1e2e;
-    selected-col: #f38ba81f;
+    selected-col: #ff6f911f;
     blue: #89b4fa;
     fg-col: #cdd6f4;
-    fg-col2: #f38ba8;
+    fg-col2: #ff6f91;
     grey: #6c7086;
     white: #FFFFFF;
     font: "JetBrainsMono Nerd Font 13";
