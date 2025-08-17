@@ -1,11 +1,12 @@
 * {
     bg-col:  #e0e6eddd;
     border-col: #1e1e2e;
-    selected-col: #89b4fa1f;
+    selected-col: #ff6f919f;
     blue: #89b4fa;
-    fg-col: #16161d;
-    fg-col2: #f38ba8;
+    fg-col: #1e1e2e;
+    fg-col2: #ff6f91;
     grey: #6c7086;
+    black: #000000;
     font: "JetBrainsMono Nerd Font 13";
 }
 
@@ -54,7 +55,7 @@ inputbar {
 prompt {
     enabled:                     true;
     background-color:            @blue;
-    text-color:                  @bg-col;
+    text-color:                  @fg-col;
     padding: 			 6px;
     border-radius: 		 4px;
     margin: 			 -2px 0px 0px 0px;
@@ -70,7 +71,7 @@ textbox-prompt-colon {
 
 entry {
     enabled:                     true;
-    background-color:            @border-col;
+    background-color:            @bg-col;
     text-color:                  inherit;
     cursor:                      text;
     placeholder:                 "Type To Search";
@@ -131,7 +132,7 @@ element selected.normal {
     background-color:            @selected-col;
     border:                      0px 0px 4px 0px;
     border-radius: 		 8px;
-    text-color:                  @fg-col2;
+    text-color:                  @black;
 }
 element-icon {
     background-color:            transparent;

@@ -40,7 +40,7 @@ inputbar {
 prompt {
     background-color: @lavender;
     padding: 6px;
-    text-color: @bg-col;
+    text-color: @fg-col;
     border-radius: 3px;
     margin: 20px 0px 0px 20px;
 }
