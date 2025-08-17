@@ -175,8 +175,6 @@ __USAGE__
 - ```autoremove```: remove unused packages
 
 ## CONFIGURATION
-> [!NOTE]
-> This is a work-in-progress thing and it only appears on v3 and above
 
 Run this command to generate the config dir and the file itself:
 ```
@@ -195,6 +193,8 @@ AVAILABLE CONFIG KEYS (ALL OF THESE BELOW ARE DEFAULT CONFIGS):
 polybar_color=black #(OPTIONS: white/black)
 polybar_compact=false #(OPTIONS: true/false)
 polybar_top=false #(OPTIONS: true/false)
+polybar_hidden_when_using_launcher=false #(OPTIONS: true/false)
+rofi_theme=black #(OPTIONS: white/black)
 picom_enable=true #(OPTIONS: true/false)
 autostart_night_mode=false #(OPTIONS: true/false)
 auto_sleep=true #(OPTIONS: true/false)
