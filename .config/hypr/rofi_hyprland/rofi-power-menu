@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+#COULD NOT FIND THE ORIGINAL AUTHOR
+#THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
+
+source ~/.config/dtf-config/config
+
+main_menu_height=385px
+main_menu_width=350px
+
+polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
+
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
+
+	main_menu_x_offset=-10px
+	main_menu_y_offset=70px
+else
+	location="south east"
+
+	main_menu_x_offset=-10px
+	main_menu_y_offset=-70px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+# CMDs
+uptime="`uptime -p | sed -e 's/up //g'`"
+host=`hostname`
+
+# Options
+shutdown='  Power off'
+#shutdown=' '
+reboot='  Reboot'
+#reboot=' '
+lock='  Lock'
+#lock=' '
+suspend='󰤄  Suspend'
+#suspend='󰤄 '
+#logout='󰍃  -> Get the fuck out'
+logout='󰍃  Log out'
+#logout='󰍃 '
+yes='✔'
+no='✗'
+
+# Rofi CMD
+rofi_cmd() {
+	rofi -dmenu \
+		-i \
+		-theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" \
+		-theme $path_to_theme \
+		-p " Select   " \
+		-mesg "Uptime: $uptime"
+}
+
+# Pass variables to rofi dmenu
+run_rofi() {
+	echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
+}
+
+# Execute Command
+run_cmd() {
+	selected="$yes"
+	if [[ "$selected" == "$yes" ]]; then
+		if [[ $1 == '--shutdown' ]]; then
+			poweroff
+		elif [[ $1 == '--reboot' ]]; then
+			reboot
+		elif [[ $1 == '--suspend' ]]; then
+			mpc -q pause
+			amixer set Master mute
+			systemctl suspend
+			betterlockscreen -l
+		elif [[ $1 == '--logout' ]]; then
+			i3-msg 'exit'
+		fi
+	else
+		exit 0
+	fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+    $shutdown)
+		run_cmd --shutdown
+        ;;
+    $reboot)
+		run_cmd --reboot
+        ;;
+    $lock)
+		betterlockscreen -l
+        ;;
+    $suspend)
+		run_cmd --suspend
+        ;;
+    $logout)
+		run_cmd --logout
+        ;;
+esac
+

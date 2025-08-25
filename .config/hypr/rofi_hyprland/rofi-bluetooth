@@ -1,0 +1,410 @@
+#!/usr/bin/env bash
+
+#ORIGINAL IDEAS WAS MADE BY THIS GUY, NOT ME
+#link to the king: https://github.com/nickclyde/rofi-bluetooth
+#THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
+
+#when add new entry make sure to add 35 to height
+main_menu_height=460px
+main_menu_height_off=195px
+main_menu_width=350px
+
+source ~/.config/dtf-config/config
+
+polybar_top=${polybar_top:-false}
+rofi_theme=${rofi_theme:-black}
+
+if [[ $polybar_top == "true" ]]; then
+	location="north east"
+
+	main_menu_x_offset=-180px
+	main_menu_y_offset=70px
+
+	device_list_menu_x_offset=-30px
+	device_list_menu_y_offset=70px
+
+	device_list_trusted_menu_x_offset=-30px
+	device_list_trusted_menu_y_offset=70px
+
+	device_list_paired_menu_x_offset=-30px
+	device_list_paired_menu_y_offset=70px
+
+	device_menu_x_offset=-180px
+	device_menu_y_offset=70px
+else
+	location="south east"
+						
+	main_menu_x_offset=-180px
+	main_menu_y_offset=-70px
+						
+	device_list_menu_x_offset=-30px
+	device_list_menu_y_offset=-70px
+						
+	device_list_trusted_menu_x_offset=-30px
+	device_list_trusted_menu_y_offset=-70px
+						
+	device_list_paired_menu_x_offset=-30px
+	device_list_paired_menu_y_offset=-70px
+						
+	device_menu_x_offset=-180px
+	device_menu_y_offset=-70px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+#main
+
+divider="---------"
+goback="Back 󰌍 "
+quit="Exit 󰈆 "
+
+power_on() {
+    if bluetoothctl show | grep -q "Powered: yes"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+toggle_power() {
+    if power_on; then
+        bluetoothctl power off
+        show_menu
+    else
+        if rfkill list bluetooth | grep -q 'blocked: yes'; then
+            rfkill unblock bluetooth && sleep 3
+        fi
+        bluetoothctl power on
+        show_menu
+    fi
+}
+
+scan_on() {
+    if bluetoothctl show | grep -q "Discovering: yes"; then
+        echo "  Scan: Toggle"
+        return 0
+    else
+        echo "  Scan: Toggle"
+        return 1
+    fi
+}
+
+toggle_scan() {
+    if scan_on; then
+        kill $(pgrep -f "bluetoothctl scan on")
+        bluetoothctl scan off
+        show_menu
+    else
+	notify-send "󰾰  Scanning Nearby Devices... " -t 5000
+        bluetoothctl --timeout 5 scan on
+        echo "Scanning..."
+	show_menu
+    fi
+}
+
+pairable_on() {
+    if bluetoothctl show | grep -q "Pairable: yes"; then
+        echo "󰌘  Pairable: On"
+        return 0
+    else
+        echo "󰌘  Pairable: Off"
+        return 1
+    fi
+}
+
+toggle_pairable() {
+    if pairable_on; then
+        bluetoothctl pairable off
+        show_menu
+    else
+        bluetoothctl pairable on
+        show_menu
+    fi
+}
+
+discoverable_on() {
+    if bluetoothctl show | grep -q "Discoverable: yes"; then
+        echo "󰐻  Discoverable: On"
+        return 0
+    else
+        echo "󰐻  Discoverable: Off"
+        return 1
+    fi
+}
+
+toggle_discoverable() {
+    if discoverable_on; then
+        bluetoothctl discoverable off
+        show_menu
+    else
+        bluetoothctl discoverable on
+        show_menu
+    fi
+}
+
+device_connected() {
+    device_info=$(bluetoothctl info "$1")
+    if echo "$device_info" | grep -q "Connected: yes"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+toggle_connection() {
+    # Ensure the agent is active and automatically accepts requests
+    bluetoothctl default-agent
+    bluetoothctl agent on
+
+    if device_connected "$1"; then
+        # If already connected, disconnect it
+        notify-send "Cancelling Connection With Device $device_name"
+        bluetoothctl disconnect "$1"
+        notify-send "Successfully Disconnected Device $device_name"
+        device_menu "$device"
+    else
+        # If not connected, connect and ensure the device is paired and trusted
+        notify-send "Establishing Connection With Device $device_name"
+	
+	# The magic line that solves everything
+	bluetoothctl pairable on
+
+	# Pair the device if not already paired
+        bluetoothctl pair "$1"
+        notify-send "Paired With Device $device_name"
+
+	# Trust the device if not already trusted
+        bluetoothctl trust "$1"
+        notify-send "Trusted Device $device_name"
+
+        # Connect to the device
+        bluetoothctl connect "$1"
+	if bluetoothctl info "$1" | grep -q "Connected: yes"; then
+	    notify-send "Successfully Connected To Device $device_name"
+	    device_menu "$device"	
+    	else
+	    notify-send "Failed To Connect To Device $device_name"
+	    device_menu "$device"
+	fi
+    fi
+}
+device_paired() {
+    device_info=$(bluetoothctl info "$1")
+    if echo "$device_info" | grep -q "Paired: yes"; then
+        echo "󰌘  Paired: Yes"
+        return 0
+    else
+        echo "󰌘  Paired: No"
+        return 1
+    fi
+}
+
+toggle_paired() {
+    if device_paired "$1"; then
+        bluetoothctl remove "$1"
+        device_menu "$device"
+    else
+        bluetoothctl pair "$1"
+        device_menu "$device"
+    fi
+}
+
+device_trusted() {
+    device_info=$(bluetoothctl info "$1")
+    if echo "$device_info" | grep -q "Trusted: yes"; then
+        echo "  Trusted: Yes"
+        return 0
+    else
+        echo "  Trusted: No"
+        return 1
+    fi
+}
+
+toggle_trust() {
+    if device_trusted "$1"; then
+        bluetoothctl untrust "$1"
+        device_menu "$device"
+    else
+        bluetoothctl trust "$1"
+        device_menu "$device"
+    fi
+}
+
+device_list() {
+	dev_list=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	options="$dev_list\n$goback\n$quit"
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_menu_x_offset; y-offset: $device_list_menu_y_offset;}" | sed 's///g')
+	case "$select" in
+        "" | "$divider" | "$quit")
+            echo "No option chosen."
+            ;;
+        "$goback")
+            show_menu
+            ;;
+    *)
+	dev_list_addr=$(bluetoothctl devices | grep "$select")
+        if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+	;;
+    esac
+}
+
+device_list_trusted() {
+	dev_list=$(bluetoothctl devices Trusted | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	options="$dev_list\n$goback\n$quit"
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_trusted_menu_x_offset; y-offset: $device_list_trusted_menu_y_offset;}" | sed 's///g')
+	case "$select" in
+        "" | "$divider" | "$quit")
+            echo "No option chosen."
+            ;;
+        "$goback")
+            show_menu
+            ;;
+    *)
+	dev_list_addr=$(bluetoothctl devices | grep "$select")
+        if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+	;;
+    esac
+}
+
+device_list_paired() {
+	dev_list=$(bluetoothctl devices Paired | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	options="$dev_list\n$goback\n$quit"
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_paired_menu_x_offset; y-offset: $device_list_paired_menu_y_offset;}" | sed 's///g')
+	case "$select" in
+        "" | "$divider" | "$quit")
+            echo "No option chosen."
+            ;;
+        "$goback")
+            show_menu
+            ;;
+    *)
+	dev_list_addr=$(bluetoothctl devices | grep "$select")
+        if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+	;;
+    esac
+}
+
+device_menu() {
+    device=$1
+
+    device_name=$(echo "$device" | cut -d ' ' -f 3-)
+    mac=$(echo "$device" | cut -d ' ' -f 2)
+
+    if device_connected "$mac"; then
+        connected="󰂰  Connected: Yes"
+    else
+        connected="󰂰  Connected: No"
+    fi
+    paired=$(device_paired "$mac")
+    trusted=$(device_trusted "$mac")
+    options="$connected\n$paired\n$trusted\n$goback\n$quit"
+
+    chosen="$(echo -e "$options" | $rofi_command " $device_name 󰾰  " -theme-str "window {height: 390; width: 350px; location: $location; x-offset: $device_menu_x_offset; y-offset: $device_menu_y_offset;}")"
+
+    case "$chosen" in
+        "" | "$divider")
+            echo "No option chosen."
+            ;;
+        "$connected")
+            toggle_connection "$mac"
+            ;;
+        "$paired")
+            toggle_paired "$mac"
+            ;;
+        "$trusted")
+            toggle_trust "$mac"
+            ;;
+        "$goback")
+            device_list
+            ;;
+    esac
+}
+
+show_menu() {
+    if power_on; then
+        power="  Power: On"
+	
+	device_count=$(bluetoothctl devices | wc -l)
+	trusted_device_count=$(bluetoothctl devices Trusted | wc -l)
+	paired_device_count=$(bluetoothctl devices Paired | wc -l)
+
+	devices="  Device List ($device_count)  "
+	devices_trusted="  Trusted Device ($trusted_device_count) "
+	devices_paired="  Paired Device ($paired_device_count) "
+
+	bluetooth_manager="󰖯  Bluetooth Manager"
+
+        scan=$(scan_on)
+        pairable=$(pairable_on)
+        discoverable=$(discoverable_on)
+
+        #options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
+	options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_trusted\n$devices_paired\n$bluetooth_manager\n$quit"
+	chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
+
+    case "$chosen" in
+        "" | "$divider")
+            echo "No option chosen."
+            ;;
+	"$devices")
+	device_list
+	;;
+	"$devices_trusted")
+	device_list_trusted
+	;;
+	"$devices_paired")
+	device_list_paired
+	;;
+        "$power")
+            toggle_power
+            ;;
+        "$scan")
+            toggle_scan
+            ;;
+        "$discoverable")
+            toggle_discoverable
+            ;;
+    	"$bluetooth_manager")
+	    blueman-manager
+	    ;;
+        "$pairable")
+            toggle_pairable
+            ;;
+        *)
+            device=$(bluetoothctl devices | grep "$chosen")
+            # Open a submenu if a device is selected
+            if [[ $device ]]; then device_menu "$device"; fi
+            ;;
+    esac
+
+    else
+        power="  Power: Off"
+        options_off="$power\n$quit"
+	chosen="$(echo -e "$options_off" | rofi -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
+	
+	case "$chosen" in
+        "" | "$divider")
+        echo "No option chosen."
+        ;;
+        "$power")
+        toggle_power
+        ;;
+	esac
+
+    fi
+}
+
+rofi_command="rofi -dmenu -i -theme $path_to_theme -p "
+
+case "$1" in
+    --status)
+        print_status
+        ;;
+    *)
+        show_menu
+        ;;
+esac

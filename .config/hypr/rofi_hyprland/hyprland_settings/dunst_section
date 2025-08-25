@@ -1,0 +1,45 @@
+#!/bin/bash
+### DUNST SUBMENU
+
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+dunst_submenu_height=330px
+dunst_submenu_width=370px
+
+dunst_submenu(){
+	main_config="  Main Config"
+	bat_status="󱊣  Battery Status"
+	airplane_mode="󰀝  Airplane Mode"
+	notification_center="󰅍  Notification Bar Icon"
+	volume_and_light="󰕾  Volume & Light"
+
+	select6=$(echo -e "$main_config\n$volume_and_light\n$bat_status\n$notification_center\n$airplane_mode\n$goback" | rofi -dmenu -i -theme-str "window {height: $dunst_submenu_height; width: $dunst_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Notification   " -theme $path_to_theme)
+
+	case $select6 in
+		$bat_status)
+			$TERMINAL -e nvim ~/.config/dunst/scripts/bat_status.sh
+			;;
+		$airplane_mode)
+			$TERMINAL -e nvim ~/.config/dunst/scripts/noti-airplane.sh
+			;;
+		$notification_center)
+			$TERMINAL -e nvim ~/.config/polybar/scripts/polybar-notification-center/notification-indicator
+			;;
+		$volume_and_light)
+			$TERMINAL -e nvim ~/.config/dunst/scripts/volume.sh
+			;;
+		$main_config)
+			$TERMINAL -e nvim ~/.config/dunst/dunstrc
+			;;
+		$goback)
+			main_menu
+			;;
+	esac
+}
