@@ -77,7 +77,7 @@ run_cmd() {
 			systemctl suspend
 			betterlockscreen -l
 		elif [[ $1 == '--logout' ]]; then
-			i3-msg 'exit'
+			killall Hyprland
 		fi
 	else
 		exit 0
