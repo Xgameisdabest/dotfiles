@@ -1,8 +1,8 @@
 * {
-  min-height: 20pt;
+  min-height: 25pt;
   font-family: JetBrainsMono Nerd Font;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 19px;
 }
 
 window#waybar {
@@ -20,10 +20,10 @@ window#waybar.hidden {
 
 #workspaces button {
   all: initial;
-  min-width: 0;
-  box-shadow: inset 0 -3px transparent;
-  padding: 6px 18px;
-  margin: 6px 3px;
+  padding: 0px 13px 0px 13px;
+  margin: 0px 2px; 
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 4px;
   background-color: #16161d;
   color: #e0e6ed;
@@ -45,27 +45,6 @@ window#waybar.hidden {
   background-color: #ff6f91;
 }
 
-#tray {
-  border-radius: 4px;
-  margin: 6px 3px;
-  padding: 6px 12px;
-  background-color: #1e1e2e;
-  color: #181825;
-}
-
-#custom-power {
-  margin-right: 6px;
-}
-
-#custom-logo {
-  padding-right: 7px;
-  padding-left: 7px;
-  margin-left: 5px;
-  font-size: 15px;
-  border-radius: 8px 0px 0px 8px;
-  color: #1793d1;
-}
-
 tooltip {
   border-radius: 8px;
   padding: 15px;
@@ -75,4 +54,78 @@ tooltip {
 tooltip label {
   padding: 5px;
   background-color: #131822;
+}
+
+#tray,
+#battery,
+#bluetooth,
+#network,
+#clock,
+#window,
+#custom-notification-center,
+#custom-gammastep,
+#custom-hyprland-settings,
+#custom-audio,
+#custom-power {
+  padding: 0px 13px 0px 13px;
+  margin: 0px 2px; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+#custom-power{
+  background-color: #f38ba8;
+  color: #16161d;
+}
+
+#battery{
+  background-color: #a6e3a1;
+  color: #16161d;
+}
+
+#bluetooth{
+  background-color: #74c7ec;
+  color: #16161d;
+}
+
+#network{
+  background-color: #a6e3a1;
+  color: #16161d;
+}
+
+#clock{
+  background-color: #f5e0dc;
+  color: #16161d;
+}
+
+#window{
+  background-color: #e0e6ed;
+  color: #16161d;
+}
+
+#custom-notification-center{
+  background-color: #f5e0dc;
+  color: #16161d;
+}
+
+#custom-gammastep{
+  background-color: #f9e2af;
+  color: #16161d;
+}
+
+#custom-hyprland-settings{
+  background-color: #a6adc8;
+  color: #16161d;
+}
+
+#custom-audio{
+  background-color: #a6adc8;
+  color: #16161d;
+}
+
+#tray {
+  background-color: #1e1e2e;
+  color: #181825;
 }

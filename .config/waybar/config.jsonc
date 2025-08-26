@@ -56,10 +56,10 @@
 	    "critical": 15
 	},
 
-	"format": " {icon} ",
-	"format-charging": " {capacity}% 󰂄  ",
-	"format-not-charging": " {capacity}% 󰂌  ",
-	"format-plugged": " {capacity}%   ",
+	"format": "{icon}",
+	"format-charging": "{capacity}% 󰂄 ",
+	"format-not-charging": "{capacity}% 󰂌 ",
+	"format-plugged": "{capacity}%  ",
 	//"tooltip-format": " {time} {icon} ",
 	"format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁽","󰁾","󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
 	"on-click": "~/.config/rofi/modules/rofi-power-mode",
@@ -67,7 +67,7 @@
 
 	"network": {
 	"interval": 2,
-	"format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+	"format-icons": ["󰤯", "󰤟", "󰤢", "󰤢", "󰤨"],
 	"format-wifi": " {icon} ",
 	"format-ethernet": "{ipaddr}/{cidr}",
 	"tooltip-format": "{ifname} via {gwaddr}",
@@ -78,10 +78,11 @@
 	},
 
 	"custom/audio": {
-	"format": "{}",
+	"format": " {} ",
 	"exec": "~/.config/waybar/scripts/volume_status.sh",
 	"return-type": "json",
 	"tail": true,
+	"interval": 0.1,
 	"on-click": "~/.config/dunst/scripts/volume.sh volume_mute",
 	"on-click-middle": "~/.config/dunst/scripts/volume.sh volume_status",
 	"on-click-right": "~/.config/rofi/modules/rofi-sound-settings",
@@ -90,27 +91,26 @@
 	},
 
 	"custom/power": {
-	"format": " {icon} ",
-	"format-icons": "  ",
+	"format": "  ",
 	"on-click": "~/.config/hypr/rofi_hyprland/rofi-power-menu"
 	},
 
 	"custom/notification-center": {
+	"format": " {} ",
 	"exec": "~/.config/waybar/scripts/notification-indicator",
 	"interval": 1,
-	"format": "{}",
 	"on-click": "~/.config/dunst/scripts/noti-center.sh",
 	"on-click-right": "dunstctl history-clear"
 	},
 
 	"custom/gammastep": {
-	"format": "   ",
+	"format": " ",
 	"on-click": "~/.config/hypr/rofi_hyprland/rofi-gammastep",
 	"on-click-right": "gammastep -x"
 	},
 	
 	"custom/hyprland-settings": {
-    	"format": "   ",
+    	"format": " ",
     	"on-click": "~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-i3-settings"
 	},
 
