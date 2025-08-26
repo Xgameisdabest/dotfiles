@@ -7,13 +7,10 @@
     "margin-left": 10,
     "margin-right": 10,    
     "spacing": 8,
-	// Choose the order of the modules
 	"modules-left": ["custom/padd","custom/hyprland-settings","custom/gammastep","custom/notification-center","tray","hyprland/window"],
 	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["clock","network","bluetooth","battery","custom/audio","custom/power","custom/padd"],
-    
+	"modules-right": ["clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
 
-       // Modules configuration
 	"hyprland/workspaces": {
 	  "format": "{name}",
 	  "on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
@@ -30,16 +27,14 @@
 	"spacing": 11
 	},
 
-	"bluetooth":{
-	"format": "  ",
-	"format-disabled": " 󰂲 ", // an empty format will hide the module
-	"format-connected": "  ",
-	"tooltip-format": "Controller: {controller_alias}: {controller_address}",
-	"tooltip-format-connected": "Controller: {controller_alias}: {controller_address}\n---\nConnected Device: {device_enumerate}",
-	"tooltip-format-enumerate-connected": "\n{device_alias}: {device_address}",
-	"on-click": "rfkill unblock bluetooth && ~/.config/rofi/modules/rofi-bluetooth"
+	"custom/bluetooth": {
+    	"exec": "~/.config/waybar/scripts/bluetooth.sh",
+    	"tail": true,
+    	"format": "{}",
+    	"return-type": "json",
+	"on-click": "~/.config/rofi/modules/rofi-bluetooth",
+	"on-click-right": "~/.config/waybar/scripts/toggle_bluetooth.sh"
 	},
-
 
 	"clock": {
 	  "interval": 1,
@@ -66,14 +61,10 @@
 	"on-click": "~/.config/rofi/modules/rofi-power-mode",
 	},
 
-	"network": {
-	"interval": 0.1,
-	"format-icons": ["󰤯", "󰤟", "󰤢", "󰤢", "󰤨"],
-	"format-wifi": "{icon} ",
-	"format-ethernet": "{ipaddr}/{cidr}",
-	"tooltip-format": "{ifname} via {gwaddr}",
-	"format-linked": "{ifname} (No IP)",
-	"format-disconnected": "󰤭 ",
+	"custom/network": {
+	"format": "{}",
+	"exec": "~/.config/waybar/scripts/network_status.sh",
+	"return-type": "json",
 	"on-click": "~/.config/rofi/modules/rofi-wifi-menu",
 	"on-click-right": "~/.config/polybar/scripts/polybar-wifi/toggle_wifi.sh"
 	},
@@ -81,7 +72,7 @@
 	"custom/audio": {
 	"format": "{}",
 	"exec": "~/.config/waybar/scripts/volume_status.sh",
-	"tail": true,
+	"return-type": "json",
 	"on-click": "~/.config/dunst/scripts/volume.sh volume_mute",
 	"on-click-middle": "~/.config/dunst/scripts/volume.sh volume_status",
 	"on-click-right": "~/.config/rofi/modules/rofi-sound-settings",
@@ -118,6 +109,5 @@
 	"interval" : "once",
 	"tooltip": false
 	}
-
 }
 
