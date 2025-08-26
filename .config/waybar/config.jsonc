@@ -1,8 +1,12 @@
 {
-	"layer": "top", 
-	"position": "bottom",
-	"width": "100%", 
-	"spacing": 8,
+    "position": "bottom",
+    "layer": "top",
+    "margin-bottom": 5,
+    "margin-top": 0,
+    "layer": "top",
+    "margin-left": 10,
+    "margin-right": 10,    
+    "spacing": 8,
 	// Choose the order of the modules
 	"modules-left": ["custom/padd","custom/hyprland-settings","custom/gammastep","custom/notification-center","tray","hyprland/window"],
 	"modules-center": ["hyprland/workspaces"],
