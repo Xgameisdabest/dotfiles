@@ -80,8 +80,33 @@ tooltip label {
   color: #16161d;
 }
 
-#battery{
+#battery.LVL0{
   background-color: #a6e3a1;
+  color: #16161d;
+}
+
+#battery.LVL1{
+  background-color: #a6e3a1;
+  color: #16161d;
+}
+
+#battery.LVL2{
+  background-color: #94e2d5;
+  color: #16161d;
+}
+
+#battery.LVL3{
+  background-color: #f9e2af;
+  color: #16161d;
+}
+
+#battery.LVL4{
+  background-color: #f38ba8;
+  color: #16161d;
+}
+
+#battery.LVL5{
+  background-color: #ff6f91;
   color: #16161d;
 }
 

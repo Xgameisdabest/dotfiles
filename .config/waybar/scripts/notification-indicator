@@ -43,7 +43,7 @@ list_history="$(dunstctl history | jq -r '
 ')"
 
 if [[ $list_history != "" ]]; then
-	echo " 󱅫  "
+	echo "󱅫"
 else
-	echo " 󰂜  "
+	echo "󰂜"
 fi
