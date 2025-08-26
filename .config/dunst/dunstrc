@@ -9,6 +9,7 @@ separator_color = frame
 origin = bottom-center
 offset = 0x100
 timeout = 2
+show_age_threshold = 60
 
 [urgency_low]
 ; background = "#211d30"

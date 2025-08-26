@@ -1,129 +1,102 @@
 {
-   
-    "layer": "top", 
-    "position": "bottom",
-    "width": 1900, 
-    "spacing": 8, 
-    "margin-top": 14,
-    "margin-bottom": 0,
+	"layer": "top", 
+	"position": "bottom",
+	"width": "100%", 
+	"spacing": 8, 
 
-    // Choose the order of the modules
-    "modules-left": ["tray","hyprland/window"],
-    "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["clock","network","bluetooth","battery","pulseaudio","custom/power"],
+	// Choose the order of the modules
+	"modules-left": ["custom/padd","tray","hyprland/window"],
+	"modules-center": ["hyprland/workspaces"],
+	"modules-right": ["clock","network","bluetooth","battery","custom/audio","custom/power","custom/padd"],
     
 
-    // Modules configuration
-     
+       // Modules configuration
+	"hyprland/workspaces": {
+	  "format": "{name}",
+	  "on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
+	  "on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh prev"
+	},
 
-    "hyprland/language": {
-        "format": "  : {} ",
-        "keyboard-name": "at-translated-set-2-keyboard"
-    },
+	"hyprland/window": {
+	"format": " 󰘔  {class} ",
+	"on-click": "~/.config/rofi/scripts/window_list.sh"
+	},
+
+	"tray": {
+	"icon-size": 20,
+	"spacing": 11
+	},
+
+	"bluetooth":{
+	"format": "  ",
+	"format-disabled": " 󰂲 ", // an empty format will hide the module
+	"format-connected": "  ",
+	"tooltip-format": "Controller: {controller_alias}: {controller_address}",
+	"tooltip-format-connected": "Controller: {controller_alias}: {controller_address}\n---\nConnected Device: {device_enumerate}",
+	"tooltip-format-enumerate-connected": "\n{device_alias}: {device_address}",
+	"on-click": "rfkill unblock bluetooth && ~/.config/rofi/modules/rofi-bluetooth"
+	},
 
 
-    "hyprland/workspaces": {
-      "format": "{name}",
-      "format-icons": {
-        "active": "",
-        "default": ""
-      },
-        "persistent_workspaces": {
-            "1": ["eDP-1"],
-            "2": ["eDP-1"],
-            "3": ["eDP-1"],
-            "4": ["eDP-1"],
-            "5": ["eDP-1"],
-            "6": ["HDMI-A-1"],
-            "7": ["HDMI-A-1"],
-            "8": ["HDMI-A-1"],
-            "9": ["HDMI-A-1"],
-            "10": ["HDMI-A-1"]
-        }
-},
-    
-    "hyprland/window": {
-        "format": " 󰘔  {class} "
-    },
+	"clock": {
+	  "interval": 1,
+	  "format": " 󰥔  {:%H%M%S} ",
+	  "tooltip-format": "{:%d-%m-%Y}",
+	  "on-click": "~/.config/rofi/modules/rofi-calendar"
+	},
 
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    },
+	"battery": {
+	"interval": 1,
+	"states": {
+	    "good": 95,
+	    "warning": 30,
+	    "critical": 15
+	},
 
-    "bluetooth":{
-	  "format": "  ",
-	  "format-disabled": " 󰂲 ", // an empty format will hide the module
-	  "format-connected": "  ",
-	  //"tooltip-format": "Controller: {controller_alias} -> {controller_address}",
-	  //"tooltip-format-connected": "Controller: {controller_alias} -> {controller_address}\n---\nConnected Device: {device_enumerate}",
-	  //"tooltip-format-enumerate-connected": "\n{device_alias} -> {device_address}",
-    "on-click": "rfkill unblock bluetooth && ~/.config/rofi/modules/rofi-bluetooth"
-    },
+	"format": " {icon} ",
+	"format-charging": " {capacity}% 󰂄  ",
+	"format-not-charging": " {capacity}% 󰂌  ",
+	"format-plugged": " {capacity}%   ",
+	//"tooltip-format": " {time} {icon} ",
+	"format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁽","󰁾","󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+	"on-click": "~/.config/rofi/modules/rofi-power-mode",
+	},
 
-    "clock": {
-        // "timezone": "Hanoi",
-        "interval": 1,
-        "format": "   {:%T} ",
-        // "tooltip-format": "<big>{:%Y %B}</big>\n\n<tt><big>{calendar}</big></tt>",
-        "tooltip-format": "   {:%d-%m-%Y} ",
-	"on-click": "~/.config/rofi/modules/rofi-calendar"
-    },
+	"network": {
+	"interval": 2,
+	"format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+	"format-wifi": " {icon} ",
+	"format-ethernet": "{ipaddr}/{cidr}",
+	"tooltip-format": "{ifname} via {gwaddr}",
+	"format-linked": "{ifname} (No IP)  ",
+	"format-disconnected": " 󰤭  ",
+	//"format-alt": " IP: {ipaddr} ",
+	"on-click": "~/.config/rofi/modules/rofi-wifi-menu"
+	},
 
-    "battery": {
-      "interval": 1,
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        
-        "format": " {icon} ",
-        "format-charging": " {capacity}% 󰂄 ",
-        "format-not-charging": " {capacity}% 󰂌 ",
-        "format-plugged": " {capacity}%  ",
-        //"tooltip-format": " {time} {icon} ",
-        "format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁽","󰁾","󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "on-click": "~/.config/rofi/modules/rofi-power-mode",
-    },
+	"custom/audio": {
+	"format": "{}",
+	"exec": "~/.config/waybar/scripts/volume_status.sh",
+	"return-type": "json",
+	"tail": true,
+	"on-click": "~/.config/dunst/scripts/volume.sh volume_mute",
+	"on-click-middle": "~/.config/dunst/scripts/volume.sh volume_status",
+	"on-click-right": "~/.config/rofi/modules/rofi-sound-settings",
+	"on-scroll-down": "~/.config/dunst/scripts/volume.sh volume_down",
+	"on-scroll-up": "~/.config/dunst/scripts/volume.sh volume_up"
+	},
 
-    "network": {
-        "interval": 2,
-        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
-        "format-wifi": " {icon} ",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "format-linked": "{ifname} (No IP)  ",
-        "format-disconnected": " 󰤭  ",
-        //"format-alt": " IP: {ipaddr} ",
-        "on-click": "~/.config/rofi/modules/rofi-wifi-menu"
-    },
-    
-    "pulseaudio": {
-        "scroll-step": 3,
-        "format": " {icon} ",
-        "format-bluetooth": " {icon} ",
-        "format-bluetooth-muted": " {icon} ",
-        "format-muted": "   ",
-        "format-icons": {
-            "default": [" ", " ", " "]
-        },
-        "on-click": "~/.config/dunst/volume.sh volume_mute",
-        "on-click-right": "~/.config/rofi/modules/rofi-sound-settings"
-        },
+	"custom/power": {
+	"format": " {icon} ",
+	"format-icons": "  ",
+	"on-click": "~/.config/hypr/rofi_hyprland/rofi-power-menu"
+	},
 
-    "custom/power": {
-      "format": " {icon} ",
-      "format-icons": " ",
-      // "on-click": "~/.config/rofi/modules/rofi-power-menu"
-      "on-click": "wlogout"
-    },
-
-    "custom/padd": {
-    "format": " ",
-    "interval" : "once",
-    "tooltip": false
-}
+	"custom/padd": {
+	"format": " ",
+	"interval" : "once",
+	"tooltip": false
+	}
 
 }
 

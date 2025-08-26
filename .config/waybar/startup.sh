@@ -1,11 +1,6 @@
 #!/usr/bin/env sh
 
 killall -q waybar
+sleep 0.5
 
-if type "xrandr"; then
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m waybar &
-  done
-else
-  waybar &
-fi
+waybar &
