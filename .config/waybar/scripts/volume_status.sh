@@ -32,7 +32,7 @@ while true; do
         fi
 
         # Output JSON
-        echo "{\"text\":\"$icon ${volume}%\",\"class\":\"$class\"}"
+        echo "{\"text\":\"$icon  ${volume}%\",\"class\":\"$class\"}"
     fi
 
     sleep 0.3

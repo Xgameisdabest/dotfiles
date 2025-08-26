@@ -62,6 +62,10 @@ tooltip label {
   color: #181825; 
 }
 
+#custom-dtf-update{
+  color: #ff6f91;
+}
+
 #temperature,
 #tray,
 #battery,

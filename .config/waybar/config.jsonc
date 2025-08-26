@@ -9,7 +9,7 @@
     "spacing": 8,
 	"modules-left": ["custom/padd","custom/hyprland-settings","custom/gammastep","custom/notification-center","temperature","tray","hyprland/window"],
 	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
+	"modules-right": ["custom/dtf-update","clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
 
 	"hyprland/workspaces": {
 	  "format": "{name}",
@@ -22,7 +22,7 @@
 	"format-empty": " 󰘔  Hyprland ",
 	"on-click": "~/.config/rofi/scripts/window_list.sh"
 	},
-
+	
 	"tray": {
 	"icon-size": 20,
 	"spacing": 11
@@ -51,12 +51,12 @@
 	"battery": {
 	"interval": 1,
 	"states": {
-	"LVL0": 95,
-	"LVL1": 80,
-	"LVL2": 60,
-	"LVL3": 40,
-	"LVL4": 20,
-	"LVL5": 10,
+	"LVL0": 100,
+	"LVL1": 85,
+	"LVL2": 65,
+	"LVL3": 45,
+	"LVL4": 25,
+	"LVL5": 15,
 	},
 	"format": "{icon} {capacity}%",
 	"format-charging": "󰔵  {capacity}%",
@@ -107,6 +107,13 @@
 	"custom/hyprland-settings": {
     	"format": "",
     	"on-click": "~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-i3-settings"
+	},
+
+	"custom/dtf-update":{
+	"format": "{}",
+	"exec": "~/.config/waybar/scripts/dtf-update-bar.sh",
+	"interval": 0.1,
+	"on-click": "~/.config/i3/scripts/i3_dtf_update_update.sh"
 	},
 
 	"custom/padd": {
