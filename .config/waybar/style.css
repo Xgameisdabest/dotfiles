@@ -1,6 +1,4 @@
 * {
-  border: none;
-  border-radius: 0;
   min-height: 20pt;
   font-family: JetBrainsMono Nerd Font;
   font-weight: bold;
@@ -9,12 +7,8 @@
 
 window#waybar {
     background: #16161d;
-    color: #cdd6f4;
+    color: #e0e6ed;
     margin: 5px;
-    border-radius: 2px;
-    border-width: 5px;
-    border-style: none;
-    border-color: #000000;
 }
 window#waybar.hidden {
   opacity: 0.5;
@@ -26,41 +20,31 @@ window#waybar.hidden {
 
 #workspaces button {
   all: initial;
-  /* Remove GTK theme values (waybar #1351) */
   min-width: 0;
-  /* Fix weird spacing in materia (waybar #450) */
   box-shadow: inset 0 -3px transparent;
-  /* Use box-shadow instead of border so the text isn't offset */
   padding: 6px 18px;
   margin: 6px 3px;
   border-radius: 4px;
-  background-color: #1e1e2e;
-  color: #cdd6f4;
+  background-color: #16161d;
+  color: #e0e6ed;
 }
 
 #workspaces button.active {
   color: #1e1e2e;
-  background-color: #cdd6f4;
+  background-color: #e0e6ed;
 }
 
 #workspaces button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
   color: #1e1e2e;
-  background-color: #cdd6f4;
+  background-color: #e0e6ed;
 }
 
 #workspaces button.urgent {
-  background-color: #f38ba8;
+  background-color: #ff6f91;
 }
 
-#memory,
-#custom-power,
-#battery,
-#backlight,
-#wireplumber,
-#network,
-#clock,
 #tray {
   border-radius: 4px;
   margin: 6px 3px;
@@ -81,49 +65,6 @@ window#waybar.hidden {
   border-radius: 8px 0px 0px 8px;
   color: #1793d1;
 }
-
-#memory {
-  background-color: #fab387;
-}
-
-#battery {
-  background-color: #f38ba8;
-}
-
-#battery.warning,
-#battery.critical,
-#battery.urgent {
-  background-color: #ff0000;
-  color: #FFFF00;
-}
-
-#battery.charging {
-  background-color: #a6e3a1;
-  color: #181825;
-}
-
-#backlight {
-  background-color: #fab387;
-}
-
-#wireplumber {
-  background-color: #f9e2af;
-}
-
-#network {
-  background-color: #94e2d5;
-  padding-right: 17px;
-}
-
-#clock {
-  font-family: JetBrainsMono Nerd Font;
-  background-color: #cba6f7;
-}
-
-#custom-power {
-  background-color: #f2cdcd;
-}
-
 
 tooltip {
   border-radius: 8px;
