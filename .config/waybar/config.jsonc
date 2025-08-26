@@ -112,7 +112,6 @@
 	"custom/dtf-update":{
 	"format": "{}",
 	"exec": "~/.config/waybar/scripts/dtf-update-bar.sh",
-	"interval": 0.1,
 	"on-click": "~/.config/i3/scripts/i3_dtf_update_update.sh"
 	},
 
