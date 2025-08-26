@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Icons and classes by strength index
-icons=("󰤯" "󰤯" "󰤟" "󰤟" "󰤢" "󰤢" "󰤢" "󰤨" "󰤨" "󰤨")
+icons=("󰤯 " "󰤯 " "󰤟 " "󰤟 " "󰤢 " "󰤢 " "󰤢 " "󰤨 " "󰤨 " "󰤨 ")
 classes=("strength-0" "strength-1" "strength-2" "strength-3" "strength-4" "strength-5" "strength-6" "strength-7" "strength-8" "strength-9")
 
 prev_strength=-1
@@ -20,7 +20,7 @@ while true; do
             prev_strength=$strength
 
             if (( strength == 0 )); then
-                icon="󰤭"
+                icon="󰤭 "
                 class="disconnected"
             else
                 index=$(( strength * 9 / 100 ))
