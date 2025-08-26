@@ -1,8 +1,8 @@
 * {
-  min-height: 25pt;
+  min-height: 30pt;
   font-family: JetBrainsMono Nerd Font;
   font-weight: bold;
-  font-size: 19px;
+  font-size: 20px;
 }
 
 window#waybar {

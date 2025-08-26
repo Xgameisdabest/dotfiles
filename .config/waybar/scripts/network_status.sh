@@ -1,37 +1,45 @@
 #!/usr/bin/env bash
 
+# Icons and classes by strength index
+icons=("󰤯" "󰤯" "󰤟" "󰤟" "󰤢" "󰤢" "󰤢" "󰤨" "󰤨" "󰤨")
+classes=("strength-0" "strength-1" "strength-2" "strength-3" "strength-4" "strength-5" "strength-6" "strength-7" "strength-8" "strength-9")
+
+prev_strength=-1
+
 while true; do
     # Get Wi-Fi interface
     iface=$(iw dev | awk '$1=="Interface"{print $2; exit}')
 
     if [[ -n "$iface" ]]; then
-        # Calculate signal strength (percentage)
-        strength=$(grep "$iface" /proc/net/wireless | awk '{print int($3*100/70)}')
+        # Get signal strength in %
+        strength=$(awk -v iface="$iface" '$1==iface ":" {print int($3*100/70)}' /proc/net/wireless)
         strength=${strength:-0}
-	
-        if (( strength > 0 && strength <= 5 )); then icon="󰤯 "; cls="strength-0";  
-        elif (( strength <= 10 )); then icon="󰤯 "; cls="strength-1";
-        elif (( strength <= 20 )); then icon="󰤟 "; cls="strength-2";
-        elif (( strength <= 30 )); then icon="󰤟 "; cls="strength-3";
-        elif (( strength <= 40 )); then icon="󰤢 "; cls="strength-4";
-        elif (( strength <= 50 )); then icon="󰤢 "; cls="strength-5";
-        elif (( strength <= 60 )); then icon="󰤢 "; cls="strength-6";
-        elif (( strength <= 70 )); then icon="󰤨 "; cls="strength-7";
-        elif (( strength <= 80 )); then icon="󰤨 "; cls="strength-8";
-        else icon="󰤨 "; cls="strength-9";  
+
+        # Only update if strength changed
+        if (( strength != prev_strength )); then
+            prev_strength=$strength
+
+            if (( strength == 0 )); then
+                icon="󰤭"
+                class="disconnected"
+            else
+                index=$(( strength * 9 / 100 ))
+                icon="${icons[index]}"
+                class="${classes[index]}"
+            fi
+
+            # Output JSON to Waybar
+            echo "{\"text\":\"$icon\",\"class\":\"$class\"}"
         fi
-
-	if (( strength == 0 )); then
-    	icon="󰤭 "
-    	cls="disconnected"
-	fi
-
-        class="$cls"
+    else
+        # Interface not found
+        if (( prev_strength != 0 )); then
+            prev_strength=0
+            echo '{"text":"󰤭","class":"disconnected"}'
+        fi
     fi
 
-    # Output JSON for Waybar
-    echo "{\"text\":\"$icon\",\"class\":\"$class\"}"
-
+    # Poll every 0.5s (can reduce CPU while still responsive)
     sleep 0.5
 done
 

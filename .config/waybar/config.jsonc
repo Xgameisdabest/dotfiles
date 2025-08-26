@@ -19,6 +19,7 @@
 
 	"hyprland/window": {
 	"format": " 󰘔  {class} ",
+	"format-empty": " 󰘔  Hyprland ",
 	"on-click": "~/.config/rofi/scripts/window_list.sh"
 	},
 
@@ -29,7 +30,6 @@
 
 	"custom/bluetooth": {
     	"exec": "~/.config/waybar/scripts/bluetooth.sh",
-    	"tail": true,
     	"format": "{}",
     	"return-type": "json",
 	"on-click": "~/.config/rofi/modules/rofi-bluetooth",
@@ -81,7 +81,7 @@
 	},
 
 	"custom/power": {
-	"format": "  ",
+	"format": " 󰐥 ",
 	"on-click": "~/.config/hypr/rofi_hyprland/rofi-power-menu"
 	},
 
