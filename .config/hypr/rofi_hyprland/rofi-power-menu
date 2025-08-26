@@ -78,6 +78,7 @@ run_cmd() {
 			swaylock
 		elif [[ $1 == '--logout' ]]; then
 			hyprctl dispatch exit
+			killall -SIGINT waybar
 		fi
 	else
 		exit 0
