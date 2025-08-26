@@ -31,4 +31,4 @@ if [ "$CURRENT" -ne "$MAX" ] && [ "$DIRECTION" = "next" ]; then
 fi
 
 # Move focused window to target workspace
-hyprctl dispatch movetoworkspace "$DIRECTION"
+hyprctl dispatch movetoworkspacesilent "$DIRECTION"
