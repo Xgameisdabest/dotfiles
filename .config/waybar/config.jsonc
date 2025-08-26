@@ -5,7 +5,7 @@
 	"spacing": 8, 
 
 	// Choose the order of the modules
-	"modules-left": ["custom/padd","tray","hyprland/window"],
+	"modules-left": ["custom/padd","custom/hyprland-settings","custom/gammastep","custom/notification-center","tray","hyprland/window"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["clock","network","bluetooth","battery","custom/audio","custom/power","custom/padd"],
     
@@ -90,6 +90,25 @@
 	"format": " {icon} ",
 	"format-icons": "  ",
 	"on-click": "~/.config/hypr/rofi_hyprland/rofi-power-menu"
+	},
+
+	"custom/notification-center": {
+	"exec": "~/.config/waybar/scripts/notification-indicator",
+	"interval": 1,
+	"format": "{}",
+	"on-click": "~/.config/dunst/scripts/noti-center.sh",
+	"on-click-right": "dunstctl history-clear"
+	},
+
+	"custom/gammastep": {
+	"format": "   ",
+	"on-click": "~/.config/hypr/rofi_hyprland/rofi-gammastep",
+	"on-click-right": "gammastep -x"
+	},
+	
+	"custom/hyprland-settings": {
+    	"format": "   ",
+    	"on-click": "~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-i3-settings"
 	},
 
 	"custom/padd": {

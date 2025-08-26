@@ -75,9 +75,9 @@ run_cmd() {
 			mpc -q pause
 			amixer set Master mute
 			systemctl suspend
-			betterlockscreen -l
+			swaylock
 		elif [[ $1 == '--logout' ]]; then
-			killall Hyprland
+			hyprctl dispatch exit
 		fi
 	else
 		exit 0
