@@ -1,4 +1,5 @@
 #launch at startup
+exec --no-startup-id systemctl better betterlockscreen@xytozine.service
 exec_always --no-startup-id xrandr --output HDMI-1 --right-of eDP-1 --auto #for auto monitor detect, laptop only
 exec_always --no-startup-id xrandr --output DP-1 --right-of eDP-1 --auto #for auto monitor detect, laptop only
 exec_always --no-startup-id xrandr --output DP-2 --right-of eDP-1 --auto #for auto monitor detect, laptop only
