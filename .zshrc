@@ -5,9 +5,6 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.spicetify:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export ZSH="$HOME/.oh-my-zsh"
