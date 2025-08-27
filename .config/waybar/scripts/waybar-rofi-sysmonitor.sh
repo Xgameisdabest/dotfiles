@@ -21,7 +21,7 @@ select=$(echo -e "$temperature\n$system_monitor2\n$system_monitor\n$quit" | rofi
 
 case $select in
 	$temperature)
-		$TERMINAL -e watch sensors
+		$TERMINAL -e watch --interval 1 sensors
 	;;
 	$system_monitor)
 		$TERMINAL -e htop
