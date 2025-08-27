@@ -44,6 +44,8 @@
 	},
 
 	"temperature": {
+	"thermal-zone": 0,
+        "critical-threshold": 70,
 	"format": "{temperatureC}°C ",
 	"on-click": "~/.config/waybar/scripts/waybar-sysmonitor.sh"
 	},
