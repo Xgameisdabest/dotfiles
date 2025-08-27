@@ -7,7 +7,7 @@
     "margin-left": 10,
     "margin-right": 10,    
     "spacing": 8,
-	"modules-left": ["custom/padd","custom/hyprland-settings","custom/gammastep","custom/notification-center","temperature","tray","hyprland/window"],
+	"modules-left": ["custom/padd","custom/hyprland-settings","custom/gammastep","custom/notification-center","custom/temperature","tray","hyprland/window"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["custom/dtf-update","clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
 
@@ -29,8 +29,9 @@
 	},
 
 	"custom/bluetooth": {
-    	"exec": "~/.config/waybar/scripts/bluetooth.sh",
     	"format": "{}",
+    	"exec": "~/.config/waybar/scripts/bluetooth.sh",
+	"interval": 1,
     	"return-type": "json",
 	"on-click": "~/.config/rofi/modules/rofi-bluetooth",
 	"on-click-right": "~/.config/waybar/scripts/toggle_bluetooth.sh"
@@ -43,10 +44,11 @@
 	"on-click": "~/.config/rofi/modules/rofi-calendar"
 	},
 
-	"temperature": {
-	"thermal-zone": 0,
-        "critical-threshold": 70,
-	"format": "{temperatureC}°C ",
+	"custom/temperature": {
+	"format": "{} ",
+	"exec": "~/.config/waybar/scripts/cpu_temp.sh",
+	"return-type": "json",
+	"interval": 1,
 	"on-click": "~/.config/waybar/scripts/waybar-sysmonitor.sh"
 	},
 
@@ -72,6 +74,7 @@
 	"format": "{}",
 	"exec": "~/.config/waybar/scripts/network_status.sh",
 	"return-type": "json",
+	"interval": 0.5,
 	"on-click": "~/.config/rofi/modules/rofi-wifi-menu",
 	"on-click-right": "~/.config/polybar/scripts/polybar-wifi/toggle_wifi.sh"
 	},
@@ -79,6 +82,7 @@
 	"custom/audio": {
 	"format": "{}",
 	"exec": "~/.config/waybar/scripts/volume_status.sh",
+	"tail": true,
 	"return-type": "json",
 	"on-click": "~/.config/dunst/scripts/volume.sh volume_mute",
 	"on-click-middle": "~/.config/dunst/scripts/volume.sh volume_status",

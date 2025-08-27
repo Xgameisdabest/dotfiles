@@ -1,39 +1,36 @@
 #!/usr/bin/env bash
 
-prev_volume=-1
-prev_mute=""
+print_status() {
+    volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | grep -Po '[0-9]{1,3}' | head -1)
+    mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
 
-while true; do
-    # Get current sink info once
-    read -r volume mute <<< "$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | grep -Po '[0-9]{1,3}' | head -1) $(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')"
-    
     volume=${volume:-0}
     mute=${mute:-no}
 
-    # Only update if something changed
-    if [[ "$volume" != "$prev_volume" || "$mute" != "$prev_mute" ]]; then
-        prev_volume=$volume
-        prev_mute=$mute
-
-        if [[ "$mute" == "yes" ]]; then
-            icon=""
-            class="muted"
+    if [[ "$mute" == "yes" ]]; then
+        icon=""
+        class="muted"
+    else
+        if (( volume < 25 )); then
+            icon=""
+            class="low"
+        elif (( volume < 50 )); then
+            icon=""
+            class="medium"
         else
-            if (( volume < 25 )); then
-                icon=""
-                class="low"
-            elif (( volume < 50 )); then
-                icon=""
-                class="medium"
-            else
-                icon=""
-                class="high"
-            fi
+            icon=""
+            class="high"
         fi
-
-        # Output JSON
-        echo "{\"text\":\"$icon  ${volume}%\",\"class\":\"$class\"}"
     fi
 
-    sleep 0.3
+    echo "{\"text\":\"$icon  ${volume}%\",\"class\":\"$class\"}"
+}
+
+# Print initial status
+print_status
+
+# Listen for events from PulseAudio/PipeWire
+pactl subscribe | grep --line-buffered "sink" | while read -r _; do
+    print_status
 done
+

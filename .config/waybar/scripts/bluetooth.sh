@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 get_device_icon() {
     local uuid="$1"
@@ -25,23 +25,19 @@ get_device_icon() {
     esac
 }
 
-while true; do
-    # Get Bluetooth status and connected devices in one call each
-    read -r powered <<< "$(bluetoothctl show | awk '/Powered:/ {print $2}')"
-    mapfile -t connected_uuids < <(bluetoothctl devices Connected | awk '{print $2}')
-    connected_count="${#connected_uuids[@]}"
+# Get Bluetooth status
+powered=$(bluetoothctl show | awk '/Powered:/ {print $2}')
+mapfile -t connected_uuids < <(bluetoothctl devices Connected | awk '{print $2}')
+connected_count="${#connected_uuids[@]}"
 
-    if [[ "$powered" != "yes" ]]; then
-        echo '{"text":"󰂲","class":"powered-off"}'
-    elif (( connected_count == 0 )); then
-        echo '{"text":"󰂳","class":"no-devices"}'
-    elif (( connected_count == 1 )); then
-        icon=$(get_device_icon "${connected_uuids[0]}")
-        echo "{\"text\":\"$icon\",\"class\":\"one-device\"}"
-    else
-        echo "{\"text\":\"󰂱 $connected_count\",\"class\":\"multiple-devices\"}"
-    fi
-
-    sleep 0.5
-done
+if [[ "$powered" != "yes" ]]; then
+    echo '{"text":"󰂲","class":"powered-off"}'
+elif (( connected_count == 0 )); then
+    echo '{"text":"󰂳","class":"no-devices"}'
+elif (( connected_count == 1 )); then
+    icon=$(get_device_icon "${connected_uuids[0]}")
+    echo "{\"text\":\"$icon\",\"class\":\"one-device\"}"
+else
+    echo "{\"text\":\"󰂱 $connected_count\",\"class\":\"multiple-devices\"}"
+fi
 
