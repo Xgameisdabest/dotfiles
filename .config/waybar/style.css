@@ -43,6 +43,7 @@ window#waybar.hidden {
 
 #workspaces button.urgent {
   background-color: #ff6f91;
+  color: #000000;
 }
 
 tooltip {
