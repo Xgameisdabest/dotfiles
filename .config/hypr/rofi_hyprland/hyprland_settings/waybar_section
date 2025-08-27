@@ -1,0 +1,40 @@
+#!/bin/bash
+### POLYBAR SUBMENU
+
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+waybar_submenu_height=265px
+waybar_submenu_width=280px
+
+polybar_submenu(){
+	
+	waybar_main_cfg_sub="  Main Config"
+	waybar_color_sub="  Colors"
+	bar_start="󱓞  Bar Startup"
+	
+	#when add new entry make sure to add 35 to height
+	select3=$(echo -e "$waybar_main_cfg_sub\n$waybar_color_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_submenu_height; width: $waybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
+
+	case $select3 in 
+		$waybar_main_cfg_sub)
+		        $TERMINAL -e nvim ~/.config/waybar/config.jsonc
+		        ;;
+		$waybar_color_sub)
+			$TERMINAL -e nvim ~/.config/waybar/style.css
+			;;
+		$bar_start)
+			$TERMINAL -e nvim ~/.config/waybar/startup.sh
+			;;
+		$goback)
+			main_menu
+			;;
+	esac
+}
+

@@ -24,7 +24,7 @@
 	},
 	
 	"tray": {
-	"icon-size": 20,
+	"icon-size": 24,
 	"spacing": 11
 	},
 
@@ -112,7 +112,7 @@
 	
 	"custom/hyprland-settings": {
     	"format": "",
-    	"on-click": "~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-i3-settings"
+    	"on-click": "~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings"
 	},
 
 	"custom/dtf-update":{

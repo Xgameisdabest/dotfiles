@@ -10,11 +10,11 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-I3_SETTINGS_PATH=~/.config/rofi/modules/i3-settings
+HYPR_SETTINGS_PATH=~/.config/hypr/rofi_hyprland/hyprland_settings/
 
-source $I3_SETTINGS_PATH/i3-settings_section
+source $HYPR_SETTINGS_PATH/hyprland-settings_section
 
-rofi_submenu_height=595px
+rofi_submenu_height=565px
 rofi_submenu_width=295px
 
 rofi_submenu(){
@@ -26,12 +26,11 @@ rofi_submenu(){
 	pwr_mode="󰾆  Power Mode"
 	web_search="  Web Search"
 	calendar="  Calendar"
-	i3_settings_menu="  This Menu  "
+	hypr_settings_menu="  This Menu  "
 	notifications_hist="󰵙  Notification"
-	os_about="󰟀  Machine Info"
-	redshift="  Night Mode"
+	gammastep="  Night Mode"
 	
-	select2=$(echo -e "$rofi_sub\n$i3_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$os_about\n$redshift\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   " -theme $path_to_theme)
+	select2=$(echo -e "$rofi_sub\n$hypr_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$gammastep\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   " -theme $path_to_theme)
 	
 	case $select2 in
 		$rofi_sub)
@@ -55,8 +54,8 @@ rofi_submenu(){
 		$calendar)
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-calendar
 			;;
-		$i3_settings_menu)
-			i3_setting_submenu
+		$hypr_settings_menu)
+			hypr_setting_submenu
 			;;
 		$notifications_hist)
 			$TERMINAL -e nvim ~/.config/dunst/scripts/noti-center.sh
@@ -64,11 +63,8 @@ rofi_submenu(){
 		$sound_setting)
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
 			;;
-		$os_about)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-os-about
-			;;
-		$redshift)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-redshift
+		$gammastep)
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/rofi-gammastep
 			;;
 		$goback)
 			main_menu

@@ -1,0 +1,48 @@
+#!/bin/bash
+
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+hypr_setting_submenu_height=375px
+hypr_setting_submenu_width=285px
+
+hypr_setting_submenu(){
+	main_config="󰅍  Main File"
+	hypr_section="󰅍  Hyprland"
+	dunst_section="󰅍  Notification"
+	rofi_section="󰅍  Rofi"
+	waybar_section="󰅍  Waybar"
+	hypr_settings_section="󰅍  This Menu"
+
+	select10=$(echo -e "$main_config\n$hypr_settings_section\n$hypr_section\n$dunst_section\n$rofi_section\n$waybar_section\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_setting_submenu_height; width: $hypr_setting_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu Config   " -theme $path_to_theme)
+
+	case $select10 in
+		$hypr_section)
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/hyprland_section
+			;;
+		$hypr_settings_section)
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/hyprland-settings_section
+			;;
+		$dunst_section)
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/dunst_section
+			;;
+		$rofi_section)
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/rofi_section
+			;;
+		$main_config)
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings
+			;;
+		$waybar_section)
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/waybar_section
+			;;
+		$goback)
+			rofi_submenu
+			;;
+	esac
+}

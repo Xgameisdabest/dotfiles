@@ -30,7 +30,7 @@ dunst_submenu(){
 			$TERMINAL -e nvim ~/.config/dunst/scripts/noti-airplane.sh
 			;;
 		$notification_center)
-			$TERMINAL -e nvim ~/.config/polybar/scripts/polybar-notification-center/notification-indicator
+			$TERMINAL -e nvim ~/.config/waybar/scripts/notification-indicator
 			;;
 		$volume_and_light)
 			$TERMINAL -e nvim ~/.config/dunst/scripts/volume.sh

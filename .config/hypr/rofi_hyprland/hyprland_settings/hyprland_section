@@ -1,0 +1,59 @@
+#!/bin/bash
+### I3 SUBMENU
+
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+hypr_submenu_height=450px
+hypr_submenu_width=385px
+
+hypr_submenu(){
+
+	hypr_sub="  Main Config"
+	exec="  Launch On Startup"
+	coloring="  Colors And Gaps"
+	gaps_border="󰃐  Misc"
+	for_window_rules="!  Window Rules"
+	system_keybinds="  System Keybinds 󰌏 "
+	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
+	special_key_keybinds="󰘲  Special Key Keybinds 󰌏 "
+
+	select4=$(echo -e "$hypr_sub\n$exec\n$coloring\n$gaps_border\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_submenu_height; width: $hypr_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Hyprland   " -theme $path_to_theme)
+
+	case $select4 in
+		$hypr_sub)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland.conf
+			;;
+		$exec)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/exec.conf
+			;;
+		$coloring)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/decorations.conf
+			;;
+		$for_window_rules)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/window_rules.conf
+			;;
+		$system_keybinds)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/wm_keybinds.conf
+			;;
+		$special_key_keybinds)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/special_keybinds.conf
+			;;
+		$app_keybinds)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/app_keybinds.conf
+			;;
+		$gaps_border)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/misc.conf
+			;;
+		$goback)
+			main_menu
+			;;
+	esac
+}
+
