@@ -10,7 +10,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-hypr_submenu_height=450px
+hypr_submenu_height=480px
 hypr_submenu_width=385px
 
 hypr_submenu(){
@@ -19,12 +19,13 @@ hypr_submenu(){
 	exec="  Launch On Startup"
 	coloring="  Colors And Gaps"
 	gaps_border="󰃐  Misc"
+	animations="󰆨  Animations"
 	for_window_rules="!  Window Rules"
 	system_keybinds="  System Keybinds 󰌏 "
 	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
 	special_key_keybinds="󰘲  Special Key Keybinds 󰌏 "
 
-	select4=$(echo -e "$hypr_sub\n$exec\n$coloring\n$gaps_border\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_submenu_height; width: $hypr_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Hyprland   " -theme $path_to_theme)
+	select4=$(echo -e "$hypr_sub\n$exec\n$coloring\n$animations\n$gaps_border\n$for_window_rules\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_submenu_height; width: $hypr_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Hyprland   " -theme $path_to_theme)
 
 	case $select4 in
 		$hypr_sub)
@@ -35,6 +36,9 @@ hypr_submenu(){
 			;;
 		$coloring)
 			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/decorations.conf
+			;;
+		$animations)
+			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/animations.conf
 			;;
 		$for_window_rules)
 			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/window_rules.conf
