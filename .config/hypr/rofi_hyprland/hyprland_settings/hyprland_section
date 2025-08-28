@@ -17,10 +17,10 @@ hypr_submenu(){
 
 	hypr_sub="  Main Config"
 	exec="  Launch On Startup"
-	coloring="  Colors & Gaps"
-	gaps_border="󰃐  Misc & General"
+	coloring="  General & Decoration"
+	gaps_border="󰃐  Misc & Layout"
 	animations="󰆨  Animations"
-	input_opt="󰄠  Input"
+	input_opt="󰄠  Input & Gestures"
 	for_window_rules="!  Window Rules"
 	system_keybinds="  System Keybinds 󰌏 "
 	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
