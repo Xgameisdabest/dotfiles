@@ -17,8 +17,8 @@ hypr_submenu(){
 
 	hypr_sub="  Main Config"
 	exec="  Launch On Startup"
-	coloring="  Colors And Gaps"
-	gaps_border="󰃐  Misc"
+	coloring="  Colors & Gaps"
+	gaps_border="󰃐  Misc & General"
 	animations="󰆨  Animations"
 	input_opt="󰄠  Input"
 	for_window_rules="!  Window Rules"
