@@ -39,6 +39,9 @@ return {
 			lspconfig.sqls.setup({
 				capabilities = capabilities
 			})
+			lspconfig.hyprls.setup({
+				capabilities = capabilities
+			})
 		end,
 	},
 }
