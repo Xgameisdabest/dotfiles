@@ -47,7 +47,7 @@
 	"format": "{} ",
 	"exec": "~/.config/waybar/scripts/cpu_temp.sh",
 	"return-type": "json",
-	"interval": 0.5,
+	"interval": 1,
 	"on-click": "~/.config/waybar/scripts/waybar-rofi-sysmonitor.sh"
 	},
 
