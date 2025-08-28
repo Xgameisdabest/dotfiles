@@ -1,29 +1,48 @@
 #!/usr/bin/python3
 from sys import argv
 from os.path import expanduser
+
 try:
     path = argv[1]
 except IndexError:
-    path = expanduser('~/.config/i3/config')
+    path = expanduser('~/.config/hypr/hyprland.conf')
 
-config = open(path,'r')
-for line in config:
-    if line.startswith('bindsym'):
-        keys = line.split()[1]
-        line = ' '.join(line.split()[2:])
+with open(path, 'r') as config:
+    for line in config:
+        line = line.strip()
+        if line.startswith('bind ='):
+            # Example: bind = $mod, SHIFT, t, exec, kitty
+            parts = [p.strip() for p in line.split('=', 1)[1].split(',')]
 
-        idx = line.rfind('#')
-        if idx != -1:
-            line = line[idx+1:]
-        elif line.startswith('exec'):
-            line = line[5:]
-        elif line == 'workspace next' or line =='workspace prev':
-            if line == 'workspace next': line = 'next workspace'
-            elif line == 'workspace prev': line = 'previous workspace'
-        elif line.startswith('workspace '):
-            line = 'go to workspace '+line.split()[1]
+            if len(parts) < 2:
+                continue
 
-        if '$' in keys:
-            keys = keys.replace('$','').title()
+            # find where action starts (exec/workspace/movewindow/etc.)
+            action_start = None
+            for i, p in enumerate(parts):
+                if p in ("exec", "workspace", "movewindow", "movefocus", "killactive"):
+                    action_start = i
+                    break
 
-        print(keys+": "+line, end="\n")
+            if action_start is None:
+                # fallback: assume last item is action
+                action_start = len(parts) - 1
+
+            # keys are everything before the action
+            keys = '+'.join(parts[:action_start])
+
+            # action is everything from action_start onward
+            action_parts = parts[action_start:]
+            if action_parts and action_parts[0] == "exec":
+                action_parts = action_parts[1:]
+            action = ' '.join(action_parts)
+
+            # handle comments
+            if '#' in action:
+                action = action.split('#',1)[1].strip()
+
+            # clean up $mod → mod
+            keys = keys.replace('$','').lower()
+
+            print(f"{keys}: {action}")
+
