@@ -6,7 +6,7 @@
     "margin-left": 10,
     "margin-right": 10,    
     "spacing": 8,
-	"modules-left": ["custom/padd","custom/hyprland-settings","custom/gammastep","custom/notification-center","custom/temperature","tray","hyprland/window"],
+	"modules-left": ["custom/padd","custom/hyprland-settings","custom/hyprsunset","custom/notification-center","custom/temperature","tray","hyprland/window"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["custom/dtf-update","clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
 
@@ -103,10 +103,10 @@
 	"on-click-right": "dunstctl history-clear"
 	},
 
-	"custom/gammastep": {
+	"custom/hyprsunset": {
 	"format": " ",
-	"on-click": "~/.config/hypr/rofi_hyprland/rofi-gammastep",
-	"on-click-right": "gammastep -x"
+	"on-click": "~/.config/hypr/rofi_hyprland/rofi-hyprsunset",
+	"on-click-right": "hyprctl hyprsunset identity && killall hyprsunset"
 	},
 	
 	"custom/hyprland-settings": {

@@ -45,7 +45,7 @@ esac
 if [[ $percentage -lt 4500 ]] || [[ $percentage -gt 6500 ]]; then
 	main
 else
-	gammastep -O $percentage
+	hyprsunset --temperature $percentage &
 	main
 fi
 }
@@ -55,14 +55,15 @@ select=$(echo -e "$start\n$start_custom\n$reset\n$quit" | rofi -dmenu -theme $pa
 
 case $select in
 	$start)
-		gammastep -O 4800
+		hyprsunset --temperature 4800 &
 		main
 	;;
 	$start_custom)
 		start_custom_func
 	;;
 	$reset)
-		gammastep -x
+		hyprctl hyprsunset identity
+		killall hyprsunset
 		main
 	;;
 	$quit)
