@@ -19,7 +19,7 @@
 	"hyprland/window": {
 	"format": " 󰘔  {class} ",
 	"format-empty": " 󰘔  Hyprland ",
-	"on-click": "~/.config/rofi/scripts/window_list.sh"
+	"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
 	},
 	
 	"tray": {
