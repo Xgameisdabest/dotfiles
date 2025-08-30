@@ -11,9 +11,10 @@
 	"modules-right": ["custom/dtf-update","clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
 
 	"hyprland/workspaces": {
-	  "format": "{name}",
-	  "on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
-	  "on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh prev"
+	"format": "{id}",
+	"on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
+	"on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh prev",
+	"cursor": "pointer"
 	},
 
 	"hyprland/window": {
