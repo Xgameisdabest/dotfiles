@@ -16,7 +16,7 @@ script_full_path=$(dirname "$0")
 window_height=500px
 window_width=1550px
 
-OPTIONS=$(python3 "$script_full_path/parser.py" ~/.config/hypr/hyprland_config_modules/keybinds/app_keybinds.conf)
+OPTIONS=$(python3 "$script_full_path/parser.sh" ~/.config/hypr/hyprland_config_modules/keybinds/app_keybinds.conf)
 
 SELECTED=$(echo -e "$OPTIONS\n$goback" | rofi -dmenu -i -p '   App Launch Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $window_width; height: $window_height;}" -theme $path_to_theme)
 
