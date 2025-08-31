@@ -25,6 +25,9 @@ V2 - use ```git checkout f82e277``` to use this version and ```git checkout main
 V3 - (up-to-date)  (Bar now can be on top or bottom, white or black color. Change it via the specified dotfiles config file, more information at the ___Configuration___ section)
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_3.jpg?raw=true)
 
+Hyprland is now supported!
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_3_hypr.jpg?raw=true)
+
 ## Dependencies for this dotfiles
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 - apt nala pacstall flatpak (essential for Debian based, for Arch just use anything that works for you)
