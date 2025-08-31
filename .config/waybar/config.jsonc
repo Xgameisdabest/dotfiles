@@ -99,6 +99,7 @@
 	"custom/notification-center": {
 	"format": "{}",
 	"exec": "~/.config/waybar/scripts/notification-indicator",
+	"return-type": "json",
 	"interval": 1,
 	"on-click": "~/.config/dunst/scripts/noti-center.sh",
 	"on-click-right": "dunstctl history-clear"
