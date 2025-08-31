@@ -42,7 +42,7 @@ V3 - (up-to-date)  (Bar now can be on top or bottom, white or black color. Chang
 - sway (optional)
 - hyprland (optional)
 - polybar (essential)
-- waybar (optional for hyprland and sway)
+- waybar (essential for hyprland)
 - picom 12 (picom-git) (essential) ([link to picom 12](https://github.com/yshui/picom))
 - betterlockscreen (essential) ([link to betterlockscreen](https://github.com/betterlockscreen/betterlockscreen))
 - tmux neofetch(terminal util)
@@ -50,7 +50,6 @@ V3 - (up-to-date)  (Bar now can be on top or bottom, white or black color. Chang
 - dunst (essential)
 - rofi (essential)
 - superfile nautilus thunar (file manager)
-- spotify (music player)
 - cava (audio visualizer)
 - solaar (logitech util setting)
 - blueman (essential for bluetooth connection)
@@ -91,9 +90,20 @@ git pull
 sudo rm -rf ~/go/ && echo "Build deps removed!"
 ```
 
-Install most important dependencies (for ```apt```)
+Install dependencies for i3 (for ```apt```)
 ```
 sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty x11-utils
+```
+
+Hyprland is now supported! Here's how I set it up on my system.
+```
+sudo add-apt-repository ppa:cppiber/hyprland
+sudo apt update
+```
+
+Install dependencies for Hyprland (for ```apt```)
+```
+sudo apt install zsh hyprland hyprsunset hypridle hyprlock waybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf udev lsd jq wl-clipboard power-profiles-daemon acpi swaybg bsdmainutils light kitty iw
 ```
 
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
