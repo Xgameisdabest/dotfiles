@@ -68,12 +68,12 @@ tooltip label {
   color: #ff6f91;
 }
 
-#custom-temperature,
 #tray,
 #battery,
-#custom-bluetooth,
 #clock,
 #window,
+#custom-bluetooth,
+#custom-temperature,
 #custom-notification-center,
 #custom-hyprsunset,
 #custom-hyprland-settings,

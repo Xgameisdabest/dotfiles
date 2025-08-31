@@ -19,7 +19,6 @@
 
 	"hyprland/window": {
 	"format": " 󰘔  {class} ",
-	"format-empty": " 󰘔  Hyprland ",
 	"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
 	},
 	
@@ -74,7 +73,6 @@
 	"format": "{}",
 	"exec": "~/.config/waybar/scripts/network_status.sh",
 	"return-type": "json",
-	"interval": 0.5,
 	"on-click": "~/.config/rofi/modules/rofi-wifi-menu",
 	"on-click-right": "~/.config/polybar/scripts/polybar-wifi/toggle_wifi.sh"
 	},
