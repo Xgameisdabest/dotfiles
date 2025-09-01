@@ -67,7 +67,6 @@ fi
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
-playback_opt="Playback 󰐎"
 outputdev_opt="Output Device 󰜟"
 inputdev_opt="Input Device 󱦉"
 devconfig_opt="Device Configuration "
