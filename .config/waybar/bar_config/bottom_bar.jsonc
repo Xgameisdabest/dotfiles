@@ -114,7 +114,7 @@
 	
 	"custom/hyprland-settings": {
     	"format": "",
-    	"on-click": "~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings"
+    	"on-click": "~/.config/rofi/modules/rofi-user-settings"
 	},
 
 	"custom/dtf-update":{
