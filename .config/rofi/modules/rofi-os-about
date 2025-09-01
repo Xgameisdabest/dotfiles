@@ -7,9 +7,9 @@ menu_height=490px
 
 source ~/.config/dtf-config/config
 
-polybar_top=${polybar_top:-false}
+bar_top=${bar_top:-false}
 
-if [[ $polybar_top == "true" ]]; then
+if [[ $bar_top == "true" ]]; then
 	location="north west"
 
 	main_menu_x_offset=10px

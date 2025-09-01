@@ -8,10 +8,10 @@ source ~/.config/dtf-config/config
 main_menu_height=385px
 main_menu_width=350px
 
-polybar_top=${polybar_top:-false}
+bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
 
-if [[ $polybar_top == "true" ]]; then
+if [[ $bar_top == "true" ]]; then
 	location="north east"
 
 	main_menu_x_offset=-10px

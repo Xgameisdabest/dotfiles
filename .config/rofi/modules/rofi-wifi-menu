@@ -6,14 +6,13 @@
 
 source ~/.config/dtf-config/config
 rofi_theme=${rofi_theme:-black}
+bar_top=${bar_top:-false}
 
 main_menu_height=335px
 main_menu_disabled_height=265px
 main_menu_width=300px
 
-polybar_top=${polybar_top:-false}
-
-if [[ $polybar_top == "true" ]]; then
+if [[ $bar_top == "true" ]]; then
 	location="north east"
 
 	main_menu_x_offset=-275px
