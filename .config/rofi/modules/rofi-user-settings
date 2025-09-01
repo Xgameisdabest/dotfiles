@@ -22,7 +22,7 @@ case $select in
 		if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 			~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings
 		elif [[ $XDG_CURRENT_DESKTOP == "i3" ]]; then
-			~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds
+			~/.config/rofi/modules/i3-settings/rofi-i3-settings
 		fi
 		;;
 	$usr_settings)
