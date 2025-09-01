@@ -18,10 +18,9 @@ ADDR=$(echo "$WINDOWS" | grep -F "$CHOICE" | cut -f1)
 WSID=$(echo "$WINDOWS" | grep -F "$CHOICE" | cut -f2)
 
 # Focus it if chosen
-if [ -n "$ADDR" ]; then
+if [[ -n "$CHOICE" ]]; then
   # First, switch to its workspace (only if not already there)
   hyprctl dispatch workspace "$WSID"
   # Then, focus the exact window
   hyprctl dispatch focuswindow address:"$ADDR"
 fi
-
