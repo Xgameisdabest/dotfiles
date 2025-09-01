@@ -75,7 +75,7 @@ run_cmd() {
 			mpc -q pause
 			amixer set Master mute
 			systemctl suspend
-			betterlockscreen -l
+			hyprlock
 		elif [[ $1 == '--logout' ]]; then
 			i3-msg 'exit'
 		fi
@@ -94,7 +94,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		betterlockscreen -l
+		hyprlock
         ;;
     $suspend)
 		run_cmd --suspend

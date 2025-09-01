@@ -203,10 +203,10 @@ KEY=VALUE (no space before and after the equal sign)
 
 AVAILABLE CONFIG KEYS (ALL OF THESE BELOW ARE DEFAULT CONFIGS):
 ```
-polybar_color=black #(OPTIONS: white/black)
-polybar_compact=false #(OPTIONS: true/false)
-polybar_top=false #(OPTIONS: true/false)
-polybar_hidden_when_using_launcher=false #(OPTIONS: true/false)
+bar_color=black #(OPTIONS: white/black)
+bar_compact=false #(OPTIONS: true/false)
+bar_top=false #(OPTIONS: true/false)
+bar_hidden_when_using_launcher=false #(OPTIONS: true/false)
 rofi_theme=black #(OPTIONS: white/black)
 picom_enable=true #(OPTIONS: true/false)
 autostart_night_mode=false #(OPTIONS: true/false)

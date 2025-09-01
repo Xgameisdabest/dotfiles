@@ -15,48 +15,48 @@ else
   export DEFAULT_NETWORK_INTERFACE="$FALLBACK_IFACE"
 fi
 
-polybar_color=${polybar_color:-black}
-polybar_compact=${polybar_compact:-false}
-polybar_top=${polybar_top:-false}
+bar_color=${bar_color:-black}
+bar_compact=${bar_compact:-false}
+bar_top=${bar_top:-false}
 
 killall -q polybar
 
-if [[ $polybar_color == "black" ]] && [[ $polybar_compact == "false" ]] && [[ $polybar_top == "false" ]]; then
+if [[ $bar_color == "black" ]] && [[ $bar_compact == "false" ]] && [[ $bar_top == "false" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_black_bottom &
 	done
 
-elif [[ $polybar_color == "white" ]] && [[ $polybar_compact == "false" ]] && [[ $polybar_top == "false" ]]; then
+elif [[ $bar_color == "white" ]] && [[ $bar_compact == "false" ]] && [[ $bar_top == "false" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_white_bottom &
 	done
 
-elif [[ $polybar_color == "black" ]] && [[ $polybar_compact == "true" ]] && [[ $polybar_top == "false" ]]; then
+elif [[ $bar_color == "black" ]] && [[ $bar_compact == "true" ]] && [[ $bar_top == "false" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_black_compact_bottom &
 	done
 
-elif [[ $polybar_color == "white" ]] && [[ $polybar_compact == "true" ]] && [[ $polybar_top == "false" ]]; then
+elif [[ $bar_color == "white" ]] && [[ $bar_compact == "true" ]] && [[ $bar_top == "false" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_white_compact_bottom &
 	done
 
-elif [[ $polybar_color == "black" ]] && [[ $polybar_compact == "false" ]] && [[ $polybar_top == "true" ]]; then
+elif [[ $bar_color == "black" ]] && [[ $bar_compact == "false" ]] && [[ $bar_top == "true" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_black_top &
 	done
 
-elif [[ $polybar_color == "white" ]] && [[ $polybar_compact == "false" ]] && [[ $polybar_top == "true" ]]; then
+elif [[ $bar_color == "white" ]] && [[ $bar_compact == "false" ]] && [[ $bar_top == "true" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_white_top &
 	done
 
-elif [[ $polybar_color == "black" ]] && [[ $polybar_compact == "true" ]] && [[ $polybar_top == "true" ]]; then
+elif [[ $bar_color == "black" ]] && [[ $bar_compact == "true" ]] && [[ $bar_top == "true" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_black_compact_top &
 	done
 
-elif [[ $polybar_color == "white" ]] && [[ $polybar_compact == "true" ]] && [[ $polybar_top == "true" ]]; then
+elif [[ $bar_color == "white" ]] && [[ $bar_compact == "true" ]] && [[ $bar_top == "true" ]]; then
 	for m in $(polybar --list-monitors | cut -d":" -f1); do
 	    MONITOR=$m polybar --reload main_white_compact_top &
 	done
