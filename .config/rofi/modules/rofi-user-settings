@@ -1,0 +1,31 @@
+#!/bin/bash
+
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+main_menu_height=220px
+main_menu_width=320px
+
+wm_settings="󰢹  Desktop Settings"
+usr_settings="  User Settings"
+quit="Exit 󰈆 "
+
+select=$(echo -e "$wm_settings\n$usr_settings\n$quit" | rofi -dmenu -i -p '   Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+
+case $select in
+	$wm_settings)
+		if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+			~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings
+		elif [[ $XDG_CURRENT_DESKTOP == "i3" ]]; then
+			~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds
+		fi
+		;;
+	$usr_settings)
+		$TERMINAL -e nvim ~/.config/dtf-config/config
+		;;
+esac
