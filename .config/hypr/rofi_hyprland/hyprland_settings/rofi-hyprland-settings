@@ -58,7 +58,7 @@ main_menu(){
 			$TERMINAL -e nvim ~/.config/betterlockscreen/betterlockscreenrc
 			;;
 		$waybar)
-			polybar_submenu
+			waybar_submenu
 			;;
 		$zshconfig)
 			$TERMINAL -e nvim ~/.zshrc
