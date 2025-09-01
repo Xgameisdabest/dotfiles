@@ -1,0 +1,132 @@
+{
+    "position": "top",
+    "layer": "bottom",
+    "margin-bottom": 0,
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,    
+    "spacing": 8,
+	"modules-left": ["custom/padd","custom/hyprland-settings","custom/hyprsunset","custom/notification-center","custom/temperature","tray","custom/window"],
+	"modules-center": ["hyprland/workspaces"],
+	"modules-right": ["custom/dtf-update","clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
+
+	"hyprland/workspaces": {
+	"format": "{id}",
+	"on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
+	"on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh prev",
+	"cursor": "pointer"
+	},
+
+	"custom/window": {
+	"format": " {} ",
+        "exec": "~/.config/waybar/scripts/window_title.sh",
+	"interval": 1,
+        "return-type": "json",
+	"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
+	},
+	
+	"tray": {
+	"icon-size": 24,
+	"spacing": 11
+	},
+
+	"custom/bluetooth": {
+    	"format": "{}",
+    	"exec": "~/.config/waybar/scripts/bluetooth.sh",
+	"interval": 1,
+    	"return-type": "json",
+	"on-click": "~/.config/rofi/modules/rofi-bluetooth",
+	"on-click-right": "~/.config/waybar/scripts/toggle_bluetooth.sh"
+	},
+
+	"clock": {
+	"interval": 1,
+	"format": "󰥔 {:%H%M%S}",
+	"tooltip-format": "{:%d-%m-%Y}",
+	"on-click": "~/.config/rofi/modules/rofi-calendar"
+	},
+
+	"custom/temperature": {
+	"format": "{} ",
+	"exec": "~/.config/waybar/scripts/cpu_temp.sh",
+	"return-type": "json",
+	"interval": 1,
+	"on-click": "~/.config/waybar/scripts/waybar-rofi-sysmonitor.sh"
+	},
+
+	"battery": {
+	"interval": 1,
+	"states": {
+	"LVL0": 100,
+	"LVL1": 85,
+	"LVL2": 65,
+	"LVL3": 45,
+	"LVL4": 25,
+	"LVL5": 15,
+	},
+	"format": "{icon} {capacity}%",
+	"format-charging": "󰔵  {capacity}%",
+	"format-not-charging": "  {capacity}%",
+	"format-plugged": "󱐋  {capacity}%",
+	"format-icons": [" "," "," "," "," "],
+	"on-click": "~/.config/rofi/modules/rofi-power-mode",
+	},
+
+	"custom/network": {
+	"format": "{}",
+	"exec": "~/.config/waybar/scripts/network_status.sh",
+	"return-type": "json",
+	"on-click": "~/.config/rofi/modules/rofi-wifi-menu",
+	"on-click-right": "~/.config/polybar/scripts/polybar-wifi/toggle_wifi.sh"
+	},
+
+	"custom/audio": {
+	"format": "{}",
+	"exec": "~/.config/waybar/scripts/volume_status.sh",
+	"tail": true,
+	"return-type": "json",
+	"on-click": "~/.config/dunst/scripts/volume.sh volume_mute",
+	"on-click-middle": "~/.config/dunst/scripts/volume.sh volume_status",
+	"on-click-right": "~/.config/rofi/modules/rofi-sound-settings",
+	"on-scroll-down": "~/.config/dunst/scripts/volume.sh volume_down",
+	"on-scroll-up": "~/.config/dunst/scripts/volume.sh volume_up"
+	},
+
+	"custom/power": {
+	"format": " 󰐥 ",
+	"on-click": "~/.config/hypr/rofi_hyprland/rofi-power-menu"
+	},
+
+	"custom/notification-center": {
+	"format": "{}",
+	"exec": "~/.config/waybar/scripts/notification-indicator",
+	"return-type": "json",
+	"interval": 1,
+	"on-click": "~/.config/dunst/scripts/noti-center.sh",
+	"on-click-right": "dunstctl history-clear"
+	},
+
+	"custom/hyprsunset": {
+	"format": " ",
+	"on-click": "~/.config/hypr/rofi_hyprland/rofi-hyprsunset",
+	"on-click-right": "hyprctl hyprsunset identity && killall hyprsunset"
+	},
+	
+	"custom/hyprland-settings": {
+    	"format": "",
+    	"on-click": "~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings"
+	},
+
+	"custom/dtf-update":{
+	"format": "{}",
+	"exec": "~/.config/waybar/scripts/dtf-update-bar.sh",
+	"on-click": "~/.config/hypr/scripts/dtf_update_update.sh"
+	},
+
+	"custom/padd": {
+	"format": " ",
+	"interval" : "once",
+	"tooltip": false
+	}
+}
+

@@ -1,0 +1,136 @@
+* {
+  min-height: 30pt;
+  font-family: JetBrainsMono Nerd Font;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+window#waybar {
+    background: #e0e6ed;
+    color: #16161d;
+    border-radius: 10px;
+}
+
+window#waybar.hidden {
+  opacity: 0.5;
+}
+
+#workspaces {
+  background-color: transparent;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0px 10px 0px 10px;
+  margin: 0px 2px; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  color: #757575;
+  background-color: #000000;
+}
+
+#workspaces button.active {
+  color: #81ccee;
+  background-color: #000000;
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: #000000;
+  background-color: #81ccee;
+}
+
+#workspaces button.urgent {
+  background-color: #ff6f91;
+  color: #000000;
+}
+
+tooltip {
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #131822;
+}
+
+tooltip label {
+  padding: 5px;
+  background-color: #131822;
+}
+
+#tray {
+  background-color: #bac2de;
+}
+
+#custom-dtf-update{
+  color: #ff6f91;
+}
+
+#tray,
+#battery,
+#clock,
+#custom-window,
+#custom-bluetooth,
+#custom-temperature,
+#custom-notification-center,
+#custom-hyprsunset,
+#custom-hyprland-settings,
+#custom-audio,
+#custom-network,
+#custom-power {
+  padding: 0px 13px 0px 13px;
+  margin: 0px 2px; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 4px;
+  margin-left: 4px;
+  border-radius: 4px;
+  color: #16161d;
+}
+
+
+#custom-temperature.normal { background-color: #89dceb; }
+#custom-temperature.warning { background-color: #f9e2af; }
+#custom-temperature.critical { background-color: #ff6f91; }
+
+#custom-power { background-color: #ff6f91; }
+
+#custom-bluetooth.powered-off { background-color: #7f849c; }
+#custom-bluetooth.no-devices { background-color: #74c7ec; }
+#custom-bluetooth.one-device { background-color: #2193ff; }
+#custom-bluetooth.multiple-devices { background-color: #2193ff; }
+
+#custom-network.strength-0 { background-color: #ff6f91; }
+#custom-network.strength-1 { background-color: #f38ba8; }
+#custom-network.strength-2 { background-color: #eba0ac; }
+#custom-network.strength-3 { background-color: #f7a8b8; }
+#custom-network.strength-4 { background-color: #f9e2af; }
+#custom-network.strength-5 { background-color: #f9e2af; }
+#custom-network.strength-6 { background-color: #94e2d5; }
+#custom-network.strength-7 { background-color: #94e2d5; }
+#custom-network.strength-8 { background-color: #a6e3a1; }
+#custom-network.strength-9 { background-color: #a6e3a1; }
+#custom-network.disconnected{ background-color: #7f849c; }
+
+#clock{ background-color: #f5e0dc; }
+
+#custom-window{ background-color: #bac2de; }
+
+#custom-notification-center.unclear{ background-color: #f5e0dc; }
+#custom-notification-center.clear{ background-color: #7f849c; }
+
+#custom-hyprsunset{ background-color: #f9e2af; }
+
+#custom-hyprland-settings{ background-color: #a6adc8; }
+
+#custom-audio.muted { background-color: #7f849c; }
+#custom-audio.low { background-color: #bac2de; }
+#custom-audio.medium { background-color: #eba0ac; }
+#custom-audio.high { background-color: #f38ba8; }
+
+#battery.LVL0 { background-color: #a6e3a1; }
+#battery.LVL1 { background-color: #a6e3a1; }
+#battery.LVL2 { background-color: #94e2d5; }
+#battery.LVL3 { background-color: #f9e2af; }
+#battery.LVL4 { background-color: #f38ba8; }
+#battery.LVL5 { background-color: #ff6f91; }

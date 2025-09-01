@@ -2,7 +2,6 @@
 
 source ~/.config/dtf-config/config
 
-
 # Try default route
 DEFAULT_IFACE=$(ip route | awk '/^default/ {print $5}' | head -n1)
 
