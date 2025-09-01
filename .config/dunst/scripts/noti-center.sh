@@ -4,10 +4,10 @@
 
 source ~/.config/dtf-config/config
 
-polybar_top=${polybar_top:-false}
+bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
 
-if [[ $polybar_top == "true" ]]; then
+if [[ $bar_top == "true" ]]; then
 	location="north west"
 				 
 	main_menu_x_offset=10px

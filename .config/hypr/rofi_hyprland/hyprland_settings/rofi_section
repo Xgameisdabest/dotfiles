@@ -64,7 +64,7 @@ rofi_submenu(){
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
 			;;
 		$gammastep)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/rofi-gammastep
+			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/rofi-hyprsunset
 			;;
 		$goback)
 			main_menu
