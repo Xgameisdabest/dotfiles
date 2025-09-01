@@ -5,7 +5,7 @@
 source ~/.config/dtf-config/config
 
 main_menu_height=300px
-main_menu_width=290px
+main_menu_width=355px
 manual_menu_height=90px
 manual_menu_width=480px
 
@@ -68,10 +68,10 @@ goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
 playback_opt="Playback 󰐎"
-outputdev_opt="Output 󰜟"
-inputdev_opt="Input 󱦉"
-devconfig_opt="Configuration "
-manual_volume_opt="Volume Level "
+outputdev_opt="Output Device 󰜟"
+inputdev_opt="Input Device 󱦉"
+devconfig_opt="Device Configuration "
+manual_volume_opt="Manual Volume Level "
 
 opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$quit"
 
