@@ -4,7 +4,7 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=300px
+main_menu_height=285px
 main_menu_width=355px
 manual_menu_height=90px
 manual_menu_width=480px
