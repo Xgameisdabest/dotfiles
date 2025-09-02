@@ -113,6 +113,9 @@ wifi_saved_fn(){
 	wifi_saved_menu_height=175
 	numbers_of_saved_wifi=$(echo "$saved_list" | wc -l)
 	height_per_saved_entry=$((wifi_saved_menu_height + (numbers_of_saved_wifi * 38)))
+	if [[ $height_per_saved_entry -gt 710 ]]; then
+		height_per_saved_entry=710
+	fi
 
 	chosen_saved_select=$(echo -e "$saved_list\n$goback\n$quit" | rofi -dmenu -i -p " Saved Wifi  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $saved_menu_x_offset; y-offset: $saved_menu_y_offset; height: ${height_per_saved_entry};}" -theme $path_to_theme)
 	if [[ $chosen_saved_select == $goback ]]; then
@@ -155,6 +158,9 @@ wifi_list_fn(){
 	wifi_list_menu_height=175
 	numbers_of_avail_wifi=$(echo "$wifi_list" | wc -l)
 	height_per_wifi_entry=$((wifi_list_menu_height + (numbers_of_avail_wifi * 38)))
+	if [[ $height_per_wifi_entry -gt 710 ]]; then
+		height_per_wifi_entry=710
+	fi
 
 	chosen_network=$(echo -e "$wifi_list\n$goback_wifilist\n$quit" | rofi -dmenu -i -theme $path_to_theme -p " Wifi 󱚻 : " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset; height: ${height_per_wifi_entry}px;}")
 	echo $chosen_network

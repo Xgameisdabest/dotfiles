@@ -22,8 +22,11 @@ main_menu(){
 monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print $1}')
 
 monitor_list_count=$(echo "$monitor_list" | wc -l)
-
 height_per_monitor_listed=$((main_menu_height + (monitor_list_count * 38)))
+if [[ $height_per_monitor_listed -gt 710 ]]; then
+	height_per_monitor_listed=710
+fi
+
 
 monitor_picked=$( echo -e "$monitor_list\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
 
@@ -49,9 +52,7 @@ mode=$(wlr-randr | awk -v mon="$monitor_picked" '
 ')
 
 mode_list_count=$(echo "$mode" | wc -l)
-
 height_per_mode_listed=$((mode_menu_height + (mode_list_count * 38)))
-
 if [[ $height_per_mode_listed -gt 710 ]]; then
 	height_per_mode_listed=710
 fi
