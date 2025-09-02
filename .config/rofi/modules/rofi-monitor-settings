@@ -44,10 +44,42 @@ mode=$(wlr-randr | awk -v mon="$monitor_picked" '
     }
 ')
 
+# Save/Load monitor status
+get_current_config(){
+    hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
+        '.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate),\(.x)x\(.y),\(.scale)"'
+}
+
+get_preferred_mode(){
+    wlr-randr | awk -v mon="$monitor_picked" '
+        $1 == mon {inside=1; next}
+        /^[A-Za-z0-9-]+ / {inside=0}
+        inside && /\*/ {print $1 "@" $2; exit}
+    ' | tr -d '*'
+}
+
+save_mode(){
+    mkdir -p ~/.cache/hypr-monitors
+    echo "$(get_current_config)" > ~/.cache/hypr-monitors/$monitor_picked
+}
+
+restore_mode(){
+    if [[ -f ~/.cache/hypr-monitors/$monitor_picked ]]; then
+        lastconfig=$(cat ~/.cache/hypr-monitors/$monitor_picked)
+        hyprctl keyword monitor "$monitor_picked,$lastconfig"
+    else
+        pref=$(get_preferred_mode)
+        if [[ -n "$pref" ]]; then
+            # fallback still uses auto if no cache
+            hyprctl keyword monitor "$monitor_picked,$pref,auto,1"
+        fi
+    fi
+}
+
 # Count enabled monitors
 enabled_count=$(hyprctl monitors -j | jq '[.[] | select(.dpmsStatus == true)] | length')
 
-# Check status of the selected monitor
+# Status of the current monitor
 display_status(){
     hyprctl monitors -j | jq -r --arg mon "$monitor_picked" '.[] | select(.name==$mon) | .dpmsStatus'
 }
@@ -55,20 +87,16 @@ status=$(display_status)
 
 # Build menu entries
 if [[ "$status" == "true" ]]; then
-    # Monitor is ON
     if [[ $enabled_count -gt 1 ]]; then
-        # More than one ON → allow toggle
         menu_entries="On\n$mode\n$goback"
     else
-        # Only one ON → no toggle
         menu_entries="$mode\n$goback"
     fi
 else
-    # Monitor is OFF → allow re-enable
     menu_entries="Off\n$goback"
 fi
 
-# Rofi input
+# Menu
 mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Resolution 󰹑  " \
     -theme $path_to_theme \
     -theme-str "listview {columns: 1; layout: vertical;}" \
@@ -79,15 +107,17 @@ if [[ -z "$mode_picked" ]]; then
 elif [[ $mode_picked == "$goback" ]]; then
     main_menu
 elif [[ $mode_picked == "On" ]]; then
-    hyprctl dispatch dpms off "$monitor_picked"
+    save_mode
+    hyprctl keyword monitor "$monitor_picked,disable"
 elif [[ $mode_picked == "Off" ]]; then
-    hyprctl dispatch dpms on "$monitor_picked"
+    restore_mode
 fi
 
 # Apply resolution change if user picked one
 if [[ "$mode_picked" == *"@"* ]]; then
     res=$(echo "$mode_picked" | cut -d'@' -f1)
     rate=$(echo "$mode_picked" | cut -d'@' -f2)
+    save_mode
     hyprctl keyword monitor "$monitor_picked,$res@$rate,auto,1"
 fi
 }
