@@ -9,11 +9,11 @@ else
 fi
 
 main_menu_height=255px
-main_menu_width=320px
+main_menu_width=350px
 
-wm_settings="󰢹  Desktop Settings"
+wm_settings="󰢹  Desktop Settings "
 usr_settings="  User Settings"
-monitor_settings="󱒃  Monitor Settings"
+monitor_settings="󱒃  Monitor Settings "
 quit="Exit 󰈆 "
 
 select=$(echo -e "$wm_settings\n$usr_settings\n$monitor_settings\n$quit" | rofi -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
