@@ -30,8 +30,8 @@ else
 fi
 }
 
-mode_menu(){
 #List all available resolutions+rates for chosen monitor
+mode_menu(){
 mode=$(wlr-randr | awk -v mon="$monitor_picked" '
     $1 == mon {inside=1; next}
     /^[A-Za-z0-9-]+ / {inside=0}
@@ -44,21 +44,52 @@ mode=$(wlr-randr | awk -v mon="$monitor_picked" '
     }
 ')
 
-#Getting user input
-mode_picked=$(echo -e "$mode\n$goback" | rofi -dmenu -p " Resolution 󰹑  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $mode_menu_width; height: $mode_menu_height;}")
+# Count enabled monitors
+enabled_count=$(hyprctl monitors -j | jq '[.[] | select(.dpmsStatus == true)] | length')
 
-if [[ -z "$mode_picked" ]]; then
-	exit
-elif [[ $mode_picked == "$goback" ]]; then
-	main_menu
+# Check status of the selected monitor
+display_status(){
+    hyprctl monitors -j | jq -r --arg mon "$monitor_picked" '.[] | select(.name==$mon) | .dpmsStatus'
+}
+status=$(display_status)
+
+# Build menu entries
+if [[ "$status" == "true" ]]; then
+    # Monitor is ON
+    if [[ $enabled_count -gt 1 ]]; then
+        # More than one ON → allow toggle
+        menu_entries="On\n$mode\n$goback"
+    else
+        # Only one ON → no toggle
+        menu_entries="$mode\n$goback"
+    fi
+else
+    # Monitor is OFF → allow re-enable
+    menu_entries="Off\n$goback"
 fi
 
-#Apply the selection
-res=$(echo "$mode_picked" | cut -d'@' -f1)
-rate=$(echo "$mode_picked" | cut -d'@' -f2)
+# Rofi input
+mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Resolution 󰹑  " \
+    -theme $path_to_theme \
+    -theme-str "listview {columns: 1; layout: vertical;}" \
+    -theme-str "window {width: $mode_menu_width; height: $mode_menu_height;}")
 
-#echo $monitor_picked,$res@$rate
-hyprctl keyword monitor "$monitor_picked,$res@$rate,auto,1"
+if [[ -z "$mode_picked" ]]; then
+    exit
+elif [[ $mode_picked == "$goback" ]]; then
+    main_menu
+elif [[ $mode_picked == "On" ]]; then
+    hyprctl dispatch dpms off "$monitor_picked"
+elif [[ $mode_picked == "Off" ]]; then
+    hyprctl dispatch dpms on "$monitor_picked"
+fi
+
+# Apply resolution change if user picked one
+if [[ "$mode_picked" == *"@"* ]]; then
+    res=$(echo "$mode_picked" | cut -d'@' -f1)
+    rate=$(echo "$mode_picked" | cut -d'@' -f2)
+    hyprctl keyword monitor "$monitor_picked,$res@$rate,auto,1"
+fi
 }
 
 main_menu
