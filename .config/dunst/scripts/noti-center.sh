@@ -69,14 +69,21 @@ notifications=$(dunstctl history | jq -r '
 	(.summary.data | contains("󰖩") | not) and
 	(.summary.data | contains("") | not) and
 	(.summary.data | contains("") | not)) |
-    "\(.summary.data)"
-')
+    "\(.summary.data)"')
+
+notif_menu_height=175
+numbers_of_notif=$(echo "$notifications" | wc -l)
+height_per_notif=$((notif_menu_height + (numbers_of_notif * 38)))
+if [[ $height_per_notif -gt 710 ]]; then
+	height_per_notif=710
+fi
 
 cls_hist=$(echo "Clear History 󱏫")
 # options="$notifications\n$cls_hist"
 options="$cls_hist\n$notifications"
 # Use rofi to display notifications
-selected=$(echo -e "$quit\n$options" | rofi -dmenu -theme $path_to_theme -i -selected-row 2 -p " Select notification 󱅫  " -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+
+selected=$(echo -e "$quit\n$options" | rofi -dmenu -theme $path_to_theme -i -selected-row 2 -p " Notifications 󱅫  " -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset; height: ${height_per_notif}px;}")
 
 case $selected in
 	"")

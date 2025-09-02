@@ -21,7 +21,7 @@ if [[ $height_per_window_entry -gt 710 ]]; then
 fi
 
 # Let the user pick a window in rofi
-choice=$(echo "$windows_list" | rofi -dmenu -i -p " Available Windows 󰖲 " -theme $path_to_theme -theme-str "window {height: ${height_per_window_entry}px;}")
+choice=$(echo "$windows_list" | rofi -dmenu -i -p " Available Windows 󰖲 " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: ${height_per_window_entry}px;}")
 
 # Extract address and workspace of chosen window
 addr=$(echo "$windows" | grep -F "$choice" | cut -f1)
