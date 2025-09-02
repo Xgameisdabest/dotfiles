@@ -8,10 +8,10 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=225px
+main_menu_height=140
 main_menu_width=220px
 
-mode_menu_height=500px
+mode_menu_height=175
 mode_menu_width=375px
 
 goback="Back 󰌍 "
@@ -21,7 +21,11 @@ quit="Exit 󰈆 "
 main_menu(){
 monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print $1}')
 
-monitor_picked=$( echo -e "$monitor_list\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}")
+monitor_list_count=$(echo "$monitor_list" | wc -l)
+
+height_per_monitor_listed=$((main_menu_height + (monitor_list_count * 38)))
+
+monitor_picked=$( echo -e "$monitor_list\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
 
 if [[ -z "$monitor_picked" ]] || [[ "$monitor_picked" = "$quit" ]]; then
 	exit
@@ -43,6 +47,14 @@ mode=$(wlr-randr | awk -v mon="$monitor_picked" '
         print res "@" rate
     }
 ')
+
+mode_list_count=$(echo "$mode" | wc -l)
+
+height_per_mode_listed=$((mode_menu_height + (mode_list_count * 38)))
+
+if [[ $height_per_mode_listed -gt 710 ]]; then
+	height_per_mode_listed=710
+fi
 
 # Save/Load monitor status
 get_current_config(){
@@ -100,7 +112,7 @@ fi
 mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Resolution 󰹑  " \
     -theme $path_to_theme \
     -theme-str "listview {columns: 1; layout: vertical;}" \
-    -theme-str "window {width: $mode_menu_width; height: $mode_menu_height;}")
+    -theme-str "window {width: $mode_menu_width; height: $height_per_mode_listed;}")
 
 if [[ -z "$mode_picked" ]]; then
     exit
