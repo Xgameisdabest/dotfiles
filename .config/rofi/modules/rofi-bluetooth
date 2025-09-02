@@ -6,7 +6,7 @@
 
 #when add new entry make sure to add 35 to height
 main_menu_height=440px
-main_menu_height_off=195px
+main_menu_height_off=175px
 main_menu_width=350px
 
 source ~/.config/dtf-config/config
