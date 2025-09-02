@@ -5,7 +5,7 @@
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
 #when add new entry make sure to add 35 to height
-main_menu_height=460px
+main_menu_height=440px
 main_menu_height_off=195px
 main_menu_width=350px
 
@@ -236,8 +236,16 @@ toggle_trust() {
 
 device_list() {
 	dev_list=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	
+	device_list_menu_height=175
+	numbers_of_devices=$(echo "$dev_list" | wc -l)
+	height_per_device_entry=$((device_list_menu_height + (numbers_of_devices * 38)))
+	if [[ $height_per_device_entry -gt 710 ]]; then
+		height_per_device_entry=710
+	fi
+
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_menu_x_offset; y-offset: $device_list_menu_y_offset;}" | sed 's///g')
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_menu_x_offset; y-offset: $device_list_menu_y_offset; height: ${height_per_device_entry}px;}" | sed 's///g')
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."
@@ -254,8 +262,16 @@ device_list() {
 
 device_list_trusted() {
 	dev_list=$(bluetoothctl devices Trusted | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	
+	device_list_menu_height=175
+	numbers_of_devices=$(echo "$dev_list" | wc -l)
+	height_per_device_entry=$((device_list_menu_height + (numbers_of_devices * 38)))
+	if [[ $height_per_device_entry -gt 710 ]]; then
+		height_per_device_entry=710
+	fi
+
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_trusted_menu_x_offset; y-offset: $device_list_trusted_menu_y_offset;}" | sed 's///g')
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_trusted_menu_x_offset; y-offset: $device_list_trusted_menu_y_offset; height: ${height_per_device_entry}px;}" | sed 's///g')
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."
@@ -272,8 +288,16 @@ device_list_trusted() {
 
 device_list_paired() {
 	dev_list=$(bluetoothctl devices Paired | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+	
+	device_list_menu_height=175
+	numbers_of_devices=$(echo "$dev_list" | wc -l)
+	height_per_device_entry=$((device_list_menu_height + (numbers_of_devices * 38)))
+	if [[ $height_per_device_entry -gt 710 ]]; then
+		height_per_device_entry=710
+	fi
+
 	options="$dev_list\n$goback\n$quit"
-	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_paired_menu_x_offset; y-offset: $device_list_paired_menu_y_offset;}" | sed 's///g')
+	select=$(echo -e "$options" | $rofi_command " Select Device 󰾰  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: 500px; location: $location; x-offset: $device_list_paired_menu_x_offset; y-offset: $device_list_paired_menu_y_offset; height: ${height_per_device_entry}px;}" | sed 's///g')
 	case "$select" in
         "" | "$divider" | "$quit")
             echo "No option chosen."

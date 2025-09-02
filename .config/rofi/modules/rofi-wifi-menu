@@ -8,7 +8,7 @@ source ~/.config/dtf-config/config
 rofi_theme=${rofi_theme:-black}
 bar_top=${bar_top:-false}
 
-main_menu_height=335px
+main_menu_height=325px
 main_menu_disabled_height=265px
 main_menu_width=300px
 
@@ -117,7 +117,7 @@ wifi_saved_fn(){
 		height_per_saved_entry=710
 	fi
 
-	chosen_saved_select=$(echo -e "$saved_list\n$goback\n$quit" | rofi -dmenu -i -p " Saved Wifi  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $saved_menu_x_offset; y-offset: $saved_menu_y_offset; height: ${height_per_saved_entry};}" -theme $path_to_theme)
+	chosen_saved_select=$(echo -e "$saved_list\n$goback\n$quit" | rofi -dmenu -i -p " Saved Wifi  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $saved_menu_x_offset; y-offset: $saved_menu_y_offset; height: ${height_per_saved_entry}px;}" -theme $path_to_theme)
 	if [[ $chosen_saved_select == $goback ]]; then
 		main_menu
 	elif [[ $chosen_saved_select == $quit || $chosen_saved_select == "" ]]; then
