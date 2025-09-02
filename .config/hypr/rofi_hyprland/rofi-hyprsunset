@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #when add new entry make sure to add 35 to height
-main_menu_height=265px
+main_menu_height=245px
 main_menu_width=375px
 
 value_menu_height=90px
