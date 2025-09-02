@@ -8,19 +8,29 @@ else
 fi
 
 # Get list of windows from hyprctl
-WINDOWS=$(hyprctl -j clients | jq -r '.[] | "\(.address)\t\(.workspace.id)\t[Ws: \(.workspace.id)] \(.class) - \(.title)"')
+windows=$(
+hyprctl -j clients | jq -r 'sort_by(.workspace.id, .title)[] | "\(.address)\t\(.workspace.id)\t[Ws: \(.workspace.id)] \(.class) - \(.title)"'
+)
+windows_list=$(echo "$windows" | cut -f3-)
+
+windows_list_menu_height=100
+numbers_of_window=$(echo "$windows_list" | wc -l)
+height_per_window_entry=$((windows_list_menu_height + (numbers_of_window * 38)))
+if [[ $height_per_window_entry -gt 710 ]]; then
+	height_per_window_entry=710
+fi
 
 # Let the user pick a window in rofi
-CHOICE=$(echo "$WINDOWS" | cut -f3- | rofi -dmenu -i -p "Window" -theme $path_to_theme)
+choice=$(echo "$windows_list" | rofi -dmenu -i -p " Available Windows 󰖲 " -theme $path_to_theme -theme-str "window {height: ${height_per_window_entry}px;}")
 
 # Extract address and workspace of chosen window
-ADDR=$(echo "$WINDOWS" | grep -F "$CHOICE" | cut -f1)
-WSID=$(echo "$WINDOWS" | grep -F "$CHOICE" | cut -f2)
+addr=$(echo "$windows" | grep -F "$choice" | cut -f1)
+wsid=$(echo "$windows" | grep -F "$choice" | cut -f2)
 
 # Focus it if chosen
-if [[ -n "$CHOICE" ]]; then
+if [[ -n "$choice" ]]; then
   # First, switch to its workspace (only if not already there)
-  hyprctl dispatch workspace "$WSID"
+  hyprctl dispatch workspace "$wsid"
   # Then, focus the exact window
-  hyprctl dispatch focuswindow address:"$ADDR"
+  hyprctl dispatch focuswindow address:"$addr"
 fi
