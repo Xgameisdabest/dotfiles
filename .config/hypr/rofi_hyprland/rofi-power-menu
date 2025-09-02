@@ -77,8 +77,8 @@ run_cmd() {
 			systemctl suspend
 			hyprlock
 		elif [[ $1 == '--logout' ]]; then
-			hyprctl dispatch exit
 			killall -SIGINT waybar
+			hyprctl dispatch exit
 		fi
 	else
 		exit 0
