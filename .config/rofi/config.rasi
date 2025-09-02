@@ -1,4 +1,5 @@
 configuration{
+    font: "JetBrainsMono Nerd Font Bold 12";
     modi: "drun";
     show-icons: true;
     display-drun: " Apps   ";
