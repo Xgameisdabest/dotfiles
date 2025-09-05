@@ -55,7 +55,7 @@ main_menu(){
 			rofi_submenu
 			;;
 		$hyprlock)
-			$TERMINAL -e nvim ~/.config/betterlockscreen/betterlockscreenrc
+			$TERMINAL -e nvim ~/.config/hypr/hyprlock.conf
 			;;
 		$waybar)
 			waybar_submenu
