@@ -14,7 +14,7 @@ HYPR_SETTINGS_PATH=~/.config/hypr/rofi_hyprland/hyprland_settings/
 
 source $HYPR_SETTINGS_PATH/hyprland-settings_section
 
-rofi_submenu_height=565px
+rofi_submenu_height=555px
 rofi_submenu_width=295px
 
 rofi_submenu(){

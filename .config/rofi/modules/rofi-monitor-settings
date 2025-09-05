@@ -11,7 +11,7 @@ fi
 main_menu_height=140
 main_menu_width=220px
 
-mode_menu_height=175
+mode_menu_height=140
 mode_menu_width=375px
 
 goback="Back 󰌍 "
