@@ -72,7 +72,7 @@ listview {
 element {
     padding: 5px;
     background-color: @bg-col;
-    text-color: @fg-col  ;
+    text-color: @fg-col;
 }
 
 element-icon {
@@ -80,8 +80,8 @@ element-icon {
 }
 
 element selected {
-    background-color:  @bg-col ;
-    text-color: @red  ;
+    background-color: @bg-col;
+    text-color: @red;
 }
 
 mode-switcher {
@@ -118,9 +118,9 @@ textbox {
 scrollbar {
     handle-color: @lavender;
     background-color: @bg-col;
-    width:        5px ;
-    border:       0 ;
-    handle-width: 10px ;
-    padding:      0 ;
+    width: 5px;
+    border: 0;
+    handle-width: 10px;
+    padding: 0;
 }
 
