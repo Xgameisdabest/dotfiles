@@ -20,7 +20,7 @@ source $HYPR_SETTINGS_PATH/dunst_section
 
 ### MAIN MENU
 
-main_menu_height=490px
+main_menu_height=480px
 main_menu_width=295px
 
 goback="Back 󰌍 "

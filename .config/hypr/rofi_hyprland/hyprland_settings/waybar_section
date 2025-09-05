@@ -10,12 +10,12 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-waybar_submenu_height=265px
+waybar_submenu_height=255px
 waybar_submenu_width=280px
 
-waybar_style_submenu_height=225px
+waybar_style_submenu_height=215px
 waybar_style_submenu_width=280px
-waybar_config_submenu_height=225px
+waybar_config_submenu_height=215px
 waybar_config_submenu_width=280px
 
 waybar_submenu(){

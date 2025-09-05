@@ -10,7 +10,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-dunst_submenu_height=330px
+dunst_submenu_height=320px
 dunst_submenu_width=370px
 
 dunst_submenu(){
