@@ -5,8 +5,7 @@ title=$(hyprctl activewindow -j | jq -r '.class')
 
 # Fallback if empty (no active window)
 if [ -z "$title" ] || [ "$title" = "null" ]; then
-  echo "{\"text\": \"Hypr 󰨇\"}"
+  echo "{\"text\": \"󰖲\"}"
 else
   echo "{\"text\": \"󰖯 $title\"}"
 fi
-
