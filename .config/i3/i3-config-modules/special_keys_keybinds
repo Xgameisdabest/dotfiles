@@ -1,8 +1,8 @@
 #Caps Lock
-bindsym Caps_Lock exec --no-startup-id ~/.config/i3/scripts/key_notif/capslock_notify.sh
+bindsym Caps_Lock exec --no-startup-id ~/.config/dunst/scripts/key_notif/capslock_notify.sh
 
 #Num Lock
-bindsym Num_Lock exec --no-startup-id ~/.config/i3/scripts/key_notif/numlock_notify.sh
+bindsym Num_Lock exec --no-startup-id ~/.config/dunst/scripts/key_notif/numlock_notify.sh
 
 #Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/dunst/scripts/volume.sh volume_up
