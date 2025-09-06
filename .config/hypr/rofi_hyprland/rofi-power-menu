@@ -95,7 +95,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		hyprlock
+		~/.config/hypr/scripts/hyprlock_current_bg.sh
         ;;
     $suspend)
 		run_cmd --suspend
