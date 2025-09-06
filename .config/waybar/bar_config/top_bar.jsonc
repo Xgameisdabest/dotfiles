@@ -5,7 +5,7 @@
     "margin-top": 5,
     "margin-left": 10,
     "margin-right": 10,    
-    "spacing": 8,
+    "spacing": 4,
 	"modules-left": ["custom/padd","custom/hyprland-settings","custom/hyprsunset","custom/notification-center","custom/temperature","tray","custom/window"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["custom/dtf-update","clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
@@ -18,7 +18,7 @@
 	},
 
 	"custom/window": {
-	"format": " {} ",
+	"format": "{}",
         "exec": "~/.config/waybar/scripts/window_title.sh",
 	"interval": 1,
         "return-type": "json",
