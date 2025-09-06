@@ -102,11 +102,13 @@ Hyprland is now supported! Here's how I set it up on my system.
 ```
 sudo add-apt-repository ppa:cppiber/hyprland
 sudo apt update
+sudo apt remove hyprland-dev
+sudo apt install hyprland
 ```
 
 Install dependencies for Hyprland (for ```apt```)
 ```
-sudo apt install zsh hyprland hyprsunset hypridle hyprlock waybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf udev lsd jq wl-clipboard power-profiles-daemon acpi swaybg bsdmainutils light kitty iw wlr-randr
+sudo apt install zsh hyprland swaybg hyprsunset hypridle hyprlock waybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf udev lsd jq wl-clipboard power-profiles-daemon acpi swaybg bsdmainutils light kitty iw wlr-randr
 ```
 
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
