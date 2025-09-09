@@ -49,7 +49,7 @@ waybar_config_submenu(){
 	waybar_cfg_bottom="  Bar Bottom "
 	
 	#when add new entry make sure to add 35 to height
-	select_config=$(echo -e "$waybar_cfg_top\n$waybar_cfg_bottom\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_config_submenu_height; width: $waybar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
+	select_config=$(echo -e "$waybar_cfg_bottom\n$waybar_cfg_top\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_config_submenu_height; width: $waybar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
 
 	case $select_config in 
 		$waybar_cfg_bottom)
