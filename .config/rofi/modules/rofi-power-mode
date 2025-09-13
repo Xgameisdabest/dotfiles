@@ -44,6 +44,9 @@ power_mode_status="$(powerprofilesctl get)"
 set_mode_performace() {
 	powerprofilesctl set performance
 	light -S 100
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		hyprctl keyword animations:enabled 1
+	fi
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
 	~/.config/dunst/scripts/volume.sh brightness_status
 }
@@ -51,6 +54,9 @@ set_mode_performace() {
 set_mode_balanced() {
 	powerprofilesctl set balanced
 	light -S 79
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		hyprctl keyword animations:enabled 0
+	fi
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to balance mode 󰾅"
 	~/.config/dunst/scripts/volume.sh brightness_status
 }
@@ -58,6 +64,9 @@ set_mode_balanced() {
 set_mode_power_saver() {
 	powerprofilesctl set power-saver
 	light -S 61
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		hyprctl keyword animations:enabled 0
+	fi
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to power-saver mode 󰾆"
 	~/.config/dunst/scripts/volume.sh brightness_status
 }
