@@ -70,6 +70,8 @@ case $chosen in
     $logout)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		killall -SIGINT waybar
+		killall usb-watch.sh
+		killall udevadm
 		hyprctl dispatch exit
 	else
 		i3-msg 'exit'

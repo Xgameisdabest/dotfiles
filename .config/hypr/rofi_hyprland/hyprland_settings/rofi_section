@@ -43,7 +43,7 @@ rofi_submenu(){
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-bluetooth
 			;;
 		$pwr_menu)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/rofi-power-menu
+			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-menu
 			;;
 		$pwr_mode)
 			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-mode
