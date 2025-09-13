@@ -10,12 +10,12 @@ if [[ $usb_notification == "false" ]]; then
     if [[ -f "$PIDFILE" ]] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
         kill "$(cat "$PIDFILE")" 2>/dev/null
         rm -f "$PIDFILE"
-	pkill udevadm
-	pkill usb-watch.sh
+	killall udevadm
+	killall usb-watch.sh
         echo "usb-watch stopped"
     else
-	pkill udevadm
-	pkill usb-watch.sh
+	killall udevadm
+	killall usb-watch.sh
         echo "usb-watch not running"
     fi
     exit 0
