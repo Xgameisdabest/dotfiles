@@ -26,8 +26,8 @@ bindsym $mod+minus exec --no-startup-id polybar-msg cmd toggle
 
 #switch window
 bindsym $alt+Tab workspace back_and_forth
-bindsym $mod+Shift+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window-container/workspace_input_number_window_switch.sh
-bindsym $mod+grave exec --no-startup-id ~/.config/rofi/modules/rofi-window-container/workspace_input_number_switch.sh
+bindsym $mod+Shift+grave exec --no-startup-id ~/.config/i3/scripts/rofi-window-container/workspace_input_number_window_switch.sh
+bindsym $mod+grave exec --no-startup-id ~/.config/i3/scripts/rofi-window-container/workspace_input_number_switch.sh
 
 #toggle tiling/floating
 bindsym $mod+v floating toggle resize set 70ppt 70ppt
@@ -93,7 +93,7 @@ bindsym $alt+period exec --no-startup-id i3-msg layout tabbed && notify-send -h 
 bindsym $alt+slash exec --no-startup-id i3-msg layout toggle split && notify-send -h string:x-dunst-stack-tag:window_stack_mode "Window split enabled 󰟘"
 
 #i3 settings
-bindsym $mod+i exec --no-startup-id ~/.config/rofi/modules/rofi-user-settings
+bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/i3-settings/rofi-i3-settings
 
 # show help menu
-bindsym $mod+equal exec --no-startup-id ~/.config/rofi/modules/rofi-i3-keybinds/rofi-i3-keybinds
+bindsym $mod+equal exec --no-startup-id ~/.config/i3/scripts/rofi-i3-keybinds/rofi-i3-keybinds
