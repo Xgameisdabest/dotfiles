@@ -5,7 +5,7 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=360px
+main_menu_height=420px
 main_menu_width=350px
 
 bar_top=${bar_top:-false}
@@ -29,78 +29,50 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-# CMDs
-uptime="`uptime -p | sed -e 's/up //g'`"
-host=`hostname`
+# uptime and hosts
+uptime=$(uptime -p | sed -e "s/up //g")
+user=$(whoami)
+host=$(hostname)
 
 # Options
 shutdown='  Power off'
-#shutdown=' '
 reboot='  Reboot'
-#reboot=' '
 lock='  Lock'
-#lock=' '
 suspend='󰤄  Suspend'
-#suspend='󰤄 '
-#logout='󰍃  -> Get the fuck out'
 logout='󰍃  Log out'
-#logout='󰍃 '
-yes='✔'
-no='✗'
 
-# Rofi CMD
-rofi_cmd() {
-	rofi -dmenu \
-		-i \
-		-theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" \
-		-theme $path_to_theme \
-		-p " Select   " \
-		-mesg "Uptime: $uptime"
-}
+chosen=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Select   " -mesg "$(echo -e " Uptime: $uptime\n Host: $host\n User: $user")")
 
-# Pass variables to rofi dmenu
-run_rofi() {
-	echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
-}
-
-# Execute Command
-run_cmd() {
-	selected="$yes"
-	if [[ "$selected" == "$yes" ]]; then
-		if [[ $1 == '--shutdown' ]]; then
-			poweroff
-		elif [[ $1 == '--reboot' ]]; then
-			reboot
-		elif [[ $1 == '--suspend' ]]; then
-			mpc -q pause
-			amixer set Master mute
-			systemctl suspend
-			betterlockscreen -l
-		elif [[ $1 == '--logout' ]]; then
-			i3-msg 'exit'
-		fi
-	else
-		exit 0
-	fi
-}
-
-# Actions
-chosen="$(run_rofi)"
-case ${chosen} in
+case $chosen in
     $shutdown)
-		run_cmd --shutdown
+	poweroff
         ;;
     $reboot)
-		run_cmd --reboot
+	reboot
         ;;
     $lock)
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		~/.config/hypr/scripts/hyprlock_current_bg.sh
+	else
 		betterlockscreen -l
+	fi
         ;;
     $suspend)
-		run_cmd --suspend
+	mpc -q pause
+	amixer set Master mute
+	systemctl suspend
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		hyprlock
+	else
+		betterlockscreen -l
+	fi
         ;;
     $logout)
-		run_cmd --logout
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		killall -SIGINT waybar
+		hyprctl dispatch exit
+	else
+		i3-msg 'exit'
+	fi
         ;;
 esac
-
