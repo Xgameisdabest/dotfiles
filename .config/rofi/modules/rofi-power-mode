@@ -3,8 +3,6 @@
 #COULD NOT FIND THE ORIGINAL AUTHOR
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
-main_menu(){
-
 source ~/.config/dtf-config/config
 
 #when add new entry make sure to add 35 to height
@@ -14,6 +12,7 @@ notification_timeout=1100
 
 bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
+animations=${animations:-true}
 
 if [[ $bar_top == "true" ]]; then
 	location="north east"
@@ -33,6 +32,8 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
+main_menu(){
+
 #main
 time_left=$(acpi | grep -oP '\d{2}:\d{2}:\d{2}(?= remaining)')
 charged_left=$(acpi | grep -oP '\d{2}:\d{2}:\d{2}(?= until charged)')
@@ -44,9 +45,21 @@ power_mode_status="$(powerprofilesctl get)"
 set_mode_performace() {
 	powerprofilesctl set performance
 	light -S 100
+
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		hyprctl keyword animations:enabled 1
+		if [[ $animations == "false" ]]; then
+			hyprctl keyword animations:enabled 0
+		else
+			hyprctl keyword animations:enabled 1
+		fi
+
+		if [[ $blur == "false" ]]; then
+			hyprctl keyword decoration:blur:enabled false
+		else
+			hyprctl keyword decoration:blur:enabled true
+		fi
 	fi
+
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
 	~/.config/dunst/scripts/volume.sh brightness_status
 }
@@ -55,7 +68,17 @@ set_mode_balanced() {
 	powerprofilesctl set balanced
 	light -S 79
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		hyprctl keyword animations:enabled 0
+		if [[ $animations == "false" ]]; then
+			hyprctl keyword animations:enabled 0
+		else
+			hyprctl keyword animations:enabled 1
+		fi
+
+		if [[ $blur == "false" ]]; then
+			hyprctl keyword decoration:blur:enabled false
+		else
+			hyprctl keyword decoration:blur:enabled true
+		fi
 	fi
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to balance mode 󰾅"
 	~/.config/dunst/scripts/volume.sh brightness_status
@@ -66,6 +89,7 @@ set_mode_power_saver() {
 	light -S 61
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		hyprctl keyword animations:enabled 0
+		hyprctl keyword decoration:blur:enabled false
 	fi
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to power-saver mode 󰾆"
 	~/.config/dunst/scripts/volume.sh brightness_status
