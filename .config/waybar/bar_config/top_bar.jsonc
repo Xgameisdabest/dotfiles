@@ -94,7 +94,7 @@
 
 	"custom/power": {
 	"format": " 󰐥 ",
-	"on-click": "~/.config/hypr/rofi_hyprland/rofi-power-menu"
+	"on-click": "~/.config/rofi/modules/rofi-power-menu"
 	},
 
 	"custom/notification-center": {
