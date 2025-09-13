@@ -6,13 +6,14 @@
 source ~/.config/dtf-config/config
 
 #when add new entry make sure to add 35 to height
-main_menu_height=420px
+main_menu_height=380px
 main_menu_width=270px
 notification_timeout=1100
 
 bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
 animations=${animations:-true}
+brightness_changes_by_power_mode=${brightness_changes_by_power_mode:-false}
 
 if [[ $bar_top == "true" ]]; then
 	location="north east"
@@ -44,8 +45,7 @@ power_mode_status="$(powerprofilesctl get)"
 
 set_mode_performace() {
 	powerprofilesctl set performance
-	light -S 100
-
+	
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		if [[ $animations == "false" ]]; then
 			hyprctl keyword animations:enabled 0
@@ -61,12 +61,16 @@ set_mode_performace() {
 	fi
 
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
-	~/.config/dunst/scripts/volume.sh brightness_status
+	
+	if [[ $brightness_changes_by_power_mode == "true" ]]; then
+		light -S 100
+		~/.config/dunst/scripts/volume.sh brightness_status
+	fi
 }
 
 set_mode_balanced() {
 	powerprofilesctl set balanced
-	light -S 79
+	
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		if [[ $animations == "false" ]]; then
 			hyprctl keyword animations:enabled 0
@@ -80,29 +84,46 @@ set_mode_balanced() {
 			hyprctl keyword decoration:blur:enabled true
 		fi
 	fi
+	
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to balance mode 󰾅"
-	~/.config/dunst/scripts/volume.sh brightness_status
+	
+	if [[ $brightness_changes_by_power_mode == "true" ]]; then
+		light -S 79
+		~/.config/dunst/scripts/volume.sh brightness_status
+	fi
+
 }
 
 set_mode_power_saver() {
 	powerprofilesctl set power-saver
-	light -S 61
+	
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		hyprctl keyword animations:enabled 0
 		hyprctl keyword decoration:blur:enabled false
 	fi
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to power-saver mode 󰾆"
-	~/.config/dunst/scripts/volume.sh brightness_status
+	
+	if [[ $brightness_changes_by_power_mode == "true" ]]; then
+		light -S 61
+		~/.config/dunst/scripts/volume.sh brightness_status
+
+	fi
+	
 }
 
 rofi_cmd() {
-	if [[ $status == "Discharging" ]]; then
-		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
-	elif [[ $status == "Charging" ]]; then
-		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n FULL: $charged_left")" -p " $bat_percentage 󰂅 "
-	elif [[ $status == "Full" ]]; then
-		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status")" -p " Full 󱐋 "
+	if command -v auto-cpufreq >/dev/null 2>&1; then
+		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: 310px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
+	else
+		if [[ $status == "Discharging" ]]; then
+			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
+		elif [[ $status == "Charging" ]]; then
+			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n FULL: $charged_left")" -p " $bat_percentage 󰂅 "
+		elif [[ $status == "Full" ]]; then
+			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status")" -p " Full 󱐋 "
+		fi
 	fi
+
 }
 
 # Options
@@ -114,7 +135,11 @@ power_manager="󰖯  Power Manager"
 auto_cpufreq="󰖯  auto-cpufreq"
 
 run_rofi() {
-	echo -e "$power_manager\n$auto_cpufreq\n$performance\n$medium\n$power\n$quit" | rofi_cmd
+	if command -v auto-cpufreq >/dev/null 2>&1; then
+		echo -e "$power_manager\n$auto_cpufreq\n$quit" | rofi_cmd
+	else
+		echo -e "$power_manager\n$performance\n$medium\n$power\n$quit" | rofi_cmd
+	fi
 }
 
 # Execute Command
