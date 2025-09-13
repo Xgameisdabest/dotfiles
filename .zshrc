@@ -98,6 +98,10 @@ alias pwr-max="powerprofilesctl set performance"
 alias pwr-mid="powerprofilesctl set balanced"
 alias pwr-low="powerprofilesctl set power-saver"
 
+#LINUX USE DATE
+echo -e " \033[1;32m\033[0m \e[1;33mUsed Linux since \033[1;36m$(date -d "$(stat / | grep Birth | awk '{print $2}')" +%d/%b/%Y)\e[1;33m for \033[1;31m$(( ( $(date +%s) - $(date -d "$(stat / | grep Birth | awk '{print $2}')" +%s) ) / 86400 ))\e[1;33m days\033[0m"
+
+
 #PACKAGE MANAGERS ALIASES
 if [[ -f "$HOME/.easy_package_managers.sh" ]]; then
 	source "$HOME/.easy_package_managers.sh"
