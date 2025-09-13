@@ -112,15 +112,25 @@ set_mode_power_saver() {
 }
 
 rofi_cmd() {
+
+	power_mode_status="$(powerprofilesctl get)"
+	if [[ $power_mode_status == "performance" ]]; then
+		row=1
+	elif [[ $power_mode_status == "balanced" ]]; then
+		row=2
+	elif [[ $power_mode_status == "power-saver" ]];then
+		row=3
+	fi
+
 	if command -v auto-cpufreq >/dev/null 2>&1; then
 		rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: 310px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
 	else
 		if [[ $status == "Discharging" ]]; then
-			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
+			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row $row -mesg "$(echo -e " MODE: $power_mode_status\n TIME: $time_left")" -p " $bat_percentage 󰁹 "
 		elif [[ $status == "Charging" ]]; then
-			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n FULL: $charged_left")" -p " $bat_percentage 󰂅 "
+			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row $row -mesg "$(echo -e " MODE: $power_mode_status\n FULL: $charged_left")" -p " $bat_percentage 󰂅 "
 		elif [[ $status == "Full" ]]; then
-			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status")" -p " Full 󱐋 "
+			rofi -dmenu -i -theme $path_to_theme -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row $row -mesg "$(echo -e " MODE: $power_mode_status")" -p " Full 󱐋 "
 		fi
 	fi
 
