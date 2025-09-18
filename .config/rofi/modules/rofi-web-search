@@ -14,6 +14,7 @@ fi
 web="  Web Search"
 yt="  Youtube"
 github="  Github"
+virustotal="󰨯  Virus Total"
 nerdfonts="󰌧  Nerd Fonts"
 this_dotfiles="󰌧  This Dotfiles"
 quit="Exit 󰈆 "
@@ -63,6 +64,11 @@ main
 exit 0
 }
 
+virustotal_func(){
+xdg-open https://www.virustotal.com/
+exit 0
+}
+
 dotfiles(){
 xdg-open https://github.com/xgameisdabest/dotfiles
 exit 0
@@ -73,7 +79,7 @@ xdg-open https://www.nerdfonts.com/cheat-sheet
 exit 0
 }
 
-select=$( echo -e "$web\n$yt\n$github\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 330px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode ")
+select=$( echo -e "$web\n$yt\n$github\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 360px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode ")
 
 case $select in
 	$web)
@@ -90,5 +96,8 @@ case $select in
 		;;
 	$nerdfonts)
 		nerdfonts_func
+		;;
+	$virustotal)
+		virustotal_func
 		;;
 esac
