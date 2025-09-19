@@ -124,7 +124,7 @@
 	
 	"custom/hyprland-settings": {
     	"format": "",
-    	"on-click": "~/.config/rofi/modules/rofi-user-settings"
+    	"on-click": "~/.config/rofi/modules/rofi-user-settings",
 	"tooltip": true,
 	"tooltip-format": "Settings"
 	},
