@@ -47,7 +47,6 @@ prompt {
  	padding: 6px;
 	border-radius: 3px;
 	margin: 10px 10px 15px 5px;
-
 }
 
 textbox-prompt-colon {
@@ -55,7 +54,6 @@ textbox-prompt-colon {
     	background-color:               @background;
     	text-color:                     @urgent;
     	padding:                        5px 0px 0px 4px;
-	font:				"feather 10";
 }
 
 inputbar {
