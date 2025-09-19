@@ -1,14 +1,14 @@
 configuration {
     show-icons:                     false;
-    icon-theme: 					"Papirus";
-    display-drun: 					":";
+    icon-theme: 		    "Papirus";
+    display-drun: 		    ":";
     drun-display-format:            "{name}";
     threads:                        0;
     scroll-method:                  0;
     disable-history:                false;
     fullscreen:                     false;
-	hide-scrollbar: 				true;
-	sidebar-mode: 					false;
+    hide-scrollbar: 	    	    true;
+    sidebar-mode: 		    false;
 }
 
 * {
@@ -41,20 +41,21 @@ window {
 }
 
 prompt {
-    font:                           "JetBrainsMono Nerd Font Bold 14";
-    enabled: 						true;
-	padding: 					4px 4px 6px 6px;
-	background-color: 				@background;
-	text-color: 					@foreground;
+        font: "JetBrainsMono Nerd Font Bold 14";
+	background-color: @lavender;
+	text-color: @background;
+ 	padding: 6px;
+	border-radius: 3px;
+	margin: 10px 10px 15px 5px;
+
 }
 
 textbox-prompt-colon {
-	expand: 						false;
-	str: 							"";
-    background-color:               @background;
-    text-color:                     @urgent;
-    padding:                        5px 0px 0px 4px;
-	font:							"feather 10";
+	expand: 			false;
+    	background-color:               @background;
+    	text-color:                     @urgent;
+    	padding:                        5px 0px 0px 4px;
+	font:				"feather 10";
 }
 
 inputbar {
@@ -62,8 +63,6 @@ inputbar {
     background-color:               @background;
     text-color:                     @foreground;
     expand:                         false;
-    border:                  	    1px;
-    border-color:                   @lavender;
     margin:                         0px 0px 0px 0px;
     padding:                        0px 0px 0px 0px;
     position:                       center;
@@ -91,7 +90,7 @@ case-indicator {
 listview {
     background-color:               @background;
     columns:                        9;
-    lines:							7;
+    lines:			    7;
     spacing:                        5px;
     cycle:                          true;
     dynamic:                        true;
