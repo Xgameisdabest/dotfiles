@@ -10,6 +10,7 @@ print_status() {
     if [[ "$mute" == "yes" ]]; then
         icon=""
         class="muted"
+        tooltip="Muted"
     else
         if (( volume < 25 )); then
             icon=""
@@ -21,9 +22,10 @@ print_status() {
             icon=""
             class="high"
         fi
+        tooltip="Volume: ${volume}%"
     fi
 
-    echo "{\"text\":\"$icon  ${volume}%\",\"class\":\"$class\"}"
+    echo "{\"text\":\"$icon  ${volume}%\",\"class\":\"$class\",\"tooltip\":\"$tooltip\"}"
 }
 
 # Print initial status
@@ -33,4 +35,3 @@ print_status
 pactl subscribe | grep --line-buffered "sink" | while read -r _; do
     print_status
 done
-
