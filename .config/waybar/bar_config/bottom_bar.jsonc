@@ -6,7 +6,7 @@
     "margin-left": 10,
     "margin-right": 10,    
     "spacing": 4,
-	"modules-left": ["custom/padd","custom/hyprland-settings","custom/hyprsunset","custom/notification-center","custom/temperature","tray","custom/window"],
+	"modules-left": ["custom/padd","custom/hyprland-settings","custom/hyprsunset","custom/notification-center","custom/temperature","tray","hyprland/window"],
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["custom/dtf-update","clock","custom/network","custom/bluetooth","battery","custom/audio","custom/power","custom/padd"],
 
@@ -25,6 +25,16 @@
 	"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
 	},
 	
+
+	"hyprland/window": {
+	    "format": "󰘔  {class}",
+	    "rewrite": {
+		"^$": "󰘔  Hyprland"
+	    },
+	    "on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
+	},
+
+
 	"tray": {
 	"icon-size": 24,
 	"spacing": 11

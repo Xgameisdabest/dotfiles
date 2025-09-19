@@ -71,6 +71,7 @@ tooltip label {
 #tray,
 #battery,
 #clock,
+#window,
 #custom-window,
 #custom-bluetooth,
 #custom-temperature,
@@ -116,7 +117,7 @@ tooltip label {
 
 #clock{ background-color: #f5e0dc; }
 
-#custom-window{ background-color: #e0e6ed; }
+#window, #custom-window{ background-color: #e0e6ed; }
 
 #custom-notification-center.unclear{ background-color: #f5e0dc; }
 #custom-notification-center.clear{ background-color: #7f849c; }
