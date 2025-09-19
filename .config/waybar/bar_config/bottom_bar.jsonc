@@ -52,7 +52,7 @@
 	"clock": {
 	"interval": 1,
 	"format": "󰥔 {:%H%M%S}",
-	"tooltip-format": "{:%d-%m-%Y}",
+	"tooltip-format": " {:%d-%m-%Y}",
 	"on-click": "~/.config/rofi/modules/rofi-calendar"
 	},
 
@@ -104,7 +104,9 @@
 
 	"custom/power": {
 	"format": " 󰐥 ",
-	"on-click": "~/.config/rofi/modules/rofi-power-menu"
+	"on-click": "~/.config/rofi/modules/rofi-power-menu",
+	"tooltip": true,
+    	"tooltip-format": "Power Button"
 	},
 
 	"custom/notification-center": {
@@ -119,12 +121,16 @@
 	"custom/hyprsunset": {
 	"format": " ",
 	"on-click": "~/.config/hypr/rofi_hyprland/rofi-hyprsunset",
-	"on-click-right": "hyprctl hyprsunset identity && killall hyprsunset"
+	"on-click-right": "hyprctl hyprsunset identity && killall hyprsunset",
+	"tooltip": true,
+    	"tooltip-format": "Blue Light Filter"
 	},
 	
 	"custom/hyprland-settings": {
     	"format": "",
-    	"on-click": "~/.config/rofi/modules/rofi-user-settings"
+    	"on-click": "~/.config/rofi/modules/rofi-user-settings",
+	"tooltip": true,
+    	"tooltip-format": "Settings"
 	},
 
 	"custom/dtf-update":{
