@@ -31,13 +31,16 @@ mapfile -t connected_uuids < <(bluetoothctl devices Connected | awk '{print $2}'
 connected_count="${#connected_uuids[@]}"
 
 if [[ "$powered" != "yes" ]]; then
-    echo '{"text":"󰂲","class":"powered-off"}'
+    echo '{"text":"󰂲","class":"powered-off","tooltip":"Bluetooth device off"}'
 elif (( connected_count == 0 )); then
-    echo '{"text":"󰂳","class":"no-devices"}'
+    echo '{"text":"󰂳","class":"no-devices","tooltip":"No devices connected"}'
 elif (( connected_count == 1 )); then
     icon=$(get_device_icon "${connected_uuids[0]}")
-    echo "{\"text\":\"$icon\",\"class\":\"one-device\"}"
+    name=$(bluetoothctl info "${connected_uuids[0]}" | awk -F ': ' '/Name/ {print $2}')
+    echo "{\"text\":\"$icon\",\"class\":\"one-device\",\"tooltip\":\"$name connected\"}"
 else
-    echo "{\"text\":\"󰂱 $connected_count\",\"class\":\"multiple-devices\"}"
+    tooltip_devices=$(for uuid in "${connected_uuids[@]}"; do
+        bluetoothctl info "$uuid" | awk -F ': ' '/Name/ {print $2 " connected"}'
+    done | paste -sd '\n' -)
+    echo "{\"text\":\"󰂱 $connected_count\",\"class\":\"multiple-devices\",\"tooltip\":\"$tooltip_devices\"}"
 fi
-
