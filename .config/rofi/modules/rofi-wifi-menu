@@ -9,7 +9,7 @@ rofi_theme=${rofi_theme:-black}
 bar_top=${bar_top:-false}
 
 main_menu_height=325px
-main_menu_disabled_height=265px
+main_menu_disabled_height=250px
 main_menu_width=300px
 
 if [[ $bar_top == "true" ]]; then
