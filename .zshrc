@@ -148,3 +148,5 @@ PROMPT='$(git_prompt_info)
 #  %B%F{white}%~%f%b  %B%F{red}%f%b  '
 
 RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%b:%B%F{#ff6f91}|%f%F{#e0e6ed}%f%T%F{#ff6f91}|%f%b %B%F{#ff6f91}✗%f%b)%F{#e0e6ed}%f '
+
+export PATH=$PATH:/home/xytozine/.spicetify
