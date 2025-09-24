@@ -16,32 +16,40 @@ return {
 		end,
 	},
 
+
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
 			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities
+
+			vim.lsp.config("pyright", {
+				capabilities = capabilities,
 			})
-			lspconfig.clangd.setup({
-				capabilities = capabilities
+
+			vim.lsp.config("clangd", {
+				capabilities = capabilities,
 			})
-			lspconfig.bashls.setup({
-				capabilities = capabilities
+
+			vim.lsp.config("bashls", {
+				capabilities = capabilities,
 			})
-			lspconfig.biome.setup({
-				capabilities = capabilities
+
+			vim.lsp.config("biome", {
+				capabilities = capabilities,
 			})
-			lspconfig.sqls.setup({
-				capabilities = capabilities
+
+			vim.lsp.config("sqls", {
+				capabilities = capabilities,
 			})
-			lspconfig.hyprls.setup({
-				capabilities = capabilities
+
+			vim.lsp.config("hyprls", {
+				capabilities = capabilities,
 			})
 		end,
 	},
+
 }
