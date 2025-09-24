@@ -11,7 +11,7 @@ else
 fi
 
 hypr_submenu_height=555px
-hypr_submenu_width=385px
+hypr_submenu_width=390px
 
 hypr_submenu(){
 
@@ -21,7 +21,7 @@ hypr_submenu(){
 	gaps_border="󰃐  Misc, Render & Layout"
 	animations="󰆨  Animations"
 	input_opt="󰄠  Input & Gestures"
-	plugins_opt="  Plugins"
+	plugins_opt="  Plugins & Plugins Load"
 	for_window_rules="!  Window Rules"
 	system_keybinds="  System Keybinds 󰌏 "
 	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
