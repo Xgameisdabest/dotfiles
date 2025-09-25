@@ -1,0 +1,2 @@
+# Ignore only lazy-lock.json inside dotfiles/.config/nvim
+dotfiles/.config/nvim/lazy-lock.json
