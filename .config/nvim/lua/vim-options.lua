@@ -59,6 +59,7 @@ km.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 km.set("n", "<leader>SO", "<cmd>source %<CR>")
 km.set("n", "<leader>L", "<cmd>Lazy<CR>")
 km.set("n", "<leader>M", "<cmd>Mason<CR>")
+km.set("n", "<leader>ts", "<cmd> FineCmdline TSInstall <CR>")
 
 km.set("n", "<leader><Tab>", "<cmd>Telescope buffers<CR>")
 km.set("n", "<leader>F", "<cmd>Telescope find_files<CR>")
