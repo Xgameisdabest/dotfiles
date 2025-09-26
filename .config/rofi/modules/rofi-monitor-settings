@@ -12,14 +12,14 @@ main_menu_height=140
 main_menu_width=220px
 
 mode_menu_height=140
-mode_menu_width=375px
+mode_menu_width=575px
 
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
 #Monitor pick
 main_menu(){
-monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print $1}')
+monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print " " $1}')
 
 monitor_list_count=$(echo "$monitor_list" | wc -l)
 height_per_monitor_listed=$((main_menu_height + (monitor_list_count * 38)))
@@ -47,7 +47,7 @@ mode=$(wlr-randr | awk -v mon="$monitor_picked" '
         gsub(/[^0-9.]/,"",$2) # sometimes refresh is in $2, sometimes $3
         gsub(/[^0-9.]/,"",$3)
         rate = ($3 != "" ? $3 : $2)
-        print res "@" rate
+        print " " res "@" rate
     }
 ')
 
@@ -110,7 +110,10 @@ else
 fi
 
 # Menu
-mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Resolution 󰹑  " \
+current_res=$(hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
+    '.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate)"')
+
+mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Current Resolution 󰹑 : $current_res " \
     -theme $path_to_theme \
     -theme-str "listview {columns: 1; layout: vertical;}" \
     -theme-str "window {width: $mode_menu_width; height: $height_per_mode_listed;}")
