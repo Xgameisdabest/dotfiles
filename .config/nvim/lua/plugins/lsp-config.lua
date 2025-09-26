@@ -11,7 +11,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "bashls", "biome", "lua_ls", "pyright", "clangd" },
+				ensure_installed = { "bashls", "biome", "lua_ls", "pyright", "clangd", "stylua", "shfmt", "hyprls" },
 			})
 		end,
 	},
