@@ -36,39 +36,39 @@ reset="  Reset"
 quit="Exit 󰈆 "
 
 start_custom_func() {
-percentage=$(rofi -dmenu -theme $path_to_theme -i -p " Set Custom   (From 4500 -> 6500) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $value_menu_width; height: $value_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
-case $percentage in
+	percentage=$(rofi -dmenu -theme $path_to_theme -i -p " Set Custom   (From 4500 -> 6500) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $value_menu_width; height: $value_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+	case $percentage in
 	"")
 		exit 0
 		;;
-esac
-if [[ $percentage -lt 4500 ]] || [[ $percentage -gt 6500 ]]; then
-	main
-else
-	redshift -PO $percentage
-	main
-fi
+	esac
+	if [[ $percentage -lt 4500 ]] || [[ $percentage -gt 6500 ]]; then
+		main
+	else
+		redshift -PO $percentage
+		main
+	fi
 }
 
 main() {
-select=$(echo -e "$start\n$start_custom\n$reset\n$quit" | rofi -dmenu -theme $path_to_theme -i -p " Night Mode   " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+	select=$(echo -e "$start\n$start_custom\n$reset\n$quit" | rofi -dmenu -theme $path_to_theme -i -p " Night Mode   " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 
-case $select in
+	case $select in
 	$start)
 		redshift -PO 4800
 		main
-	;;
+		;;
 	$start_custom)
 		start_custom_func
-	;;
+		;;
 	$reset)
 		redshift -x
 		main
-	;;
+		;;
 	$quit)
 		exit 0
-	;;
-esac
+		;;
+	esac
 }
 
 main
