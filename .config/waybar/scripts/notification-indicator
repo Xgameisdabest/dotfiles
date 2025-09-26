@@ -42,11 +42,10 @@ list_history="$(dunstctl history | jq -r '
     "\(.summary.data)"
 ')"
 
-count=$(wc -l <<< "$list_history")
+count=$(wc -l <<<"$list_history")
 
 if [[ -n "$list_history" ]]; then
-    echo "{\"text\":\"󱅫\",\"class\":\"unclear\",\"tooltip\":\"$count notifications\"}"
+	echo "{\"text\":\"󱅫\",\"class\":\"unclear\",\"tooltip\":\"$count notifications\"}"
 else
-    echo "{\"text\":\"󰂜\",\"class\":\"clear\",\"tooltip\":\"No notifications\"}"
+	echo "{\"text\":\"󰂜\",\"class\":\"clear\",\"tooltip\":\"No notifications\"}"
 fi
-

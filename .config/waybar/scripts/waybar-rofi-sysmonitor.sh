@@ -20,17 +20,16 @@ quit="Exit 󰈆 "
 select=$(echo -e "$temperature\n$system_monitor2\n$system_monitor\n$quit" | rofi -dmenu -theme $path_to_theme -i -p " Monitors   " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}")
 
 case $select in
-	$temperature)
-		$TERMINAL -e watch --interval 1 sensors
+$temperature)
+	$TERMINAL -e watch --interval 1 sensors
 	;;
-	$system_monitor)
-		$TERMINAL -e htop
+$system_monitor)
+	$TERMINAL -e htop
 	;;
-	$system_monitor2)
-		$TERMINAL -e btop
+$system_monitor2)
+	$TERMINAL -e btop
 	;;
-	$quit)
-		exit 0
+$quit)
+	exit 0
 	;;
 esac
-

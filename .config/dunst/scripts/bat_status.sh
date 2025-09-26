@@ -16,28 +16,28 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 BATTERY_STATE=$1
 BATTERY_LEVEL="$(acpi -b | grep "Battery 0" | grep -P -o '[0-9]+(?=%)')"
 CURRENT_STATE="$(acpi | sed 's/Not charging/Charging/g' | grep 'Battery 0' | awk '{print $3}' | sed 's/,//g')"
-icon_state_func(){
+icon_state_func() {
 	case $CURRENT_STATE in
-		"Charging")
-			ICON="󰂅"
-			;;
-		"Discharging")
-			ICON="󰁹"
-			;;
+	"Charging")
+		ICON="󰂅"
+		;;
+	"Discharging")
+		ICON="󰁹"
+		;;
 	esac
 }
 # My battery takes a couple of seconds to recognize as charging, so this is a hacky way to deal with it
 case "$BATTERY_STATE" in
-	"charging") 
-		BATTERY_CHARGING="Charging 󰂅"
-		notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
-		;;
-	"discharging") 
-		BATTERY_CHARGING="Discharging 󰁹"
-		notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
-		;;
-	"status")
-		icon_state_func
-		notify-send "$CURRENT_STATE $ICON" "${BATTERY_LEVEL}% of battery charged." -t 2500
-		;;
+"charging")
+	BATTERY_CHARGING="Charging 󰂅"
+	notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
+	;;
+"discharging")
+	BATTERY_CHARGING="Discharging 󰁹"
+	notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
+	;;
+"status")
+	icon_state_func
+	notify-send "$CURRENT_STATE $ICON" "${BATTERY_LEVEL}% of battery charged." -t 2500
+	;;
 esac

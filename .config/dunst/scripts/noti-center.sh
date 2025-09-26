@@ -9,12 +9,12 @@ rofi_theme=${rofi_theme:-black}
 
 if [[ $bar_top == "true" ]]; then
 	location="north west"
-				 
+
 	main_menu_x_offset=10px
 	main_menu_y_offset=70px
 else
 	location="south west"
-				 
+
 	main_menu_x_offset=10px
 	main_menu_y_offset=-70px
 fi
@@ -29,8 +29,8 @@ goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
 #main
-noti_main_menu(){
-notifications=$(dunstctl history | jq -r '
+noti_main_menu() {
+	notifications=$(dunstctl history | jq -r '
     .data[0][] |
     select(
 	(.summary.data | contains("Dotfiles Update  ") | not) and
@@ -71,21 +71,21 @@ notifications=$(dunstctl history | jq -r '
 	(.summary.data | contains("") | not)) |
     "\(.summary.data)"')
 
-notif_menu_height=175
-numbers_of_notif=$(echo "$notifications" | wc -l)
-height_per_notif=$((notif_menu_height + (numbers_of_notif * 38)))
-if [[ $height_per_notif -gt 710 ]]; then
-	height_per_notif=710
-fi
+	notif_menu_height=175
+	numbers_of_notif=$(echo "$notifications" | wc -l)
+	height_per_notif=$((notif_menu_height + (numbers_of_notif * 38)))
+	if [[ $height_per_notif -gt 710 ]]; then
+		height_per_notif=710
+	fi
 
-cls_hist=$(echo "Clear History 󱏫")
-# options="$notifications\n$cls_hist"
-options="$cls_hist\n$notifications"
-# Use rofi to display notifications
+	cls_hist=$(echo "Clear History 󱏫")
+	# options="$notifications\n$cls_hist"
+	options="$cls_hist\n$notifications"
+	# Use rofi to display notifications
 
-selected=$(echo -e "$quit\n$options" | rofi -dmenu -theme $path_to_theme -i -selected-row 2 -p " Notifications 󱅫  " -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset; height: ${height_per_notif}px;}")
+	selected=$(echo -e "$quit\n$options" | rofi -dmenu -theme $path_to_theme -i -selected-row 2 -p " Notifications 󱅫  " -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset; height: ${height_per_notif}px;}")
 
-case $selected in
+	case $selected in
 	"")
 		exit 0
 		;;
@@ -99,23 +99,23 @@ case $selected in
 	*)
 		noti_body_menu
 		;;
-esac
+	esac
 
 }
 
-noti_body_menu(){
-body=$(dunstctl history | jq -r --arg summary "$selected" \
-			'.data[0][] | select(.summary.data == $summary) | .body.data')
-	     	clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
-		choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -dmenu -theme $path_to_theme -i -selected-row 3 -p "Notification Body" -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
-		case $choose_opt in
-			$goback)
-				noti_main_menu
-				;;
-			$quit)
-				exit 0
-				;;
-		esac
+noti_body_menu() {
+	body=$(dunstctl history | jq -r --arg summary "$selected" \
+		'.data[0][] | select(.summary.data == $summary) | .body.data')
+	clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
+	choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -dmenu -theme $path_to_theme -i -selected-row 3 -p "Notification Body" -theme-str "listview {columns: 1;}" -theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+	case $choose_opt in
+	$goback)
+		noti_main_menu
+		;;
+	$quit)
+		exit 0
+		;;
+	esac
 }
 
 noti_main_menu
