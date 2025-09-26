@@ -24,7 +24,12 @@ km.set("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", { noremap = true
 
 km.set("n", "<leader>[", "<cmd>FineCmdline split <CR>")
 km.set("n", "<leader>]", "<cmd>FineCmdline vsplit <CR>")
-km.set("n", "<leader><bs>", ":q<CR>")
+km.set("n", "<leader>{", ":split #<CR>")
+km.set("n", "<leader>}", ":vsplit #<CR>")
+
+km.set("n", "<leader><bs>", "<cmd>:q<CR>")
+km.set("n", "Q", "<cmd>:wq<CR>")
+km.set("n", "qq", "<cmd>:q<CR>")
 
 km.set("n", "<TAB>", "<Cmd>BufferLineCycleNext<CR>")
 km.set("n", "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>")
@@ -37,8 +42,7 @@ km.set("n", "<C-0>", "<cmd>:GUIFontSizeSet<CR>")
 
 km.set("n", "<C-e>", "<cmd>Neotree toggle<CR>")
 
-km.set("n", ":", "<cmd>FineCmdline<CR>")
-km.set("n", ";", ":", { noremap = true })
+km.set("n", ";", "<cmd>FineCmdline<CR>")
 km.set("n", "/", ":SearchBoxMatchAll<CR>")
 
 km.set("n", "<leader>db", ":DBUIToggle<CR>")
@@ -69,13 +73,6 @@ km.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
 km.set("n", "<leader>h", "<cmd>Telescope command_history<CR>")
 km.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>")
 
--- km.set("n", "<Up>", ":")
--- km.set("n", "<Down>", "/")
--- km.set("n", "<Left>", "<cmd>Neotree toggle<CR>")
--- km.set("n", "<Right>", "<cmd>UndotreeToggle<cr>")
-
-km.set("n", "A", "0", { noremap = true, silent = true })
-km.set("n", "D", "$", { noremap = true, silent = true })
 km.set("n", "S", "<PageDown>", { noremap = true, silent = true })
 km.set("n", "W", "<PageUp>", { noremap = true, silent = true })
 
@@ -83,22 +80,28 @@ km.set('n', 'w', 'k', { noremap = true, silent = true })
 km.set('n', 's', 'j', { noremap = true, silent = true })
 km.set('n', 'a', 'h', { noremap = true, silent = true })
 km.set('n', 'd', 'l', { noremap = true, silent = true })
-km.set("n", "q", "0", { noremap = true, silent = true })  -- e = Home (line start)
-km.set("n", "e", "$", { noremap = true, silent = true })  -- q = End (line end)
+
+km.set('n', '<C-w>w', '<C-W>K', { noremap = true, silent = true })
+km.set('n', '<C-w>s', '<C-W>J', { noremap = true, silent = true })
+km.set('n', '<C-w>a', '<C-W>H', { noremap = true, silent = true })
+km.set('n', '<C-w>d', '<C-W>L', { noremap = true, silent = true })
+
+km.set('n', '<C-w><Up>', '<C-W>K', { noremap = true, silent = true })
+km.set('n', '<C-w><Down>', '<C-W>J', { noremap = true, silent = true })
+km.set('n', '<C-w><Left>', '<C-W>H', { noremap = true, silent = true })
+km.set('n', '<C-w><Right>', '<C-W>L', { noremap = true, silent = true })
+
 km.set("n", "h", "a", { noremap = true, silent = true })
 km.set("n", "i", "a", { noremap = true, silent = true })
 km.set("n", "j", "w", { noremap = true, silent = true })
 km.set("n", "k", "s", { noremap = true, silent = true })
 km.set("n", "l", "d", { noremap = true, silent = true })
-km.set("n", "ll", "dd", { noremap = true, silent = true })
+km.set("n", "DD", "dd", { noremap = true, silent = true })
+km.set("n", "A", "a", { noremap = true, silent = true })
 
 km.set('v', 'w', 'k', { noremap = true, silent = true })
 km.set('v', 's', 'j', { noremap = true, silent = true })
 km.set('v', 'a', 'h', { noremap = true, silent = true })
 km.set('v', 'd', 'l', { noremap = true, silent = true })
-km.set("v", "q", "0", { noremap = true, silent = true })
-km.set("v", "e", "$", { noremap = true, silent = true })
-km.set("v", "A", "0", { noremap = true, silent = true })
-km.set("v", "D", "$", { noremap = true, silent = true })
 km.set("v", "S", "<PageDown>", { noremap = true, silent = true })
 km.set("v", "W", "<PageUp>", { noremap = true, silent = true })
