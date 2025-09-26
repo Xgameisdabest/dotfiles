@@ -76,11 +76,8 @@ main_menu(){
 				hyprctl keyword animations:enabled 1
 			fi
 
-			if [[ $blur == "false" ]]; then
-				hyprctl keyword decoration:blur:enabled false
-			else
-				hyprctl keyword decoration:blur:enabled true
-			fi
+			hyprctl keyword decoration:blur:enabled false
+
 		fi
 		
 		notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to balance mode 󰾅"
