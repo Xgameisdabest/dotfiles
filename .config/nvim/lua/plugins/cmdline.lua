@@ -7,16 +7,16 @@ return {
 		"VonHeikemen/searchbox.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		config = function()
-			require('searchbox').setup({
+			require("searchbox").setup({
 				defaults = {
 					reverse = false,
 					exact = false,
-					prompt = '> ',
-					modifier = 'disabled',
-					confirm = 'off',
+					prompt = "> ",
+					modifier = "disabled",
+					confirm = "off",
 					clear_matches = false,
 					show_matches = true,
-				}
+				},
 			})
 		end,
 	},
