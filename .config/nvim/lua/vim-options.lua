@@ -35,7 +35,7 @@ km.set("n", "<C-=>", "<cmd>:GUIFontSizeUp<CR>")
 km.set("n", "<C-->", "<cmd>:GUIFontSizeDown<CR>")
 km.set("n", "<C-0>", "<cmd>:GUIFontSizeSet<CR>")
 
-km.set("n", "<C-e>", ":Neotree filesystem reveal <CR>", {})
+km.set("n", "<C-e>", "<cmd>Neotree toggle<CR>")
 
 km.set("n", ":", "<cmd>FineCmdline<CR>")
 km.set("n", "/", ":SearchBoxMatchAll<CR>")
@@ -68,6 +68,12 @@ km.set("n", "<leader>F", "<cmd>Telescope find_files<CR>")
 km.set("n", "<leader>H", "<cmd>Telescope command_history<CR>")
 km.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>")
 
+-- Arrow keys
+km.set("n", "<Up>", ":")
+km.set("n", "<Down>", "/")
+km.set("n", "<Left>", "<cmd>Neotree toggle<CR>")
+km.set("n", "<Right>", "<cmd>UndotreeToggle<cr>")
+
 -- Visual Mode
 km.set('v', 'w', 'k', { noremap = true, silent = true })
 km.set('v', 's', 'j', { noremap = true, silent = true })
@@ -79,3 +85,22 @@ km.set('n', 'w', 'k', { noremap = true, silent = true })
 km.set('n', 's', 'j', { noremap = true, silent = true })
 km.set('n', 'a', 'h', { noremap = true, silent = true })
 km.set('n', 'd', 'l', { noremap = true, silent = true })
+
+-- Normal mode
+km.set("n", "q", "0", { noremap = true, silent = true })  -- e = Home (line start)
+km.set("n", "e", "$", { noremap = true, silent = true })  -- q = End (line end)
+
+-- Visual mode
+km.set("v", "q", "0", { noremap = true, silent = true })
+km.set("v", "e", "$", { noremap = true, silent = true })
+
+-- Restore original 'a' (append) on key 'h'
+km.set("n", "h", "a")
+km.set("n", "i", "a")
+-- (jump forward a word) on key 'j'
+km.set("n", "j", "w")
+-- (substitute char) on key 'k'
+km.set("n", "k", "s")
+-- (delete) on key 'l'
+km.set("n", "l", "d")
+km.set("n", "ll", "dd")
