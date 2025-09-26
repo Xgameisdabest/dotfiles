@@ -21,14 +21,14 @@ OPTIONS=$("$script_full_path/parser.sh" ~/.config/hypr/hyprland_config_modules/k
 SELECTED=$(echo -e "$OPTIONS\n$goback" | rofi -dmenu -i -p '   System Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $window_width; height: $window_height;}" -theme $path_to_theme)
 
 case $SELECTED in
-	$goback)
-		~/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds
-		;;
-	"")
-		exit 0
-		;;
+$goback)
+	~/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds
+	;;
+"")
+	exit 0
+	;;
 
-	*)
-		notify-send "$SELECTED"
-		;;
+*)
+	notify-send "$SELECTED"
+	;;
 esac

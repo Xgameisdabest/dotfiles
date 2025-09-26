@@ -19,10 +19,10 @@ quit="Exit 󰈆 "
 select=$(echo -e "$sys_kbdn\n$apps_kbdn\n$quit" | rofi -dmenu -i -p '   Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
 
 case $select in
-	$apps_kbdn)
-		~/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds-apps.sh
-		;;
-	$sys_kbdn)
-		~/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds-system.sh
-		;;
+$apps_kbdn)
+	~/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds-apps.sh
+	;;
+$sys_kbdn)
+	~/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds-system.sh
+	;;
 esac

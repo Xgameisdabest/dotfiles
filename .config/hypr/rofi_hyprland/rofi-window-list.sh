@@ -9,7 +9,7 @@ fi
 
 # Get list of windows from hyprctl
 windows=$(
-hyprctl -j clients | jq -r 'sort_by(.workspace.id, .title)[] | "\(.address)\t\(.workspace.id)\t[Ws: \(.workspace.id)] \(.class) - \(.title)"'
+	hyprctl -j clients | jq -r 'sort_by(.workspace.id, .title)[] | "\(.address)\t\(.workspace.id)\t[Ws: \(.workspace.id)] \(.class) - \(.title)"'
 )
 windows_list=$(echo "$windows" | cut -f3-)
 
@@ -29,8 +29,8 @@ wsid=$(echo "$windows" | grep -F "$choice" | cut -f2)
 
 # Focus it if chosen
 if [[ -n "$choice" ]]; then
-  # First, switch to its workspace (only if not already there)
-  hyprctl dispatch workspace "$wsid"
-  # Then, focus the exact window
-  hyprctl dispatch focuswindow address:"$addr"
+	# First, switch to its workspace (only if not already there)
+	hyprctl dispatch workspace "$wsid"
+	# Then, focus the exact window
+	hyprctl dispatch focuswindow address:"$addr"
 fi

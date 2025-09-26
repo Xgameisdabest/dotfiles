@@ -2,23 +2,23 @@
 
 # Usage: ./parse_hyprland_keybinds.sh <hyprland.conf>
 
-cat "$1" | \
-  sed -e 's/  */ /g' \
-      -e 's/bind[elm]\? *= *//g' \
-      -e 's/, /,/g' \
-      -e 's/ # /,/' \
-      -e 's/,exec//g' | \
+cat "$1" |
+	sed -e 's/  */ /g' \
+		-e 's/bind[elm]\? *= *//g' \
+		-e 's/, /,/g' \
+		-e 's/ # /,/' \
+		-e 's/,exec//g' |
 
-  # remove empty lines and comments
-  sed '/^[[:space:]]*$/d' | \
-  sed '/^#/d' | \
-  # drop variable definitions
-  grep -v '^\$mod = SUPER' | \
-  grep -v '^\$alt = ALT' | \
-    sed -e 's/:/,/g' \
-      -e 's/switch,on,Lid Switch/laptop lid on/g' \
-      -e 's/switch,off,Lid Switch/laptop lid off/g' | \
-  awk -F, '{
+	# remove empty lines and comments
+	sed '/^[[:space:]]*$/d' |
+	sed '/^#/d' |
+	# drop variable definitions
+	grep -v '^\$mod = SUPER' |
+	grep -v '^\$alt = ALT' |
+	sed -e 's/:/,/g' \
+		-e 's/switch,on,Lid Switch/laptop lid on/g' \
+		-e 's/switch,off,Lid Switch/laptop lid off/g' |
+	awk -F, '{
     cmd="";
     for(i=3;i<NF;i++) cmd=cmd $(i) " ";
 
@@ -55,5 +55,5 @@ cat "$1" | \
     else if (last != "")          print keybind ": ", last;
     else if (cmd != "")           print keybind ": ", cmd;
     else                          print keybind;
-  }' | \
-  sed 's/SUPER SHIFT/SUPER + SHIFT/g'
+  }' |
+	sed 's/SUPER SHIFT/SUPER + SHIFT/g'
