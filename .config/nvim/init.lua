@@ -14,15 +14,3 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 require("vim-options")
 require("lazy").setup("plugins")
 -- require("notify")("Hello User!")
-
--- -- Visual Mode
--- vim.api.nvim_set_keymap('v', 'w', 'k', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('v', 's', 'j', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('v', 'a', 'h', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('v', 'd', 'l', { noremap = true, silent = true })
---
--- -- Insert Mode
--- vim.api.nvim_set_keymap('n', 'w', 'k', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', 's', 'j', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', 'a', 'h', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', 'd', 'l', { noremap = true, silent = true })

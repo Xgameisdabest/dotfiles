@@ -26,8 +26,10 @@ km.set("n", "<leader>[", "<cmd>FineCmdline split <CR>")
 km.set("n", "<leader>]", "<cmd>FineCmdline vsplit <CR>")
 km.set("n", "<leader><bs>", ":q<CR>")
 
-km.set("n","<TAB>","<Cmd>BufferLineCycleNext<CR>")
-km.set("n","<S-TAB>","<Cmd>BufferLineCyclePrev<CR>")
+km.set("n", "<TAB>", "<Cmd>BufferLineCycleNext<CR>")
+km.set("n", "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>")
+
+km.set("n", "<C-u>","<Cmd>UndotreeToggle<CR>")
 
 km.set("n", "<C-=>", "<cmd>:GUIFontSizeUp<CR>")
 km.set("n", "<C-->", "<cmd>:GUIFontSizeDown<CR>")
@@ -65,3 +67,15 @@ km.set("n", "<leader><Tab>", "<cmd>Telescope buffers<CR>")
 km.set("n", "<leader>F", "<cmd>Telescope find_files<CR>")
 km.set("n", "<leader>H", "<cmd>Telescope command_history<CR>")
 km.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>")
+
+-- Visual Mode
+km.set('v', 'w', 'k', { noremap = true, silent = true })
+km.set('v', 's', 'j', { noremap = true, silent = true })
+km.set('v', 'a', 'h', { noremap = true, silent = true })
+km.set('v', 'd', 'l', { noremap = true, silent = true })
+
+-- Insert Mode
+km.set('n', 'w', 'k', { noremap = true, silent = true })
+km.set('n', 's', 'j', { noremap = true, silent = true })
+km.set('n', 'a', 'h', { noremap = true, silent = true })
+km.set('n', 'd', 'l', { noremap = true, silent = true })
