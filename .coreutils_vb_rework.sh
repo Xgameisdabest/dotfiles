@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # i tried my best here, most of the flags i have not tested but i guess not many people use them so yea
 # This is just experimental, use it your own risk.
