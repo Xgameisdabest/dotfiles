@@ -18,28 +18,27 @@ goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
 #Monitor pick
-main_menu(){
-monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print $1}')
+main_menu() {
+	monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print $1}')
 
-monitor_list_count=$(echo "$monitor_list" | wc -l)
-height_per_monitor_listed=$((main_menu_height + (monitor_list_count * 38)))
-if [[ $height_per_monitor_listed -gt 710 ]]; then
-	height_per_monitor_listed=710
-fi
+	monitor_list_count=$(echo "$monitor_list" | wc -l)
+	height_per_monitor_listed=$((main_menu_height + (monitor_list_count * 38)))
+	if [[ $height_per_monitor_listed -gt 710 ]]; then
+		height_per_monitor_listed=710
+	fi
 
+	monitor_picked=$(echo -e "$monitor_list\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
 
-monitor_picked=$( echo -e "$monitor_list\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
-
-if [[ -z "$monitor_picked" ]] || [[ "$monitor_picked" = "$quit" ]]; then
-	exit
-else
-	mode_menu
-fi
+	if [[ -z "$monitor_picked" ]] || [[ "$monitor_picked" = "$quit" ]]; then
+		exit
+	else
+		mode_menu
+	fi
 }
 
 #List all available resolutions+rates for chosen monitor
-mode_menu(){
-mode=$(wlr-randr | awk -v mon="$monitor_picked" '
+mode_menu() {
+	mode=$(wlr-randr | awk -v mon="$monitor_picked" '
     $1 == mon {inside=1; next}
     /^[A-Za-z0-9-]+ / {inside=0}
     inside && /^[ ]+[0-9]+x[0-9]+/ {
@@ -51,93 +50,93 @@ mode=$(wlr-randr | awk -v mon="$monitor_picked" '
     }
 ')
 
-mode_list_count=$(echo "$mode" | wc -l)
-height_per_mode_listed=$((mode_menu_height + (mode_list_count * 38)))
-if [[ $height_per_mode_listed -gt 710 ]]; then
-	height_per_mode_listed=710
-fi
+	mode_list_count=$(echo "$mode" | wc -l)
+	height_per_mode_listed=$((mode_menu_height + (mode_list_count * 38)))
+	if [[ $height_per_mode_listed -gt 710 ]]; then
+		height_per_mode_listed=710
+	fi
 
-# Save/Load monitor status
-get_current_config(){
-    hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
-        '.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate),\(.x)x\(.y),\(.scale)"'
-}
+	# Save/Load monitor status
+	get_current_config() {
+		hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
+			'.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate),\(.x)x\(.y),\(.scale)"'
+	}
 
-get_preferred_mode(){
-    wlr-randr | awk -v mon="$monitor_picked" '
+	get_preferred_mode() {
+		wlr-randr | awk -v mon="$monitor_picked" '
         $1 == mon {inside=1; next}
         /^[A-Za-z0-9-]+ / {inside=0}
         inside && /\*/ {print $1 "@" $2; exit}
     ' | tr -d '*'
-}
+	}
 
-save_mode(){
-    mkdir -p ~/.cache/hypr-monitors
-    echo "$(get_current_config)" > ~/.cache/hypr-monitors/$monitor_picked
-}
+	save_mode() {
+		mkdir -p ~/.cache/hypr-monitors
+		echo "$(get_current_config)" >~/.cache/hypr-monitors/$monitor_picked
+	}
 
-restore_mode(){
-    if [[ -f ~/.cache/hypr-monitors/$monitor_picked ]]; then
-        lastconfig=$(cat ~/.cache/hypr-monitors/$monitor_picked)
-        hyprctl keyword monitor "$monitor_picked,$lastconfig"
-    else
-        pref=$(get_preferred_mode)
-        if [[ -n "$pref" ]]; then
-            # fallback still uses auto if no cache
-            hyprctl keyword monitor "$monitor_picked,$pref,auto,1"
-        fi
-    fi
-}
+	restore_mode() {
+		if [[ -f ~/.cache/hypr-monitors/$monitor_picked ]]; then
+			lastconfig=$(cat ~/.cache/hypr-monitors/$monitor_picked)
+			hyprctl keyword monitor "$monitor_picked,$lastconfig"
+		else
+			pref=$(get_preferred_mode)
+			if [[ -n "$pref" ]]; then
+				# fallback still uses auto if no cache
+				hyprctl keyword monitor "$monitor_picked,$pref,auto,1"
+			fi
+		fi
+	}
 
-# Count enabled monitors
-enabled_count=$(hyprctl monitors -j | jq '[.[] | select(.dpmsStatus == true)] | length')
+	# Count enabled monitors
+	enabled_count=$(hyprctl monitors -j | jq '[.[] | select(.dpmsStatus == true)] | length')
 
-# Status of the current monitor
-display_status(){
-    hyprctl monitors -j | jq -r --arg mon "$monitor_picked" '.[] | select(.name==$mon) | .dpmsStatus'
-}
-status=$(display_status)
+	# Status of the current monitor
+	display_status() {
+		hyprctl monitors -j | jq -r --arg mon "$monitor_picked" '.[] | select(.name==$mon) | .dpmsStatus'
+	}
+	status=$(display_status)
 
-# Build menu entries
-if [[ "$status" == "true" ]]; then
-    if [[ $enabled_count -gt 1 ]]; then
-        menu_entries="On\n$mode\n$goback"
-    else
-        menu_entries="$mode\n$goback"
-    fi
-else
-    menu_entries="Off\n$goback"
-fi
+	# Build menu entries
+	if [[ "$status" == "true" ]]; then
+		if [[ $enabled_count -gt 1 ]]; then
+			menu_entries="On\n$mode\n$goback"
+		else
+			menu_entries="$mode\n$goback"
+		fi
+	else
+		menu_entries="Off\n$goback"
+	fi
 
-# Menu
-current_res=$(hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
-    '.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate)"')
+	# Menu
+	current_res=$(hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
+		'.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate)"')
 
-mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Current Resolution 󰹑 : $current_res " \
-    -theme $path_to_theme \
-    -theme-str "listview {columns: 1; layout: vertical;}" \
-    -theme-str "window {width: $mode_menu_width; height: $height_per_mode_listed;}")
+	mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Current Resolution 󰹑 : $current_res " \
+		-theme $path_to_theme \
+		-theme-str "listview {columns: 1; layout: vertical;}" \
+		-theme-str "window {width: $mode_menu_width; height: $height_per_mode_listed;}")
 
-mode_picked=$(echo $mode_picked | sed "s/ //g")
+	mode_picked=$(echo $mode_picked | sed "s/ //g")
 
-if [[ -z "$mode_picked" ]]; then
-    exit
-elif [[ $mode_picked == "$goback" ]]; then
-    main_menu
-elif [[ $mode_picked == "On" ]]; then
-    save_mode
-    hyprctl keyword monitor "$monitor_picked,disable"
-elif [[ $mode_picked == "Off" ]]; then
-    restore_mode
-fi
+	if [[ -z "$mode_picked" ]]; then
+		exit
+	elif [[ $mode_picked == "$goback" ]]; then
+		main_menu
+	elif [[ $mode_picked == "On" ]]; then
+		save_mode
+		hyprctl keyword monitor "$monitor_picked,disable"
+	elif [[ $mode_picked == "Off" ]]; then
+		restore_mode
+	fi
 
-# Apply resolution change if user picked one
-if [[ "$mode_picked" == *"@"* ]]; then
-    res=$(echo "$mode_picked" | cut -d'@' -f1)
-    rate=$(echo "$mode_picked" | cut -d'@' -f2)
-    save_mode
-    hyprctl keyword monitor "$monitor_picked,$res@$rate,auto,1"
-fi
+	# Apply resolution change if user picked one
+	if [[ "$mode_picked" == *"@"* ]]; then
+		res=$(echo "$mode_picked" | cut -d'@' -f1)
+		rate=$(echo "$mode_picked" | cut -d'@' -f2)
+		save_mode
+		hyprctl keyword monitor "$monitor_picked,$res@$rate,auto,1"
+	fi
 }
 
 main_menu

@@ -23,7 +23,7 @@ if [[ $bar_top == "true" ]]; then
 	main_menu_y_offset=70px
 else
 	location="south east"
-				 
+
 	main_menu_x_offset=-150px
 	main_menu_y_offset=-70px
 fi
@@ -34,7 +34,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu(){
+main_menu() {
 	#main
 	time_left=$(acpi | grep -oP '\d{2}:\d{2}:\d{2}(?= (remaining|until charged))')
 	status="$(acpi | sed 's/Not charging/Charging/g' | grep 'Battery 0' | awk '{print $3}' | sed 's/,//g')"
@@ -43,7 +43,7 @@ main_menu(){
 
 	set_mode_performace() {
 		powerprofilesctl set performance
-		
+
 		if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 			if [[ $animations == "false" ]]; then
 				hyprctl keyword animations:enabled 0
@@ -59,7 +59,7 @@ main_menu(){
 		fi
 
 		notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
-		
+
 		if [[ $brightness_changes_by_power_mode == "true" ]]; then
 			light -S 100
 			~/.config/dunst/scripts/volume.sh brightness_status
@@ -68,7 +68,7 @@ main_menu(){
 
 	set_mode_balanced() {
 		powerprofilesctl set balanced
-		
+
 		if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 			if [[ $animations == "false" ]]; then
 				hyprctl keyword animations:enabled 0
@@ -79,9 +79,9 @@ main_menu(){
 			hyprctl keyword decoration:blur:enabled false
 
 		fi
-		
+
 		notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to balance mode 󰾅"
-		
+
 		if [[ $brightness_changes_by_power_mode == "true" ]]; then
 			light -S 79
 			~/.config/dunst/scripts/volume.sh brightness_status
@@ -91,19 +91,19 @@ main_menu(){
 
 	set_mode_power_saver() {
 		powerprofilesctl set power-saver
-		
+
 		if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 			hyprctl keyword animations:enabled 0
 			hyprctl keyword decoration:blur:enabled false
 		fi
 		notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to power-saver mode 󰾆"
-		
+
 		if [[ $brightness_changes_by_power_mode == "true" ]]; then
 			light -S 61
 			~/.config/dunst/scripts/volume.sh brightness_status
 
 		fi
-		
+
 	}
 
 	rofi_cmd() {
@@ -111,7 +111,7 @@ main_menu(){
 			row=1
 		elif [[ $power_mode_status == "balanced" ]]; then
 			row=2
-		elif [[ $power_mode_status == "power-saver" ]];then
+		elif [[ $power_mode_status == "power-saver" ]]; then
 			row=3
 		fi
 
@@ -148,29 +148,29 @@ main_menu(){
 	# Actions
 	chosen="$(run_rofi)"
 	case ${chosen} in
-		"")
-		    exit
+	"")
+		exit
 		;;
-	    $quit)
-		    exit
+	$quit)
+		exit
 		;;
-	    $performance)
-			set_mode_performace
-			main_menu
+	$performance)
+		set_mode_performace
+		main_menu
 		;;
-	    $medium)
-			set_mode_balanced
-			main_menu
+	$medium)
+		set_mode_balanced
+		main_menu
 		;;
-	    $power)
-			set_mode_power_saver
-			main_menu
+	$power)
+		set_mode_power_saver
+		main_menu
 		;;
-	    $power_manager)
-			xfce4-power-manager-settings
+	$power_manager)
+		xfce4-power-manager-settings
 		;;
-	    $auto_cpufreq)
-			auto-cpufreq-gtk
+	$auto_cpufreq)
+		auto-cpufreq-gtk
 		;;
 	esac
 }
