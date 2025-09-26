@@ -10,7 +10,7 @@ return {
 		"hrsh7th/cmp-path",
 	},
 	{
-		'hrsh7th/cmp-buffer',
+		"hrsh7th/cmp-buffer",
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -27,6 +27,10 @@ return {
 					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
+					["<Up>"] = cmp.config.disable,
+					["<Down>"] = cmp.config.disable,
+					["<Left>"] = cmp.config.disable,
+					["<Right>"] = cmp.config.disable,
 					["<S-TAB>"] = cmp.mapping.select_prev_item(),
 					["<TAB>"] = cmp.mapping.select_next_item(),
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -42,11 +46,11 @@ return {
 					{ name = "treesitter" },
 				}),
 			})
-			cmp.setup.cmdline({ '/', '?' }, {
+			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
-					{ name = 'buffer' }
-				}
+					{ name = "buffer" },
+				},
 			})
 		end,
 	},

@@ -16,7 +16,6 @@ return {
 		end,
 	},
 
-
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
@@ -51,5 +50,4 @@ return {
 			})
 		end,
 	},
-
 }
