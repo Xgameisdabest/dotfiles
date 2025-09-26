@@ -38,6 +38,7 @@ km.set("n", "<C-0>", "<cmd>:GUIFontSizeSet<CR>")
 km.set("n", "<C-e>", "<cmd>Neotree toggle<CR>")
 
 km.set("n", ":", "<cmd>FineCmdline<CR>")
+km.set("n", ";", ":", { noremap = true })
 km.set("n", "/", ":SearchBoxMatchAll<CR>")
 
 km.set("n", "<leader>db", ":DBUIToggle<CR>")
@@ -59,48 +60,45 @@ km.set("n", "K", vim.lsp.buf.hover, {})
 km.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 km.set("n", "<leader>SO", "<cmd>source %<CR>")
-km.set("n", "<leader>L", "<cmd>Lazy<CR>")
-km.set("n", "<leader>M", "<cmd>Mason<CR>")
+km.set("n", "<leader>l", "<cmd>Lazy<CR>")
+km.set("n", "<leader>m", "<cmd>Mason<CR>")
 km.set("n", "<leader>ts", "<cmd> FineCmdline TSInstall <CR>")
 
 km.set("n", "<leader><Tab>", "<cmd>Telescope buffers<CR>")
-km.set("n", "<leader>F", "<cmd>Telescope find_files<CR>")
-km.set("n", "<leader>H", "<cmd>Telescope command_history<CR>")
+km.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
+km.set("n", "<leader>h", "<cmd>Telescope command_history<CR>")
 km.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>")
 
--- Arrow keys
-km.set("n", "<Up>", ":")
-km.set("n", "<Down>", "/")
-km.set("n", "<Left>", "<cmd>Neotree toggle<CR>")
-km.set("n", "<Right>", "<cmd>UndotreeToggle<cr>")
+-- km.set("n", "<Up>", ":")
+-- km.set("n", "<Down>", "/")
+-- km.set("n", "<Left>", "<cmd>Neotree toggle<CR>")
+-- km.set("n", "<Right>", "<cmd>UndotreeToggle<cr>")
 
--- Visual Mode
-km.set('v', 'w', 'k', { noremap = true, silent = true })
-km.set('v', 's', 'j', { noremap = true, silent = true })
-km.set('v', 'a', 'h', { noremap = true, silent = true })
-km.set('v', 'd', 'l', { noremap = true, silent = true })
+km.set("n", "A", "0", { noremap = true, silent = true })
+km.set("n", "D", "$", { noremap = true, silent = true })
+km.set("n", "S", "<PageDown>", { noremap = true, silent = true })
+km.set("n", "W", "<PageUp>", { noremap = true, silent = true })
 
--- Insert Mode
 km.set('n', 'w', 'k', { noremap = true, silent = true })
 km.set('n', 's', 'j', { noremap = true, silent = true })
 km.set('n', 'a', 'h', { noremap = true, silent = true })
 km.set('n', 'd', 'l', { noremap = true, silent = true })
-
--- Normal mode
 km.set("n", "q", "0", { noremap = true, silent = true })  -- e = Home (line start)
 km.set("n", "e", "$", { noremap = true, silent = true })  -- q = End (line end)
+km.set("n", "h", "a", { noremap = true, silent = true })
+km.set("n", "i", "a", { noremap = true, silent = true })
+km.set("n", "j", "w", { noremap = true, silent = true })
+km.set("n", "k", "s", { noremap = true, silent = true })
+km.set("n", "l", "d", { noremap = true, silent = true })
+km.set("n", "ll", "dd", { noremap = true, silent = true })
 
--- Visual mode
+km.set('v', 'w', 'k', { noremap = true, silent = true })
+km.set('v', 's', 'j', { noremap = true, silent = true })
+km.set('v', 'a', 'h', { noremap = true, silent = true })
+km.set('v', 'd', 'l', { noremap = true, silent = true })
 km.set("v", "q", "0", { noremap = true, silent = true })
 km.set("v", "e", "$", { noremap = true, silent = true })
-
--- Restore original 'a' (append) on key 'h'
-km.set("n", "h", "a")
-km.set("n", "i", "a")
--- (jump forward a word) on key 'j'
-km.set("n", "j", "w")
--- (substitute char) on key 'k'
-km.set("n", "k", "s")
--- (delete) on key 'l'
-km.set("n", "l", "d")
-km.set("n", "ll", "dd")
+km.set("v", "A", "0", { noremap = true, silent = true })
+km.set("v", "D", "$", { noremap = true, silent = true })
+km.set("v", "S", "<PageDown>", { noremap = true, silent = true })
+km.set("v", "W", "<PageUp>", { noremap = true, silent = true })
