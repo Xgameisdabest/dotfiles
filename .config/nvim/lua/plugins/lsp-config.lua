@@ -9,9 +9,29 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"williamboman/mason.nvim", -- mason itself
+			"WhoIsSethDaniel/mason-tool-installer.nvim", -- handles formatters/linters
+		},
 		config = function()
+			-- LSP servers
 			require("mason-lspconfig").setup({
-				ensure_installed = { "bashls", "biome", "lua_ls", "pyright", "clangd", "stylua", "shfmt", "hyprls" },
+				ensure_installed = {
+					"bashls",
+					"lua_ls",
+					"pyright",
+					"clangd",
+					"hyprls",
+				},
+			})
+
+			-- Formatters & linters
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					"biome",
+					"shfmt",
+					"stylua",
+				},
 			})
 		end,
 	},
