@@ -19,7 +19,7 @@ quit="Exit 󰈆 "
 
 #Monitor pick
 main_menu(){
-monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print " " $1}')
+monitor_list=$(wlr-randr | awk '/^[A-Za-z0-9-]+ / {print $1}')
 
 monitor_list_count=$(echo "$monitor_list" | wc -l)
 height_per_monitor_listed=$((main_menu_height + (monitor_list_count * 38)))
@@ -117,6 +117,8 @@ mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Current Resolution 󰹑
     -theme $path_to_theme \
     -theme-str "listview {columns: 1; layout: vertical;}" \
     -theme-str "window {width: $mode_menu_width; height: $height_per_mode_listed;}")
+
+mode_picked=$(echo $mode_picked | sed "s/ //g")
 
 if [[ -z "$mode_picked" ]]; then
     exit
