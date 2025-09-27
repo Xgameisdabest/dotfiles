@@ -11,7 +11,6 @@ g.termguicolors = true
 
 o.number = true
 o.relativenumber = false
-o.autoindent = true
 o.ruler = true
 o.cursorline = true
 o.guifont = "Jetbrainsmono Nerd Font:h10"
