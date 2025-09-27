@@ -74,6 +74,7 @@ if [[ "$verbose_coreutils_output" == "true" ]]; then
 	alias rmdir="rmdir -v"
 	alias mv="mv -v"
 	alias cp="cp -v"
+	alias chmod="chmod -v"
 fi
 
 #ALIASES

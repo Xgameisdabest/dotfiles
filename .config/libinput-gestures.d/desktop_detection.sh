@@ -13,19 +13,11 @@ if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		esac
 		;;
 	"window_hide")
-		hyprctl dispatch togglespecialworkspace magic
-		hyprctl dispatch movetoworkspace +0
-		hyprctl dispatch togglespecialworkspace magic
-		hyprctl dispatch movetoworkspace special:magic
-		hyprctl dispatch togglespecialworkspace magic
+			~/.config/hypr/scripts/hide_unhide_window.sh h
 		;;
 
 	"window_show")
-		hyprctl dispatch togglespecialworkspace magic
-		hyprctl dispatch movetoworkspace +0
-		hyprctl dispatch togglespecialworkspace magic
-		hyprctl dispatch movetoworkspace special:magic
-		hyprctl dispatch togglespecialworkspace magic
+			~/.config/hypr/scripts/hide_unhide_window.sh s
 		;;
 	esac
 fi
