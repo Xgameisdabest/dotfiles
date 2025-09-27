@@ -69,6 +69,7 @@ $suspend)
 	;;
 $logout)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		pkill -f "kitty.*--class=kitty-bg"
 		killall -SIGINT waybar
 		killall usb-watch.sh
 		killall udevadm
