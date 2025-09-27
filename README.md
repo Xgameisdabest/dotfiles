@@ -214,4 +214,5 @@ transparent_window_when_unfocus=true #(OPTIONS: true/false)
 caps_lock_notification=true #(OPTIONS: true/false)
 num_lock_notification=true #(OPTIONS: true/false)
 brightness_changes_by_power_mode=false #(OPTIONS: true/false)
+cava_background=true #(OPTIONS: true/false)
 ```
