@@ -50,11 +50,12 @@ yt() {
 }
 
 github() {
-	search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " User/Project   ")
-	search_engine="https://github.com/"
+	search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Repositories   ")
+	search_engine="https://github.com/search?q="
 	main() {
 		if [[ -n "$search" ]]; then
-			url="$search_engine$search"
+			query=$(echo "$search" | sed 's/ /+/g')
+			url="${search_engine}${query}&type=repositories"
 			xdg-open "$url"
 		else
 			exit
