@@ -95,6 +95,7 @@ main_menu() {
 		if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 			hyprctl keyword animations:enabled 0
 			hyprctl keyword decoration:blur:enabled false
+			pkill -f "kitty.*--class=kitty-bg"
 		fi
 		notify-send -t $notification_timeout -h string:x-dunst-stack-tag:power_mode_status "Power set to power-saver mode 󰾆"
 
