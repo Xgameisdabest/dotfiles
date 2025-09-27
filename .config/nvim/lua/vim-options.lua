@@ -18,6 +18,10 @@ o.guifont = "Jetbrainsmono Nerd Font:h10"
 g.goyo_width = 120
 
 -- keybinds
+km.set("n", "<C-Space>", "<Esc>", { noremap = true, silent = true })
+km.set("i", "<C-Space>", "<Esc>", { noremap = true, silent = true })
+km.set("v", "<C-Space>", "<Esc>", { noremap = true, silent = true })
+
 km.set("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", { noremap = true })
 km.set("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", { noremap = true })
 
@@ -29,6 +33,7 @@ km.set("n", "<leader>}", ":vsplit #<CR>")
 km.set("n", "<leader><bs>", "<cmd>:q<CR>")
 km.set("n", "Q", "<cmd>:wq<CR>")
 km.set("n", "qq", "<cmd>:q<CR>")
+km.set("n", "ee", "<cmd>:w<CR>")
 
 km.set("n", "<TAB>", "<Cmd>BufferLineCycleNext<CR>")
 km.set("n", "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>")
