@@ -115,7 +115,7 @@
 	},
 
 	"custom/power": {
-		"format": " 󰐥 ",
+		"format": "󰐥",
 		"on-click": "~/.config/rofi/modules/rofi-power-menu",
 		"tooltip": true,
 		"tooltip-format": "Power Button"
