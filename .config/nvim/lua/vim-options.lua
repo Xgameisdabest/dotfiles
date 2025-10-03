@@ -67,6 +67,8 @@ km.set(
 	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
 	{ desc = "comment toggle" }
 )
+-- Keymap to view notification history
+km.set("n", "<leader>nh", "<cmd>Telescope notify<CR>", { desc = "Notification history" })
 
 km.set("n", "<leader>gf", vim.lsp.buf.format, {})
 km.set("n", "K", vim.lsp.buf.hover, {})
