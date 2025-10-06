@@ -31,44 +31,10 @@ Hyprland is now supported!
 V4 - (up-to-date)
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_4.jpg?raw=true)
 
-## Dependencies for this dotfiles
-- FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
-- apt nala pacstall flatpak (essential for Debian based, for Arch just use anything that works for you)
-- librewolf (it works)
-- ncal (essential)
-- neovim (essential)
-- fzf (essential for zsh plugins)
-- oh-my-zsh (essential) ([link to install oh-my-zsh](https://ohmyz.sh/#install))
-    - zsh-autopair (essential) ([link to install zsh-autopair](https://github.com/hlissner/zsh-autopair))
-    - zsh-autosuggestions (essential) ([link to install zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions))
-    - zsh-syntax-highlighting (essential) ([link to install zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting))
-    - fzf-tab (essential) ([link to install fzf-tab](https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file))
-- alacritty/kitty (essential)
-- i3 (essential)
-- sway (optional)
-- hyprland (optional)
-- polybar (essential)
-- waybar (essential for hyprland)
-- picom 12 (picom-git) (essential) ([link to picom 12](https://github.com/yshui/picom))
-- betterlockscreen (essential) ([link to betterlockscreen](https://github.com/betterlockscreen/betterlockscreen))
-- tmux neofetch(terminal util)
-- waypaper feh (wallpaper) ([link to waypaper](https://github.com/anufrievroman/waypaper))
-- dunst (essential)
-- rofi (essential)
-- superfile nautilus thunar (file manager)
-- cava (audio visualizer)
-- solaar (logitech util setting)
-- blueman (essential for bluetooth connection)
-- network-manager (essential for wifi connection)
-- arandr (essential)
-- pipewire (essential, currently using pipewire)
-- pipewire-pulse (essential)
-- redshift (essential)
-
-> [!NOTE]
-> Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
-
 ## Installation
+
+Install the font:
+- FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 
 > [!NOTE]
 > ```Picom``` is a dependency that needs to be installed and build from source in order to work correctly.
@@ -98,8 +64,12 @@ sudo rm -rf ~/go/ && echo "Build deps removed!"
 
 Install dependencies for i3 (for ```apt```)
 ```
-sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty x11-utils awk
+sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty x11-utils awk touchegg unclutter-xfixes
 ```
+
+
+> [!NOTE]
+> Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
 
 Hyprland is now supported! Here's how I set it up on my system.
 ```
