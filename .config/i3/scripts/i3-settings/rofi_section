@@ -10,9 +10,9 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-I3_SETTINGS_PATH=~/.config/rofi/modules/i3-settings
+I3_SETTINGS_PATH=~/.config/i3/scripts/i3-settings/i3-settings_section
 
-source $I3_SETTINGS_PATH/i3-settings_section
+source $I3_SETTINGS_PATH
 
 rofi_submenu_height=595px
 rofi_submenu_width=295px

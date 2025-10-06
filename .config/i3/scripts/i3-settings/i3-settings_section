@@ -26,25 +26,25 @@ i3_setting_submenu(){
 
 	case $select10 in
 		$i3_section)
-			$TERMINAL -e nvim ~/.config/rofi/modules/i3-settings/i3_section
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3-settings/i3_section
 			;;
 		$i3_settings_section)
-			$TERMINAL -e nvim ~/.config/rofi/modules/i3-settings/i3-settings_section
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3-settings/i3-settings_section
 			;;
 		$dunst_section)
-			$TERMINAL -e nvim ~/.config/rofi/modules/i3-settings/dunst_section
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3-settings/dunst_section
 			;;
 		$picom_section)
-			$TERMINAL -e nvim ~/.config/rofi/modules/i3-settings/picom_section
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3-settings/picom_section
 			;;
 		$rofi_section)
-			$TERMINAL -e nvim ~/.config/rofi/modules/i3-settings/rofi_section
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3-settings/rofi_section
 			;;
 		$main_config)
-			$TERMINAL -e nvim ~/.config/rofi/modules/i3-settings/rofi-i3-settings
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3-settings/rofi-i3-settings
 			;;
 		$polybar_section)
-			$TERMINAL -e nvim ~/.config/rofi/modules/i3-settings/polybar_section
+			$TERMINAL -e nvim ~/.config/i3/scripts/i3-settings/polybar_section
 			;;
 		$goback)
 			rofi_submenu

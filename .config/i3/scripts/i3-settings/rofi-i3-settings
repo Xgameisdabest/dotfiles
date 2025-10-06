@@ -11,7 +11,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-I3_SETTINGS_PATH=~/.config/rofi/modules/i3-settings
+I3_SETTINGS_PATH=~/.config/i3/scripts/i3-settings/
 
 source $I3_SETTINGS_PATH/i3_section
 source $I3_SETTINGS_PATH/picom_section

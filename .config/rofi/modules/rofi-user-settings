@@ -23,7 +23,7 @@ $wm_settings)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings
 	elif [[ $XDG_CURRENT_DESKTOP == "i3" ]]; then
-		~/.config/rofi/modules/i3-settings/rofi-i3-settings
+		~/.config/i3/scripts/i3-settings/rofi-i3-settings
 	fi
 	;;
 $usr_settings)
