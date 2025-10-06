@@ -171,7 +171,7 @@ Here is the list of keybinds for this dotfiles (all of this can be viewed in the
 - Press (win/mod + ARROW_KEYS) to change focus between the tiled windows.
 - Press (ctrl + win/mod + ARROW_LEFT/ARROW_RIGHT) to send the focused window to the next numerical workspace.
 
-__EASY PACKAGE MANAGER (COMMAND LINE)__ (Only available on v3)<BR>
+__EASY PACKAGE MANAGER (COMMAND LINE)__ (Only available on V3 and above)<BR>
 Supported Distros (and package managers):
 - Arch (yay, pacman)
 - Fedora (dnf)
