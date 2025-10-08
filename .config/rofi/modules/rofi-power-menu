@@ -71,6 +71,7 @@ $logout)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		pkill -f "kitty.*--class=kitty-bg"
 		killall -SIGINT waybar
+		killall battery-warning.sh
 		killall usb-watch.sh
 		killall udevadm
 		hyprctl dispatch exit
