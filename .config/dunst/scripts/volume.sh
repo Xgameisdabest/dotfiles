@@ -62,12 +62,14 @@ function show_volume_notif_up {
 	volume=$(get_mute)
 	get_volume_icon
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon   $volume%"
+	paplay ~/.config/dunst/scripts/sounds/audio-volume-change.oga
 }
 
 function show_volume_notif_down {
 	volume=$(get_mute)
 	get_volume_icon
 	notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon   $volume%"
+	paplay ~/.config/dunst/scripts/sounds/audio-volume-change.oga
 }
 
 # Displays a mic status notification
