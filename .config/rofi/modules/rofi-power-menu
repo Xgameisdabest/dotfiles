@@ -74,8 +74,10 @@ $logout)
 		killall battery-warning.sh
 		killall usb-watch.sh
 		killall udevadm
+		killall dunst
 		hyprctl dispatch exit
 	else
+		killall dunst
 		i3-msg 'exit'
 	fi
 	;;
