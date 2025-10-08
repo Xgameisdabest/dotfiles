@@ -1,3 +1,11 @@
+# All configurations are made by me Xgameisdabest
+# Get ready because this code is gonna be messy
+
+# Check for config file if it exists
+if [[ -f "$HOME/.config/dtf-config/config" ]]; then
+    source "$HOME/.config/dtf-config/config"
+fi
+
 #ENVIRONMENT VARIABLES
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
@@ -51,14 +59,9 @@ HISTSIZE=9999
 source $ZSH/oh-my-zsh.sh
 
 #function for verbose cd command
-#
-# Check for config file if it exists
-if [[ -f "$HOME/.config/dtf-config/config" ]]; then
-    source "$HOME/.config/dtf-config/config"
-fi
-
+# Source the user configured variable verbose_coreutils_output from the ~/.config/dtf-config/config file
 : ${verbose_coreutils_output:=true}
-
+# Set up the verbose output for all supported coreutils command
 if [[ "$verbose_coreutils_output" == "true" ]]; then
 	# Source verbose wrapper script if it exists
 	if [[ -f "$HOME/.coreutils_vb_rework.sh" ]]; then
@@ -101,7 +104,6 @@ alias pwr-low="powerprofilesctl set power-saver"
 
 #LINUX USE DATE
 echo -e " \033[1;32m\033[0m \e[1;33mUsed Linux since \033[1;36m$(date -d "$(stat / | grep Birth | awk '{print $2}')" +%d/%b/%Y)\e[1;33m for \033[1;31m$(( ( $(date +%s) - $(date -d "$(stat / | grep Birth | awk '{print $2}')" +%s) ) / 86400 ))\e[1;33m days\033[0m"
-
 
 #PACKAGE MANAGERS ALIASES
 if [[ -f "$HOME/.easy_package_managers.sh" ]]; then
@@ -150,4 +152,14 @@ PROMPT='$(git_prompt_info)
 
 RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%b:%B%F{#ff6f91}|%f%F{#e0e6ed}%f%T%F{#ff6f91}|%f%b %B%F{#ff6f91}✗%f%b)%F{#e0e6ed}%f '
 
-export PATH=$PATH:/home/xytozine/.spicetify
+# Source the user configured variable use_tmux from the ~/.config/dtf-config/config file
+: ${use_tmux:=false}
+# Check the condition then played the tmux execution procedure
+if [[ $use_tmux == "true" ]]; then
+	if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+		exec tmux
+	fi
+	if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+		tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+	fi
+fi
