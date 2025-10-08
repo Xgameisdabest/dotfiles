@@ -42,5 +42,9 @@ else
 	tooltip_devices=$(for uuid in "${connected_uuids[@]}"; do
 		bluetoothctl info "$uuid" | awk -F ': ' '/Name/ {print $2 " connected"}'
 	done | paste -sd '\n' -)
+
+	# Escape quotes and newlines
+	tooltip_devices=$(echo "$tooltip_devices" | sed ':a;N;$!ba;s/\n/\\n/g; s/"/\\"/g')
+
 	echo "{\"text\":\"󰂱 $connected_count\",\"class\":\"multiple-devices\",\"tooltip\":\"$tooltip_devices\"}"
 fi
