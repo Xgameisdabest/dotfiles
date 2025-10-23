@@ -22,10 +22,13 @@ set $alt Mod1
 # include ~/.config/sway/sway-config-modules/gaps_and_border
 # include ~/.config/sway/sway-config-modules/special_keys_keybinds
 
+exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 120%
 exec --no-startup-id waydroid show-full-ui
-exec --no-startup-id waybar -s ~/.config/waybar/bar_style/dark.css -c ~/.config/waybar/bar_config/sway_waydroid_bar.jsonc &
+# exec --no-startup-id waybar -s ~/.config/waybar/bar_style/dark.css -c ~/.config/waybar/bar_config/sway_waydroid_bar.jsonc &
 bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/modules/rofi-power-menu
-bindsym $mod+b exec --no-startup-id ~/.config/rofi/modules/rofi-power-mode
+bindsym $mod+b exec --no-startup-id ~/.config/rofi/modules/rofi-bluetooth
+bindsym $mod+n exec --no-startup-id ~/.config/rofi/modules/rofi-wifi-menu
+bindsym $mod+m exec --no-startup-id ~/.config/rofi/modules/rofi-power-mode
 bindsym $mod+f fullscreen toggle
 bindsym $mod+t exec --no-startup-id alacritty
 bindsym $mod+r exec --no-startup-id ~/.config/rofi/scripts/drun.sh
