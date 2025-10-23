@@ -30,3 +30,6 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+t exec --no-startup-id alacritty
 bindsym $mod+r exec --no-startup-id ~/.config/rofi/scripts/drun.sh
 for_window [title="^Waydroid$"] fullscreen enable
+input type:touchpad {
+    natural_scroll enabled
+}
