@@ -76,6 +76,10 @@ $logout)
 		killall udevadm
 		killall dunst
 		hyprctl dispatch exit
+	elif [[ $XDG_CURRENT_DESKTOP == "sway" ]]; then
+		waydroid session stop
+		killall -SIGINT waybar
+		swaymsg exit
 	else
 		killall dunst
 		i3-msg 'exit'
