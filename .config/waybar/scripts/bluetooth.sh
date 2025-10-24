@@ -27,7 +27,7 @@ get_device_icon() {
 
 # Get Bluetooth status
 powered=$(bluetoothctl show | awk '/Powered:/ {print $2}')
-mapfile -t connected_uuids < <(bluetoothctl devices Connected | awk '{print $2}')
+mapfile -t connected_uuids < <(bluetoothctl devices Connected | grep '^Device' | awk '{print $2}')
 connected_count="${#connected_uuids[@]}"
 
 if [[ "$powered" != "yes" ]]; then

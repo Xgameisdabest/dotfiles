@@ -1,6 +1,6 @@
 ## About
 
-___DEVELOP ON UBUNTU 25.04___<BR>
+___DEVELOP ON UBUNTU 25.10___<BR>
 ___TESTED ON ARCH LINUX___
 
 __About:__<BR>

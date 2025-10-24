@@ -352,9 +352,9 @@ show_menu() {
 	if power_on; then
 		power="  Power: On"
 
-		device_count=$(bluetoothctl devices | wc -l)
-		trusted_device_count=$(bluetoothctl devices Trusted | wc -l)
-		paired_device_count=$(bluetoothctl devices Paired | wc -l)
+		device_count=$(bluetoothctl devices | grep '^Device' | wc -l)
+		trusted_device_count=$(bluetoothctl devices Trusted | grep '^Device' | wc -l)
+		paired_device_count=$(bluetoothctl devices Paired | grep '^Device' | wc -l)
 
 		devices="  Device List ($device_count)  "
 		devices_trusted="  Trusted Device ($trusted_device_count) "
