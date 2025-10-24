@@ -33,6 +33,8 @@ bindkey '^ ' autosuggest-accept
 bindkey '	' fzf-tab-complete
 
 #PLUGINS
+autoload -U compinit
+compinit
 plugins=(
 zsh-autopair
 zsh-autosuggestions 
