@@ -68,6 +68,10 @@ return {
 			vim.lsp.config("hyprls", {
 				capabilities = capabilities,
 			})
+
+			vim.lsp.config("html", {
+				capabilities = capabilities,
+			})
 		end,
 	},
 }
