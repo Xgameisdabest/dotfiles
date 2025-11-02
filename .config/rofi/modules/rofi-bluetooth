@@ -17,7 +17,7 @@ rofi_theme=${rofi_theme:-black}
 if [[ $bar_top == "true" ]]; then
 	location="north east"
 
-	main_menu_x_offset=-180px
+	main_menu_x_offset=-155px
 	main_menu_y_offset=70px
 
 	device_list_menu_x_offset=-30px
@@ -34,7 +34,7 @@ if [[ $bar_top == "true" ]]; then
 else
 	location="south east"
 
-	main_menu_x_offset=-180px
+	main_menu_x_offset=-155px
 	main_menu_y_offset=-70px
 
 	device_list_menu_x_offset=-30px

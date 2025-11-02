@@ -12,13 +12,13 @@ rofi_theme=${rofi_theme:-black}
 if [[ $bar_top == "true" ]]; then
 	location="north east"
 
-	main_menu_x_offset=-610px
-	main_menu_y_offset=263px
+	main_menu_x_offset=-500px
+	main_menu_y_offset=273px
 else
 	location="south east"
 
-	main_menu_x_offset=-610px
-	main_menu_y_offset=-263px
+	main_menu_x_offset=-500px
+	main_menu_y_offset=-273px
 fi
 
 if [[ $rofi_theme == "white" ]]; then

@@ -19,12 +19,12 @@ brightness_changes_by_power_mode=${brightness_changes_by_power_mode:-false}
 if [[ $bar_top == "true" ]]; then
 	location="north east"
 
-	main_menu_x_offset=-150px
+	main_menu_x_offset=-110px
 	main_menu_y_offset=70px
 else
 	location="south east"
 
-	main_menu_x_offset=-150px
+	main_menu_x_offset=-110px
 	main_menu_y_offset=-70px
 fi
 
