@@ -9,7 +9,11 @@ return {
 				null_ls.builtins.formatting.isort,
 				null_ls.builtins.formatting.biome,
 				null_ls.builtins.formatting.shfmt,
-				null_ls.builtins.formatting.clang_format,
+				null_ls.builtins.formatting.clang_format.with({
+					args = {
+						"--style={IndentWidth: 8}",
+					},
+				}),
 			},
 		})
 	end,
