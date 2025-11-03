@@ -9,7 +9,16 @@ return {
 				null_ls.builtins.formatting.isort,
 				null_ls.builtins.formatting.biome,
 				null_ls.builtins.formatting.shfmt,
+				null_ls.builtins.formatting.clang_format.with({
+					extra_args = { "--style={IndentWidth: 8, UseTab: Never}" },
+				}),
 			},
+		})
+		-- Autoformat on save
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			callback = function()
+				vim.lsp.buf.format()
+			end,
 		})
 	end,
 }
