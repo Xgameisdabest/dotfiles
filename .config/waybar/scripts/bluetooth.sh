@@ -33,7 +33,7 @@ connected_count="${#connected_uuids[@]}"
 if [[ "$powered" != "yes" ]]; then
 	echo '{"text":"󰂲","class":"powered-off","tooltip":"Bluetooth device off"}'
 elif ((connected_count == 0)); then
-	echo '{"text":"󰂳","class":"no-devices","tooltip":"No devices connected"}'
+	echo '{"text":"󰂳","class":"no-devices","tooltip":"No device connected"}'
 elif ((connected_count == 1)); then
 	icon=$(get_device_icon "${connected_uuids[0]}")
 	name=$(bluetoothctl info "${connected_uuids[0]}" | awk -F ': ' '/Name/ {print $2}')
