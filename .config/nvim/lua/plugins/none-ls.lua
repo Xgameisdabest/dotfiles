@@ -10,7 +10,10 @@ return {
 				null_ls.builtins.formatting.biome,
 				null_ls.builtins.formatting.shfmt,
 				null_ls.builtins.formatting.clang_format.with({
-					extra_args = { "--style={IndentWidth: 8, UseTab: Never}" },
+					extra_args = {
+						"--style={BasedOnStyle: LLVM, IndentWidth: 8, UseTab: Never}",
+						"--fallback-style=none",
+					},
 				}),
 			},
 		})
