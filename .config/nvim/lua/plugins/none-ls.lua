@@ -9,12 +9,7 @@ return {
 				null_ls.builtins.formatting.isort,
 				null_ls.builtins.formatting.biome,
 				null_ls.builtins.formatting.shfmt,
-				null_ls.builtins.formatting.clang_format.with({
-					extra_args = {
-						"--style={BasedOnStyle: LLVM, IndentWidth: 8, UseTab: Never}",
-						"--fallback-style=none",
-					},
-				}),
+				null_ls.builtins.formatting.clang_format,
 			},
 		})
 	end,
