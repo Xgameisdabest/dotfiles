@@ -20,6 +20,8 @@ fi
 # Run Hyprlock and wait for it to quit
 hyprlock
 
+killall -9 hyprlock
+
 # After Hyprlock exits, restore the default (or original) wallpaper line
 if [ -n "$WALLPAPER" ]; then
 	if [ -n "$ORIGINAL_LINE" ]; then

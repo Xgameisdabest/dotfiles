@@ -71,6 +71,12 @@ km.set(
 km.set("n", "<leader>nh", "<cmd>Telescope notify<CR>", { desc = "Notification history" })
 
 km.set("n", "<leader>gf", vim.lsp.buf.format, {})
+
+km.set("n", "<leader>gl", function()
+	local lint = require("lint")
+	lint.try_lint()
+end, {})
+
 km.set("n", "K", vim.lsp.buf.hover, {})
 km.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 

@@ -37,7 +37,7 @@ gdbus monitor --system --dest org.freedesktop.UPower --object-path "$BATTERY_PAT
 			PERCENT=$(upower -i "$BATTERY_PATH" | awk '/percentage:/ {print int($2)}')
 			if [[ "$STATE" == "discharging" && "$PERCENT" -le "$THRESHOLD" ]]; then
 				notify-send "  Low Battery" "Battery at ${PERCENT}%!"
-				paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+				paplay ~/.config/dunst/scripts/sounds/battery-low.oga
 			fi
 		fi
 	done &
