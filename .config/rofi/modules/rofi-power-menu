@@ -52,17 +52,15 @@ $reboot)
 	;;
 $lock)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		~/.config/hypr/scripts/hyprlock_current_bg.sh
+		bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh'
 	else
 		betterlockscreen -l
 	fi
 	;;
 $suspend)
-	mpc -q pause
-	amixer set Master mute
 	systemctl suspend
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		~/.config/hypr/scripts/hyprlock_current_bg.sh
+		bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh'
 	else
 		betterlockscreen -l
 	fi
