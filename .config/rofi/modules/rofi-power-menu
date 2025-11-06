@@ -62,7 +62,7 @@ $suspend)
 	amixer set Master mute
 	systemctl suspend
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		hyprlock
+		~/.config/hypr/scripts/hyprlock_current_bg.sh
 	else
 		betterlockscreen -l
 	fi
