@@ -166,28 +166,67 @@ touch ~/.config/dtf-config/config
 FORMAT CONFIG
 ```
 KEY=VALUE (no space before and after the equal sign)
+# This is a comment
 ```
 > [!NOTE]
 > MAKE SURE TO RELOAD (win/mod + shift + r) TO APPLY THE CHANGES
 
 AVAILABLE CONFIG KEYS (ALL OF THESE BELOW ARE DEFAULT CONFIGS):
 ```
-bar_color=black #(OPTIONS: white/black)
-bar_compact=false #(OPTIONS: true/false)
-bar_top=false #(OPTIONS: true/false)
-bar_hidden_when_using_launcher=false #(OPTIONS: true/false)
+# PRESS MOD(WINDOWS KEY) + SHIFT + R TO RELOAD IN ORDER TO APPLY CHANGES
+
+# Welcome toast
+welcome_notification=true #(OPTIONS: true/false) (One time only)
+
+# Changes polybar/waybar color to black or white
+bar_color=black #(OPTIONS: white/black) (Reload required)
+
+# Exclusive feature to polybar, make the icons show less info, cleaner look
+bar_compact=false #(OPTIONS: true/false) (Reload required)
+
+# Move the bar to the top of the screen, better than some operating system *cough* windows *cough*
+bar_top=false #(OPTIONS: true/false) (Reload required)
+
+# Exclusive i3 feature, hidebar when open up the fullscreen rofi menu
+bar_hidden_when_using_launcher=false #(OPTIONS: true/false) (Reload required)
+
+# Set rofi color to white or black
 rofi_theme=black #(OPTIONS: white/black)
-animations=true #(OPTIONS: true/false)
-blur=false #(OPTIONS: true/false)
-autostart_night_mode=false #(OPTIONS: true/false)
-auto_sleep=true #(OPTIONS: true/false)
+
+# Toggle animations for i3 (picom) and Hyprland
+animations=true #(OPTIONS: true/false) (Reload required)
+
+# Toggle blur for i3 (picom) and Hyprland
+blur=false #(OPTIONS: true/false) (Reload required)
+
+# Hyprsunset or redshift exec on start
+autostart_night_mode=false #(OPTIONS: true/false) (One time only)
+
+# Autosleep for Hyprland using Hypridle
+auto_sleep=true #(OPTIONS: true/false) (Reload required)
+
+# Special feature for the terminal/TTY, verbose all coreutils such as cd, rm, mv, mkdir, etc...
 verbose_coreutils_output=false #(OPTIONS: true/false)
-autorandr_on_reload=false #(OPTIONS: true/false)
-transparent_window_when_unfocus=true #(OPTIONS: true/false)
-caps_lock_notification=true #(OPTIONS: true/false)
-num_lock_notification=true #(OPTIONS: true/false)
-brightness_changes_by_power_mode=false #(OPTIONS: true/false)
-cava_background=true #(OPTIONS: true/false)
+
+# Launch tmux on startup by default for the terminal/TTY
 use_tmux=false #(OPTIONS: true/false)
-welcome_notification=true #(OPTIONS: true/false)
+
+# Exclusive i3 feature, launch autorandr on reload
+autorandr_on_reload=false #(OPTIONS: true/false) (Reload required)
+
+# Set window opacity when unfocused
+transparent_window_when_unfocus=true #(OPTIONS: true/false) (Reload required)
+
+# Notifications for caps_lock and num_lock key
+caps_lock_notification=true #(OPTIONS: true/false) 
+num_lock_notification=true #(OPTIONS: true/false) 
+
+# Battery warning daemon, warn when battery reaches 20%
+battery_warning_notification=false #(OPTIONS: true/false) (Relaunch window manager required)
+
+# Set power mode changes brightness for each mode: power-saving, balanced and perfomance
+brightness_changes_by_power_mode=false #(OPTIONS: true/false)
+
+# REQUIRE HYPR PLUGINS, hyprwinwrap scripts for fun
+cava_background=true #(OPTIONS: true/false) (Relaunch window manager required)
 ```
