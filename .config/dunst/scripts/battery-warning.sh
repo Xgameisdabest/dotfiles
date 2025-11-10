@@ -41,7 +41,7 @@ if [[ battery_warning_notif == "true" ]]; then
 				PERCENT=$(upower -i "$BATTERY_PATH" | awk '/percentage:/ {print int($2)}')
 				if [[ "$STATE" == "discharging" && "$PERCENT" -le "$THRESHOLD" ]]; then
 					notify-send "  Low Battery" "Battery at ${PERCENT}%!"
-					paplay ~/.config/dunst/scripts/sounds/battery-low.oga
+					paplay $CUSTOM_SOUND_PATH/battery-low.oga
 					exit 0
 				fi
 			fi

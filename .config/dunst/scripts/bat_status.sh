@@ -31,12 +31,12 @@ case "$BATTERY_STATE" in
 "charging")
 	BATTERY_CHARGING="Charging 󰂅"
 	notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
-	paplay ~/.config/dunst/scripts/sounds/power-plug.oga
+	paplay $CUSTOM_SOUND_PATH/power-plug.oga
 	;;
 "discharging")
 	BATTERY_CHARGING="Discharging 󰁹"
 	notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." -t 2500
-	paplay ~/.config/dunst/scripts/sounds/power-unplug.oga
+	paplay $CUSTOM_SOUND_PATH/power-unplug.oga
 	;;
 "status")
 	icon_state_func

@@ -80,10 +80,12 @@ main_menu() {
 
 	if [ "$select" = "󱚽  Enable Wi-Fi" ]; then
 		nmcli radio all on
+		paplay $CUSTOM_SOUND_PATH/bell.oga
 		notify-send "Wifi Enabled 󱚽 " -t 850
 		main_menu
 	elif [ "$select" = "󱛅  Disable Wi-Fi" ]; then
 		nmcli radio all off
+		paplay $CUSTOM_SOUND_PATH/bell.oga
 		notify-send "Wifi Disabled 󱛅 " -t 850
 		main_menu
 	fi

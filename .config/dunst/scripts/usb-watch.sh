@@ -41,14 +41,14 @@ udevadm monitor --udev --subsystem-match=usb |
 			info=$(udevadm info --query=property --path="$devpath" | awk -F= '/ID_VENDOR=|ID_MODEL=/{print $2}' | xargs)
 			DEVINFO["$devpath"]="$info"
 			notify-send "USB connected" "$info"
-			paplay ~/.config/dunst/scripts/sounds/device-added.oga
+			paplay $CUSTOM_SOUND_PATH/device-added.oga
 			echo "USB connected" "$info"
 			;;
 		remove)
 			[[ "$devpath" =~ :[0-9]+\.[0-9]+$ ]] && continue
 			info="${DEVINFO[$devpath]}"
 			notify-send "USB removed" "${info:-$devpath}"
-			paplay ~/.config/dunst/scripts/sounds/device-removed.oga
+			paplay $CUSTOM_SOUND_PATH/device-removed.oga
 			echo "USB removed" "${info:-$devpath}"
 			unset DEVINFO["$devpath"]
 			;;
