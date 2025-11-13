@@ -7,6 +7,7 @@ if [[ -f "$HOME/.config/dtf-config/config" ]]; then
 fi
 
 #ENVIRONMENT VARIABLES
+export PATH=$HOME/.local/python3.12/bin:$PATH #since ubuntu 25.10 does not support python3.12 so i build it from source and install it here
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
