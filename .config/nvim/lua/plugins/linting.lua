@@ -26,13 +26,44 @@ return {
 		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = "#002b00", fg = "#a6e3a1" })
 
 		vim.diagnostic.config({
-			virtual_text = {
-				prefix = "●", -- could be "▎", "■", "●"
-			},
+			virtual_text = false,
 			signs = true,
 			underline = true,
 			update_in_insert = false,
 			severity_sort = true,
+		})
+
+		vim.api.nvim_create_autocmd("CursorHold", {
+			group = lint_augroup,
+			callback = function()
+				vim.diagnostic.open_float(nil, {
+					focusable = false,
+					close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+					border = "rounded",
+					source = "always",
+					prefix = "",
+					format = function(diagnostic)
+						-- Define custom icons/colors per severity
+						local severity = vim.diagnostic.severity[diagnostic.severity]
+						local icons = {
+							[vim.diagnostic.severity.ERROR] = " ",
+							[vim.diagnostic.severity.WARN] = " ",
+							[vim.diagnostic.severity.INFO] = " ",
+							[vim.diagnostic.severity.HINT] = " ",
+						}
+						local icon = icons[diagnostic.severity] or ""
+						-- Return colored prefix text
+						local hl_group = ({
+							[vim.diagnostic.severity.ERROR] = "DiagnosticFloatingError",
+							[vim.diagnostic.severity.WARN] = "DiagnosticFloatingWarn",
+							[vim.diagnostic.severity.INFO] = "DiagnosticFloatingInfo",
+							[vim.diagnostic.severity.HINT] = "DiagnosticFloatingHint",
+						})[diagnostic.severity]
+
+						return string.format("%s%s", icon, diagnostic.message)
+					end,
+				})
+			end,
 		})
 	end,
 }

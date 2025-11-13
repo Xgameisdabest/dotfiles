@@ -28,6 +28,8 @@ return {
 			-- Formatters & linters
 			require("mason-tool-installer").setup({
 				ensure_installed = {
+					"isort",
+					"blue",
 					"biome",
 					"shfmt",
 					"stylua",

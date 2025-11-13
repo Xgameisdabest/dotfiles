@@ -10,6 +10,7 @@ g.mapleader = " "
 g.termguicolors = true
 
 o.number = true
+o.updatetime = 555 -- miliseconds
 o.relativenumber = false
 o.ruler = true
 o.cursorline = true
