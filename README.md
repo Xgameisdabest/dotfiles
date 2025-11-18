@@ -218,8 +218,12 @@ autorandr_on_reload=false #(OPTIONS: true/false) (Reload required)
 transparent_window_when_unfocus=true #(OPTIONS: true/false) (Reload required)
 
 # Notifications for caps_lock and num_lock key
-caps_lock_notification=true #(OPTIONS: true/false) 
-num_lock_notification=true #(OPTIONS: true/false) 
+caps_lock_notification=true #(OPTIONS: true/false)
+num_lock_notification=true #(OPTIONS: true/false)
+
+# Notifications for usb devices and check if the power is plug or not
+usb_notification=true #(OPTIONS: true/false) (Relaunch window manager required)
+plug_in_notification=true #(OPTIONS: true/false) (Relaunch window manager required)
 
 # Battery warning daemon, warn when battery reaches 20%
 battery_warning_notification=false #(OPTIONS: true/false) (Relaunch window manager required)
