@@ -70,6 +70,7 @@ $logout)
 		pkill -f "kitty.*--class=kitty-bg"
 		killall -SIGINT waybar
 		killall battery-warning.sh
+		killall bat_status_daemon.sh
 		killall usb-watch.sh
 		killall udevadm
 		killall dunst
