@@ -1,0 +1,36 @@
+git:
+  pagers: []
+  commit:
+    signOff: false
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
+  merging:
+    manualCommit: false
+    args: ""
+    squashMergeMessage: Squash merge {{selectedRef}} into {{currentBranch}}
+  mainBranches: [master, main]
+  skipHookPrefix: WIP
+  autoFetch: true
+  autoRefresh: true
+  autoForwardBranches: onlyMainBranches
+  fetchAll: true
+  autoStageResolvedConflicts: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty=medium
+  ignoreWhitespaceInDiffView: false
+  diffContextSize: 3
+  renameSimilarityThreshold: 50
+  overrideGpg: false
+  disableForcePushing: false
+  commitPrefix: []
+  commitPrefixes: {}
+  branchPrefix: ""
+  parseEmoji: false
+  log:
+    order: topo-order
+    showGraph: always
+    showWholeGraph: false
+  localBranchSortOrder: date
+  remoteBranchSortOrder: date
+  truncateCopiedCommitHashesTo: 12
