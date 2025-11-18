@@ -4,10 +4,10 @@
 # source ~/.config/dtf-config/config
 
 # --- Singleton Logic ---
-if ps aux | grep "bat_status_daemon.sh" | grep -v grep | grep -v "$$" >/dev/null; then
-	echo "bat_status_daemon.sh is already running."
-	exit 0
-fi
+# if ps aux | grep "bat-status-daemon.sh" | grep -v grep | grep -v "$$" >/dev/null; then
+# 	echo "already running."
+# 	exit 0
+# fi
 
 # --- Helper Functions ---
 BAT_PATH=$(find /sys/class/power_supply/BAT* -print -quit)
@@ -47,11 +47,11 @@ udevadm monitor --udev --subsystem-match=power_supply |
 				case "$CURRENT_STATE" in
 				"Charging")
 					notify-send "Charging 󰂅" "${BATTERY_LEVEL}% - Connected to power." -t 2500 -u low
-					play_sound "power-plug.oga"
+					paplay $CUSTOM_SOUND_PATH/power-plug.oga
 					;;
 				"Discharging")
 					notify-send "Discharging 󰁹" "${BATTERY_LEVEL}% - Running on battery." -t 2500 -u normal
-					play_sound "power-unplug.oga"
+					paplay $CUSTOM_SOUND_PATH/power-unplug.oga
 					;;
 				*) ;;
 				esac
