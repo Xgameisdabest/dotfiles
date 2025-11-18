@@ -61,7 +61,7 @@ gui:
   showNumstatInFilesView: false
   showRandomTip: true
   showCommandLog: true
-  showBottomLine: true
+  showBottomLine: false
   showPanelJumps: true
   nerdFontsVersion: "3"
   showFileIcons: true
@@ -103,7 +103,6 @@ git:
   mainBranches:
     - master
     - main
-  skipHookPrefix: WIP
   autoFetch: true
   autoRefresh: true
   autoForwardBranches: onlyMainBranches
@@ -140,7 +139,7 @@ os:
   edit: ""
   editAtLine: ""
   editAtLineAndWait: ""
-  editInTerminal: false
+  editInTerminal: true
   openDirInEditor: ""
   editPreset: ""
   open: ""
