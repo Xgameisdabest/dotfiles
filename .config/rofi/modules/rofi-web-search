@@ -109,7 +109,7 @@ nerdfonts_func() {
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$github\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 400px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode ")
+	select=$(echo -e "$web\n$yt\n$ai\n$github\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 400px; width: 302px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode  ")
 
 	case $select in
 	$web)
