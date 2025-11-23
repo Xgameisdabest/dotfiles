@@ -83,6 +83,7 @@ if [[ "$verbose_coreutils_output" == "true" ]]; then
 fi
 
 #ALIASES
+alias sudo="sudo -B"
 alias consoleconfig="sudo dpkg-reconfigure console-setup "
 alias i3config="cd ~/.config/i3/"
 alias out="exit"
