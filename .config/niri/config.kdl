@@ -9,20 +9,22 @@
 
 prefer-no-csd
 
+
 environment {
-PATH "$HOME/.local/bin:$PATH"
-CUSTOM_SOUND_PATH "$HOME/.config/dunst/scripts/sounds/"
-XDG_DATA_DIRS "$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
-XCURSOR_THEME "Bibata-Modern-Ice"
-XCURSOR_SIZE "24"
-MOZ_ENABLE_WAYLAND "0"
-MOZ_USE_XINPUT2 "1"
-SDL_VIDEODRIVER "wayland"
-CLUTTER_BACKEND "wayland"
-QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-QT_AUTO_SCREEN_SCALE_FACTOR "1"
-QT_QPA_PLATFORMTHEME "qt5ct"
+    PATH: "$HOME/.local/bin:$PATH"
+    CUSTOM_SOUND_PATH: "$HOME/.config/dunst/scripts/sounds/"
+    XDG_DATA_DIRS: "$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
+    XCURSOR_THEME: "Bibata-Modern-Ice"
+    XCURSOR_SIZE: "24"
+    MOZ_ENABLE_WAYLAND: "0"
+    MOZ_USE_XINPUT2: "1"
+    SDL_VIDEODRIVER: "wayland"
+    CLUTTER_BACKEND: "wayland"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION: "1"
+    QT_AUTO_SCREEN_SCALE_FACTOR: "1"
+    QT_QPA_PLATFORMTHEME: "qt5ct"
 }
+
 
 input {
     keyboard {
