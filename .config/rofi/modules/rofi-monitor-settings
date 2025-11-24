@@ -56,38 +56,6 @@ mode_menu() {
 		height_per_mode_listed=710
 	fi
 
-	# Save/Load monitor status
-	get_current_config() {
-		hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
-			'.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate),\(.x)x\(.y),\(.scale)"'
-	}
-
-	get_preferred_mode() {
-		wlr-randr | awk -v mon="$monitor_picked" '
-        $1 == mon {inside=1; next}
-        /^[A-Za-z0-9-]+ / {inside=0}
-        inside && /\*/ {print $1 "@" $2; exit}
-    ' | tr -d '*'
-	}
-
-	save_mode() {
-		mkdir -p ~/.cache/hypr-monitors
-		echo "$(get_current_config)" >~/.cache/hypr-monitors/$monitor_picked
-	}
-
-	restore_mode() {
-		if [[ -f ~/.cache/hypr-monitors/$monitor_picked ]]; then
-			lastconfig=$(cat ~/.cache/hypr-monitors/$monitor_picked)
-			hyprctl keyword monitor "$monitor_picked,$lastconfig"
-		else
-			pref=$(get_preferred_mode)
-			if [[ -n "$pref" ]]; then
-				# fallback still uses auto if no cache
-				hyprctl keyword monitor "$monitor_picked,$pref,auto,1"
-			fi
-		fi
-	}
-
 	# Count enabled monitors
 	enabled_count=$(hyprctl monitors -j | jq '[.[] | select(.dpmsStatus == true)] | length')
 
