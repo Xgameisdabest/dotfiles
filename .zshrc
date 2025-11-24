@@ -71,10 +71,11 @@ if [[ "$verbose_coreutils_output" == "true" ]]; then
 	fi
 
 	alias cd="cd_verbose" # Calls the verbose cd function
-	alias mkdir="mkdir_verbose" # Calls the verbose mkdir function
-	alias touch="touch_verbose" # Calls the verbose touch function
-	compdef mkdir_verbose=mkdir
-	compdef touch_verbose=touch
+	# alias mkdir="mkdir_verbose" # Calls the verbose mkdir function
+	# alias touch="touch_verbose" # Calls the verbose touch function
+	# compdef mkdir_verbose=mkdir
+	# compdef touch_verbose=touch
+	alias mkdir="mkdir -v"
 	alias rm="rm -v"
 	alias rmdir="rmdir -v"
 	alias mv="mv -v"
