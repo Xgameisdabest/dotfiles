@@ -37,8 +37,8 @@ fi
 main_menu() {
 	#main
 	time_left=$(acpi | grep -oP '\d{2}:\d{2}:\d{2}(?= (remaining|until charged))')
-	status="$(acpi | sed 's/Not charging/Charging/g' | grep 'Battery 0' | awk '{print $3}' | sed 's/,//g')"
-	bat_percentage="$(acpi | sed 's/Not charging//g' | grep 'Battery 0' | awk '{print $4}' | sed 's/,//g')"
+	status="$(</sys/class/power_supply/BAT0/status)"
+	bat_percentage="$(</sys/class/power_supply/BAT0/capacity)%"
 	power_mode_status="$(powerprofilesctl get)"
 
 	set_mode_performace() {
