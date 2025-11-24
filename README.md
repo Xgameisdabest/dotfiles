@@ -49,7 +49,8 @@ My way to install and build kitty from source:
 mkdir testenv && cd testenv
 git clone https://github.com/kovidgoyal/kitty.git && cd kitty
 ./dev.sh build
-ln -s ~/testenv/kitty/kitty/launcher/kitty ~/.local/bin/
+ln -s ~/testenv/kitty/kitty/launcher/kitty ~/.local/bin/kitty
+ln -s ~/testenv/kitty/kitty/launcher/kitten ~/.local/bin/kitten
 ```
 
 To maintain kitty, I created a file in kitty repo directory and named it as update_kitty.sh and give it permission to run ```chmod +x update_kitty.sh```
