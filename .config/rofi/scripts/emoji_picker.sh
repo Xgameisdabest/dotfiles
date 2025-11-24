@@ -7,4 +7,4 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-rofimoji --selector-args="-theme $path_to_theme"
+rofimoji --typer xdotool --selector-args="-theme $path_to_theme"
