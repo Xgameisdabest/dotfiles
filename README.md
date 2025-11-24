@@ -87,7 +87,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 Install zsh plugins (zsh-autopair zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
 ```
-cd ~/.oh-my-zsh/plugins/
+cd ~/.oh-my-zsh/custom/plugins/
 git clone https://github.com/hlissner/zsh-autopair.git
 git clone https://github.com/zsh-users/zsh-autosuggestions.git
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
