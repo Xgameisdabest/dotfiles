@@ -31,6 +31,9 @@ Hyprland is now supported!
 V4 - (up-to-date)
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_4.jpg?raw=true)
 
+Material expressive inspired bar style (For V4)
+![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_expressive_hypr.jpg?raw=true)
+
 ## Installation
 
 Install the font:
