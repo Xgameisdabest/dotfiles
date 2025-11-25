@@ -30,14 +30,16 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-	color: #81ccee;
+	background-color: #080b0c;
+	color: #9ed8f2;
 }
 
 #workspaces button:hover {
 	box-shadow: inherit;
 	text-shadow: inherit;
 	color: #000000;
-	background-color: #81ccee;
+	background-color: #345a6a;
+	color: #9ed8f2;
 }
 
 #workspaces button.urgent {
@@ -56,10 +58,6 @@ tooltip {
 }
 tooltip label {
 	padding: 5px;
-}
-
-#tray {
-	background-color: #9eaad1;
 }
 
 #custom-dtf-update {
@@ -82,7 +80,11 @@ tooltip label {
 	padding: 0 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
-	color: #16161d;
+}
+
+#tray {
+	background-color: #3f4454;
+	color: #bbc4df;
 }
 
 #custom-temperature.critical,
@@ -107,16 +109,19 @@ tooltip label {
 #custom-network.disconnected,
 #custom-notification-center.clear,
 #custom-audio.muted {
-	background-color: #7f849c;
+	background-color: #26282f;
+	color: #7f849c;
 }
 
 #custom-bluetooth.no-devices {
-	background-color: #74c7ec;
+	background-color: #345a6a;
+	color: #9ed8f2;
 }
 
 #custom-bluetooth.one-device,
 #custom-bluetooth.multiple-devices {
-	background-color: #2193ff;
+	background-color: #0a2c4d;
+	color: #7abeff;
 }
 
 #custom-network.strength-1,
@@ -128,11 +133,13 @@ tooltip label {
 
 #custom-network.strength-2,
 #custom-audio.medium {
-	background-color: #eba0ac;
+	background-color: #52383c;
+	color: #f3c6cd;
 }
 
 #custom-network.strength-3 {
-	background-color: #f7a8b8;
+	background-color: #563b40;
+	color: #fac6d1;
 }
 
 #custom-temperature.normal,
@@ -153,18 +160,22 @@ tooltip label {
 
 #clock,
 #custom-notification-center.unclear {
-	background-color: #f5e0dc;
+	background-color: #564e4d;
+	color: #f8e9e6;
 }
 
 #window,
 #custom-window {
-	background-color: #e0e6ed;
+	background-color: #4e5053;
+	color: #e9eef2;
 }
 
 #custom-hyprland-settings {
-	background-color: #a6adc8;
+	background-color: #3a3d46;
+	color: #c5cadb;
 }
 
 #custom-audio.low {
-	background-color: #bac2de;
+	background-color: #2e3038;
+	color: #d2d7ea;
 }
