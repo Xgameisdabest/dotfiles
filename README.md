@@ -170,6 +170,9 @@ welcome_notification=true #(OPTIONS: true/false) (One time only)
 # Changes polybar/waybar color to black or white
 bar_color=black #(OPTIONS: white/black) (Reload required)
 
+# Material expressive style inspired for waybar
+bar_expressive_style=true #(OPTIONS: true/false) (Reload required)
+
 # Exclusive feature to polybar, make the icons show less info, cleaner look
 bar_compact=false #(OPTIONS: true/false) (Reload required)
 
@@ -212,7 +215,6 @@ num_lock_notification=true #(OPTIONS: true/false)
 
 # Notifications for usb devices and check if the power is plug or not
 usb_notification=true #(OPTIONS: true/false) (Relaunch window manager required)
-plug_in_notification=true #(OPTIONS: true/false) (Relaunch window manager required)
 
 # Battery warning daemon, warn when battery reaches 20%
 battery_warning_notification=false #(OPTIONS: true/false) (Relaunch window manager required)
