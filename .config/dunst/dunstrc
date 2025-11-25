@@ -10,6 +10,8 @@ origin = bottom-center
 offset = 0x100
 timeout = 2
 show_age_threshold = 60
+progress_bar_corner_radius = 5
+corner_radius = 8
 
 [urgency_low]
 ; background = "#211d30"
