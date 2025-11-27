@@ -1,6 +1,13 @@
 local M = {}
 
 M.template = [[
+/*
+ Script: <script-name>.go
+ Description: <your-description-here>
+ Author: <your-name>
+ Credits: <credits-here>
+*/
+
 package main
 
 import "fmt"
@@ -12,7 +19,7 @@ func main() {
 
 function M.insert()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(M.template, "\n"))
-	vim.api.nvim_win_set_cursor(0, { 5, 8 })
+	vim.api.nvim_win_set_cursor(0, { 10, 8 })
 end
 
 function M.ask_and_insert()

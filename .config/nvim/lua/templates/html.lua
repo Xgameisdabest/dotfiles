@@ -1,6 +1,13 @@
 local M = {}
 
 M.html_template = [[
+<!--
+  Script: <file-name>.html
+  Description: <your-description-here>
+  Author: <your-name>
+  Credits: <credits-here>
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,7 +41,7 @@ M.html_template = [[
 
 function M.insert()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(M.html_template, "\n"))
-	vim.api.nvim_win_set_cursor(0, { 9, 8 })
+	vim.api.nvim_win_set_cursor(0, { 11, 8 })
 end
 
 function M.ask_and_insert()
@@ -45,13 +52,7 @@ function M.ask_and_insert()
 end
 
 function M.setup()
-	vim.api.nvim_create_autocmd("BufNewFile", {
-		pattern = { "*.html", "*.htm" },
-		callback = M.ask_and_insert,
-	})
-
-	-- Empty files created via touch
-	vim.api.nvim_create_autocmd("BufReadPost", {
+	vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
 		pattern = { "*.html", "*.htm" },
 		callback = function()
 			local lines = vim.api.nvim_buf_get_lines(0, 0, 1, false)

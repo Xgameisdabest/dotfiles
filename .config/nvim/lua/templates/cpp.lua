@@ -1,6 +1,13 @@
 local M = {}
 
 M.template = [[
+/*
+ Script: <script-name>.cpp
+ Description: <your-description-here>
+ Author: <your-name>
+ Credits: <credits-here>
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -12,12 +19,12 @@ int main() {
 
 function M.insert()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(M.template, "\n"))
-	vim.api.nvim_win_set_cursor(0, { 5, 8 })
+	vim.api.nvim_win_set_cursor(0, { 9, 8 }) -- inside main
 end
 
 function M.ask_and_insert()
-	local answer = vim.fn.input("Insert C++ template? [y/N]: ")
-	if answer:lower() == "y" then
+	local ans = vim.fn.input("Insert C++ template? [y/N]: ")
+	if ans:lower() == "y" then
 		M.insert()
 	end
 end

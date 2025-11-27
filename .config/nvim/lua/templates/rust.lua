@@ -1,6 +1,13 @@
 local M = {}
 
 M.template = [[
+/*
+ Script: <script-name>.rs
+ Description: <your-description-here>
+ Author: <your-name>
+ Credits: <credits-here>
+*/
+
 fn main() {
     println!("Hello, world!");
 }
@@ -8,7 +15,7 @@ fn main() {
 
 function M.insert()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(M.template, "\n"))
-	vim.api.nvim_win_set_cursor(0, { 2, 4 })
+	vim.api.nvim_win_set_cursor(0, { 8, 4 })
 end
 
 function M.ask_and_insert()

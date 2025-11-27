@@ -4,12 +4,20 @@ function M.get_template()
 	local filename = vim.fn.expand("%:t:r")
 	return string.format(
 		[[
+/*
+ Script: %s.java
+ Description: <your-description-here>
+ Author: <your-name>
+ Credits: <credits-here>
+*/
+
 public class %s {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
 }
 ]],
+		filename,
 		filename
 	)
 end
@@ -17,12 +25,12 @@ end
 function M.insert()
 	local template = M.get_template()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(template, "\n"))
-	vim.api.nvim_win_set_cursor(0, { 3, 8 })
+	vim.api.nvim_win_set_cursor(0, { 8, 8 })
 end
 
 function M.ask_and_insert()
-	local answer = vim.fn.input("Insert Java template? [y/N]: ")
-	if answer:lower() == "y" then
+	local ans = vim.fn.input("Insert Java template? [y/N]: ")
+	if ans:lower() == "y" then
 		M.insert()
 	end
 end
