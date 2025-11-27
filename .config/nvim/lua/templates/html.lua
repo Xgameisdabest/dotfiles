@@ -1,6 +1,5 @@
 local M = {}
 
--- HTML boilerplate template
 M.html_template = [[
 <!doctype html>
 <html lang="en">
@@ -33,13 +32,11 @@ M.html_template = [[
 </html>
 ]]
 
--- Function to insert template
 function M.insert()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(M.html_template, "\n"))
 	vim.api.nvim_win_set_cursor(0, { 9, 8 })
 end
 
--- Function to ask user before inserting
 function M.ask_and_insert()
 	local answer = vim.fn.input("Insert HTML template? [y/N]: ")
 	if answer:lower() == "y" then
@@ -47,7 +44,6 @@ function M.ask_and_insert()
 	end
 end
 
--- Setup autocmds for HTML files
 function M.setup()
 	vim.api.nvim_create_autocmd("BufNewFile", {
 		pattern = { "*.html", "*.htm" },
