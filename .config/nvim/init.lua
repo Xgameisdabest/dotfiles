@@ -48,27 +48,33 @@ local html_template = [[
 </html>
 ]]
 
--- Insert template
+-- Function to insert the template
 local function insert_html_boilerplate()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(html_template, "\n"))
 	vim.api.nvim_win_set_cursor(0, { 9, 8 })
 end
 
--- For files created by nvim file.html
+-- Function to ask the user
+local function ask_and_insert()
+	local answer = vim.fn.input("Insert HTML template? [y/N]: ")
+	if answer:lower() == "y" then
+		insert_html_boilerplate()
+	end
+end
+
+-- For new files inside Neovim
 vim.api.nvim_create_autocmd("BufNewFile", {
 	pattern = { "*.html", "*.htm" },
-	callback = function()
-		insert_html_boilerplate()
-	end,
+	callback = ask_and_insert,
 })
 
--- For files created via "touch"
+-- For empty files created via touch
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = { "*.html", "*.htm" },
 	callback = function()
-		-- If file is empty, insert the template
-		if vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] == "" then
-			insert_html_boilerplate()
+		local lines = vim.api.nvim_buf_get_lines(0, 0, 1, false)
+		if vim.api.nvim_buf_line_count(0) == 1 and lines[1] == "" then
+			ask_and_insert()
 		end
 	end,
 })
