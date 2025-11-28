@@ -65,22 +65,28 @@ source $ZSH/oh-my-zsh.sh
 : ${verbose_coreutils_output:=true}
 # Set up the verbose output for all supported coreutils command
 if [[ "$verbose_coreutils_output" == "true" ]]; then
-	# Source verbose wrapper script if it exists
-	if [[ -f "$HOME/.coreutils_vb_rework.sh" ]]; then
-		source "$HOME/.coreutils_vb_rework.sh"
-	fi
+	if [[ $- == *i* ]]; then
+		# Source verbose wrapper script if it exists
+		if [[ -f "$HOME/.coreutils_vb_rework.sh" ]]; then
+			source "$HOME/.coreutils_vb_rework.sh"
+		fi
 
-	alias cd="cd_verbose" # Calls the verbose cd function
-	# alias mkdir="mkdir_verbose" # Calls the verbose mkdir function
-	# alias touch="touch_verbose" # Calls the verbose touch function
-	# compdef mkdir_verbose=mkdir
-	# compdef touch_verbose=touch
-	alias mkdir="mkdir -v"
-	alias rm="rm -v"
-	alias rmdir="rmdir -v"
-	alias mv="mv -v"
-	alias cp="cp -v"
-	alias chmod="chmod -v"
+		alias cd="cd_verbose" # Calls the verbose cd function
+		# alias mkdir="mkdir_verbose" # Calls the verbose mkdir function
+		# alias touch="touch_verbose" # Calls the verbose touch function
+		# compdef mkdir_verbose=mkdir
+		# compdef touch_verbose=touch
+		alias mkdir="mkdir --verbose"
+		alias rm="rm --verbose"
+		alias rmdir="rmdir --verbose"
+		alias mv="mv --verbose"
+		alias cp="cp --verbose"
+		alias ln="ln --verbose"
+		alias chmod="chmod --verbose"
+		alias chown="chown --verbose"
+		alias chgrp="chgrp --verbose"
+		alias chcon="chcon --verbose"
+	fi
 fi
 
 #ALIASES
@@ -96,12 +102,15 @@ alias poweroff="sudo poweroff"
 alias cls=clear
 alias du="du -h"
 alias ls=lsd
-alias lss=/usr/bin/ls
+alias lss="command ls"
+alias lsl="ls -lt"
+alias lsla="ls -lta"
 alias py=python3
 alias nfetch=neofetch
 alias v=nvim
 alias suv="sudo -e"
 alias vconfig="cd ~/.config/nvim/"
+alias pwr-stat="powerprofilesctl get"
 alias pwr-max="powerprofilesctl set performance"
 alias pwr-mid="powerprofilesctl set balanced"
 alias pwr-low="powerprofilesctl set power-saver"

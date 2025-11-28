@@ -3,7 +3,7 @@
 # i tried my best here, most of the flags i have not tested but i guess not many people use them so yea
 # This is just experimental, use it your own risk.
 # Does not affect the system since all it does is just works on the interactive shellL.
-# I had to use AI (ChatGPT) to write this code since it just too complicated to me, im a noob
+# I had to use AI (ChatGPT) to write this code since it just too complicated to me, im dumb asf
 
 # color codes
 green='\033[1;32m'
@@ -22,41 +22,76 @@ reset='\033[0m'
 # clear
 
 ## CD
-
 cd_verbose() {
-	if [ -z "$1" ] || [ "$1" = ~ ]; then
+
+	# Safely escape HOME for use in sed (handles symbols like [, ], ^, /, etc.)
+	local HOME_ESCAPED
+	HOME_ESCAPED="$(printf '%s\n' "$HOME" | sed 's/[][\/.^$*]/\\&/g')"
+
+	# Handle --help / -h
+	if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+		echo -e "${green}Usage:${reset} cd [directory]"
+		echo -e "Change directories with verbose feedback."
+		echo
+		echo -e "${green}Options:${reset}"
+		echo -e "  ${yellow}~${reset}       Go to home directory"
+		echo -e "  ${yellow}.${reset}       Stay in current directory"
+		echo -e "  ${yellow}-h, --help${reset}  Show this help message"
+		echo
+		echo -e "${green}Examples:${reset}"
+		echo -e "  cd               Jump to home directory"
+		echo -e "  cd ~/projects    Change to '~/projects' directory"
+		echo -e "  cd .             Stay in current directory"
+		echo -e "  cd --help        Show this help message"
+		return
+	fi
+
+	# No argument or `~` → go home
+	if [ -z "$1" ] || [ "$1" = "~" ]; then
 		if [ "$(pwd)" != "$HOME" ]; then
-			local prev_dir=$(pwd)
-			cd ~ && echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$HOME|~|")${reset}"
+			local prev_dir
+			prev_dir="$(pwd)"
+			cd "$HOME" &&
+				echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME_ESCAPED|~|")${reset} ${yellow}->${reset} ${green}~${reset}"
 		else
 			echo -e "${yellow}Already in the ${green}home${yellow} directory!${reset}"
 		fi
+		return
+	fi
 
-	elif [ "$1" = "." ]; then
-		echo -e "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$HOME|~|")${reset}"
+	# `.` → already here
+	if [ "$1" = "." ]; then
+		echo -e "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$HOME_ESCAPED|~|")${reset}"
+		return
+	fi
 
+	# Otherwise — normal directory handling:
+	local target="$1"
+	local prev_dir
+	prev_dir="$(pwd)"
+
+	if [ ! -e "$target" ]; then
+		echo -e "${red}Failed to change directory to '$target' — directory does not exist!${reset}"
+		echo -e "${red}Maybe create it with ${green}'mkdir -p \"$target\"'${red}?${reset}"
+		return
+	fi
+
+	if [ ! -d "$target" ]; then
+		echo -e "${red}'$target' exists but is not a directory!${reset}"
+		return
+	fi
+
+	if [ ! -x "$target" ]; then
+		echo -e "${red}Permission denied:${reset} You don't have execute permission for '$target'."
+		echo -e "${yellow}Try:${reset} ${green}sudo chmod +x \"$target\"${reset}"
+		return
+	fi
+
+	# Attempt to cd
+	if cd "$target" 2>/dev/null; then
+		echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME_ESCAPED|~|")${reset} ${yellow}->${reset} ${green}$(echo "$PWD" | sed "s|^$HOME_ESCAPED|~|")${reset}"
 	else
-		local target="$1"
-		local prev_dir=$(pwd)
-
-		if [ ! -e "$target" ]; then
-			echo -e "${red}Failed to change directory to '$target' — directory does not exist!${reset}"
-			echo -e "${red}Maybe create it with ${green}'mkdir -p $target'${red}?${reset}"
-
-		elif [ ! -d "$target" ]; then
-			echo -e "${red}'$target' ${green}exists${red} but is not a directory!${reset}"
-
-		elif [ ! -x "$target" ]; then
-			echo -e "${red}Permission denied:${reset} You don't have execute permission to access '$target'."
-			echo -e "${yellow}Try:${reset} ${green}sudo chmod +x '$target'${reset} ${yellow}or check directory ownership.${reset}"
-
-		else
-			if cd "$target" 2>/dev/null; then
-				echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME|~|")${reset} ${yellow}->${reset} ${green}$(pwd | sed "s|^$HOME|~|")${reset}"
-			else
-				echo -e "${red}Unexpected error: could not change directory to '$target'.${reset}"
-			fi
-		fi
+		echo -e "${red}Unexpected error: could not change directory to '$target'.${reset}"
 	fi
 }
 
