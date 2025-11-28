@@ -57,6 +57,13 @@ cd_verbose() {
 		return
 	fi
 
+	# Clear history
+	if [[ "$1" == "--clear-hist" ]]; then
+		truncate -s 0 "$ZDIR_HISTORY" # set file size to 0
+		echo -e "${yellow}cd_verbose history cleared.${reset}"
+		return
+	fi
+
 	# Interactive mode (-i)
 	if [[ "$1" == "-i" ]]; then
 		if command -v fzf >/dev/null 2>&1; then
@@ -145,6 +152,29 @@ cd_verbose() {
 	# No match
 	echo -e "${red}Failed to change directory to '$target' — does not exist!${reset}"
 	echo -e "${red}Maybe create it with ${green}mkdir -p \"$target\"${reset}"
+}
+
+_cd_verbose_completion() {
+	local cur opts dirs
+	cur="${COMP_WORDS[COMP_CWORD]}" # current word being completed
+
+	# Options for cd_verbose
+	opts="--help --clear-hist -i"
+
+	# If current word starts with -, suggest options
+	if [[ "$cur" == -* ]]; then
+		COMPREPLY=($(compgen -W "$opts" -- "$cur"))
+		return
+	fi
+
+	# Otherwise, suggest directories in filesystem
+	COMPREPLY=($(compgen -d -- "$cur"))
+
+	# Optional: add last 100 history directories for autocomplete
+	if [[ -f "$ZDIR_HISTORY" ]]; then
+		dirs=$(tail -n 100 "$ZDIR_HISTORY")
+		COMPREPLY+=($(compgen -W "$dirs" -- "$cur"))
+	fi
 }
 
 ## MKDIR
