@@ -23,15 +23,21 @@ reset='\033[0m'
 # read
 # clear
 
+# cd_verbose history file
+ZDIR_HISTORY="$HOME/.cd_verbose_history"
+touch "$ZDIR_HISTORY" # ensure it exists
+
 ## CD
 cd_verbose() {
-
-	# Safely escape HOME for use in sed (handles symbols like [, ], ^, /, etc.)
+	# Safely escape HOME for sed
 	local HOME_ESCAPED
 	HOME_ESCAPED="$(printf '%s\n' "$HOME" | sed 's/[][\/.^$*]/\\&/g')"
 
-	# Handle --help / -h
-	if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+	# Helper: format path with ~
+	_show_path() { echo "$1" | sed "s|^$HOME_ESCAPED|~|"; }
+
+	# Help
+	if [[ "$1" == "--help" || "$1" == "-h" ]]; then
 		echo -e "${green}cd_verbose${reset}, a cd wrapper by Xytozine - tested 2025"
 		echo -e "${green}Usage:${reset} cd [directory]"
 		echo -e "Change directories with verbose feedback."
@@ -39,63 +45,106 @@ cd_verbose() {
 		echo -e "${green}Options:${reset}"
 		echo -e "  ${yellow}~${reset}       Go to home directory"
 		echo -e "  ${yellow}.${reset}       Stay in current directory"
+		echo -e "  ${yellow}-i${reset}       Interactive selection from history"
 		echo -e "  ${yellow}-h, --help${reset}  Show this help message"
 		echo
 		echo -e "${green}Examples:${reset}"
 		echo -e "  cd               Jump to home directory"
-		echo -e "  cd ~/projects    Change to '~/projects' directory"
+		echo -e "  cd ~/projects    Change to '~/projects'"
 		echo -e "  cd .             Stay in current directory"
-		echo -e "  cd --help        Show this help message"
+		echo -e "  cd -i            Interactive selection from history"
+		echo -e "  cd proj          Jump to most recent match containing 'proj'"
 		return
 	fi
 
-	# No argument or `~` → go home
-	if [ -z "$1" ] || [ "$1" = "~" ]; then
-		if [ "$(pwd)" != "$HOME" ]; then
+	# Interactive mode (-i)
+	if [[ "$1" == "-i" ]]; then
+		if command -v fzf >/dev/null 2>&1; then
+			local target
+			target=$(tac "$ZDIR_HISTORY" | fzf --prompt="Jump to directory: ")
+			[[ -z "$target" ]] && return # user canceled
 			local prev_dir
 			prev_dir="$(pwd)"
-			cd "$HOME" &&
-				echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME_ESCAPED|~|")${reset} ${yellow}->${reset} ${green}~${reset}"
+			if cd "$target" 2>/dev/null; then
+				echo -e "${cyan}Jumped from${reset}: ${red}$(_show_path "$prev_dir")${reset} ${yellow}->${reset} ${green}$(_show_path "$PWD")${reset}"
+				# Add to history
+				if ! grep -Fxq "$PWD" "$ZDIR_HISTORY"; then echo "$PWD" >>"$ZDIR_HISTORY"; fi
+				tail -n 100 "$ZDIR_HISTORY" >"$ZDIR_HISTORY.tmp" && mv "$ZDIR_HISTORY.tmp" "$ZDIR_HISTORY"
+			else
+				echo -e "${red}Failed to cd into '$target'${reset}"
+			fi
 		else
-			echo -e "${yellow}Already in the ${green}home${yellow} directory!${reset}"
+			echo -e "${red}fzf not installed!${reset}"
 		fi
 		return
 	fi
 
-	# `.` → already here
-	if [ "$1" = "." ]; then
-		echo -e "${yellow}Already in the current directory${reset}: ${green}$(pwd | sed "s|^$HOME_ESCAPED|~|")${reset}"
+	# No argument or ~ → home
+	if [[ -z "$1" || "$1" == "~" ]]; then
+		if [[ "$(pwd)" == "$HOME" ]]; then
+			echo -e "${yellow}Already in the ${green}home${yellow} directory!${reset}"
+		else
+			local prev_dir
+			prev_dir="$(pwd)"
+			cd "$HOME" && echo -e "${cyan}Jumped from${reset}: ${red}$(_show_path "$prev_dir")${reset} ${yellow}->${reset} ${green}~${reset}"
+			# Add to history
+			if ! grep -Fxq "$PWD" "$ZDIR_HISTORY"; then echo "$PWD" >>"$ZDIR_HISTORY"; fi
+			tail -n 100 "$ZDIR_HISTORY" >"$ZDIR_HISTORY.tmp" && mv "$ZDIR_HISTORY.tmp" "$ZDIR_HISTORY"
+		fi
 		return
 	fi
 
-	# Otherwise — normal directory handling:
+	# Current directory `.`
+	if [[ "$1" == "." ]]; then
+		echo -e "${yellow}Already in the current directory${reset}: ${green}$(_show_path "$(pwd)")${reset}"
+		return
+	fi
+
+	# Target directory / keyword
 	local target="$1"
 	local prev_dir
 	prev_dir="$(pwd)"
 
-	if [ ! -e "$target" ]; then
-		echo -e "${red}Failed to change directory to '$target' — directory does not exist!${reset}"
-		echo -e "${red}Maybe create it with ${green}'mkdir -p \"$target\"'${red}?${reset}"
+	# If path exists
+	if [[ -e "$target" ]]; then
+		if [[ ! -d "$target" ]]; then
+			echo -e "${red}'$target' exists but is not a directory!${reset}"
+			return
+		elif [[ ! -x "$target" ]]; then
+			echo -e "${red}Permission denied:${reset} Cannot access '$target'"
+			echo -e "${yellow}Try: ${green}sudo chmod +x \"$target\"${reset}"
+			return
+		fi
+		# cd success
+		if cd "$target" 2>/dev/null; then
+			echo -e "${cyan}Jumped from${reset}: ${red}$(_show_path "$prev_dir")${reset} ${yellow}->${reset} ${green}$(_show_path "$PWD")${reset}"
+			# Add to history
+			if ! grep -Fxq "$PWD" "$ZDIR_HISTORY"; then echo "$PWD" >>"$ZDIR_HISTORY"; fi
+			tail -n 100 "$ZDIR_HISTORY" >"$ZDIR_HISTORY.tmp" && mv "$ZDIR_HISTORY.tmp" "$ZDIR_HISTORY"
+		else
+			echo -e "${red}Unexpected error: could not cd to '$target'${reset}"
+		fi
 		return
 	fi
 
-	if [ ! -d "$target" ]; then
-		echo -e "${red}'$target' exists but is not a directory!${reset}"
+	# If path does NOT exist → try partial match in history
+	local match
+	match=$(grep -i "$target" "$ZDIR_HISTORY" | tail -n 1)
+	if [[ -n "$match" && -d "$match" ]]; then
+		if cd "$match" 2>/dev/null; then
+			echo -e "${cyan}Jumped from${reset}: ${red}$(_show_path "$prev_dir")${reset} ${yellow}->${reset} ${green}$(_show_path "$PWD")${reset}"
+			# Add to history
+			if ! grep -Fxq "$PWD" "$ZDIR_HISTORY"; then echo "$PWD" >>"$ZDIR_HISTORY"; fi
+			tail -n 100 "$ZDIR_HISTORY" >"$ZDIR_HISTORY.tmp" && mv "$ZDIR_HISTORY.tmp" "$ZDIR_HISTORY"
+		else
+			echo -e "${red}Failed to cd into '$match'${reset}"
+		fi
 		return
 	fi
 
-	if [ ! -x "$target" ]; then
-		echo -e "${red}Permission denied:${reset} You don't have execute permission for '$target'."
-		echo -e "${yellow}Try:${reset} ${green}sudo chmod +x \"$target\"${reset}"
-		return
-	fi
-
-	# Attempt to cd
-	if cd "$target" 2>/dev/null; then
-		echo -e "${cyan}Jumped from${reset}: ${red}$(echo "$prev_dir" | sed "s|^$HOME_ESCAPED|~|")${reset} ${yellow}->${reset} ${green}$(echo "$PWD" | sed "s|^$HOME_ESCAPED|~|")${reset}"
-	else
-		echo -e "${red}Unexpected error: could not change directory to '$target'.${reset}"
-	fi
+	# No match
+	echo -e "${red}Failed to change directory to '$target' — does not exist!${reset}"
+	echo -e "${red}Maybe create it with ${green}mkdir -p \"$target\"${reset}"
 }
 
 ## MKDIR
