@@ -4,6 +4,8 @@
 # This is just experimental, use it your own risk.
 # Does not affect the system since all it does is just works on the interactive shellL.
 # I had to use AI (ChatGPT) to write this code since it just too complicated to me, im dumb asf
+# No worries, I tested this
+# The touch and mkdir has too many issues so i disabled it in the .zshrc
 
 # color codes
 green='\033[1;32m'
@@ -30,6 +32,7 @@ cd_verbose() {
 
 	# Handle --help / -h
 	if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+		echo -e "${green}cd_verbose${reset}, a cd wrapper by Xytozine - tested 2025"
 		echo -e "${green}Usage:${reset} cd [directory]"
 		echo -e "Change directories with verbose feedback."
 		echo
