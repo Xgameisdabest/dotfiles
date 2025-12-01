@@ -42,6 +42,14 @@ send_notif() {
 		"$message"
 }
 
+send_notif_mic() {
+	local tag="$1"
+	local message="$3"
+	notify-send -t "$notification_timeout" \
+		-h string:x-dunst-stack-tag:"$tag" \
+		"$message"
+}
+
 # Volume notif
 notify_volume() {
 	local prefix="$1"
@@ -62,9 +70,9 @@ notify_brightness() {
 show_mic_status_notif() {
 	local mic_status=$(get_mic_mute)
 	if [[ $mic_status == "yes" ]]; then
-		send_notif "mic_notif" 0 "   Mic Muted"
+		send_notif_mic "mic_notif" 0 "   Mic Muted"
 	else
-		send_notif "mic_notif" 0 "   Mic Unmuted"
+		send_notif_mic "mic_notif" 0 "   Mic Unmuted"
 	fi
 }
 
