@@ -106,6 +106,7 @@ tooltip label { padding: 5px; }
 #custom-network.strength-7,
 #battery.LVL2 { background-color: #94e2d5; }
 
+#custom-network.ethernet,
 #custom-network.strength-8,
 #custom-network.strength-9,
 #battery.LVL0,

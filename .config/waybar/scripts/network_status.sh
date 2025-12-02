@@ -12,6 +12,7 @@ while sleep 1; do
 	# Detect Ethernet interface (that is UP and not loopback)
 	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2;}')
 	eth_up=$(ip link show "$eth_iface" | awk '/state/ {print $9}')
+	# eth_up="UP"
 
 	if [[ -n "$eth_iface" && "$eth_up" =~ "UP" ]]; then
 		# Ethernet is active → show ethernet icon
@@ -53,7 +54,7 @@ while sleep 1; do
 		prev_tx=$tx_bytes
 		prev_time=$cur_time
 
-		echo "{\"text\":\"󰈀 \",\"class\":\"ethernet\",\"tooltip\":\"${tooltip}\"}"
+		echo "{\"text\":\"󰈀=\",\"class\":\"ethernet\",\"tooltip\":\"${tooltip}\"}"
 		continue
 	fi
 
