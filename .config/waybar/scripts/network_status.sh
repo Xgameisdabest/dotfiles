@@ -10,7 +10,7 @@ prev_time=0
 
 while sleep 1; do
 	# Detect Ethernet interface (that is UP and not loopback)
-	eth_iface=$(ip -o link show | awk -F': ' '/ether/ {print $2}')
+	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2}')
 	eth_up=$(ip link show "$eth_iface" 2>/dev/null | grep -o "UP")
 
 	if [[ -n "$eth_iface" && "$eth_up" == "UP" ]]; then
