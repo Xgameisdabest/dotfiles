@@ -9,24 +9,69 @@ prev_tx=0
 prev_time=0
 
 while sleep 1; do
+	# Detect Ethernet interface (that is UP and not loopback)
+	eth_iface=$(ip -o link show | awk -F': ' '/ether/ {print $2}')
+	eth_up=$(ip link show "$eth_iface" 2>/dev/null | grep -o "UP")
+
+	if [[ -n "$eth_iface" && "$eth_up" == "UP" ]]; then
+		# Ethernet is active → show ethernet icon
+		ipaddr=$(ip addr show dev "$eth_iface" | awk '/inet / {print $2; exit}' | cut -d'/' -f1)
+		ipaddr=${ipaddr:-"N/A"}
+
+		# Network counters
+		rx_bytes=$(</sys/class/net/$eth_iface/statistics/rx_bytes)
+		tx_bytes=$(</sys/class/net/$eth_iface/statistics/tx_bytes)
+		cur_time=$(date +%s)
+
+		if ((prev_time > 0)); then
+			interval=$((cur_time - prev_time))
+			if ((interval > 0)); then
+				rx_rate=$(((rx_bytes - prev_rx) / interval))
+				tx_rate=$(((tx_bytes - prev_tx) / interval))
+
+				# Human-readable speed
+				hr_speed() {
+					if (($1 > 1048576)); then
+						printf "%.1f MB/s" "$(echo "$1/1048576" | bc -l)"
+					elif (($1 > 1024)); then
+						printf "%.0f KB/s" "$(echo "$1/1024" | bc -l)"
+					else
+						printf "%d B/s" "$1"
+					fi
+				}
+
+				dl_speed=$(hr_speed $rx_rate)
+				ul_speed=$(hr_speed $tx_rate)
+				total_rate=$((rx_rate + tx_rate))
+				net_speed=$(hr_speed $total_rate)
+
+				tooltip="Ethernet\nIP: $ipaddr\n\n↓ Download: $dl_speed\n↑ Upload:   $ul_speed\n󰹹 Netspeed: $net_speed"
+			fi
+		fi
+
+		prev_rx=$rx_bytes
+		prev_tx=$tx_bytes
+		prev_time=$cur_time
+
+		echo "{\"text\":\"󰈀 \",\"class\":\"ethernet\",\"tooltip\":\"${tooltip}\"}"
+		continue
+	fi
+
+	# If no Ethernet → fallback to Wi-Fi logic
 	iface=$(iw dev | awk '$1=="Interface"{print $2; exit}')
 
 	if [[ -n "$iface" && -d "/sys/class/net/$iface" ]]; then
-		# Wi-Fi signal strength %
 		strength=$(awk -v iface="$iface" '$1==iface ":" {print int($3*100/70)}' /proc/net/wireless)
 		strength=${strength:-0}
 
-		# Current SSID
 		ssid=$(iw dev "$iface" link | grep 'SSID' | awk -F': ' '{print $2}')
 		ssid=${ssid:-"Unknown"}
 
-		# IP address
 		ipaddr=$(ip addr show dev "$iface" | awk '/inet / {print $2; exit}' | cut -d'/' -f1)
 		ipaddr=${ipaddr:-"N/A"}
 
 		tooltip="SSID: $ssid\nIP: $ipaddr"
 
-		# Network counters
 		rx_bytes=$(</sys/class/net/$iface/statistics/rx_bytes)
 		tx_bytes=$(</sys/class/net/$iface/statistics/tx_bytes)
 		cur_time=$(date +%s)
@@ -37,7 +82,6 @@ while sleep 1; do
 				rx_rate=$(((rx_bytes - prev_rx) / interval))
 				tx_rate=$(((tx_bytes - prev_tx) / interval))
 
-				# Human-readable converter
 				hr_speed() {
 					if (($1 > 1048576)); then
 						printf "%.1f MB/s" "$(echo "$1/1048576" | bc -l)"
@@ -61,7 +105,6 @@ while sleep 1; do
 		prev_tx=$tx_bytes
 		prev_time=$cur_time
 
-		# Pick Wi-Fi icon/class
 		if ((strength == 0)); then
 			icon="󰤭 "
 			class="disconnected"
@@ -71,7 +114,6 @@ while sleep 1; do
 			class="${classes[index]}"
 		fi
 
-		# Output JSON for Waybar
 		echo "{\"text\":\"$icon\",\"tooltip\":\"$tooltip\",\"class\":\"$class\"}"
 	else
 		echo '{"text":"󰤭 ","class":"disconnected","tooltip":"No interface"}'
