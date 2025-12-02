@@ -10,10 +10,10 @@ prev_time=0
 
 while sleep 1; do
 	# Detect Ethernet interface (that is UP and not loopback)
-	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2}')
-	eth_up=$(ip link show "$eth_iface" 2>/dev/null | grep -o "UP")
+	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2;}')
+	eth_up=$(ip link show "$eth_iface" | awk '/state/ {print $9}')
 
-	if [[ -n "$eth_iface" && "$eth_up" == "UP" ]]; then
+	if [[ -n "$eth_iface" && "$eth_up" =~ "UP" ]]; then
 		# Ethernet is active → show ethernet icon
 		ipaddr=$(ip addr show dev "$eth_iface" | awk '/inet / {print $2; exit}' | cut -d'/' -f1)
 		ipaddr=${ipaddr:-"N/A"}
