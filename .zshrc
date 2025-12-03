@@ -63,10 +63,9 @@ source $ZSH/oh-my-zsh.sh
 #function for verbose cd command
 # Source the user configured variable verbose_coreutils_output from the ~/.config/dtf-config/config file
 : ${verbose_coreutils_output:=true}
-# Set up the verbose output for all supported coreutils command
-if [[ "$verbose_coreutils_output" == "true" ]]; then
-	if [[ $- == *i* ]]; then
-		# Source verbose wrapper script if it exists
+if [[ $- == *i* ]]; then
+	# Set up the verbose output for all supported coreutils command
+	if [[ "$verbose_coreutils_output" == "true" ]]; then
 		if [[ -f "$HOME/.coreutils_vb_rework.sh" ]]; then
 			source "$HOME/.coreutils_vb_rework.sh"
 		fi
@@ -87,33 +86,37 @@ if [[ "$verbose_coreutils_output" == "true" ]]; then
 		alias chgrp="chgrp --verbose"
 		alias chcon="chcon --verbose"
 	fi
-fi
 
-#ALIASES
-alias sudo="sudo -B"
-alias consoleconfig="sudo dpkg-reconfigure console-setup "
-alias i3config="cd ~/.config/i3/"
-alias out="exit"
-alias quit="exit"
-alias zshconfig="nvim ~/.zshrc"
-alias zshreload="source ~/.zshrc"
-alias open=xdg-open
-alias poweroff="sudo poweroff"
-alias cls=clear
-alias du="du -h"
-alias ls=lsd
-alias lss="command ls"
-alias lsl="ls -lt"
-alias lsla="ls -lta"
-alias py=python3
-alias nfetch=neofetch
-alias v=nvim
-alias suv="sudo -e"
-alias vconfig="cd ~/.config/nvim/"
-alias pwr-stat="powerprofilesctl get"
-alias pwr-max="powerprofilesctl set performance"
-alias pwr-mid="powerprofilesctl set balanced"
-alias pwr-low="powerprofilesctl set power-saver"
+	#ALIASES
+
+	if command -v lsd >/dev/null 2>&1; then
+	    alias ls="lsd -t"
+	    alias lss="command ls"
+	fi
+
+	alias sudo="sudo -B"
+	alias consoleconfig="sudo dpkg-reconfigure console-setup "
+	alias i3config="cd ~/.config/i3/"
+	alias out="exit"
+	alias quit="exit"
+	alias zshconfig="nvim ~/.zshrc"
+	alias zshreload="source ~/.zshrc"
+	alias open=xdg-open
+	alias poweroff="sudo poweroff"
+	alias cls=clear
+	alias du="du -h"
+	alias lsl="ls -lt"
+	alias lsla="ls -lta"
+	alias py=python3
+	alias nfetch=neofetch
+	alias v=nvim
+	alias suv="sudo -e"
+	alias vconfig="cd ~/.config/nvim/"
+	alias pwr-stat="powerprofilesctl get"
+	alias pwr-max="powerprofilesctl set performance"
+	alias pwr-mid="powerprofilesctl set balanced"
+	alias pwr-low="powerprofilesctl set power-saver"
+fi
 
 #LINUX USE DATE
 echo -e " \033[1;32m\033[0m \e[1;33mUsed Linux since \033[1;36m$(date -d "$(stat / | grep Birth | awk '{print $2}')" +%d/%b/%Y)\e[1;33m for \033[1;31m$(( ( $(date +%s) - $(date -d "$(stat / | grep Birth | awk '{print $2}')" +%s) ) / 86400 ))\e[1;33m days\033[0m"
