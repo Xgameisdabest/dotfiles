@@ -64,119 +64,180 @@ tooltip label {
 	color: #ff6f91;
 }
 
-#tray,
-#battery,
-#clock,
-#window,
-#custom-window,
-#custom-bluetooth,
-#custom-temperature,
-#custom-notification-center,
-#custom-hyprsunset,
+/* #tray, */
+/* #battery, */
+/* #clock, */
+/* #window, */
+/* #custom-window, */
+/* #custom-bluetooth, */
+/* #custom-temperature, */
+/* #custom-notification-center, */
+/* #custom-hyprsunset, */
+/* #custom-hyprland-settings, */
+/* #custom-audio, */
+/* #custom-network, */
+/* #custom-power { */
+/* 	padding: 0 13px; */
+/* 	margin: 10px 4px; */
+/* 	border-radius: 4px; */
+/* } */
+
+/* right */
 #custom-hyprland-settings,
-#custom-audio,
-#custom-network,
-#custom-power {
-	padding: 0 13px;
-	margin: 10px 4px;
-	border-radius: 4px;
+#clock {
+	margin: 10px 0px 10px 0px;
+	padding: 0 8px;
+	border-radius: 4px 0px 0px 4px;
+	background-color: #3f4454;
 }
 
-#tray {
+#custom-window,
+#window,
+#custom-power {
+	margin: 10px 0px 10px -4px;
+	padding: 0 8px;
+	border-radius: 0px 4px 4px 0px;
+	background-color: #3f4454;
+}
+
+#custom-hyprsunset,
+#custom-notification-center,
+#custom-temperature,
+#tray,
+#custom-network,
+#custom-bluetooth,
+#battery,
+#custom-audio {
+	margin: 10px -3px 10px -4px;
+	padding: 0 8px;
+	background-color: #3f4454;
+}
+
+#tray:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #3f4454;
 	color: #bbc4df;
 }
 
-#custom-temperature.critical,
-#custom-power,
+#custom-temperature.critical:hover,
+#custom-power:hover,
 #workspaces button.urgent,
-#custom-network.strength-0,
+#custom-network.strength-0:hover,
 #battery.LVL5 {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #4d212c;
 	color: #ff9ab2;
 }
 
-#custom-temperature.warning,
-#custom-network.strength-4,
-#custom-network.strength-5,
-#battery.LVL3,
-#custom-hyprsunset {
+#custom-temperature.warning:hover,
+#custom-network.strength-4:hover,
+#custom-network.strength-5:hover,
+#battery.LVL3:hover,
+#custom-hyprsunset:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #3e382c;
 	color: #fae9c3;
 }
 
-#custom-bluetooth.powered-off,
-#custom-network.disconnected,
-#custom-notification-center.clear,
-#custom-audio.muted {
+#custom-bluetooth.powered-off:hover,
+#custom-network.disconnected:hover,
+#custom-notification-center.clear:hover,
+#custom-audio.muted:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #26282f;
 	color: #7f849c;
 }
 
-#custom-bluetooth.no-devices {
+#custom-bluetooth.no-devices:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #345a6a;
 	color: #9ed8f2;
 }
 
-#custom-bluetooth.one-device,
-#custom-bluetooth.multiple-devices {
+#custom-bluetooth.one-device:hover,
+#custom-bluetooth.multiple-devices:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #0a2c4d;
 	color: #7abeff;
 }
 
-#custom-network.strength-1,
-#custom-audio.high,
+#custom-network.strength-1:hover,
+#custom-audio.high:hover,
 #battery.LVL4 {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #3d232a;
 	color: #f7aec2;
 }
 
-#custom-network.strength-2,
-#custom-audio.medium {
+#custom-network.strength-2:hover,
+#custom-audio.medium:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #52383c;
 	color: #f3c6cd;
 }
 
-#custom-network.strength-3 {
+#custom-network.strength-3:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #563b40;
 	color: #fac6d1;
 }
 
-#custom-temperature.normal,
-#custom-network.strength-6,
-#custom-network.strength-7,
-#battery.LVL2 {
+#custom-temperature.normal:hover,
+#custom-network.strength-6:hover,
+#custom-network.strength-7:hover,
+#battery.LVL2:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #3b5a55;
 	color: #a9e8dd;
 }
 
-#custom-network.ethernet,
-#custom-network.strength-8,
-#custom-network.strength-9,
-#battery.LVL0,
-#battery.LVL1 {
+#custom-network.ethernet:hover,
+#custom-network.strength-8:hover,
+#custom-network.strength-9:hover,
+#battery.LVL0:hover,
+#battery.LVL1:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #3a4f38;
 	color: #b8e9b4;
 }
 
-#clock,
-#custom-notification-center.unclear {
+#clock:hover,
+#custom-notification-center.unclear:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #564e4d;
 	color: #f8e9e6;
 }
 
-#window,
-#custom-window {
+#window:hover,
+#custom-window:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #4e5053;
 	color: #e9eef2;
 }
 
-#custom-hyprland-settings {
+#custom-hyprland-settings:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #3a3d46;
 	color: #c5cadb;
 }
 
-#custom-audio.low {
+#custom-audio.low:hover {
+	margin: 10px 7px;
+	border-radius: 4px;
 	background-color: #2e3038;
 	color: #d2d7ea;
 }
