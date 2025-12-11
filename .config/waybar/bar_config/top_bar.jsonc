@@ -32,6 +32,9 @@
 		"on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
 		"on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh prev",
 		"cursor": "pointer"
+		"persistent-workspaces": {
+			"*":3
+		}
 	},
 
 	"custom/window": {
