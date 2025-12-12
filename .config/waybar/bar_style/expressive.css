@@ -32,7 +32,6 @@ window#waybar.hidden {
 #workspaces button.active {
 	background-color: #080b0c;
 	color: #9ed8f2;
-	min-width: 25px;
 }
 
 #workspaces button:hover {
