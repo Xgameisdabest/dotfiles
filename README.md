@@ -194,6 +194,9 @@ animations=true #(OPTIONS: true/false) (Reload required)
 # Toggle blur for i3 (picom) and Hyprland
 blur=false #(OPTIONS: true/false) (Reload required)
 
+# Change layouts for Hyprland
+layout=dwindle #(OPTIONS: dwindle/master/scrolling) (Scrolling required the hyprscrolling plugin) (Reload required)
+
 # Hyprsunset or redshift exec on start
 autostart_night_mode=false #(OPTIONS: true/false) (One time only)
 

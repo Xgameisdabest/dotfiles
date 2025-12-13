@@ -110,6 +110,7 @@ if [[ $- == *i* ]]; then
 	alias py=python3
 	alias nfetch=neofetch
 	alias v=nvim
+	alias lgit=lazygit
 	alias suv="sudo -e"
 	alias vconfig="cd ~/.config/nvim/"
 	alias pwr-stat="powerprofilesctl get"
