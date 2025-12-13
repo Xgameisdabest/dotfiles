@@ -17,7 +17,7 @@ source $HYPR_SETTINGS_PATH/hyprland-settings_section
 rofi_submenu_height=555px
 rofi_submenu_width=295px
 
-rofi_submenu(){
+rofi_submenu() {
 	rofi_sub="󰮫  Config"
 	wifi="󱛃  Wifi"
 	bluetooth="󰂳  Bluetooth"
@@ -29,46 +29,46 @@ rofi_submenu(){
 	hypr_settings_menu="  This Menu  "
 	notifications_hist="󰵙  Notification"
 	gammastep="  Night Mode"
-	
+
 	select2=$(echo -e "$rofi_sub\n$hypr_settings_menu\n$wifi\n$bluetooth\n$sound_setting\n$pwr_menu\n$pwr_mode\n$web_search\n$calendar\n$notifications_hist\n$gammastep\n$goback" | rofi -dmenu -i -theme-str "window {height: $rofi_submenu_height; width: $rofi_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Rofi   " -theme $path_to_theme)
-	
+
 	case $select2 in
-		$rofi_sub)
-			$TERMINAL -e nvim ~/.config/rofi/config.rasi
-			;;
-		$wifi)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-wifi-menu
-			;;
-		$bluetooth)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-bluetooth
-			;;
-		$pwr_menu)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-menu
-			;;
-		$pwr_mode)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-mode
-			;;
-		$web_search)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-web-search
-			;;
-		$calendar)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-calendar
-			;;
-		$hypr_settings_menu)
-			hypr_setting_submenu
-			;;
-		$notifications_hist)
-			$TERMINAL -e nvim ~/.config/dunst/scripts/noti-center.sh
-			;;
-		$sound_setting)
-			$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
-			;;
-		$gammastep)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/rofi-hyprsunset
-			;;
-		$goback)
-			main_menu
-			;;
+	$rofi_sub)
+		$TERMINAL -e nvim ~/.config/rofi/config.rasi
+		;;
+	$wifi)
+		$TERMINAL -e nvim ~/.config/rofi/modules/rofi-wifi-menu
+		;;
+	$bluetooth)
+		$TERMINAL -e nvim ~/.config/rofi/modules/rofi-bluetooth
+		;;
+	$pwr_menu)
+		$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-menu
+		;;
+	$pwr_mode)
+		$TERMINAL -e nvim ~/.config/rofi/modules/rofi-power-mode
+		;;
+	$web_search)
+		$TERMINAL -e nvim ~/.config/rofi/modules/rofi-web-search
+		;;
+	$calendar)
+		$TERMINAL -e nvim ~/.config/rofi/modules/rofi-calendar
+		;;
+	$hypr_settings_menu)
+		hypr_setting_submenu
+		;;
+	$notifications_hist)
+		$TERMINAL -e nvim ~/.config/dunst/scripts/noti-center.sh
+		;;
+	$sound_setting)
+		$TERMINAL -e nvim ~/.config/rofi/modules/rofi-sound-settings
+		;;
+	$gammastep)
+		$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/rofi-hyprsunset
+		;;
+	$goback)
+		main_menu
+		;;
 	esac
 
 }

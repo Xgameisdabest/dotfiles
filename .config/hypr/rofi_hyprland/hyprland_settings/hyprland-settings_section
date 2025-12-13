@@ -12,7 +12,7 @@ fi
 hypr_setting_submenu_height=365px
 hypr_setting_submenu_width=285px
 
-hypr_setting_submenu(){
+hypr_setting_submenu() {
 	main_config="󰅍  Main File"
 	hypr_section="󰅍  Hyprland"
 	dunst_section="󰅍  Notification"
@@ -23,26 +23,26 @@ hypr_setting_submenu(){
 	select10=$(echo -e "$main_config\n$hypr_settings_section\n$hypr_section\n$dunst_section\n$rofi_section\n$waybar_section\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_setting_submenu_height; width: $hypr_setting_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu Config   " -theme $path_to_theme)
 
 	case $select10 in
-		$hypr_section)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/hyprland_section
-			;;
-		$hypr_settings_section)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/hyprland-settings_section
-			;;
-		$dunst_section)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/dunst_section
-			;;
-		$rofi_section)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/rofi_section
-			;;
-		$main_config)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings
-			;;
-		$waybar_section)
-			$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/waybar_section
-			;;
-		$goback)
-			rofi_submenu
-			;;
+	$hypr_section)
+		$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/hyprland_section
+		;;
+	$hypr_settings_section)
+		$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/hyprland-settings_section
+		;;
+	$dunst_section)
+		$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/dunst_section
+		;;
+	$rofi_section)
+		$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/rofi_section
+		;;
+	$main_config)
+		$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings
+		;;
+	$waybar_section)
+		$TERMINAL -e nvim ~/.config/hypr/rofi_hyprland/hyprland_settings/waybar_section
+		;;
+	$goback)
+		rofi_submenu
+		;;
 	esac
 }

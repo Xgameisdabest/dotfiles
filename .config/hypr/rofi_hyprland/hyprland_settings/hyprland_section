@@ -10,10 +10,10 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-hypr_submenu_height=555px
+hypr_submenu_height=595px
 hypr_submenu_width=390px
 
-hypr_submenu(){
+hypr_submenu() {
 
 	hypr_sub="  Main Config"
 	exec="  Launch On Startup"
@@ -26,46 +26,49 @@ hypr_submenu(){
 	system_keybinds="  System Keybinds 󰌏 "
 	app_keybinds="󰀻  App Launch Keybinds 󰌏 "
 	special_key_keybinds="󰘲  Special Key Keybinds 󰌏 "
+	plugins_keybinds="  Plugins Keybinds 󰌏 "
 
-	select4=$(echo -e "$hypr_sub\n$exec\n$plugins_opt\n$coloring\n$animations\n$gaps_border\n$for_window_rules\n$input_opt\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_submenu_height; width: $hypr_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Hyprland   " -theme $path_to_theme)
+	select4=$(echo -e "$hypr_sub\n$exec\n$plugins_opt\n$coloring\n$animations\n$gaps_border\n$for_window_rules\n$input_opt\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$plugins_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_submenu_height; width: $hypr_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Hyprland   " -theme $path_to_theme)
 
 	case $select4 in
-		$hypr_sub)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland.conf
-			;;
-		$exec)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/exec.conf
-			;;
-		$coloring)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/decorations.conf
-			;;
-		$animations)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/animations.conf
-			;;
-		$input_opt)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/input.conf
-			;;
-		$for_window_rules)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/window_rules.conf
-			;;
-		$system_keybinds)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/wm_keybinds.conf
-			;;
-		$special_key_keybinds)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/special_keybinds.conf
-			;;
-		$app_keybinds)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/app_keybinds.conf
-			;;
-		$gaps_border)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/misc.conf
-			;;
-		$plugins_opt)
-			$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/plugins.conf
-			;;
-		$goback)
-			main_menu
-			;;
+	$hypr_sub)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland.conf
+		;;
+	$exec)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/exec.conf
+		;;
+	$coloring)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/decorations.conf
+		;;
+	$animations)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/animations.conf
+		;;
+	$input_opt)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/input.conf
+		;;
+	$for_window_rules)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/window_rules.conf
+		;;
+	$system_keybinds)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/wm_keybinds.conf
+		;;
+	$special_key_keybinds)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/special_keybinds.conf
+		;;
+	$app_keybinds)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/app_keybinds.conf
+		;;
+	$plugins_keybinds)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/keybinds/plugin_keybinds.conf
+		;;
+	$gaps_border)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/misc.conf
+		;;
+	$plugins_opt)
+		$TERMINAL -e nvim ~/.config/hypr/hyprland_config_modules/plugins.conf
+		;;
+	$goback)
+		main_menu
+		;;
 	esac
 }
-
