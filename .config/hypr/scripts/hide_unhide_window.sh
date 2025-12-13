@@ -9,6 +9,7 @@ function hide_window() {
 	if [[ $pid != "null" ]]; then
 		echo $pid >>$stack_file
 	fi
+	notify-send "Window hidden!" "Use Mod+Shift+D to unhide it" -t 2200
 }
 
 function show_window() {
