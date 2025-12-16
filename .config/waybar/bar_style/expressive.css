@@ -10,6 +10,7 @@ window#waybar {
 	background: rgba(22, 22, 29, 0.91);
 	color: #e0e6ed;
 	border-radius: 10px;
+	transition: all 0.1s ease;
 }
 
 window#waybar.hidden {
