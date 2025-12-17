@@ -325,7 +325,7 @@ tooltip label {
 
 #custom-network.strength-6:hover,
 #custom-network.strength-7:hover,
-#battery.LVL2 button:hover {
+#battery.LVL2:hover {
 	background-color: #94e2d5;
 }
 
