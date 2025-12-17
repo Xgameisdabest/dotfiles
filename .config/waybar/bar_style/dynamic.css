@@ -7,9 +7,10 @@
 }
 
 window#waybar {
-	background: #16161d;
+	background: rgba(22, 22, 29, 0.91);
 	color: #e0e6ed;
 	border-radius: 10px;
+	transition: all 0.1s ease;
 }
 
 window#waybar.hidden {
@@ -27,11 +28,14 @@ window#waybar.hidden {
 	border-radius: 4px;
 	color: #757575;
 	background-color: #000000;
+	transition: all 0.1s ease;
 }
 
 #workspaces button.active {
 	background-color: #080b0c;
 	color: #9ed8f2;
+	min-width: 20px;
+	transition: all 0.1s ease;
 }
 
 #workspaces button:hover {
@@ -40,11 +44,15 @@ window#waybar.hidden {
 	color: #000000;
 	background-color: #345a6a;
 	color: #9ed8f2;
+	min-width: 20px;
+	transition: all 0.2s ease;
 }
 
 #workspaces button.urgent {
 	background-color: #ff6f91;
 	color: #000000;
+	min-width: 15px;
+	transition: all 0.2s ease;
 }
 
 tooltip,
@@ -53,9 +61,11 @@ tooltip label {
 }
 
 tooltip {
-	border-radius: 8px;
+	border: 2px solid #9ed8f2;
+	border-radius: 10px;
 	padding: 15px;
 }
+
 tooltip label {
 	padding: 5px;
 }
@@ -64,71 +74,210 @@ tooltip label {
 	color: #ff6f91;
 }
 
-/* #tray, */
-/* #battery, */
-/* #clock, */
-/* #window, */
-/* #custom-window, */
-/* #custom-bluetooth, */
-/* #custom-temperature, */
-/* #custom-notification-center, */
-/* #custom-hyprsunset, */
-/* #custom-hyprland-settings, */
-/* #custom-audio, */
-/* #custom-network, */
-/* #custom-power { */
-/* 	padding: 0 13px; */
-/* 	margin: 10px 4px; */
-/* 	border-radius: 4px; */
-/* } */
-
-/* right */
-#custom-hyprland-settings,
-#clock {
-	margin: 10px 0px 10px 0px;
-	padding: 0 8px;
-	border-radius: 4px 0px 0px 4px;
-	background-color: #3f4454;
-}
-
-#custom-window,
-#window,
-#custom-power {
-	margin: 10px 0px 10px -4px;
-	padding: 0 8px;
-	border-radius: 0px 4px 4px 0px;
-	background-color: #3f4454;
-}
-
-#custom-hyprsunset,
-#custom-notification-center,
-#custom-temperature,
 #tray,
-#custom-network,
-#custom-bluetooth,
 #battery,
-#custom-audio {
-	margin: 10px -3px 10px -4px;
-	padding: 0 8px;
-	background-color: #3f4454;
+#clock,
+#window,
+#custom-window,
+#custom-bluetooth,
+#custom-temperature,
+#custom-notification-center,
+#custom-hyprsunset,
+#custom-hyprland-settings,
+#custom-audio,
+#custom-network,
+#custom-power {
+	padding: 0 13px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	transition: all 0.2s ease;
 }
 
-#tray:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
+#tray {
 	background-color: #3f4454;
 	color: #bbc4df;
 }
 
-#custom-temperature.critical:hover,
-#custom-power:hover,
+#custom-temperature.critical,
+#custom-power,
 #workspaces button.urgent,
-#custom-network.strength-0:hover,
+#custom-network.strength-0,
 #battery.LVL5 {
-	margin: 10px 7px;
-	border-radius: 4px;
 	background-color: #4d212c;
 	color: #ff9ab2;
+}
+
+#custom-temperature.warning,
+#custom-network.strength-4,
+#custom-network.strength-5,
+#battery.LVL3,
+#custom-hyprsunset {
+	background-color: #3e382c;
+	color: #fae9c3;
+}
+
+#custom-bluetooth.powered-off,
+#custom-network.disconnected,
+#custom-notification-center.clear,
+#custom-audio.muted {
+	background-color: #26282f;
+	color: #7f849c;
+}
+
+#custom-bluetooth.no-devices {
+	background-color: #345a6a;
+	color: #9ed8f2;
+}
+
+#custom-bluetooth.one-device,
+#custom-bluetooth.multiple-devices {
+	background-color: #0a2c4d;
+	color: #7abeff;
+}
+
+#custom-network.strength-1,
+#custom-audio.high,
+#battery.LVL4 {
+	background-color: #3d232a;
+	color: #f7aec2;
+}
+
+#custom-network.strength-2,
+#custom-audio.medium {
+	background-color: #52383c;
+	color: #f3c6cd;
+}
+
+#custom-network.strength-3 {
+	background-color: #563b40;
+	color: #fac6d1;
+}
+
+#custom-temperature.normal,
+#custom-network.strength-6,
+#custom-network.strength-7,
+#battery.LVL2 {
+	background-color: #3b5a55;
+	color: #a9e8dd;
+}
+
+#custom-network.ethernet,
+#custom-network.strength-8,
+#custom-network.strength-9,
+#battery.LVL0,
+#battery.LVL1 {
+	background-color: #3a4f38;
+	color: #b8e9b4;
+}
+
+#clock,
+#custom-notification-center.unclear {
+	background-color: #564e4d;
+	color: #f8e9e6;
+}
+
+#window,
+#custom-window {
+	background-color: #4e5053;
+	color: #e9eef2;
+}
+
+#custom-hyprland-settings {
+	background-color: #3a3d46;
+	color: #c5cadb;
+}
+
+#custom-audio.low {
+	background-color: #2e3038;
+	color: #d2d7ea;
+}
+
+#tray {
+	background-color: #3f4454;
+	color: #bbc4df;
+}
+
+#custom-temperature.critical,
+#custom-power,
+#workspaces button.urgent,
+#custom-network.strength-0,
+#battery.LVL5 {
+	background-color: #4d212c;
+	color: #ff9ab2;
+}
+
+#custom-temperature.warning,
+#custom-network.strength-4,
+#custom-network.strength-5,
+#battery.LVL3,
+#custom-hyprsunset {
+	background-color: #3e382c;
+	color: #fae9c3;
+}
+
+#custom-bluetooth.powered-off,
+#custom-network.disconnected,
+#custom-notification-center.clear,
+#custom-audio.muted {
+	background-color: #26282f;
+	color: #7f849c;
+}
+
+#custom-bluetooth.no-devices {
+	background-color: #345a6a;
+	color: #9ed8f2;
+}
+
+#custom-bluetooth.one-device,
+#custom-bluetooth.multiple-devices {
+	background-color: #0a2c4d;
+	color: #7abeff;
+}
+
+#custom-network.strength-1,
+#custom-audio.high,
+#battery.LVL4 {
+	background-color: #3d232a;
+	color: #f7aec2;
+}
+
+#custom-network.strength-2,
+#custom-audio.medium {
+	background-color: #52383c;
+	color: #f3c6cd;
+}
+
+#custom-network.strength-3 {
+	background-color: #563b40;
+	color: #fac6d1;
+}
+
+/* hover state */
+#tray:hover,
+#battery:hover,
+#clock:hover,
+#window:hover,
+#custom-window:hover,
+#custom-bluetooth:hover,
+#custom-temperature:hover,
+#custom-notification-center:hover,
+#custom-hyprsunset:hover,
+#custom-hyprland-settings:hover,
+#custom-audio:hover,
+#custom-network:hover,
+#custom-power:hover {
+	padding: 0 13px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	color: rgba(22, 22, 29, 0.91);
+	transition: all 0.2s ease;
+}
+
+#custom-temperature.critical:hover,
+#custom-power:hover,
+#custom-network.strength-0:hover,
+#battery.LVL5:hover {
+	background-color: #ff6f91;
 }
 
 #custom-temperature.warning:hover,
@@ -136,69 +285,48 @@ tooltip label {
 #custom-network.strength-5:hover,
 #battery.LVL3:hover,
 #custom-hyprsunset:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #3e382c;
-	color: #fae9c3;
+	background-color: #f9e2af;
+}
+
+#custom-temperature.normal:hover {
+	background-color: #89dceb;
 }
 
 #custom-bluetooth.powered-off:hover,
 #custom-network.disconnected:hover,
 #custom-notification-center.clear:hover,
 #custom-audio.muted:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #26282f;
-	color: #7f849c;
+	background-color: #7f849c;
 }
 
 #custom-bluetooth.no-devices:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #345a6a;
-	color: #9ed8f2;
+	background-color: #74c7ec;
 }
 
 #custom-bluetooth.one-device:hover,
 #custom-bluetooth.multiple-devices:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #0a2c4d;
-	color: #7abeff;
+	background-color: #2193ff;
 }
 
 #custom-network.strength-1:hover,
 #custom-audio.high:hover,
-#battery.LVL4 {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #3d232a;
-	color: #f7aec2;
+#battery.LVL4:hover {
+	background-color: #f38ba8;
 }
 
 #custom-network.strength-2:hover,
 #custom-audio.medium:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #52383c;
-	color: #f3c6cd;
+	background-color: #eba0ac;
 }
 
 #custom-network.strength-3:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #563b40;
-	color: #fac6d1;
+	background-color: #f7a8b8;
 }
 
-#custom-temperature.normal:hover,
 #custom-network.strength-6:hover,
 #custom-network.strength-7:hover,
-#battery.LVL2:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #3b5a55;
-	color: #a9e8dd;
+#battery.LVL2 button:hover {
+	background-color: #94e2d5;
 }
 
 #custom-network.ethernet:hover,
@@ -206,38 +334,23 @@ tooltip label {
 #custom-network.strength-9:hover,
 #battery.LVL0:hover,
 #battery.LVL1:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #3a4f38;
-	color: #b8e9b4;
+	background-color: #a6e3a1;
 }
 
 #clock:hover,
 #custom-notification-center.unclear:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #564e4d;
-	color: #f8e9e6;
+	background-color: #f5e0dc;
 }
 
 #window:hover,
 #custom-window:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #4e5053;
-	color: #e9eef2;
+	background-color: #e0e6ed;
 }
 
 #custom-hyprland-settings:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #3a3d46;
-	color: #c5cadb;
+	background-color: #a6adc8;
 }
 
 #custom-audio.low:hover {
-	margin: 10px 7px;
-	border-radius: 4px;
-	background-color: #2e3038;
-	color: #d2d7ea;
+	background-color: #bac2de;
 }
