@@ -10,11 +10,12 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
+#when add new entry make sure to add 35 to height
 waybar_submenu_height=255px
 waybar_submenu_width=280px
 
-waybar_style_submenu_height=250px
-waybar_style_submenu_width=325px
+waybar_style_submenu_height=290px
+waybar_style_submenu_width=430px
 waybar_config_submenu_height=215px
 waybar_config_submenu_width=280px
 
@@ -69,9 +70,10 @@ waybar_style_submenu() {
 	waybar_color_dark="  Dark Theme "
 	waybar_color_white="  White Theme "
 	waybar_color_expressive="  Expressive Theme"
+	waybar_color_expressive_dynamic="  Expressive Theme (Dynamic)"
 
 	#when add new entry make sure to add 35 to height
-	select_style=$(echo -e "$waybar_color_dark\n$waybar_color_white\n$waybar_color_expressive\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_style_submenu_height; width: $waybar_style_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
+	select_style=$(echo -e "$waybar_color_dark\n$waybar_color_white\n$waybar_color_expressive\n$waybar_color_expressive_dynamic\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_style_submenu_height; width: $waybar_style_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
 
 	case $select_style in
 	$waybar_color_white)
@@ -82,6 +84,9 @@ waybar_style_submenu() {
 		;;
 	$waybar_color_expressive)
 		$TERMINAL -e nvim ~/.config/waybar/bar_style/expressive.css
+		;;
+	$waybar_color_expressive_dynamic)
+		$TERMINAL -e nvim ~/.config/waybar/bar_style/dynamic.css
 		;;
 	$goback)
 		waybar_submenu

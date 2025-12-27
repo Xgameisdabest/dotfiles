@@ -8,14 +8,14 @@ bar_dynamic_style=${bar_dynamic_style:-false}
 
 killall -SIGINT waybar
 
-if [[ $bar_dynamic_style == "true" ]] && [[ $bar_top == "false" ]] && [[ $bar_color == "black" ]]; then
+if [[ $bar_dynamic_style == "true" ]] && [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "false" ]] && [[ $bar_color == "black" ]]; then
 	waybar -s ~/.config/waybar/bar_style/dynamic.css -c ~/.config/waybar/bar_config/bottom_bar.jsonc &
+
+elif [[ $bar_dynamic_style == "true" ]] && [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "true" ]] && [[ $bar_color == "black" ]]; then
+	waybar -s ~/.config/waybar/bar_style/dynamic.css -c ~/.config/waybar/bar_config/top_bar.jsonc &
 
 elif [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "false" ]] && [[ $bar_color == "black" ]]; then
 	waybar -s ~/.config/waybar/bar_style/expressive.css -c ~/.config/waybar/bar_config/bottom_bar.jsonc &
-
-elif [[ $bar_dynamic_style == "true" ]] && [[ $bar_top == "true" ]] && [[ $bar_color == "black" ]]; then
-	waybar -s ~/.config/waybar/bar_style/dynamic.css -c ~/.config/waybar/bar_config/top_bar.jsonc &
 
 elif [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "true" ]] && [[ $bar_color == "black" ]]; then
 	waybar -s ~/.config/waybar/bar_style/expressive.css -c ~/.config/waybar/bar_config/top_bar.jsonc &

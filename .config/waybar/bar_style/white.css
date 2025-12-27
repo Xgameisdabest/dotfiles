@@ -1,59 +1,79 @@
 /* White bar */
 * {
-    min-height: 30pt;
-    font-family: JetBrainsMono Nerd Font;
-    font-weight: bold;
-    font-size: 20px;
+	min-height: 30pt;
+	font-family: JetBrainsMono Nerd Font;
+	font-weight: bold;
+	font-size: 20px;
 }
 
 window#waybar {
-    background: #e0e6ed;
-    color: #16161d;
-    border-radius: 10px;
+	background: #e0e6ed;
+	color: #16161d;
+	border-radius: 10px;
+	transition: all 0.1s ease;
 }
 
-window#waybar.hidden { opacity: 0.5; }
+window#waybar.hidden {
+	opacity: 0.5;
+}
 
-#workspaces { background-color: transparent; }
+#workspaces {
+	background-color: transparent;
+}
 
 #workspaces button {
-    all: initial;
-    padding: 0 10px;
-    margin: 10px 2px;
-    border-radius: 4px;
-    color: #757575;
-    background-color: #000000;
+	all: initial;
+	padding: 0 10px;
+	margin: 10px 2px;
+	border-radius: 4px;
+	color: #757575;
+	background-color: #000000;
+	transition: all 0.1s ease;
 }
 
 #workspaces button.active {
-    color: #81ccee;
-    background-color: #16161d;
+	color: #81ccee;
+	background-color: #16161d;
+	transition: all 0.1s ease;
 }
 
 #workspaces button:hover {
-    box-shadow: inherit;
-    text-shadow: inherit;
-    color: #16161d;
-    background-color: #81ccee;
+	box-shadow: inherit;
+	text-shadow: inherit;
+	color: #16161d;
+	background-color: #81ccee;
+	transition: all 0.2s ease;
 }
 
 #workspaces button.urgent {
-    background-color: #ff6f91;
-    color: #16161d;
+	background-color: #ff6f91;
+	color: #16161d;
+	transition: all 0.2s ease;
 }
 
 tooltip,
 tooltip label {
-    background-color: #f5e0dc;
-    color: #16161d;
+	background-color: #f5e0dc;
+	color: #16161d;
 }
 
-tooltip { border-radius: 8px; padding: 15px; }
-tooltip label { padding: 5px; }
+tooltip {
+	border-radius: 8px;
+	padding: 15px;
+}
 
-#tray { background-color: #bac2de; }
+tooltip label {
+	padding: 5px;
+}
 
-#custom-dtf-update { color: #ff6f91; }
+#tray {
+	background-color: #bac2de;
+}
+
+#custom-dtf-update {
+	color: #ff6f91;
+	transition: all 0.2s ease;
+}
 
 #tray,
 #battery,
@@ -68,63 +88,92 @@ tooltip label { padding: 5px; }
 #custom-audio,
 #custom-network,
 #custom-power {
-    padding: 0 13px;
-    margin: 10px 4px;
-    border-radius: 4px;
-    color: #16161d;
+	padding: 0 13px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	color: #16161d;
+	transition: all 0.2s ease;
 }
 
 #custom-temperature.critical,
 #custom-power,
 #workspaces button.urgent,
 #custom-network.strength-0,
-#battery.LVL5 { background-color: #ff6f91; }
+#battery.LVL5 {
+	background-color: #ff6f91;
+}
 
 #custom-temperature.warning,
 #custom-network.strength-4,
 #custom-network.strength-5,
 #battery.LVL3,
-#custom-hyprsunset { background-color: #f9e2af; }
+#custom-hyprsunset {
+	background-color: #f9e2af;
+}
 
-#custom-temperature.normal { background-color: #89dceb; }
+#custom-temperature.normal {
+	background-color: #89dceb;
+}
 
 #custom-bluetooth.powered-off,
 #custom-network.disconnected,
 #custom-notification-center.clear,
-#custom-audio.muted { background-color: #7f849c; }
+#custom-audio.muted {
+	background-color: #7f849c;
+}
 
-#custom-bluetooth.no-devices { background-color: #74c7ec; }
+#custom-bluetooth.no-devices {
+	background-color: #74c7ec;
+}
 
 #custom-bluetooth.one-device,
-#custom-bluetooth.multiple-devices { background-color: #2193ff; }
+#custom-bluetooth.multiple-devices {
+	background-color: #2193ff;
+}
 
 #custom-network.strength-1,
 #custom-audio.high,
-#battery.LVL4 { background-color: #f38ba8; }
+#battery.LVL4 {
+	background-color: #f38ba8;
+}
 
 #custom-network.strength-2,
-#custom-audio.medium { background-color: #eba0ac; }
+#custom-audio.medium {
+	background-color: #eba0ac;
+}
 
-#custom-network.strength-3 { background-color: #f7a8b8; }
+#custom-network.strength-3 {
+	background-color: #f7a8b8;
+}
 
 #custom-network.strength-6,
 #custom-network.strength-7,
-#battery.LVL2 { background-color: #94e2d5; }
+#battery.LVL2 {
+	background-color: #94e2d5;
+}
 
 #custom-network.ethernet,
 #custom-network.strength-8,
 #custom-network.strength-9,
 #battery.LVL0,
-#battery.LVL1 { background-color: #a6e3a1; }
+#battery.LVL1 {
+	background-color: #a6e3a1;
+}
 
 #clock,
 #custom-notification-center.unclear,
 tooltip,
-tooltip label { background-color: #f5e0dc; }
+tooltip label {
+	background-color: #f5e0dc;
+}
 
 #window,
 #custom-window,
 #custom-audio.low,
-#tray { background-color: #bac2de; }
+#tray {
+	background-color: #bac2de;
+}
 
-#custom-hyprland-settings { background-color: #a6adc8; }
+#custom-hyprland-settings {
+	background-color: #a6adc8;
+}
