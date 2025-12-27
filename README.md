@@ -174,11 +174,11 @@ welcome_notification=true #(OPTIONS: true/false) (One time only)
 bar_color=black #(OPTIONS: white/black) (Reload required)
 
 # Material expressive style inspired for waybar
-# REQUIRED BAR SET TO BLACK, BAR TOP FALSE
+# REQUIRED BAR SET TO BLACK
 bar_expressive_style=true #(OPTIONS: true/false) (Reload required)
 
 # Material expressive style dynamic, non-translucent when hover
-# REQUIRED BAR SET TO BLACK, BAR TOP FALSE, EXPRESSIVE TRUE
+# REQUIRED BAR SET TO BLACK, EXPRESSIVE TRUE
 bar_dynamic_style=true #(OPTIONS: true/false) (Reload required)
 
 # Exclusive feature to polybar, make the icons show less info, cleaner look
