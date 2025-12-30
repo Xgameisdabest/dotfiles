@@ -20,6 +20,10 @@ export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export MANPATH="/usr/local/man:$MANPATH"
 
+#ZSH COMPLETION
+autoload -Uz compinit
+compinit
+
 #PACSTALL COMPLETION
 autoload bashcompinit
 bashcompinit
