@@ -35,6 +35,6 @@ return {
 	config = function(_, opts)
 		-- This uses the standard setup call which is still supported
 		-- by the nvim-treesitter wrapper to maintain compatibility
-		require("nvim-treesitter.configs").setup(opts)
+		require("nvim-treesitter").setup(opts)
 	end,
 }
