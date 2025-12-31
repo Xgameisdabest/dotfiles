@@ -1,26 +1,40 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	-- In 2025, use 'opts' to define parsers, but note that
-	-- many 'modules' like highlight have moved to native Neovim
+	event = { "BufReadPost", "BufNewFile" },
 	opts = {
-		ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+		-- A list of parser names, or "all"
+		ensure_installed = {
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"javascript",
+			"typescript",
+		},
+
+		-- Install parsers synchronously (only applied to `ensure_installed`)
+		sync_install = false,
+
+		-- Automatically install missing parsers when entering buffer
 		auto_install = true,
+
+		-- New way: Highlighting is now a 'module' again in the stable wrapper
+		highlight = {
+			enable = true,
+			-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+			-- Set to `false` if you want only tree-sitter highlighting.
+			additional_vim_regex_highlighting = false,
+		},
+
+		indent = { enable = true },
 	},
 	config = function(_, opts)
-		local ts = require("nvim-treesitter")
-
-		-- Basic installation of defined parsers
-		ts.install(opts.ensure_installed)
-
-		-- Enable highlighting globally via Neovim's native engine
-		vim.api.nvim_create_autocmd("FileType", {
-			callback = function(args)
-				local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
-				if lang then
-					pcall(vim.treesitter.start, args.buf, lang)
-				end
-			end,
-		})
+		-- This uses the standard setup call which is still supported
+		-- by the nvim-treesitter wrapper to maintain compatibility
+		require("nvim-treesitter.configs").setup(opts)
 	end,
 }
