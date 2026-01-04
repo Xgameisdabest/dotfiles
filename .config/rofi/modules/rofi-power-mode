@@ -37,8 +37,13 @@ fi
 main_menu() {
 	#main
 	time_left=$(acpi | grep -oP '\d{2}:\d{2}:\d{2}(?= (remaining|until charged))')
-	status="$(</sys/class/power_supply/BAT0/status)"
-	bat_percentage="$(</sys/class/power_supply/BAT0/capacity)%"
+	if [ -d "/sys/class/power_supply/BAT0" ]; then
+		status="$(</sys/class/power_supply/BAT0/status)"
+		bat_percentage="$(</sys/class/power_supply/BAT0/capacity)%"
+	else
+		status=""
+		bat_percentage=""
+	fi
 	power_mode_status="$(powerprofilesctl get)"
 
 	set_mode_performace() {
