@@ -38,6 +38,6 @@ $monitor_settings)
 	fi
 	;;
 $power_mode_settings)
-	~/.config/rofi/modules/rofi-power-mode
+	LAUNCHED_FROM_SETTINGS=true ~/.config/rofi/modules/rofi-power-mode
 	;;
 esac

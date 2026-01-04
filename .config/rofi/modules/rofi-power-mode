@@ -5,7 +5,7 @@
 
 source ~/.config/dtf-config/config
 
-#when add new entry make sure to add 35 to height
+#when add new entry make sure to add 40 to height
 main_menu_height=380px
 main_menu_width=270px
 full_menu_height=355px
@@ -24,6 +24,12 @@ else
 	location="south east"
 	main_menu_x_offset=-110px
 	main_menu_y_offset=-70px
+fi
+
+if [[ $LAUNCHED_FROM_SETTINGS == "true" ]]; then
+	location="center"
+	main_menu_x_offset=0px
+	main_menu_y_offset=0px
 fi
 
 if [[ $rofi_theme == "white" ]]; then
@@ -99,6 +105,21 @@ main_menu() {
 			row=0
 		fi
 
+		# If launched from settings, override position and height
+		if [[ $LAUNCHED_FROM_SETTINGS == "true" ]]; then
+			location="center"
+			main_menu_x_offset=0px
+			main_menu_y_offset=0px
+
+			# Calculate new height once and override the original variable
+			numeric_height=$(echo $main_menu_height | tr -d 'px')
+			main_menu_height="$((numeric_height + 40))px"
+
+			# Also adjust the "full" menu height just in case the battery is full
+			numeric_full_height=$(echo $full_menu_height | tr -d 'px')
+			full_menu_height="$((numeric_full_height + 40))px"
+		fi
+
 		if command -v auto-cpufreq >/dev/null 2>&1; then
 			rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: 310px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n INFO: $time_left")" -p " $bat_percentage 󰁹 "
 		else
@@ -118,6 +139,7 @@ main_menu() {
 
 	# Options
 	quit="Exit 󰈆 "
+	back="Back 󰌍"
 	performance='󰓅  Performance'
 	medium='󰾅  Balanced'
 	power='󰾆  Power Saver'
@@ -125,10 +147,18 @@ main_menu() {
 	auto_cpufreq="󰖯  auto-cpufreq"
 
 	run_rofi() {
+		# Create the base list of options
 		if command -v auto-cpufreq >/dev/null 2>&1; then
-			echo -e "$power_manager\n$auto_cpufreq\n$quit" | rofi_cmd
+			options="$power_manager\n$auto_cpufreq"
 		else
-			echo -e "$power_manager\n$performance\n$medium\n$power\n$quit" | rofi_cmd
+			options="$power_manager\n$performance\n$medium\n$power"
+		fi
+
+		# If launched from settings, prepend the Back button
+		if [[ $LAUNCHED_FROM_SETTINGS == "true" ]]; then
+			echo -e "$options\n$back\n$quit" | rofi_cmd
+		else
+			echo -e "$options\n$quit" | rofi_cmd
 		fi
 	}
 
@@ -137,6 +167,10 @@ main_menu() {
 	case ${chosen} in
 	"") exit ;;
 	$quit) exit ;;
+	$back)
+		~/.config/rofi/modules/rofi-user-settings
+		exit
+		;;
 	$performance)
 		set_mode_performace
 		main_menu
