@@ -1,32 +1,41 @@
 #!/bin/bash
 
-# Get CPU temp (adjust sensor name if needed)
-temp=$(sensors | awk '/^Package id 0:/ {print $4}' | tr -d '+')
-if [ -z "$temp" ]; then
-	temp=$(sensors | awk '/^Tctl:/ {print $2}' | tr -d '+')
+# --- CPU Temperature ---
+cpu_temp=$(sensors | awk '/^Package id 0:/ {print $4}' | tr -d '+')
+if [ -z "$cpu_temp" ]; then
+	cpu_temp=$(sensors | awk '/^Tctl:/ {print $2}' | tr -d '+')
+fi
+cpu_num=$(echo "$cpu_temp" | tr -d '°C' | cut -d'.' -f1)
+
+# --- GPU Temperature ---
+# Check NVIDIA first, then fallback to AMD/Intel via sensors
+if command -v nvidia-smi &>/dev/null; then
+	gpu_num=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | head -n 1)
+else
+	gpu_num=$(sensors | awk '/(edge|junction|PPT):/ {print $2; exit}' | tr -d '+°C' | cut -d'.' -f1)
 fi
 
-# Remove °C and drop decimal part (e.g. 67.0 -> 67)
-temp_num=$(echo "$temp" | tr -d '°C' | cut -d'.' -f1)
+[ -z "$gpu_num" ] && gpu_num="N/A"
 
-# Get all fan speeds (adjust regex depending on your sensors output)
+# --- Fan Speeds ---
 fans=$(sensors | awk '/fan[0-9]:/ {print $1 " " $2 " RPM"}')
+[ -z "$fans" ] && fans="No fans detected"
 
-if [ -z "$fans" ]; then
-	fans="No fans detected"
-fi
-
-# Decide class (integers only now)
-if ((temp_num >= 80)); then
+# --- Logic for Waybar Class ---
+if ((cpu_num >= 80)); then
 	class="critical"
-elif ((temp_num >= 70)); then
+elif ((cpu_num >= 70)); then
 	class="warning"
 else
 	class="normal"
 fi
 
-# Escape newlines for JSON output
-tooltip="CPU Temp: ${temp_num}°C\n$fans"
+# --- Formatting ---
+# Text shows only CPU on the bar
+text="${cpu_num}°C"
+
+# Tooltip contains the breakdown
+tooltip="CPU: ${cpu_num}°C\nGPU: ${gpu_num}°C\n----------\nFans:\n$fans"
 
 # Output JSON for Waybar
-echo "{\"text\": \"${temp_num}°C\", \"tooltip\": \"${tooltip}\", \"class\": \"$class\"}"
+echo "{\"text\": \"$text\", \"tooltip\": \"${tooltip}\", \"class\": \"$class\"}"
