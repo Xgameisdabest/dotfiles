@@ -111,7 +111,7 @@ main_menu() {
 				rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: $full_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row $row -mesg "$(echo -e " MODE: $power_mode_status")" -p " Full 󱐋 "
 			else
 				# DESKTOP FALLBACK: If no battery status matches
-				rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: $full_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row $row -mesg "$(echo -e " MODE: $power_mode_status\n STATUS: Desktop")" -p " AC 󰚥 "
+				rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row $row -mesg "$(echo -e " MODE: $power_mode_status\n STATUS: Desktop")" -p " AC 󰚥 "
 			fi
 		fi
 	}
