@@ -41,8 +41,8 @@ main_menu() {
 		status="$(</sys/class/power_supply/BAT0/status)"
 		bat_percentage="$(</sys/class/power_supply/BAT0/capacity)%"
 	else
-		status=""
-		bat_percentage=""
+		status="null"
+		bat_percentage="null"
 	fi
 	power_mode_status="$(powerprofilesctl get)"
 
