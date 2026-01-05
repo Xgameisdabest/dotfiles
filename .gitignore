@@ -1,3 +1,2 @@
-# Ignore only lazy-lock.json inside dotfiles/.config/nvim
 .config/nvim/lazy-lock.json
 .config/tmux/plugins/
