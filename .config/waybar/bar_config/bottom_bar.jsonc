@@ -8,7 +8,6 @@
 	"spacing": 4,
 	"modules-left": [
 		"custom/padd",
-		"custom/hyprland-settings",
 		"custom/hyprsunset",
 		"custom/notification-center",
 		"custom/temperature",
