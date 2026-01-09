@@ -111,6 +111,7 @@ if [[ $- == *i* ]]; then
 	alias du="du -h"
 	alias lsl="ls -lt"
 	alias lsla="ls -lta"
+	alias lst='lsd --tree'
 	alias py=python3
 	alias nfetch=neofetch
 	alias v=nvim
