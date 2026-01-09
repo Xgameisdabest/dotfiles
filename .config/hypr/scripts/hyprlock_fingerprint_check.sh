@@ -1,4 +1,5 @@
 #!/bin/bash
-if [[ ! -z $(fprintd-list $USER 2>/dev/null) ]] || [[ $(fprintd-list $USER) =~ "No devices available" ]]; then
+
+if fprintd-list $USER 2>/dev/null | grep -q "finger"; then
 	echo "."
 fi
