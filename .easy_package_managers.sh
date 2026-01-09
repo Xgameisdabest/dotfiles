@@ -12,17 +12,16 @@ if [[ -f /etc/os-release ]]; then
     . /etc/os-release
     
     if [[ -n "${ID}" ]]; then
-    	distro="${ID}"
+        distro="${ID}"
     else
-	distro="Unknown"
+        distro="Unknown"
     fi
 
     if [[ -n "${ID_LIKE}" ]]; then
-	distro_like="${ID_LIKE}"
+        distro_like="${ID_LIKE}"
     else
-	distro_like="${ID}"
+        distro_like="${ID}"
     fi
-
 else
     echo -e " ${red} Easy Package Manager: ERROR - Cannot detect Linux distribution!${reset}"
 fi
@@ -34,6 +33,7 @@ set_apt_aliases() {
     alias install="sudo apt install"
     alias reinstall="sudo apt reinstall"
     alias remove="sudo apt remove"
+    alias purge="sudo apt purge"
     alias autoclean="sudo apt autoclean"
     alias autoremove="sudo apt autoremove"
     echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}apt${reset} for $distro (${distro_like})"
@@ -46,6 +46,8 @@ set_dnf_aliases() {
     alias install="sudo dnf install"
     alias reinstall="sudo dnf reinstall"
     alias remove="sudo dnf remove"
+    # DNF doesn't have a distinct purge; 'remove' usually handles cleanup
+    alias purge="sudo dnf remove" 
     alias autoclean="echo 'dnf does not require autoclean'"
     alias autoremove="sudo dnf autoremove"
     echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}dnf${reset} for $distro (${distro_like})"
@@ -59,23 +61,25 @@ set_arch_aliases() {
         alias install="yay -S"
         alias reinstall="yay -S --needed"
         alias remove="yay -R"
+        alias purge="yay -Rns"
         alias autoclean="yay -Sc"
         alias autoremove="yay -Rns \$(pacman -Qdtq)"
-	echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}yay${reset} for $distro (${distro_like})"
+    echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}yay${reset} for $distro (${distro_like})"
     elif command -v pacman &>/dev/null; then
         alias update="sudo pacman -Sy"
         alias upgrade="sudo pacman -Su"
         alias install="sudo pacman -S"
         alias reinstall="sudo pacman -S --needed"
         alias remove="sudo pacman -R"
+        alias purge="sudo pacman -Rns"
         alias autoclean="sudo pacman -Sc"
         alias autoremove="sudo pacman -Rns \$(pacman -Qdtq)"
-	echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}pacman${reset} for $distro (${distro_like})"
+    echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}pacman${reset} for $distro (${distro_like})"
     fi
 }
 
 # Determine alias setup
-if [[ "$distro" == "debian" || "$distro_like" == *"debian"* ]]; then
+if [[ "$distro" == "debian" || "$distro_like" == *"debian"* || "$distro" == "ubuntu" ]]; then
     set_apt_aliases
 elif [[ "$distro" == "fedora" || "$distro_like" == *"fedora"* ]]; then
     set_dnf_aliases
