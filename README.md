@@ -260,8 +260,20 @@ cava_background=true #(OPTIONS: true/false) (Relaunch window manager required)
 __FOR HYPRLAND__<BR>
 
 Now support custom configs. <BR>
+
+At first, you might want to create the directory:
+```
+mkdir ~/.config/hypr/custom/
+```
+
 Put your configs such as Hyprland configs and env vars, also executables into this directory: <BR>
 ```
-~/.config/hypr/custom/
+#FOR EXAMPLE
+ custom
+├──  system.conf
+├──  user_custom_config.conf
+└──  window.conf
 ```
 Hyprland will automatically scan that directory and override any default settings that this dotfiles come with.
+
+__Have fun__
