@@ -269,10 +269,10 @@ mkdir ~/.config/hypr/custom/
 Put your configs such as Hyprland configs and env vars, also executables into this directory: <BR>
 ```
 #FOR EXAMPLE
- custom
-├──  system.conf
-├──  user_custom_config.conf
-└──  window.conf
+~/.config/hypr/custom
+               ├── system.conf
+               ├── user_custom_config.conf
+               └── window.conf
 ```
 Hyprland will automatically scan that directory and override any default settings that this dotfiles come with.
 
