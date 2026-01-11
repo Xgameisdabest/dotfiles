@@ -262,18 +262,40 @@ __FOR HYPRLAND__<BR>
 Now support custom configs. <BR>
 
 At first, you might want to create the directory:
+
 ```
 mkdir ~/.config/hypr/custom/
 ```
 
 Put your configs such as Hyprland configs and env vars, also executables into this directory: <BR>
+
 ```
 #FOR EXAMPLE
 ~/.config/hypr/custom
                ├── system.conf
                ├── user_custom_config.conf
+               ├── startup_script.sh
+               ├── it_can_be_anything_that_you_want.conf
                └── window.conf
 ```
-Hyprland will automatically scan that directory and override any default settings that this dotfiles come with.
+
+Hyprland will automatically scan that directory and override any default settings that this dotfiles come with (__for .conf files__). <BR>
+For .sh files, such as startup scripts, you need to create a .conf file such as ```startup.conf``` or any other name, then put the script you want to exec in the __.conf__ file.<BR>
+
+```
+#EXAMPLE
+# Custom config goes here.
+# Use the custom directory for your own thing
+# For example:
+# exec = ~/.config/hypr/custom/your_own_thing.sh
+#
+# Maybe setup some env vars for a specific machine:
+# env = RADV_PERFTEST,gpl,aco
+#
+# or a Hyprland setting you do not want:
+# misc {
+# force_default_wallpaper = 1
+#}
+```
 
 __Have fun__
