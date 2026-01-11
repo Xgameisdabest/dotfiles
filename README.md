@@ -14,6 +14,7 @@ __If you encounter any issue just open an issue on the github page, thanks!__<BR
 > I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.
 
 ## Preview
+
 V1 - use ```git checkout 4404458``` (use ```git checkout 08e8942``` if you want bottom bar) to use this version and ```git checkout main``` if you want to use the latest
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview.jpg?raw=true)
@@ -37,6 +38,7 @@ Material expressive inspired bar style (For Hyprland V4)
 ## Installation
 
 Install the font:
+
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 
 > [!NOTE]
@@ -48,6 +50,7 @@ Install the font:
 > [Link to build kitty from source](https://sw.kovidgoyal.net/kitty/build/)
 
 My way to install and build kitty from source:
+
 ```
 mkdir testenv && cd testenv
 git clone https://github.com/kovidgoyal/kitty.git && cd kitty
@@ -57,6 +60,7 @@ ln -s ~/testenv/kitty/kitty/launcher/kitten ~/.local/bin/kitten
 ```
 
 To maintain kitty, I created a file in kitty repo directory and named it as update_kitty.sh and give it permission to run ```chmod +x update_kitty.sh```
+
 ```
 #!/bin/bash
 
@@ -67,15 +71,16 @@ sudo rm -rf ~/go/ && echo "Build deps removed!"
 ```
 
 Install dependencies for i3 (for ```apt```)
+
 ```
 sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty x11-utils awk touchegg unclutter-xfixes paplay
 ```
-
 
 > [!NOTE]
 > Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
 
 Hyprland is now supported! Here's how I set it up on my system.
+
 ```
 sudo add-apt-repository ppa:cppiber/hyprland
 sudo apt update
@@ -83,12 +88,14 @@ sudo apt install zsh hyprland swaybg hyprsunset hypridle hyprlock waybar rofi nc
 ```
 
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
+
 ```
 sudo apt install curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 Install zsh plugins (zsh-autopair zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
+
 ```
 cd ~/.oh-my-zsh/custom/plugins/
 git clone https://github.com/hlissner/zsh-autopair.git
@@ -98,6 +105,7 @@ git clone https://github.com/Aloxaf/fzf-tab.git
 ```
 
 Install the dotfiles
+
 ```
 cd ~
 git clone https://github.com/Xgameisdabest/dotfiles.git
@@ -112,14 +120,16 @@ i3-msg restart
 
 ## USAGE ([link to the wiki (still under development)](https://github.com/Xgameisdabest/dotfiles/wiki))
 
-THIS IS ***NOT*** YOUR NORMAL TYPICAL ***DESKTOP*** (the desktop interface on W*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ***TILING WINDOW MANAGER*** (i3, hyprland, sway, dwm...).
+THIS IS ___NOT___ YOUR NORMAL TYPICAL ___DESKTOP___ (the desktop interface on W*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ___TILING WINDOW MANAGER___ (i3, hyprland, sway, dwm...).
 
-It is highly recommend to go on the web to search [what is a tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager) and its usage so you can know the basics of a ***TILING WINDOW MANAGER***.
+It is highly recommend to go on the web to search [what is a tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager) and its usage so you can know the basics of a ___TILING WINDOW MANAGER___.
 
 Here is the list of keybinds for this dotfiles (all of this can be viewed in the desktop itself):
+
 - Press (win/mod + shift + r) to reload the tiling window manager (i3wm)
+
 > [!NOTE]
-> helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload. ***Do it multiple times if the bar is glitching!***
+> helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload. ___Do it multiple times if the bar is glitching!___
 
 - Press (win/mod + =) to open the keybinds menu
 - Press (win/mod + i) to open the settings menu (require some knowledge of bash scripting and specific program config syntax)
@@ -135,11 +145,13 @@ Here is the list of keybinds for this dotfiles (all of this can be viewed in the
 
 __EASY PACKAGE MANAGER (COMMAND LINE)__ (Only available on V3 and above)<BR>
 Supported Distros (and package managers):
+
 - Arch (yay, pacman)
 - Fedora (dnf)
 - Debian/Ubuntu (apt)
 
 __USAGE__
+
 - ```update```: update the repo
 - ```upgrade```: upgrade the packages
 - ```install <package name>```: install the package
@@ -151,19 +163,24 @@ __USAGE__
 ## CONFIGURATION
 
 Run this command to generate the config dir and the file itself:
+
 ```
 mkdir ~/.config/dtf-config/
 touch ~/.config/dtf-config/config
 ```
+
 FORMAT CONFIG
+
 ```
 KEY=VALUE (no space before and after the equal sign)
 # This is a comment
 ```
+
 > [!NOTE]
 > MAKE SURE TO RELOAD (win/mod + shift + r) TO APPLY THE CHANGES
 
 AVAILABLE CONFIG KEYS (ALL OF THESE BELOW ARE DEFAULT CONFIGS):
+
 ```
 # PRESS MOD(WINDOWS KEY) + SHIFT + R TO RELOAD IN ORDER TO APPLY CHANGES
 
@@ -239,3 +256,12 @@ brightness_changes_by_power_mode=false #(OPTIONS: true/false)
 # REQUIRE HYPR PLUGINS, hyprwinwrap scripts for fun
 cava_background=true #(OPTIONS: true/false) (Relaunch window manager required)
 ```
+
+__FOR HYPRLAND__<BR>
+
+Now support custom configs. <BR>
+Put your configs such as Hyprland configs and env vars, also executables into this directory: <BR>
+```
+~/.config/hypr/custom/
+```
+Hyprland will automatically scan that directory and override any default settings that this dotfiles come with.
