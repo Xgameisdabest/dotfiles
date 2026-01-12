@@ -16,6 +16,9 @@ return {
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
+			-- border style: bold, double, none, rounded, shadow, single, solid
+			local window_border_style = "bold"
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -23,8 +26,8 @@ return {
 					end,
 				},
 				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
+					completion = cmp.config.window.bordered({ border = window_border_style }),
+					documentation = cmp.config.window.bordered({ border = window_border_style }),
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<Up>"] = cmp.config.disable,
