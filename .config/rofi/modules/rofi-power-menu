@@ -75,7 +75,7 @@ $logout)
 		killall usb-watch.sh
 		killall udevadm
 		killall dunst
-		killall polkit-kde-authentication-agent-1
+		systemctl --user stop hyprpolkitagent
 		hyprctl dispatch exit
 	elif [[ $XDG_CURRENT_DESKTOP == "sway" ]]; then
 		waydroid session stop
