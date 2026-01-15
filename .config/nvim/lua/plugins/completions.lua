@@ -45,9 +45,7 @@ return {
 					{ name = "path" },
 					{ name = "treesitter" },
 					{ name = "luasnip" },
-					{ name = "ultisnips" },
-					{ name = "snippy" },
-					{ name = "cmdline" }
+					{ name = "ultisnips" }
 				}),
 			})
 			cmp.setup.cmdline({ "/", "?" }, {
