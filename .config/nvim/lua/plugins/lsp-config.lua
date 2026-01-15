@@ -30,6 +30,8 @@ return {
 					"biome",
 					"shfmt",
 					"stylua",
+					"clang-format",
+					"markdownlint",
 				},
 			})
 		end,
