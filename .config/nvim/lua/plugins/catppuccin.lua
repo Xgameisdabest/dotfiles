@@ -14,14 +14,14 @@ return {
 			styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
 				-- Styles (from :h highlight-args): bold underline undercurl underdouble underdotted underdashed inverse italic standout strikethrough altfont nocombine
 				comments = { "italic" }, -- Change the style of comments
-				conditionals = { "italic" },
-				loops = {},
-				functions = {},
+				conditionals = { "bold", "italic", "underline" },
+				loops = { "bold", "underline" },
+				functions = { "bold", "underdashed" },
 				keywords = {},
 				strings = {},
-				variables = {},
+				variables = { "underdotted", "italic" },
 				numbers = {},
-				booleans = {},
+				booleans = { "underline", "italic" },
 				properties = {},
 				types = {},
 				operators = {},
