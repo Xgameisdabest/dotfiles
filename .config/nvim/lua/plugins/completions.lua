@@ -36,6 +36,7 @@ return {
 			hb(0, "CmpItemKindText", { fg = "#1e1e2e", bg = colors.green })
 			hb(0, "CmpItemKindFile", { fg = "#1e1e2e", bg = colors.cyan })
 			hb(0, "CmpItemKindModule", { fg = "#1e1e2e", bg = colors.yellow })
+			hb(0, "CmpItemKindClass", { fg = "#1e1e2e", bg = colors.yellow })
 			hb(0, "CmpItemKindSnippet", { fg = "#1e1e2e", bg = colors.grey })
 			hb(0, "CmpItemKindField", { fg = "#1e1e2e", bg = colors.green })
 
