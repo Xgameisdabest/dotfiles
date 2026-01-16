@@ -13,10 +13,31 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"onsails/lspkind.nvim", -- Required for the sleek icons
+			"onsails/lspkind.nvim",
 		},
 		config = function()
 			local cmp = require("cmp")
+
+			local colors = {
+				blue = "#81ccee",
+				purple = "#cba6f7",
+				cyan = "#89dceb",
+				green = "#a6e3a1",
+				yellow = "#f9e2af",
+				red = "#f38ba8",
+				grey = "#45475a",
+			}
+
+			local hb = vim.api.nvim_set_hl
+			hb(0, "CmpItemKindFunction", { fg = "#1e1e2e", bg = colors.blue })
+			hb(0, "CmpItemKindMethod", { fg = "#1e1e2e", bg = colors.blue })
+			hb(0, "CmpItemKindVariable", { fg = "#1e1e2e", bg = colors.red })
+			hb(0, "CmpItemKindKeyword", { fg = "#1e1e2e", bg = colors.purple })
+			hb(0, "CmpItemKindText", { fg = "#1e1e2e", bg = colors.green })
+			hb(0, "CmpItemKindFile", { fg = "#1e1e2e", bg = colors.cyan })
+			hb(0, "CmpItemKindModule", { fg = "#1e1e2e", bg = colors.yellow })
+			hb(0, "CmpItemKindSnippet", { fg = "#1e1e2e", bg = colors.grey })
+			hb(0, "CmpItemKindField", { fg = "#1e1e2e", bg = colors.green })
 
 			cmp.setup({
 				snippet = {
@@ -47,7 +68,9 @@ return {
 							mode = "symbol_text",
 							maxwidth = 50,
 						})(entry, vim_item)
+
 						local strings = vim.split(kind.kind, "%s", { trimempty = true })
+						-- This part creates the "Pill" effect
 						kind.kind = " " .. (strings[1] or "") .. " "
 						kind.menu = "    (" .. (strings[2] or "") .. ")"
 
@@ -67,9 +90,12 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
+					{ name = "vsnip" },
 					{ name = "buffer" },
 					{ name = "path" },
+					{ name = "treesitter" },
+					{ name = "luasnip" },
+					{ name = "ultisnips" },
 				}),
 			})
 
