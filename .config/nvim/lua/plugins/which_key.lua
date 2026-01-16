@@ -4,51 +4,20 @@ return {
 	opts = {
 		-- Default settings
 		preset = "icons",
-	},
-	keys = {
-		{
-			"<leader>?",
-			function()
-				require("which-key").show({ global = false })
-			end,
-			desc = "Buffer Local Keymaps (which-key)",
+		plugins = {
+			presets = {
+				operators = false, -- prevents help for d, c, y, etc.
+				motions = false, -- prevents help for v, h, j, k, l
+			},
+		},
+		disable = {
+			modes = { "v" }, -- This disables the popup entirely in visual mode
 		},
 	},
 	config = function(_, opts)
 		local wk = require("which-key")
 		wk.setup(opts)
 
-		-- 1. Global Mappings (Movement, Buffers, UI)
-		wk.add({
-			-- WASD Movement
-			{ "w", "k", desc = "Up" },
-			{ "s", "j", desc = "Down" },
-			{ "a", "h", desc = "Left" },
-			{ "d", "l", desc = "Right" },
-			-- Shift Movement
-			{ "S-w", "<PageUp>", desc = "Page Up" },
-			{ "S-s", "<PageDown>", desc = "Page Down" },
-			{ "S-a", "^", desc = "Line Start" },
-			{ "S-d", "$", desc = "Line End" },
-			-- Window Management (C-w)
-			{ "<C-w>w", "<C-W>K", desc = "Move Window Up" },
-			{ "<C-w>s", "<C-W>J", desc = "Move Window Down" },
-			{ "<C-w>a", "<C-W>H", desc = "Move Window Left" },
-			{ "<C-w>d", "<C-W>L", desc = "Move Window Right" },
-			-- Buffers & Editor
-			{ "<TAB>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
-			{ "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev Buffer" },
-			{ "<C-a>", "ggVG", desc = "Select All" },
-			{ "<C-e>", "<cmd>Neotree toggle<CR>", desc = "File Explorer" },
-			{ "<C-u>", "<Cmd>UndotreeToggle<CR>", desc = "Undo Tree" },
-			{ "ee", "<cmd>w<CR>", desc = "Save File" },
-			{ "qq", "<cmd>q<CR>", desc = "Quit" },
-			{ "Q", "<cmd>wq<CR>", desc = "Save & Quit" },
-			{ ";", "<cmd>FineCmdline<CR>", desc = "Command Line" },
-			{ "/", ":SearchBoxMatchAll<CR>", desc = "Search" },
-		})
-
-		-- 2. Leader Mappings
 		wk.add({
 			{ "<leader><bs>", "<cmd>q<CR>", desc = "Close Window" },
 			{ "<leader><Tab>", "<cmd>Telescope buffers<CR>", desc = "Switch Buffers" },
@@ -90,7 +59,7 @@ return {
 			{ "<leader>}", ":vsplit #<CR>", desc = "V-Split Previous" },
 		})
 
-		-- 3. Visual Mode Mappings
+		-- -- 3. Visual Mode Mappings
 		wk.add({
 			mode = "v",
 			{ "w", "k", desc = "Up" },
