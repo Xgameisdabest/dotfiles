@@ -4,7 +4,8 @@ return {
 		require("nvim-highlight-colors").setup({
 			-- virtual_symbol = "■",
 			virtual_symbol = "",
-			render = "virtual",
+			-- Options: background, virtual, foreground
+			render = "background",
 			virtual_symbol_prefix = "",
 			virtual_symbol_suffix = " ",
 			enable_tailwind = true

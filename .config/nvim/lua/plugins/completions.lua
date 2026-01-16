@@ -28,17 +28,29 @@ return {
 				grey = "#45475a",
 			}
 
+			local colors_dark = {
+				blue = "#0a2c4d",
+				purple = "#514263",
+				cyan = "#345a6a",
+				green = "#3a4f38",
+				yellow = "#3e382c",
+				red = "#4d212c",
+				grey = "#26282f",
+			}
+
 			local hb = vim.api.nvim_set_hl
-			hb(0, "CmpItemKindFunction", { fg = "#1e1e2e", bg = colors.blue })
-			hb(0, "CmpItemKindMethod", { fg = "#1e1e2e", bg = colors.blue })
-			hb(0, "CmpItemKindVariable", { fg = "#1e1e2e", bg = colors.red })
-			hb(0, "CmpItemKindKeyword", { fg = "#1e1e2e", bg = colors.purple })
-			hb(0, "CmpItemKindText", { fg = "#1e1e2e", bg = colors.green })
-			hb(0, "CmpItemKindFile", { fg = "#1e1e2e", bg = colors.cyan })
-			hb(0, "CmpItemKindModule", { fg = "#1e1e2e", bg = colors.yellow })
-			hb(0, "CmpItemKindClass", { fg = "#1e1e2e", bg = colors.yellow })
-			hb(0, "CmpItemKindSnippet", { fg = "#1e1e2e", bg = colors.grey })
-			hb(0, "CmpItemKindField", { fg = "#1e1e2e", bg = colors.green })
+			hb(0, "CmpItemKindFunction", { fg = colors.blue, bg = colors_dark.blue })
+			hb(0, "CmpItemKindMethod", { fg = colors.blue, bg = colors_dark.blue })
+			hb(0, "CmpItemKindVariable", { fg = colors.red, bg = colors_dark.red })
+			hb(0, "CmpItemKindKeyword", { fg = colors.purple, bg = colors_dark.purple })
+			hb(0, "CmpItemKindText", { fg = colors.green, bg = colors_dark.green })
+			hb(0, "CmpItemKindFile", { fg = colors.cyan, bg = colors_dark.cyan })
+			hb(0, "CmpItemKindModule", { fg = colors.yellow, bg = colors_dark.yellow })
+			hb(0, "CmpItemKindClass", { fg = colors.yellow, bg = colors_dark.yellow })
+			hb(0, "CmpItemKindSnippet", { fg = colors.grey, bg = colors_dark.grey })
+			hb(0, "CmpItemKindField", { fg = colors.green, bg = colors_dark.green })
+			hb(0, "CmpItemKindProperty", { fg = colors.green, bg = colors_dark.green })
+			hb(0, "CmpItemKindEnum", { fg = colors.green, bg = colors_dark.green })
 
 			cmp.setup({
 				snippet = {
@@ -65,19 +77,32 @@ return {
 				formatting = {
 					fields = { "kind", "abbr", "menu" },
 					format = function(entry, vim_item)
+						-- 1. Get the base formatting from lspkind
 						local kind = require("lspkind").cmp_format({
 							mode = "symbol_text",
 							maxwidth = 50,
 						})(entry, vim_item)
 
+						-- 2. Apply nvim-highlight-colors formatting
+						-- This specifically looks for color patterns in the entry
+						local color_item = require("nvim-highlight-colors").format(entry, { kind = vim_item.abbr })
+
+						-- 3. The "Pill" effect logic for the KIND column
 						local strings = vim.split(kind.kind, "%s", { trimempty = true })
-						-- This part creates the "Pill" effect
 						kind.kind = " " .. (strings[1] or "") .. " "
 						kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+						-- 4. Integration: If it's a color, customize the ABBR column
+						if color_item.abbr_hl_group then
+							-- This keeps the hex code/name and adds the color icon
+							kind.abbr = color_item.abbr
+							kind.abbr_hl_group = color_item.abbr_hl_group
+						end
 
 						return kind
 					end,
 				},
+
 				mapping = cmp.mapping.preset.insert({
 					["<Up>"] = cmp.config.disable,
 					["<Down>"] = cmp.config.disable,
@@ -91,11 +116,11 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
 					{ name = "vsnip" },
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "treesitter" },
-					{ name = "luasnip" },
 					{ name = "ultisnips" },
 				}),
 			})
