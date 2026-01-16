@@ -24,11 +24,18 @@ return {
 		km.set("n", "<S-s>", function()
 			neoscroll.ctrl_f({ duration = 150 })
 		end, { desc = "Page Down" })
+
 		km.set("n", "<S-w>", function()
 			neoscroll.ctrl_b({ duration = 150 })
 		end, { desc = "Page Up" })
+		
+		km.set("n", "<PageDown>", function()
+			neoscroll.ctrl_f({ duration = 150 })
+		end, { desc = "Page Down" })
 
-		km.set("n", "<S-a>", "^", { noremap = true, silent = true, desc = "Start of line" })
-		km.set("n", "<S-d>", "$", { noremap = true, silent = true, desc = "End of line" })
+		km.set("n", "<PageUp>", function()
+			neoscroll.ctrl_b({ duration = 150 })
+		end, { desc = "Page Up" })
+
 	end,
 }
