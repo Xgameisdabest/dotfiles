@@ -12,10 +12,11 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"onsails/lspkind.nvim", -- Required for the sleek icons
+		},
 		config = function()
 			local cmp = require("cmp")
-			-- border style: bold, double, none, rounded, shadow, single, solid
-			local window_border_style = "rounded"
 
 			cmp.setup({
 				snippet = {
@@ -23,9 +24,35 @@ return {
 						require("luasnip").lsp_expand(args.body)
 					end,
 				},
+				-- 1. NvChad Window Styling
 				window = {
-					completion = cmp.config.window.bordered({ border = window_border_style }),
-					documentation = cmp.config.window.bordered({ border = window_border_style }),
+					completion = {
+						border = "rounded",
+						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+						zindex = 1001,
+						scrolloff = 0,
+						col_offset = -3, -- Moves the menu slightly left for that specific NvChad look
+						side_padding = 0,
+					},
+					documentation = {
+						border = "rounded",
+						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+					},
+				},
+				-- 2. NvChad Item Formatting
+				formatting = {
+					fields = { "kind", "abbr", "menu" },
+					format = function(entry, vim_item)
+						local kind = require("lspkind").cmp_format({
+							mode = "symbol_text",
+							maxwidth = 50,
+						})(entry, vim_item)
+						local strings = vim.split(kind.kind, "%s", { trimempty = true })
+						kind.kind = " " .. (strings[1] or "") .. " "
+						kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+						return kind
+					end,
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<Up>"] = cmp.config.disable,
@@ -40,19 +67,16 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "vsnip" },
+					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
-					{ name = "treesitter" },
-					{ name = "luasnip" },
-					{ name = "ultisnips" }
 				}),
 			})
+
+			-- Cmdline setup remains mostly the same
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
-				},
+				sources = { { name = "buffer" } },
 			})
 		end,
 	},
