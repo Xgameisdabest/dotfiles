@@ -7,7 +7,6 @@ title=$(hyprctl activewindow -j | jq -r '.class')
 if [ -z "$title" ] || [ "$title" = "null" ]; then
 	echo "{\"text\": \"󰖲\"}"
 else
-	# Truncate to 17 characters
 	short_title="${title:0:15}"
 	echo "{\"text\": \"󰖯 $short_title\"}"
 fi

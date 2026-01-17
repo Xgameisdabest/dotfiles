@@ -273,6 +273,31 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
+/* width on hover */
+#custom-notification-center:hover,
+#custom-power:hover,
+#custom-bluetooth.one-device:hover{
+	min-width: 27px;
+}
+
+#custom-network:hover,
+#battery:hover,
+#custom-bluetooth.multiple-devices:hover,
+#custom-hyprsunset:hover{
+	min-width: 47px;
+}
+
+#custom-audio:hover,
+#battery:hover,
+#custom-temperature:hover{
+	min-width: 87px;
+}
+
+#clock:hover{
+	min-width: 147px;
+}
+
+/* colors on hover */
 #custom-temperature.critical:hover,
 #custom-power:hover,
 #custom-network.strength-0:hover,
