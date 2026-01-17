@@ -49,8 +49,7 @@ return {
 				align = "center",
 				margin = 5,
 				content = {
-					"Neovim v" ..
-					vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
+					"Neovim v" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
 				},
 				highlight = "Special", -- Gives it a distinct color
 			},
@@ -64,12 +63,13 @@ return {
 				title = "Basic Commands",
 				margin = 5,
 				content = {
-					{ " Find File", "Telescope find_files", "Space+f" },
-					{ "󰍉 Find Word", "Telescope live_grep", "/" },
-					{ " Recent Files", "Telescope oldfiles", "Space+of" },
-					{ " File Browser", "Telescope find_files", "Space+fb" },
+					{ " Recent Files", "Telescope oldfiles", "Space+fo" },
+					{ " Find File", "Telescope find_files", "Space+ff" },
 					{ " New File", "lua require'startup'.new_file()", "Space+nf" },
 					{ " Open Neotree", "Neotree", "Ctrl+e" },
+					{ "󰒲 Open Lazy", "Lazy", "Space+L" },
+					{ "󰢷 Open Mason", "Mason", "Space+M" },
+					{ "󰓜 Open Store", "Store", "Space+S" },
 				},
 				highlight = "String",
 				default_color = "",
@@ -99,7 +99,7 @@ return {
 			options = {
 				mapping_keys = true,
 				cursor_column = 0.5,
-				empty_lines_between_mappings = true,
+				empty_lines_between_mappings = false,
 				disable_statuslines = true,
 				paddings = { 1, 1, 1, 1 },
 			},

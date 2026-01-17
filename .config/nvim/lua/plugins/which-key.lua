@@ -24,7 +24,6 @@ return {
 			{ "<leader>SO", "<cmd>source %<CR>", desc = "Source Config" },
 			{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action" },
 			{ "<leader>db", ":DBUIToggle<CR>", desc = "Database UI" },
-			{ "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Find Files" },
 			{ "<leader>gf", vim.lsp.buf.format, desc = "Format Code" },
 			{
 				"<leader>gl",
@@ -57,6 +56,11 @@ return {
 			{ "<leader>]", "<cmd>FineCmdline vsplit <CR>", desc = "Vertical Split" },
 			{ "<leader>{", ":split #<CR>", desc = "Split Previous" },
 			{ "<leader>}", ":vsplit #<CR>", desc = "V-Split Previous" },
+
+			{ "<leader>f", group = "Find" },
+			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files"},
+			{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Find Recent/Old Files"},
+
 		})
 
 		-- -- 3. Visual Mode Mappings

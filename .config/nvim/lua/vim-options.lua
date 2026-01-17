@@ -83,7 +83,8 @@ km.set("n", "K", vim.lsp.buf.hover, {})
 km.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 km.set("n", "<leader><Tab>", "<cmd>Telescope buffers<CR>")
-km.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
+km.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
+km.set("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>")
 km.set("n", "<leader>h", "<cmd>Telescope command_history<CR>")
 km.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>")
 
