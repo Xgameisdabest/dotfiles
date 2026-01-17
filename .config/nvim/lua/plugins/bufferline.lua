@@ -3,8 +3,6 @@ return {
 	version = "*",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		vim.opt.termguicolors = true
-
 		vim.api.nvim_set_hl(0, "BufferLineOffsetLabel", {
 			fg = "#ECBE7B",
 			bold = true,
@@ -26,7 +24,7 @@ return {
 			"duplicate_selected",
 			"indicator_selected",
 			"pick_selected",
-			"modified_selected"
+			"modified_selected",
 		}
 
 		local highlights = {}
@@ -54,6 +52,11 @@ return {
 						separator = true,
 						highlight = "BufferLineOffsetLabel",
 					},
+				},
+				hover = {
+					enabled = true,
+					delay = 5,
+					reveal = { "close" },
 				},
 			},
 			highlights = highlights,
