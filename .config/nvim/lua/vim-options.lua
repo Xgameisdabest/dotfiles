@@ -8,7 +8,7 @@ local km = vim.keymap
 -- general config
 g.mapleader = " "
 g.termguicolors = true
-
+o.mousemoveevent = true
 o.number = true
 o.updatetime = 555 -- miliseconds
 o.relativenumber = false
