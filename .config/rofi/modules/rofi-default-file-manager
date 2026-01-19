@@ -1,0 +1,65 @@
+#!/bin/bash
+
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+#list of desktop file name
+nautilus="nautilus.desktop"
+dolphin="org.kde.dolphin.desktop"
+thunar="thunar.desktop"
+pcmanfm="pcmanfm.desktop"
+nemo="nemo.desktop"
+
+#select list
+nautilus_select="  Nautilus (Gnome)"
+dolphin_select="  Dolphin (Kde)"
+thunar_select="  Thunar (XFCE)"
+pcmanfm_select="  Pcmanfm (LXDE/LXQt)"
+nemo_select="  Nemo (Cinnamon)"
+back="Back 󰌍"
+quit="Exit 󰈆 "
+
+main_menu_height=365px
+main_menu_width=375px
+
+select_menu=$(echo -e "$thunar_select\n$nautilus_select\n$dolphin_select\n$pcmanfm_select\n$nemo_select\n$back\n$quit" | rofi -dmenu -i -p ' Default File Managers   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+
+case $select_menu in
+$nautilus_select)
+	xdg-mime default $nautilus inode/directory
+	update-desktop-database ~/.local/share/applications
+	exit 0
+	;;
+$dolphin_select)
+	xdg-mime default $dolphin inode/directory
+	update-desktop-database ~/.local/share/applications
+	exit 0
+	;;
+$thunar_select)
+	xdg-mime default $thunar inode/directory
+	update-desktop-database ~/.local/share/applications
+	exit 0
+	;;
+$pcmanfm_select)
+	xdg-mime default $pcmanfm inode/directory
+	update-desktop-database ~/.local/share/applications
+	exit 0
+	;;
+$nemo_select)
+	xdg-mime default $nemo inode/directory
+	update-desktop-database ~/.local/share/applications
+	exit 0
+	;;
+$back)
+	~/.config/rofi/modules/rofi-user-settings
+	exit 0
+	;;
+*)
+	exit 0
+	;;
+esac

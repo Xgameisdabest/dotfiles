@@ -8,16 +8,17 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=290px
+main_menu_height=325px
 main_menu_width=375px
 
 wm_settings="󰢹  Desktop Settings "
 usr_settings="  User Settings"
 monitor_settings="󱒃  Monitor Settings "
 power_mode_settings="󰓅  Power Mode Settings "
+default_file_manager="  Default File Manger "
 quit="Exit 󰈆 "
 
-select=$(echo -e "$wm_settings\n$usr_settings\n$monitor_settings\n$power_mode_settings\n$quit" | rofi -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+select=$(echo -e "$wm_settings\n$usr_settings\n$monitor_settings\n$power_mode_settings\n$default_file_manager\n$quit" | rofi -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
 
 case $select in
 $wm_settings)
@@ -39,5 +40,8 @@ $monitor_settings)
 	;;
 $power_mode_settings)
 	LAUNCHED_FROM_SETTINGS=true ~/.config/rofi/modules/rofi-power-mode
+	;;
+$default_file_manager)
+	~/.config/rofi/modules/rofi-default-file-manager
 	;;
 esac
