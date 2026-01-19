@@ -8,14 +8,21 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-#list of desktop file name
-nautilus="nautilus.desktop"
-dolphin="org.kde.dolphin.desktop"
-thunar="thunar.desktop"
-pcmanfm="pcmanfm.desktop"
-nemo="nemo.desktop"
+# Apps (Binary names)
+nautilus_bin="nautilus"
+dolphin_bin="dolphin"
+thunar_bin="thunar"
+pcmanfm_bin="pcmanfm"
+nemo_bin="nemo"
 
-#select list
+# Desktop files
+nautilus_desktop="nautilus.desktop"
+dolphin_desktop="org.kde.dolphin.desktop"
+thunar_desktop="thunar.desktop"
+pcmanfm_desktop="pcmanfm.desktop"
+nemo_desktop="nemo.desktop"
+
+# Selection list
 nautilus_select="  Nautilus (Gnome)"
 dolphin_select="  Dolphin (Kde)"
 thunar_select="  Thunar (XFCE)"
@@ -27,39 +34,38 @@ quit="Exit 󰈆 "
 main_menu_height=365px
 main_menu_width=375px
 
-select_menu=$(echo -e "$thunar_select\n$nautilus_select\n$dolphin_select\n$pcmanfm_select\n$nemo_select\n$back\n$quit" | rofi -dmenu -i -p ' Default File Managers   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+# Function to check, install, and apply
+apply_change() {
+	local bin=$1
+	local desktop=$2
+	local name=$3
+
+	if ! command -v "$bin" >/dev/null 2>&1; then
+		notify-send "Installation Required" "$name is not installed. Launching terminal to install..."
+
+		# Launch terminal to run your 'install' alias/script
+		# We use 'bash -i' to ensure aliases from your .bashrc are loaded
+		${TERMINAL:-kitty} -e zsh -ic "echo '--- Installing $name ---'; install $bin; echo 'Press any key to exit.'; read -n 1"
+	fi
+
+	# Re-check if installation was successful before setting default
+	if command -v "$bin" >/dev/null 2>&1; then
+		xdg-mime default "$desktop" inode/directory
+		update-desktop-database ~/.local/share/applications
+		notify-send "File Manager Updated" "Default set to $name"
+	else
+		notify-send "Action Cancelled" "$name was not installed. No changes made."
+	fi
+}
+
+select_menu=$(echo -e "$thunar_select\n$nautilus_select\n$dolphin_select\n$pcmanfm_select\n$nemo_select\n$back\n$quit" | rofi -dmenu -i -p ' Default File Managers   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme "$path_to_theme")
 
 case $select_menu in
-$nautilus_select)
-	xdg-mime default $nautilus inode/directory
-	update-desktop-database ~/.local/share/applications
-	exit 0
-	;;
-$dolphin_select)
-	xdg-mime default $dolphin inode/directory
-	update-desktop-database ~/.local/share/applications
-	exit 0
-	;;
-$thunar_select)
-	xdg-mime default $thunar inode/directory
-	update-desktop-database ~/.local/share/applications
-	exit 0
-	;;
-$pcmanfm_select)
-	xdg-mime default $pcmanfm inode/directory
-	update-desktop-database ~/.local/share/applications
-	exit 0
-	;;
-$nemo_select)
-	xdg-mime default $nemo inode/directory
-	update-desktop-database ~/.local/share/applications
-	exit 0
-	;;
-$back)
-	~/.config/rofi/modules/rofi-user-settings
-	exit 0
-	;;
-*)
-	exit 0
-	;;
+"$nautilus_select") apply_change "$nautilus_bin" "$nautilus_desktop" "Nautilus" ;;
+"$dolphin_select") apply_change "$dolphin_bin" "$dolphin_desktop" "Dolphin" ;;
+"$thunar_select") apply_change "$thunar_bin" "$thunar_desktop" "Thunar" ;;
+"$pcmanfm_select") apply_change "$pcmanfm_bin" "$pcmanfm_desktop" "PCManFM" ;;
+"$nemo_select") apply_change "$nemo_bin" "$nemo_desktop" "Nemo" ;;
+"$back") ~/.config/rofi/modules/rofi-user-settings ;;
+*) exit 0 ;;
 esac
