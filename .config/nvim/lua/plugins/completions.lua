@@ -45,6 +45,7 @@ return {
 			hb(0, "CmpItemKindKeyword", { fg = colors.purple, bg = colors_dark.purple })
 			hb(0, "CmpItemKindText", { fg = colors.green, bg = colors_dark.green })
 			hb(0, "CmpItemKindFile", { fg = colors.cyan, bg = colors_dark.cyan })
+			hb(0, "CmpItemKindFolder", { fg = colors.cyan, bg = colors_dark.cyan })
 			hb(0, "CmpItemKindModule", { fg = colors.yellow, bg = colors_dark.yellow })
 			hb(0, "CmpItemKindClass", { fg = colors.yellow, bg = colors_dark.yellow })
 			hb(0, "CmpItemKindSnippet", { fg = colors.grey, bg = colors_dark.grey })
