@@ -88,7 +88,7 @@ return {
 					"Move around using w,a,s,d and arrow keys",
 					"Move at the end of line, jump between lines by SHIFT + (w,a,s,d)",
 					"Enter Insert/Write Mode by i",
-					"Change modes via ctrl+space or esc",
+					"Change between insert and normal mode via ctrl+space or esc",
 					"Exit and don't save via qq",
 					"Exit and save via eeqq",
 				},
