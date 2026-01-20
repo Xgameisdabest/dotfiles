@@ -121,7 +121,7 @@ main_menu() {
 		fi
 
 		if command -v auto-cpufreq >/dev/null 2>&1; then
-			rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: 310px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 2 -mesg "$(echo -e " MODE: $power_mode_status\n INFO: $time_left")" -p " $bat_percentage 󰁹 "
+			rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: 310px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg "$(echo -e " MODE: $power_mode_status\n INFO: $time_left")" -p " $bat_percentage 󰁹 "
 		else
 			# Battery Logic
 			if [[ $status == "Discharging" ]]; then
