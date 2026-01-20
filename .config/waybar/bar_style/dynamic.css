@@ -277,6 +277,7 @@ tooltip label {
 #custom-notification-center:hover,
 #custom-power:hover,
 #custom-bluetooth.powered-off:hover,
+#custom-bluetooth.no-devices:hover,
 #custom-bluetooth.one-device:hover{
 	min-width: 27px;
 }
