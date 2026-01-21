@@ -1,29 +1,23 @@
 #!/bin/bash
 
+# Configure
 volume_step=3
 brightness_step=3
 max_volume=153
 min_volume=0
 notification_timeout=900
 
-get_pa_info() {
-	local info
-	info=$(
-		pactl get-sink-volume @DEFAULT_SINK@
-		pactl get-sink-mute @DEFAULT_SINK@
-	)
-	vol=$(echo "$info" | grep -Po '\d+(?=%)' | head -1)
-	mute=$(echo "$info" | grep -Po '(?<=Mute: )(yes|no)')
-}
+# Query info
+get_volume() { pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -1; }
+get_mute() { pactl get-sink-mute @DEFAULT_SINK@ | grep -Po '(?<=Mute: )(yes|no)'; }
+get_mic_mute() { pactl get-source-mute @DEFAULT_SOURCE@ | grep -Po '(?<=Mute: )(yes|no)'; }
+get_brightness() { light | cut -d'.' -f1; } # faster than grep
 
-get_brightness() {
-	local max curr
-	max=$(cat /sys/class/backlight/*/max_brightness | head -1)
-	curr=$(cat /sys/class/backlight/*/brightness | head -1)
-	br=$((curr * 100 / max))
-}
-
+# Icon selectors
 get_volume_icon() {
+	local vol=$(get_volume)
+	local mute=$(get_mute)
+
 	if [[ $mute == "yes" ]]; then
 		volume_icon=" "
 	elif ((vol < 25)); then
@@ -35,65 +29,81 @@ get_volume_icon() {
 	fi
 }
 
+get_brightness_icon() { brightness_icon=" "; }
+
+# Notif script
 send_notif() {
+	local tag="$1"
+	local value="$2"
+	local message="$3"
 	notify-send -t "$notification_timeout" \
-		-h string:x-dunst-stack-tag:"$1" \
-		-h int:value:"$2" \
-		"$3"
+		-h string:x-dunst-stack-tag:"$tag" \
+		-h int:value:"$value" \
+		"$message"
 }
 
+send_notif_mic() {
+	local tag="$1"
+	local message="$3"
+	notify-send -t "$notification_timeout" \
+		-h string:x-dunst-stack-tag:"$tag" \
+		"$message"
+}
+
+# Volume notif
 notify_volume() {
-	get_pa_info
+	local prefix="$1"
+	local vol=$(get_volume)
 	get_volume_icon
-	send_notif "volume_notif" "$vol" " $1$volume_icon   ${vol}%"
+	send_notif "volume_notif" "$vol" " $prefix$volume_icon   ${vol}%"
 }
 
+# Brightness notif
 notify_brightness() {
-	get_brightness
-	send_notif "brightness_notif" "$br" " $1    ${br}%"
+	local prefix="$1"
+	local br=$(get_brightness)
+	get_brightness_icon
+	send_notif "brightness_notif" "$br" " $prefix$brightness_icon   ${br}%"
 }
 
+# Mic notif
 show_mic_status_notif() {
-	local mic_status
-	mic_status=$(pactl get-source-mute @DEFAULT_SOURCE@ | grep -Po '(?<=Mute: )(yes|no)')
+	local mic_status=$(get_mic_mute)
 	if [[ $mic_status == "yes" ]]; then
-		send_notif "mic_notif" 0 "   Mic Muted"
+		send_notif_mic "mic_notif" 0 "   Mic Muted"
 	else
-		send_notif "mic_notif" 0 "   Mic Unmuted"
+		send_notif_mic "mic_notif" 0 "   Mic Unmuted"
 	fi
 }
 
+# Main
 case "$1" in
+
 volume_up)
-	get_pa_info
-	if ((vol + volume_step > max_volume)); then
+	volume=$(get_volume)
+	if ((volume + volume_step > max_volume)); then
 		pactl set-sink-volume @DEFAULT_SINK@ "${max_volume}%"
 		notify_volume ""
 	else
 		pactl set-sink-volume @DEFAULT_SINK@ "+${volume_step}%"
 		notify_volume ""
-		# Play sound in background so script can exit immediately
-		paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null &
+		paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null
 	fi
 	;;
 
 volume_down)
-	get_pa_info
-	if ((vol - volume_step < min_volume)); then
+	volume=$(get_volume)
+	if ((volume - volume_step < min_volume)); then
 		notify_volume ""
 	else
 		pactl set-sink-volume @DEFAULT_SINK@ "-${volume_step}%"
 		notify_volume ""
-		paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null &
+		paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null
 	fi
 	;;
 
 volume_mute)
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
-	notify_volume ""
-	;;
-
-volume_status)
 	notify_volume ""
 	;;
 
@@ -103,8 +113,8 @@ mic_toggle)
 	;;
 
 brightness_up)
-	get_brightness
-	if ((br < 100)); then
+	current=$(get_brightness)
+	if ((current < 100)); then
 		light -A "$brightness_step"
 		notify_brightness ""
 	else
@@ -113,8 +123,8 @@ brightness_up)
 	;;
 
 brightness_down)
-	get_brightness
-	if ((br > 1)); then
+	current=$(get_brightness)
+	if ((current > 1)); then
 		light -U "$brightness_step"
 		notify_brightness ""
 	else
@@ -124,5 +134,9 @@ brightness_down)
 
 brightness_status)
 	notify_brightness ""
+	;;
+
+volume_status)
+	notify_volume ""
 	;;
 esac
