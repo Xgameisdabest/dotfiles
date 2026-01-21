@@ -289,7 +289,7 @@ tooltip label {
 	min-width: 47px;
 }
 
-#custom-audio.medium:hover,
+#custom-audio:hover,
 #battery:hover,
 #custom-temperature:hover{
 	min-width: 87px;
