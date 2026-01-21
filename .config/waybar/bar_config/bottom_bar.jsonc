@@ -30,7 +30,7 @@
 		"format": "{id}",
 		"on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
 		"on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh prev",
-		"cursor": "pointer",
+		"cursor": "pointer"
 	},
 
 	"custom/window": {
@@ -112,8 +112,8 @@
 		"on-click": "~/.config/dunst/scripts/volume.sh volume_mute",
 		"on-click-middle": "~/.config/dunst/scripts/volume.sh volume_status",
 		"on-click-right": "~/.config/rofi/modules/rofi-sound-settings",
-		"on-scroll-down": "~/.config/dunst/scripts/volume.sh volume_down && sleep 0.5",
-		"on-scroll-up": "~/.config/dunst/scripts/volume.sh volume_up && sleep 0.5"
+		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ $(pactl get-sink-volume @DEFAULT_SINK@ | awk -v max=153 '/Volume:/ {v=$5+3; sub(/%/,\"\",v); print (v>max?max:v)\"%\"}' | head -n1) && ~/.config/dunst/scripts/volume.sh volume_status",
+		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -3% && ~/.config/dunst/scripts/volume.sh volume_status"
 	},
 
 	"custom/power": {
