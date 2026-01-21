@@ -112,8 +112,8 @@
 		"on-click": "~/.config/dunst/scripts/volume.sh volume_mute",
 		"on-click-middle": "~/.config/dunst/scripts/volume.sh volume_status",
 		"on-click-right": "~/.config/rofi/modules/rofi-sound-settings",
-		"on-scroll-down": "~/.config/dunst/scripts/volume.sh volume_down",
-		"on-scroll-up": "~/.config/dunst/scripts/volume.sh volume_up"
+		"on-scroll-down": "~/.config/dunst/scripts/volume.sh volume_down && sleep 0.5",
+		"on-scroll-up": "~/.config/dunst/scripts/volume.sh volume_up && sleep 0.5"
 	},
 
 	"custom/power": {
