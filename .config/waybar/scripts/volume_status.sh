@@ -12,13 +12,13 @@ print_status() {
 		class="muted"
 		tooltip="Muted"
 	else
-		if ((volume < 25)); then
+		if ((volume < 50)); then
 			icon=""
 			class="low"
-		elif ((volume < 50)); then
+		elif ((volume < 100)); then
 			icon=""
 			class="medium"
-		else
+		elif ((volume >= 100 )); then
 			icon=""
 			class="high"
 		fi
