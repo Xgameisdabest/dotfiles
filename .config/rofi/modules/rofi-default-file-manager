@@ -2,24 +2,24 @@
 
 source ~/.config/dtf-config/config
 rofi_theme=${rofi_theme:-black}
+
+# Handle theme path
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
 else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-# Apps (Binary names)
+# Apps & Desktop Files
 nautilus_bin="nautilus"
+nautilus_desktop="org.gnome.Nautilus.desktop"
 dolphin_bin="dolphin"
-thunar_bin="thunar"
-pcmanfm_bin="pcmanfm"
-nemo_bin="nemo"
-
-# Desktop files
-nautilus_desktop="nautilus.desktop"
 dolphin_desktop="org.kde.dolphin.desktop"
+thunar_bin="thunar"
 thunar_desktop="thunar.desktop"
+pcmanfm_bin="pcmanfm"
 pcmanfm_desktop="pcmanfm.desktop"
+nemo_bin="nemo"
 nemo_desktop="nemo.desktop"
 
 # Selection list
@@ -34,23 +34,34 @@ quit="Exit 󰈆 "
 main_menu_height=365px
 main_menu_width=375px
 
-# Function to check, install, and apply
 apply_change() {
 	local bin=$1
 	local desktop=$2
 	local name=$3
 
+	# 1. Install check
 	if ! command -v "$bin" >/dev/null 2>&1; then
-		notify-send "Installation Required" "$name is not installed. Launching terminal to install..."
-
-		# Launch terminal to run your 'install' alias/script
-		# We use 'bash -i' to ensure aliases from your .bashrc are loaded
+		notify-send "Installation Required" "$name is not installed. Launching terminal..."
 		${TERMINAL:-kitty} -e zsh -ic "echo '--- Installing $name ---'; install $bin; echo 'Press any key to exit.'; read -n 1"
 	fi
 
-	# Re-check if installation was successful before setting default
+	# 2. Apply Changes (XDG + Mint/Cinnamon Specifics)
 	if command -v "$bin" >/dev/null 2>&1; then
+		# Standard XDG Mime (Works on Ubuntu/General Linux)
 		xdg-mime default "$desktop" inode/directory
+
+		# GIO Mime (Crucial for Linux Mint/Cinnamon/Nemo-based systems)
+		if command -v gio >/dev/null 2>&1; then
+			gio mime inode/directory "$desktop"
+		fi
+
+		# GSettings (Ensures GTK-based desktops like Mint/GNOME update their internal preference)
+		if command -v gsettings >/dev/null 2>&1; then
+			gsettings set org.gnome.desktop.app-folders.folder-children "['$bin']" 2>/dev/null
+			# Explicitly set the file manager handler
+			gsettings set org.gnome.desktop.applications.file-manager default-app "'$desktop'" 2>/dev/null
+		fi
+
 		update-desktop-database ~/.local/share/applications
 		notify-send "File Manager Updated" "Default set to $name"
 	else
@@ -58,6 +69,7 @@ apply_change() {
 	fi
 }
 
+# Rofi Menu
 select_menu=$(echo -e "$thunar_select\n$nautilus_select\n$dolphin_select\n$pcmanfm_select\n$nemo_select\n$back\n$quit" | rofi -dmenu -i -p ' Default File Managers   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme "$path_to_theme")
 
 case $select_menu in
