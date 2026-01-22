@@ -28,6 +28,14 @@ return {
 		km.set("n", "<S-w>", function()
 			neoscroll.ctrl_b({ duration = 150 })
 		end, { desc = "Page Up" })
+
+		km.set("v", "<S-s>", function()
+			neoscroll.ctrl_f({ duration = 150 })
+		end, { desc = "Page Down" })
+
+		km.set("v", "<S-w>", function()
+			neoscroll.ctrl_b({ duration = 150 })
+		end, { desc = "Page Up" })
 		
 		km.set("n", "<PageDown>", function()
 			neoscroll.ctrl_f({ duration = 150 })
