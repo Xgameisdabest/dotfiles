@@ -74,12 +74,12 @@
 		"format": "{} ",
 		"exec": "~/.config/waybar/scripts/cpu_temp.sh",
 		"return-type": "json",
-		"interval": 1,
+		"interval": 3,
 		"on-click": "~/.config/waybar/scripts/waybar-rofi-sysmonitor.sh"
 	},
 
 	"battery": {
-		"interval": 1,
+		"interval": 3,
 		"states": {
 			"LVL0": 100,
 			"LVL1": 85,
