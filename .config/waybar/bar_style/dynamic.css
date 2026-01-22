@@ -282,10 +282,13 @@ tooltip label {
 	min-width: 27px;
 }
 
-#custom-network:hover,
+#custom-hyprsunset:hover,
+#custom-network:hover{
+	min-width: 37px;
+}
+
 #battery:hover,
-#custom-bluetooth.multiple-devices:hover,
-#custom-hyprsunset:hover{
+#custom-bluetooth.multiple-devices:hover{
 	min-width: 47px;
 }
 
@@ -301,7 +304,7 @@ tooltip label {
 }
 
 #clock:hover{
-	min-width: 147px;
+	min-width: 137px;
 }
 
 /* colors on hover */
