@@ -8,7 +8,7 @@ prev_rx=0
 prev_tx=0
 prev_time=0
 
-while sleep 1; do
+while sleep 4; do
 	# Detect Ethernet interface (that is UP and not loopback)
 	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2;}')
 	eth_up=$(ip link show "$eth_iface" | awk '/state/ {print $9}')
