@@ -124,6 +124,9 @@ if [[ $- == *i* ]]; then
 	alias pwr-low="powerprofilesctl set power-saver"
 fi
 
+#KERNEL VERSION
+echo -e " \033[1;32m\033[0m \e[1;33mKernel Version:\033[0m $(uname -r)"
+
 #LINUX USE DATE
 echo -e " \033[1;32m\033[0m \e[1;33mUsed Linux since \033[1;36m$(date -d "$(stat / | grep Birth | awk '{print $2}')" +%d/%b/%Y)\e[1;33m for \033[1;31m$(( ( $(date +%s) - $(date -d "$(stat / | grep Birth | awk '{print $2}')" +%s) ) / 86400 ))\e[1;33m days\033[0m"
 
