@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# Source dotfiles configuration
+source ~/.config/dtf-config/config
+: ${use_nala_for_apt:-false}
+
 # Colors
 green='\033[1;32m'
 red='\033[1;31m'
@@ -28,15 +32,39 @@ fi
 
 # Define aliases for APT (Debian-based)
 set_apt_aliases() {
-    alias update="sudo apt update"
-    alias upgrade="sudo apt upgrade"
-    alias install="sudo apt install"
-    alias reinstall="sudo apt reinstall"
-    alias remove="sudo apt remove"
-    alias purge="sudo apt purge"
-    alias autoclean="sudo apt autoclean"
-    alias autoremove="sudo apt autoremove"
-    echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}apt${reset} for $distro (${distro_like})"
+    # Check if user wants nala AND if nala is actually installed
+    if [[ "$use_nala_for_apt" == "true" ]]; then
+        if command -v nala &> /dev/null; then
+            alias update="sudo nala update"
+            alias upgrade="sudo nala upgrade"
+            alias install="sudo nala install"
+            alias reinstall="sudo nala reinstall"
+            alias remove="sudo nala remove"
+            alias purge="sudo nala purge"
+            alias autoclean="sudo nala autoclean"
+            alias autoremove="sudo nala autoremove"
+            local manager="nala"
+        else
+            # Warning if nala is requested but missing
+            echo -e " ${red}${reset} ${yellow}Warning:${reset} ${green}nala${reset} is not installed. Falling back to ${green}apt${reset}."
+            local fallback=true
+        fi
+    fi
+
+    # Default to apt if nala isn't requested or isn't found
+    if [[ "$use_nala_for_apt" != "true" || "$fallback" == "true" ]]; then
+        alias update="sudo apt update"
+        alias upgrade="sudo apt upgrade"
+        alias install="sudo apt install"
+        alias reinstall="sudo apt reinstall"
+        alias remove="sudo apt remove"
+        alias purge="sudo apt purge"
+        alias autoclean="sudo apt autoclean"
+        alias autoremove="sudo apt autoremove"
+        local manager="apt"
+    fi
+
+    echo -e " ${green}${reset} ${yellow}Easy Package Manager:${reset} ${green}${manager}${reset} for $distro (${distro_like})"
 }
 
 # Define aliases for DNF (Fedora-based)

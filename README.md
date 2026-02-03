@@ -234,6 +234,9 @@ verbose_coreutils_output=false #(OPTIONS: true/false)
 # Launch tmux on startup by default for the terminal/TTY
 use_tmux=false #(OPTIONS: true/false)
 
+# Use nala instead of apt (requires nala package, Ubuntu, Debian only)
+use_nala_for_apt=true #(OPTIONS: true/false)
+
 # Exclusive i3 feature, launch autorandr on reload
 autorandr_on_reload=false #(OPTIONS: true/false) (Reload required)
 
