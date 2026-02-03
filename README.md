@@ -240,6 +240,9 @@ use_nala_for_apt=true #(OPTIONS: true/false)
 # Exclusive i3 feature, launch autorandr on reload
 autorandr_on_reload=false #(OPTIONS: true/false) (Reload required)
 
+# Exclusive Hyprland feature, launch monitor.sh on reload and it will automatically layout your monitors. Highly recommend to turn it off if you are using a desktop with a custom screen layout, vice-versa on laptop.
+auto_set_monitors=true #(OPTIONS: true/false) (Reload required)
+
 # Set window opacity when unfocused
 transparent_window_when_unfocus=true #(OPTIONS: true/false) (Reload required)
 
@@ -257,7 +260,7 @@ battery_warning_notification=false #(OPTIONS: true/false) (Relaunch window manag
 brightness_changes_by_power_mode=false #(OPTIONS: true/false)
 
 # REQUIRE HYPR PLUGINS, hyprwinwrap scripts for fun
-cava_background=true #(OPTIONS: true/false) (Relaunch window manager required)
+cava_background=false #(OPTIONS: true/false) (Relaunch window manager required)
 ```
 
 __FOR HYPRLAND__<BR>
