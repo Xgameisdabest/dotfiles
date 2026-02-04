@@ -13,15 +13,15 @@ fi
 
 I3_SETTINGS_PATH=~/.config/i3/scripts/i3-settings/
 
+source $I3_SETTINGS_PATH/dunst_section
 source $I3_SETTINGS_PATH/i3_section
 source $I3_SETTINGS_PATH/picom_section
 source $I3_SETTINGS_PATH/polybar_section
 source $I3_SETTINGS_PATH/rofi_section
-source $I3_SETTINGS_PATH/dunst_section
 
 ### MAIN MENU
 
-main_menu_height=520px
+main_menu_height=555px
 main_menu_width=295px
 
 goback="Back 󰌍 "
@@ -38,7 +38,7 @@ rofi="󰮫  Rofi  "
 zshconfig="  Zsh"
 dunst="󰵙  Notification "
 main_menu(){
-	select=$(echo -e "$i3config\n$rofi\n$polybar\n$picomconfig\n$dunst\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$quit"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
+	select=$(echo -e "$i3config\n$rofi\n$polybar\n$picomconfig\n$dunst\n$zshconfig\n$btrlockscreen\n$gestures\n$wallpaper\n$arandr\n$goback\n$quit"  | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
 
 	case $select in
 		$i3config)
@@ -70,6 +70,9 @@ main_menu(){
 			;;
 		$dunst)
 			dunst_submenu
+			;;
+		$goback)
+			~/.config/rofi/modules/rofi-user-settings
 			;;
 		$quit)
 			echo "exit"

@@ -20,7 +20,7 @@ source $HYPR_SETTINGS_PATH/dunst_section
 
 ### MAIN MENU
 
-main_menu_height=480px
+main_menu_height=515px
 main_menu_width=295px
 
 goback="Back 󰌍 "
@@ -36,14 +36,14 @@ rofi="󰮫  Rofi  "
 zshconfig="  Zsh"
 dunst="󰵙  Notification "
 main_menu() {
-	select=$(echo -e "$hyprconfig\n$rofi\n$waybar\n$dunst\n$zshconfig\n$hyprlock\n$gestures\n$wallpaper\n$arandr\n$quit" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
+	select=$(echo -e "$hyprconfig\n$rofi\n$waybar\n$dunst\n$zshconfig\n$hyprlock\n$gestures\n$wallpaper\n$arandr\n$goback\n$quit" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
 
 	case $select in
 	$hyprconfig)
 		hypr_submenu
 		;;
 	$arandr)
-		arandr
+		wdisplays
 		;;
 	$wallpaper)
 		waypaper
@@ -65,6 +65,9 @@ main_menu() {
 		;;
 	$dunst)
 		dunst_submenu
+		;;
+	$goback)
+		~/.config/rofi/modules/rofi-user-settings
 		;;
 	$quit)
 		echo "exit"
