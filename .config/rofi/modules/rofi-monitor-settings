@@ -8,13 +8,14 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=140
+main_menu_height=175
 main_menu_width=220px
 
 mode_menu_height=140
 mode_menu_width=575px
 
 goback="Back 󰌍 "
+gobackmain="Back 󰌍 "
 quit="Exit 󰈆 "
 
 #Monitor pick
@@ -27,10 +28,12 @@ main_menu() {
 		height_per_monitor_listed=710
 	fi
 
-	monitor_picked=$(echo -e "$monitor_list\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
+	monitor_picked=$(echo -e "$monitor_list\n$goback\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
 
 	if [[ -z "$monitor_picked" ]] || [[ "$monitor_picked" = "$quit" ]]; then
 		exit
+	elif [[ "$monitor_picked" = "$goback" ]]; then
+		~/.config/rofi/modules/rofi-user-settings
 	else
 		mode_menu
 	fi
@@ -85,12 +88,14 @@ mode_menu() {
 		-theme-str "listview {columns: 1; layout: vertical;}" \
 		-theme-str "window {width: $mode_menu_width; height: $height_per_mode_listed;}")
 
+	if [[ $mode_picked == "$goback" ]]; then
+		main_menu
+	fi
+
 	mode_picked=$(echo $mode_picked | sed "s/ //g")
 
 	if [[ -z "$mode_picked" ]]; then
 		exit
-	elif [[ $mode_picked == "$goback" ]]; then
-		main_menu
 	elif [[ $mode_picked == "On" ]]; then
 		save_mode
 		hyprctl keyword monitor "$monitor_picked,disable"
