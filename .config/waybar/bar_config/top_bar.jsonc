@@ -14,18 +14,20 @@
 		"tray",
 		"custom/window"
 	],
-	"modules-center": ["hyprland/workspaces"],
+	"modules-center": [
+		"hyprland/workspaces"
+	],
 	"modules-right": [
 		"custom/dtf-update",
 		"clock",
 		"custom/network",
 		"custom/bluetooth",
-		"battery",
+		// "battery",
+		"custom/battery",
 		"custom/audio",
 		"custom/power",
 		"custom/padd"
 	],
-
 	"hyprland/workspaces": {
 		"format": "{id}",
 		"on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
@@ -35,7 +37,6 @@
 		// 	"*":3
 		// }
 	},
-
 	"custom/window": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/window_title.sh",
@@ -43,17 +44,14 @@
 		"return-type": "json",
 		"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
 	},
-
 	"hyprland/window": {
 		"format": " 󰘔  {class} ",
 		"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
 	},
-
 	"tray": {
 		"icon-size": 24,
 		"spacing": 11
 	},
-
 	"custom/bluetooth": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/bluetooth.sh",
@@ -62,14 +60,12 @@
 		"on-click": "~/.config/rofi/modules/rofi-bluetooth",
 		"on-click-right": "~/.config/waybar/scripts/toggle_bluetooth.sh"
 	},
-
 	"clock": {
 		"interval": 1,
 		"format": "󰥔 {:%H%M%S}",
 		"tooltip-format": " {:%d-%m-%Y}",
 		"on-click": "~/.config/rofi/modules/rofi-calendar"
 	},
-
 	"custom/temperature": {
 		"format": "{} ",
 		"exec": "~/.config/waybar/scripts/cpu_temp.sh",
@@ -77,7 +73,13 @@
 		"interval": 3,
 		"on-click": "~/.config/waybar/scripts/waybar-rofi-sysmonitor.sh"
 	},
-
+	"custom/battery": {
+		"exec": "~/.config/waybar/scripts/battery_status.sh",
+		"return-type": "json",
+		"interval": 3,
+		"on-click": "~/.config/rofi/modules/rofi-power-mode",
+		"tooltip": false
+	},
 	"battery": {
 		"interval": 3,
 		"states": {
@@ -92,10 +94,15 @@
 		"format-charging": "󰔵  {capacity}%",
 		"format-not-charging": "  {capacity}%",
 		"format-plugged": "󱐋  {capacity}%",
-		"format-icons": [" ", " ", " ", " ", " "],
+		"format-icons": [
+			" ",
+			" ",
+			" ",
+			" ",
+			" "
+		],
 		"on-click": "~/.config/rofi/modules/rofi-power-mode"
 	},
-
 	"custom/network": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/network_status.sh",
@@ -103,7 +110,6 @@
 		"on-click": "~/.config/rofi/modules/rofi-wifi-menu",
 		"on-click-right": "~/.config/polybar/scripts/polybar-wifi/toggle_wifi.sh"
 	},
-
 	"custom/audio": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/volume_status.sh",
@@ -115,14 +121,12 @@
 		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ $(pactl get-sink-volume @DEFAULT_SINK@ | awk -v max=153 '/Volume:/ {v=$5+3; sub(/%/,\"\",v); print (v>max?max:v)\"%\"}' | head -n1)",
 		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -3%"
 	},
-
 	"custom/power": {
 		"format": "󰐥",
 		"on-click": "~/.config/rofi/modules/rofi-power-menu",
 		"tooltip": true,
 		"tooltip-format": "Power Button"
 	},
-
 	"custom/notification-center": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/notification-indicator",
@@ -131,7 +135,6 @@
 		"on-click": "~/.config/dunst/scripts/noti-center.sh",
 		"on-click-right": "dunstctl history-clear"
 	},
-
 	"custom/hyprsunset": {
 		"format": " ",
 		"on-click": "~/.config/rofi/modules/rofi-hyprsunset",
@@ -139,20 +142,17 @@
 		"tooltip": true,
 		"tooltip-format": "Blue Light Filter"
 	},
-
 	"custom/hyprland-settings": {
 		"format": "",
 		"on-click": "~/.config/rofi/modules/rofi-user-settings",
 		"tooltip": true,
 		"tooltip-format": "Settings"
 	},
-
 	"custom/dtf-update": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/dtf-update-bar.sh",
 		"on-click": "~/.config/hypr/scripts/dtf_update_update.sh"
 	},
-
 	"custom/padd": {
 		"format": " ",
 		"interval": "once",
