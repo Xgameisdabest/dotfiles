@@ -6,15 +6,30 @@ BAT_PATH="/sys/class/power_supply/BAT0"
 CAPACITY=$(cat "$BAT_PATH/capacity")
 STATUS=$(cat "$BAT_PATH/status")
 
-VOLT=$(echo "scale=2; $(cat $BAT_PATH/voltage_now) / 1000000" | bc)
-if [ -f "$BAT_PATH/power_now" ]; then
-	WATT=$(echo "scale=2; $(cat $BAT_PATH/power_now) / 1000000" | bc)
-	AMPS=$(echo "scale=2; $WATT / $VOLT" | bc)
+# Get Power Mode (CPU Governor)
+if [ -f "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor" ]; then
+	MODE=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
 else
-	AMPS=$(echo "scale=2; $(cat $BAT_PATH/current_now) / 1000000" | bc)
-	WATT=$(echo "scale=2; $AMPS * $VOLT" | bc)
+	MODE="N/A"
 fi
 
+# Get Raw Data and format with leading zeros using printf
+VOLT_RAW=$(echo "scale=2; $(cat $BAT_PATH/voltage_now) / 1000000" | bc)
+VOLT=$(printf "%.2f" "$VOLT_RAW")
+
+if [ -f "$BAT_PATH/power_now" ]; then
+	WATT_RAW=$(echo "scale=2; $(cat $BAT_PATH/power_now) / 1000000" | bc)
+	WATT=$(printf "%.2f" "$WATT_RAW")
+	AMPS_RAW=$(echo "scale=2; $WATT / $VOLT" | bc)
+	AMPS=$(printf "%.2f" "$AMPS_RAW")
+else
+	AMPS_RAW=$(echo "scale=2; $(cat $BAT_PATH/current_now) / 1000000" | bc)
+	AMPS=$(printf "%.2f" "$AMPS_RAW")
+	WATT_RAW=$(echo "scale=2; $AMPS * $VOLT" | bc)
+	WATT=$(printf "%.2f" "$WATT_RAW")
+fi
+
+# Logic for Icons and Classes
 if [ "$CAPACITY" -eq 100 ]; then
 	ICON=" "
 	CLASS="LVL0"
@@ -38,6 +53,7 @@ fi
 [ "$STATUS" = "Charging" ] && ICON="󰔵 "
 [ "$STATUS" = "Full" ] && ICON="󱐋 "
 
+# Calculate Time Remaining
 ENERGY_NOW=$(cat $BAT_PATH/energy_now)
 ENERGY_FULL=$(cat $BAT_PATH/energy_full)
 POWER_NOW=$(cat $BAT_PATH/power_now)
@@ -57,15 +73,12 @@ if [ "$POWER_NOW" -gt 0 ]; then
 		TIME_INFO="Fully Charged"
 	fi
 else
-	TIME_INFO="Calculating..."
+	TIME_INFO="Plugged In"
 fi
 
-if command -v powerprofilesctl &>/dev/null; then
-	MODE=$(powerprofilesctl get)
-else
-	MODE=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
-fi
+# Construct Tooltip Text
+DIVIDER="--------------------"
+TOOLTIP="Mode: ${MODE}\nStatus: $STATUS\n$TIME_INFO\n$DIVIDER\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
 
-TOOLTIP="Mode: ${MODE}\nStatus: $STATUS\n$TIME_INFO\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
-
+# Output JSON
 echo "{\"text\": \"$ICON $CAPACITY%\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
