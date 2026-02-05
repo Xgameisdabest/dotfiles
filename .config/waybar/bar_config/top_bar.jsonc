@@ -78,7 +78,7 @@
 		"return-type": "json",
 		"interval": 3,
 		"on-click": "~/.config/rofi/modules/rofi-power-mode",
-		"tooltip": false
+		"tooltip": true
 	},
 	"battery": {
 		"interval": 3,
