@@ -35,7 +35,7 @@ fi
 text="${cpu_num}°C"
 
 # Tooltip contains the breakdown
-tooltip="CPU: ${cpu_num}°C\nGPU: ${gpu_num}°C\n----------\nFans:\n$fans"
+tooltip="CPU: ${cpu_num}°C\nGPU: ${gpu_num}°C\n--------------\nFans:\n$fans"
 
 # Output JSON for Waybar
 echo "{\"text\": \"$text\", \"tooltip\": \"${tooltip}\", \"class\": \"$class\"}"
