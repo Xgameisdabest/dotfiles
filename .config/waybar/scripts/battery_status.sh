@@ -3,24 +3,41 @@
 BAT_PATH="/sys/class/power_supply/BAT0"
 [ ! -d "$BAT_PATH" ] && BAT_PATH="/sys/class/power_supply/BAT1"
 
-# --- Desktop Check ---
-if [ ! -d "$BAT_PATH" ]; then
-	# Class is set to "desktop-ac" for styling in waybar
-	ICON="󰚥"
-	echo "{\"text\": \"$ICON AC\", \"percentage\": 100, \"class\": \"desktop-ac\", \"tooltip\": \"Running on AC Power\"}"
-	exit 0
-fi
-
-# --- Original Battery Logic ---
-CAPACITY=$(cat "$BAT_PATH/capacity")
-STATUS=$(cat "$BAT_PATH/status")
-
-# Get Power Mode (CPU Governor)
-if [ -f "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor" ]; then
+# Get Power Mode (Check services in order of priority)
+if command -v powerprofilesctl >/dev/null 2>&1; then
+	# power-profiles-daemon: Get the active profile
+	MODE=$(powerprofilesctl get)
+elif command -v auto-cpufreq >/dev/null 2>&1; then
+	# auto-cpufreq: Extract the current mode (usually powersave or performance)
+	# We use --get-state and awk to grab the mode name
+	MODE=$(auto-cpufreq --get-state | grep -i "mode" | awk -F': ' '{print $2}' | sed 's/ //g')
+elif [ -f "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor" ]; then
+	# Fallback to kernel governor
 	MODE=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
 else
 	MODE="N/A"
 fi
+
+# Desktop Check
+if [ ! -d "$BAT_PATH" ]; then
+	ICON="󰚥"
+	# For desktops, we set these to N/A or constant values
+	STATUS="Plugged In"
+	TIME_INFO="Time left: INF"
+	WATT="--"
+	VOLT="--"
+	AMPS="--"
+
+	DIVIDER="--------------------"
+	TOOLTIP="Mode: ${MODE}\nStatus: $STATUS\n$TIME_INFO\n$DIVIDER\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
+
+	echo "{\"text\": \"$ICON AC\", \"percentage\": 100, \"class\": \"desktop-ac\", \"tooltip\": \"$TOOLTIP\"}"
+	exit 0
+fi
+
+# Battery Logic
+CAPACITY=$(cat "$BAT_PATH/capacity")
+STATUS=$(cat "$BAT_PATH/status")
 
 # Get Raw Data
 VOLT_RAW=$(echo "scale=2; $(cat $BAT_PATH/voltage_now) / 1000000" | bc)
