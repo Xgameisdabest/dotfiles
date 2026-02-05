@@ -58,6 +58,7 @@ window#waybar.hidden {
 tooltip,
 tooltip label {
 	background-color: #131822;
+	opacity: 0.9;
 }
 
 tooltip {
@@ -278,32 +279,32 @@ tooltip label {
 #custom-power:hover,
 #custom-bluetooth.powered-off:hover,
 #custom-bluetooth.no-devices:hover,
-#custom-bluetooth.one-device:hover{
+#custom-bluetooth.one-device:hover {
 	min-width: 27px;
 }
 
 #custom-hyprsunset:hover,
-#custom-network:hover{
+#custom-network:hover {
 	min-width: 37px;
 }
 
 #battery:hover,
-#custom-bluetooth.multiple-devices:hover{
+#custom-bluetooth.multiple-devices:hover {
 	min-width: 47px;
 }
 
 #custom-audio:hover,
 #battery:hover,
-#custom-temperature:hover{
+#custom-temperature:hover {
 	min-width: 87px;
 }
 
 #custom-audio.high:hover,
-#battery.LVL0:hover{
+#battery.LVL0:hover {
 	min-width: 97px;
 }
 
-#clock:hover{
+#clock:hover {
 	min-width: 137px;
 }
 
