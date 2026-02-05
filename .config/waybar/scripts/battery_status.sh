@@ -6,9 +6,7 @@ BAT_PATH="/sys/class/power_supply/BAT0"
 CAPACITY=$(cat "$BAT_PATH/capacity")
 STATUS=$(cat "$BAT_PATH/status")
 
-# Get Raw Data (Converted from micro-units)
 VOLT=$(echo "scale=2; $(cat $BAT_PATH/voltage_now) / 1000000" | bc)
-# Some systems use power_now (Watts), others use current_now (Amps)
 if [ -f "$BAT_PATH/power_now" ]; then
 	WATT=$(echo "scale=2; $(cat $BAT_PATH/power_now) / 1000000" | bc)
 	AMPS=$(echo "scale=2; $WATT / $VOLT" | bc)
@@ -17,7 +15,6 @@ else
 	WATT=$(echo "scale=2; $AMPS * $VOLT" | bc)
 fi
 
-# Logic for Icons and Classes
 if [ "$CAPACITY" -eq 100 ]; then
 	ICON=" "
 	CLASS="LVL0"
@@ -38,22 +35,24 @@ else
 	CLASS="LVL5"
 fi
 
-# Charging Icons
 [ "$STATUS" = "Charging" ] && ICON="󰔵 "
 [ "$STATUS" = "Full" ] && ICON="󱐋 "
 
-# Calculate Time Remaining (Estimate)
 ENERGY_NOW=$(cat $BAT_PATH/energy_now)
 ENERGY_FULL=$(cat $BAT_PATH/energy_full)
 POWER_NOW=$(cat $BAT_PATH/power_now)
 
 if [ "$POWER_NOW" -gt 0 ]; then
 	if [ "$STATUS" = "Discharging" ]; then
-		HOURS=$(echo "scale=2; $ENERGY_NOW / $POWER_NOW" | bc)
-		TIME_INFO="Time Left: ${HOURS}h"
+		VAL=$(echo "scale=5; $ENERGY_NOW / $POWER_NOW" | bc)
+		H=$(echo "$VAL / 1" | bc)
+		M=$(echo "($VAL - $H) * 60 / 1" | bc)
+		TIME_INFO="Time Left: ${H}h ${M}m"
 	elif [ "$STATUS" = "Charging" ]; then
-		HOURS=$(echo "scale=2; ($ENERGY_FULL - $ENERGY_NOW) / $POWER_NOW" | bc)
-		TIME_INFO="Time till full: ${HOURS}h"
+		VAL=$(echo "scale=5; ($ENERGY_FULL - $ENERGY_NOW) / $POWER_NOW" | bc)
+		H=$(echo "$VAL / 1" | bc)
+		M=$(echo "($VAL - $H) * 60 / 1" | bc)
+		TIME_INFO="Time till full: ${H}h ${M}m"
 	else
 		TIME_INFO="Fully Charged"
 	fi
@@ -61,8 +60,12 @@ else
 	TIME_INFO="Calculating..."
 fi
 
-# Construct Tooltip Text
-TOOLTIP="Status: $STATUS\nVoltage: ${VOLT}V\nWattage: ${WATT}W\nAmps: ${AMPS}A\n$TIME_INFO"
+if command -v powerprofilesctl &>/dev/null; then
+	MODE=$(powerprofilesctl get)
+else
+	MODE=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+fi
 
-# Output JSON
+TOOLTIP="Mode: ${MODE}\nStatus: $STATUS\n$TIME_INFO\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
+
 echo "{\"text\": \"$ICON $CAPACITY%\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
