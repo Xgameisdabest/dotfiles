@@ -4,13 +4,17 @@
 BAT_PATH="/sys/class/power_supply/BAT0"
 [ ! -d "$BAT_PATH" ] && BAT_PATH="/sys/class/power_supply/BAT1"
 
-# Get Power Mode & Turbo (Exclusive for auto-cpufreq)
+# Detect Controller, Mode, and Turbo
 TURBO_INFO=""
+GOVERNOR=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || echo "N/A")
+
 if hash powerprofilesctl 2>/dev/null; then
+	CONTROLLER="power-profiles-daemon"
 	MODE=$(powerprofilesctl get)
 elif hash auto-cpufreq 2>/dev/null; then
+	CONTROLLER="auto-cpufreq"
 	MODE=$(auto-cpufreq --get-state)
-	# Check kernel for Turbo status (Intel or AMD)
+	# Kernel Turbo Check
 	if [ -f "/sys/devices/system/cpu/intel_pstate/no_turbo" ]; then
 		[[ $(cat /sys/devices/system/cpu/intel_pstate/no_turbo) == "0" ]] && T_STAT="on" || T_STAT="off"
 	elif [ -f "/sys/devices/system/cpu/cpufreq/boost" ]; then
@@ -20,23 +24,23 @@ elif hash auto-cpufreq 2>/dev/null; then
 	fi
 	TURBO_INFO="\nTurbo: $T_STAT"
 else
-	MODE=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || echo "N/A")
+	CONTROLLER="Kernel (Generic)"
+	MODE="$GOVERNOR"
 fi
 
 # Desktop Handling
 if [ ! -d "$BAT_PATH" ]; then
-	TOOLTIP="Mode: ${MODE}${TURBO_INFO}\nStatus: Plugged In\nTime left: INF\n--------------------\nWattage: --W\nVoltage: --V\nAmps: --A"
+	TOOLTIP="Controller: ${CONTROLLER}\nMode: ${MODE}${TURBO_INFO}\nGovernor: ${GOVERNOR}\nStatus: Plugged In\nTime left: INF\n--------------------\nWattage: --W\nVoltage: --V\nAmps: --A"
 	echo "{\"text\": \"󰚥 AC\", \"percentage\": 100, \"class\": \"desktop-ac\", \"tooltip\": \"$TOOLTIP\"}"
 	exit 0
 fi
 
-# Read Battery Data (Single-line fetch)
+# Read Battery Data
 read -r CAPACITY STATUS V_RAW P_RAW E_NOW E_FULL < <(cat "$BAT_PATH/capacity" "$BAT_PATH/status" "$BAT_PATH/voltage_now" "$BAT_PATH/power_now" "$BAT_PATH/energy_now" "$BAT_PATH/energy_full" 2>/dev/null | tr '\n' ' ')
 
-# Calculate Electricals with Leading Zeros (printf fix)
+# Electricals with leading zero fix
 VOLT=$(printf "%.2f" "$(echo "scale=2; ${V_RAW:-0} / 1000000" | bc)")
 WATT=$(printf "%.2f" "$(echo "scale=2; ${P_RAW:-0} / 1000000" | bc)")
-# Avoid division by zero
 if (($(echo "$VOLT > 0" | bc -l))); then
 	AMPS=$(printf "%.2f" "$(echo "scale=2; $WATT / $VOLT" | bc)")
 else
@@ -59,7 +63,7 @@ done
 [[ "$STATUS" == "Charging" ]] && ICON="󰔵 "
 [[ "$STATUS" == "Full" ]] && ICON="󱐋 "
 
-# Calculate Time Remaining
+# Time Remaining
 if [ "${P_RAW:-0}" -gt 0 ]; then
 	if [[ "$STATUS" == "Discharging" ]]; then
 		VAL=$(echo "scale=5; $E_NOW / $P_RAW" | bc)
@@ -79,5 +83,5 @@ else
 fi
 
 # Final Output
-TOOLTIP="Mode: ${MODE}${TURBO_INFO}\nStatus: $STATUS\n$TIME_INFO\n--------------------\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
+TOOLTIP="Controller: ${CONTROLLER}\nMode: ${MODE}${TURBO_INFO}\nGovernor: ${GOVERNOR}\nStatus: $STATUS\n$TIME_INFO\n--------------------\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
 echo "{\"text\": \"$ICON $CAPACITY%\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
