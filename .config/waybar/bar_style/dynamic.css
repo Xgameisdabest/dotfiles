@@ -171,7 +171,8 @@ tooltip label {
 #battery.LVL0,
 #battery.LVL1,
 #custom-battery.LVL0,
-#custom-battery.LVL1 {
+#custom-battery.LVL1,
+#custom-battery.desktop-ac {
 	background-color: #3a4f38;
 	color: #b8e9b4;
 }
@@ -236,6 +237,10 @@ tooltip label {
 #custom-battery:hover,
 #custom-bluetooth.multiple-devices:hover {
 	min-width: 47px;
+}
+
+#custom-battery.desktop-ac:hover {
+	min-width: 67px;
 }
 
 #custom-audio:hover,
@@ -321,7 +326,8 @@ tooltip label {
 #battery.LVL0:hover,
 #battery.LVL1:hover,
 #custom-battery.LVL0:hover,
-#custom-battery.LVL1:hover {
+#custom-battery.LVL1:hover,
+#custom-battery.desktop-ac:hover {
 	background-color: #a6e3a1;
 }
 

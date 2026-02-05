@@ -161,7 +161,8 @@ tooltip label {
 #battery.LVL0,
 #battery.LVL1,
 #custom-battery.LVL0,
-#custom-battery.LVL1 {
+#custom-battery.LVL1,
+#custom-battery.desktop-ac {
 	background-color: #a6e3a1;
 }
 

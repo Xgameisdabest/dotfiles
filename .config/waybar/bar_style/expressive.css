@@ -78,8 +78,7 @@ tooltip label {
 #tray,
 #battery,
 #custom-battery,
-/* Added here */
-	#clock,
+#clock,
 #window,
 #custom-window,
 #custom-bluetooth,
@@ -107,7 +106,6 @@ tooltip label {
 #custom-network.strength-0,
 #battery.LVL5,
 #custom-battery.LVL5 {
-	/* Added here */
 	background-color: #4d212c;
 	color: #ff9ab2;
 }
@@ -117,8 +115,7 @@ tooltip label {
 #custom-network.strength-5,
 #battery.LVL3,
 #custom-battery.LVL3,
-/* Added here */
-	#custom-hyprsunset {
+#custom-hyprsunset {
 	background-color: #3e382c;
 	color: #fae9c3;
 }
@@ -146,7 +143,6 @@ tooltip label {
 #custom-audio.high,
 #battery.LVL4,
 #custom-battery.LVL4 {
-	/* Added here */
 	background-color: #3d232a;
 	color: #f7aec2;
 }
@@ -167,7 +163,6 @@ tooltip label {
 #custom-network.strength-7,
 #battery.LVL2,
 #custom-battery.LVL2 {
-	/* Added here */
 	background-color: #3b5a55;
 	color: #a9e8dd;
 }
@@ -178,9 +173,8 @@ tooltip label {
 #battery.LVL0,
 #battery.LVL1,
 #custom-battery.LVL0,
-/* Added here */
-	#custom-battery.LVL1 {
-	/* Added here */
+#custom-battery.LVL1,
+#custom-battery.desktop-ac {
 	background-color: #3a4f38;
 	color: #b8e9b4;
 }

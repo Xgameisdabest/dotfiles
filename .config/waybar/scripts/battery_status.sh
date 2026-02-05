@@ -3,6 +3,15 @@
 BAT_PATH="/sys/class/power_supply/BAT0"
 [ ! -d "$BAT_PATH" ] && BAT_PATH="/sys/class/power_supply/BAT1"
 
+# --- Desktop Check ---
+if [ ! -d "$BAT_PATH" ]; then
+	# Class is set to "desktop-ac" for styling in waybar
+	ICON="󰚥"
+	echo "{\"text\": \"$ICON AC\", \"percentage\": 100, \"class\": \"desktop-ac\", \"tooltip\": \"Running on AC Power\"}"
+	exit 0
+fi
+
+# --- Original Battery Logic ---
 CAPACITY=$(cat "$BAT_PATH/capacity")
 STATUS=$(cat "$BAT_PATH/status")
 
@@ -13,7 +22,7 @@ else
 	MODE="N/A"
 fi
 
-# Get Raw Data and format with leading zeros using printf
+# Get Raw Data
 VOLT_RAW=$(echo "scale=2; $(cat $BAT_PATH/voltage_now) / 1000000" | bc)
 VOLT=$(printf "%.2f" "$VOLT_RAW")
 
@@ -76,9 +85,9 @@ else
 	TIME_INFO="Plugged In"
 fi
 
-# Construct Tooltip Text
+# Tooltip
 DIVIDER="--------------------"
 TOOLTIP="Mode: ${MODE}\nStatus: $STATUS\n$TIME_INFO\n$DIVIDER\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
 
-# Output JSON
+# Final JSON Output
 echo "{\"text\": \"$ICON $CAPACITY%\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
