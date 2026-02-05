@@ -4,13 +4,29 @@
 BAT_PATH="/sys/class/power_supply/BAT0"
 [ ! -d "$BAT_PATH" ] && BAT_PATH="/sys/class/power_supply/BAT1"
 
-# 1. Get Power Mode
+# Get Power Mode (Check services in order of priority)
 if hash powerprofilesctl 2>/dev/null; then
 	MODE=$(powerprofilesctl get)
 elif hash auto-cpufreq 2>/dev/null; then
-	MODE=$(auto-cpufreq --get-state | sed -n 's/.*mode: //p')
+	# Get mode from auto-cpufreq
+	MODE_VAL=$(auto-cpufreq --get-state)
+
+	# Get Turbo status directly from kernel (0 = on/enabled, 1 = off/disabled)
+	# This path works for most modern Intel/AMD CPUs
+	if [ -f "/sys/devices/system/cpu/intel_pstate/no_turbo" ]; then
+		TURBO_RAW=$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)
+		[ "$TURBO_RAW" = "0" ] && TURBO="on" || TURBO="off"
+	elif [ -f "/sys/devices/system/cpu/cpufreq/boost" ]; then
+		TURBO_RAW=$(cat /sys/devices/system/cpu/cpufreq/boost)
+		[ "$TURBO_RAW" = "1" ] && TURBO="on" || TURBO="off"
+	else
+		TURBO="N/A"
+	fi
+	MODE="${MODE_VAL} (Turbo: ${TURBO})"
+elif [ -f "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor" ]; then
+	MODE=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
 else
-	MODE=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || echo "N/A")
+	MODE="N/A"
 fi
 
 # 2. Desktop Handling
