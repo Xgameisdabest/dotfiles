@@ -1,3 +1,5 @@
+@import "~/.config/rofi/font.rasi"
+
 * {
     bg-col: #e0e6ed;
     bg-col-light: #1e1e2e;
@@ -10,7 +12,6 @@
     red: #ff6f91;
     fg-col: #16161d;
     grey: #6c7086;
-    font: "JetBrainsMono Nerd Font Bold 14";
 }
 
 element-text, element-icon , mode-switcher {

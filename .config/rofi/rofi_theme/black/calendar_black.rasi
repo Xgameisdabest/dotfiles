@@ -1,6 +1,7 @@
+@import "~/.config/rofi/font.rasi"
+
 configuration {
     show-icons:                     false;
-    icon-theme: 		    "Papirus";
     display-drun: 		    ":";
     drun-display-format:            "{name}";
     threads:                        0;
@@ -41,7 +42,6 @@ window {
 }
 
 prompt {
-        font: "JetBrainsMono Nerd Font Bold 14";
 	background-color: @lavender;
 	text-color: @background;
  	padding: 6px;
@@ -118,7 +118,6 @@ element-icon {
 }
 
 element-text {
-    font:			   "JetBrainsMono Nerd Font Bold 13";
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0;

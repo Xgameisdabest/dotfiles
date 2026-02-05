@@ -1,3 +1,5 @@
+@import "~/.config/rofi/font.rasi"
+
 * {
     bg-col:  #e0e6eddd;
     border-col: #1e1e2e;
@@ -7,7 +9,6 @@
     fg-col2: #ff6f91;
     grey: #6c7086;
     black: #000000;
-    font: "JetBrainsMono Nerd Font 13";
 }
 
 window {
