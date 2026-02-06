@@ -4,7 +4,7 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=285px
+main_menu_height=325px
 main_menu_width=355px
 manual_menu_height=90px
 manual_menu_width=480px
@@ -71,12 +71,12 @@ outputdev_opt="Output Device 󰜟"
 inputdev_opt="Input Device 󱦉"
 devconfig_opt="Device Configuration "
 manual_volume_opt="Manual Volume Level "
+pavucontrol_opt="Pulseaudio Control GUI 󰖯 "
 
-opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$quit"
+opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$pavucontrol_opt\n$quit"
 
 ouput_dev_card=$(pactl list cards | grep "device.name" | sed 's/device.name =//g' | sed 's/"//g' | sed 's/\t//g' | sed 's/ //g')
 current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | sed 's/bluez_output.//g' | sed 's/\..*//')
-#echo $current_ouput_dev
 
 main_menu() {
 	select=$(echo -e "$opt_list" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   " -theme $path_to_theme)
@@ -96,6 +96,9 @@ main_menu() {
 		;;
 	$manual_volume_opt)
 		manual_set_volume_func
+		;;
+	$pavucontrol_opt)
+		pavucontrol
 		;;
 	esac
 }
