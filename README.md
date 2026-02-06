@@ -5,7 +5,7 @@ ___TESTED ON ARCH LINUX___
 
 __Project Size__
 - dotfiles repo: 35 ~> 36 Megabytes<BR>
-- TOTAL (dotifles, dependencies, build from source apps): ~1.4 Gigabytes<BR>
+- TOTAL (dotfiles, dependencies, build from source apps): ~1.4 Gigabytes<BR>
 
 __About:__<BR>
 The purpose of this project is to share my configs, my ideas as openly as possible. Feel free to open a VM or try it on your own machine!<BR>
