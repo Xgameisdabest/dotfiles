@@ -36,7 +36,33 @@ if [ ! -d "$BAT_PATH" ]; then
 fi
 
 # Read Battery Data
-read -r CAPACITY STATUS V_RAW P_RAW E_NOW E_FULL < <(cat "$BAT_PATH/capacity" "$BAT_PATH/status" "$BAT_PATH/voltage_now" "$BAT_PATH/power_now" "$BAT_PATH/energy_now" "$BAT_PATH/energy_full" 2>/dev/null | tr '\n' ' ')
+# Read the output lines directly into an array
+mapfile -t BAT_DATA < <(cat "$BAT_PATH/capacity" "$BAT_PATH/status" "$BAT_PATH/voltage_now" "$BAT_PATH/power_now" "$BAT_PATH/energy_now" "$BAT_PATH/energy_full" 2>/dev/null)
+
+# Assign variables from the array indices
+CAPACITY="${BAT_DATA[0]}"
+STATUS="${BAT_DATA[1]}"
+V_RAW="${BAT_DATA[2]}"
+P_RAW="${BAT_DATA[3]}"
+E_NOW="${BAT_DATA[4]}"
+E_FULL="${BAT_DATA[5]}"
+
+# Time Calculation
+TIME_INFO="Time left: N/A"
+if [[ "$P_RAW" -gt 0 ]]; then
+	if [[ "$STATUS" == "Discharging" ]]; then
+		HOURS=$(echo "scale=2; $E_NOW / $P_RAW" | bc)
+		TIME_MIN=$(printf "%.0f" "$(echo "$HOURS * 60" | bc)")
+		TIME_INFO="Time left: $((TIME_MIN / 60))h $((TIME_MIN % 60))m"
+	elif [[ "$STATUS" == "Charging" ]]; then
+		E_DIFF=$((E_FULL - E_NOW))
+		HOURS=$(echo "scale=2; $E_DIFF / $P_RAW" | bc)
+		TIME_MIN=$(printf "%.0f" "$(echo "$HOURS * 60" | bc)")
+		TIME_INFO="Time to full: $((TIME_MIN / 60))h $((TIME_MIN % 60))m"
+	fi
+elif [[ "$STATUS" == "Full" ]]; then
+	TIME_INFO="Time left: --"
+fi
 
 # Electricals with leading zero fix
 VOLT=$(printf "%.2f" "$(echo "scale=2; ${V_RAW:-0} / 1000000" | bc)")
