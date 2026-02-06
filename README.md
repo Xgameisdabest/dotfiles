@@ -74,6 +74,13 @@ git pull
 sudo rm -rf ~/go/ && echo "Build deps removed!"
 ```
 
+Install rofimoji, waypaper via pipx
+```
+sudo apt install pipx
+pipx install waypaper
+pipx install rofimoji
+```
+
 Install dependencies for i3 (for ```apt```)
 
 ```
