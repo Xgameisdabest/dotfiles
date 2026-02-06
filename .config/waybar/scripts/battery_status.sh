@@ -60,28 +60,17 @@ for i in "${!VALS[@]}"; do
 	fi
 done
 
-[[ "$STATUS" == "Charging" ]] && ICON="󰔵 "
-[[ "$STATUS" == "Full" ]] && ICON="󱐋 "
+# Text and Status Overrides
+DISPLAY_TEXT="$ICON $CAPACITY%"
 
-# Time Remaining
-if [ "${P_RAW:-0}" -gt 0 ]; then
-	if [[ "$STATUS" == "Discharging" ]]; then
-		VAL=$(echo "scale=5; $E_NOW / $P_RAW" | bc)
-	elif [[ "$STATUS" == "Charging" ]]; then
-		VAL=$(echo "scale=5; ($E_FULL - $E_NOW) / $P_RAW" | bc)
-	fi
-
-	if [ -n "$VAL" ]; then
-		H=$(echo "$VAL/1" | bc)
-		M=$(echo "($VAL-$H)*60/1" | bc)
-		TIME_INFO="Time: ${H}h ${M}m"
-	else
-		TIME_INFO="Fully Charged"
-	fi
-else
-	TIME_INFO="Plugged In"
+if [[ "$STATUS" == "Charging" ]]; then
+	ICON="󰔵 "
+	DISPLAY_TEXT="$ICON $CAPACITY%"
+elif [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
+	ICON="󱐋 "
+	DISPLAY_TEXT="$ICON Full"
 fi
 
 # Final Output
 TOOLTIP="Controller: ${CONTROLLER}\nMode: ${MODE}${TURBO_INFO}\nGovernor: ${GOVERNOR}\nStatus: $STATUS\n$TIME_INFO\n--------------------\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
-echo "{\"text\": \"$ICON $CAPACITY%\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
+echo "{\"text\": \"$DISPLAY_TEXT\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
