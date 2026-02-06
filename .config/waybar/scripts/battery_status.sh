@@ -67,7 +67,7 @@ if [[ "$STATUS" == "Charging" ]]; then
 	ICON="󰔵 "
 	DISPLAY_TEXT="$ICON $CAPACITY%"
 elif [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
-	ICON="󱐋 "
+	ICON="󰁹󱐋"
 	DISPLAY_TEXT="$ICON Full"
 fi
 
