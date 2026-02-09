@@ -76,7 +76,7 @@
 	"custom/battery": {
 		"exec": "~/.config/waybar/scripts/battery_status.sh",
 		"return-type": "json",
-		"interval": 3,
+		"interval": 2,
 		"on-click": "~/.config/rofi/modules/rofi-power-mode",
 		"tooltip": true
 	},
