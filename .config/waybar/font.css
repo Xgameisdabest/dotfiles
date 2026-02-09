@@ -2,4 +2,6 @@
 	font-family: JetBrainsMono Nerd Font;
 	font-weight: bold;
 	font-size: 20px;
+	text-shadow: none;
+	-gtk-icon-shadow: none;
 }
