@@ -71,7 +71,7 @@ ai() {
 	gemini="  Gemini"
 	chatgpt="  ChatGpt"
 	claude="  Claude"
-	model_choice=$(echo -e "$chatgpt\n$gemini\n$claude\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 250px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
+	model_choice=$(echo -e "$gemini\n$chatgpt\n$claude\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 250px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
 	
 	case $model_choice in
 	$gemini)
