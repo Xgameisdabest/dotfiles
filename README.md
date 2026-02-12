@@ -10,7 +10,7 @@ __Project Size__
 __About:__<BR>
 The purpose of this project is to share my configs, my ideas as openly as possible. Feel free to open a VM or try it on your own machine!<BR>
 <BR>
-__If you encounter any issue just open an issue on the github page, thanks!__<BR>
+__If you encounter any issue just open an issue on the ShitHub page, thanks!__<BR>
 <BR>
 
 > [!NOTE]
@@ -150,7 +150,7 @@ hyprpm enable hyprgrass
 hyprpm enable Hyprspace
 hyprpm enable hyprbars
 ```
-Then ```win + shift + r``` to reload Hyprland
+Then ```win + shift + r``` to reload Hyprland if 2 or more bars spawned.
 
 ## USAGE ([link to the wiki (still under development)](https://github.com/Xgameisdabest/dotfiles/wiki))
 
