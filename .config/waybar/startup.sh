@@ -1,39 +1,39 @@
 #!/usr/bin/bash
 
+LOCK_FILE="/tmp/waybar_launch.lock"
+
+if [[ -f "$LOCK_FILE" ]]; then
+	exit 0
+fi
+
+touch "$LOCK_FILE"
+
+killall -9 waybar 2>/dev/null
+while pgrep -u $USER -x waybar >/dev/null; do sleep 0.1; done
+
 source ~/.config/dtf-config/config
 bar_color=${bar_color:-black}
 bar_top=${bar_top:-false}
 bar_expressive_style=${bar_expressive_style:-false}
 bar_dynamic_style=${bar_dynamic_style:-false}
 
-killall -q waybar
+CONFIG_DIR="$HOME/.config/waybar/bar_config"
+STYLE_DIR="$HOME/.config/waybar/bar_style"
 
-while pgrep -u $USER -x waybar >/dev/null; do sleep 0.2; done
+CONF="bottom_bar.jsonc"
+STYLE="dark.css"
 
-if [[ $bar_dynamic_style == "true" ]] && [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "false" ]] && [[ $bar_color == "black" ]]; then
-	waybar -s ~/.config/waybar/bar_style/dynamic.css -c ~/.config/waybar/bar_config/bottom_bar.jsonc &
+if [[ $bar_top == "true" ]]; then CONF="top_bar.jsonc"; fi
 
-elif [[ $bar_dynamic_style == "true" ]] && [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "true" ]] && [[ $bar_color == "black" ]]; then
-	waybar -s ~/.config/waybar/bar_style/dynamic.css -c ~/.config/waybar/bar_config/top_bar.jsonc &
-
-elif [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "false" ]] && [[ $bar_color == "black" ]]; then
-	waybar -s ~/.config/waybar/bar_style/expressive.css -c ~/.config/waybar/bar_config/bottom_bar.jsonc &
-
-elif [[ $bar_expressive_style == "true" ]] && [[ $bar_top == "true" ]] && [[ $bar_color == "black" ]]; then
-	waybar -s ~/.config/waybar/bar_style/expressive.css -c ~/.config/waybar/bar_config/top_bar.jsonc &
-
-elif [[ $bar_color == "black" ]] && [[ $bar_top == "false" ]]; then
-	waybar -s ~/.config/waybar/bar_style/dark.css -c ~/.config/waybar/bar_config/bottom_bar.jsonc &
-
-elif [[ $bar_color == "white" ]] && [[ $bar_top == "false" ]]; then
-	waybar -s ~/.config/waybar/bar_style/white.css -c ~/.config/waybar/bar_config/bottom_bar.jsonc &
-
-elif [[ $bar_color == "black" ]] && [[ $bar_top == "true" ]]; then
-	waybar -s ~/.config/waybar/bar_style/dark.css -c ~/.config/waybar/bar_config/top_bar.jsonc &
-
-elif [[ $bar_color == "white" ]] && [[ $bar_top == "true" ]]; then
-	waybar -s ~/.config/waybar/bar_style/white.css -c ~/.config/waybar/bar_config/top_bar.jsonc &
-
-else
-	waybar -s ~/.config/waybar/bar_style/dark.css -c ~/.config/waybar/bar_config/bottom_bar.jsonc &
+if [[ $bar_dynamic_style == "true" ]]; then
+	STYLE="dynamic.css"
+elif [[ $bar_expressive_style == "true" ]]; then
+	STYLE="expressive.css"
+elif [[ $bar_color == "white" ]]; then
+	STYLE="white.css"
 fi
+
+waybar -s "$STYLE_DIR/$STYLE" -c "$CONFIG_DIR/$CONF" &
+
+sleep 1
+rm "$LOCK_FILE"

@@ -82,15 +82,17 @@ $logout)
 		# Kill browsers and VPNs
 		pkill -SIGTERM -f "chrome|firefox|brave|zen-browser|librewolf|protonvpn|mullvad"
 
-		# Cleanup UI and custom scripts
-		killall waybar swaybg dunst hypridle activate-linux 2>/dev/null
-
-		# The "Anti-Suicide" script cleanup (Option 1)
-		pkill -u "$USER" -f "\.sh" --exclude-pids $$
+		# Cleanup UI and custom scripts\
+		killall -SIGINT waybar
+		killall swaybg dunst hypridle activate-linux 2>/dev/null
 
 		# Exit
 		sleep 0.5
 		hyprctl dispatch exit
+		pkill -u "$USER" -f "\.sh"
+		
+		exit 0
+
 	elif [[ $XDG_CURRENT_DESKTOP == "sway" ]]; then
 		waydroid session stop
 		swaymsg exit
