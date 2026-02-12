@@ -1,7 +1,7 @@
 ## About
 
 ___DEVELOP ON UBUNTU 25.10___<BR>
-___TESTED ON ARCH LINUX___
+___TESTED ON ARCH LINUX AND LINUX MINT___
 
 __Project Size__
 - dotfiles repo: 35 ~> 36 Megabytes<BR>
