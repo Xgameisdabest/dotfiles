@@ -129,6 +129,29 @@ i3-msg restart
 > [!NOTE]
 > REMEMBER TO ADD ```TERMINAL=alacritty``` TO ```/etc/environment``` OR IF YOU USE KITTY ```TERMINAL=kitty``` TO ```/etc/environment``` OR ANY TERMINAL APP PATH TO ```/etc/environment```. IT IS HIGHLY RECOMMENDED TO USE KITTY AS THIS DOTFILES IS USING KITTY! SO PUT ```TERMINAL=kitty``` INTO ```/etc/environment```
 
+## Hyprland Plugins
+
+This dotfiles supports hyprland plugins such as ```hyprbars, Hyprspace, hyprgrass, hyprwinwrap```
+
+In order to install and use these plugins, please install the ```hyprpm``` package first.
+```
+sudo apt install hyprpm
+```
+
+Then log into the Hyprland environment<BR>
+
+Opent the terminal and install these for the best Hyprland experience.
+```
+hyprpm update
+hyprpm add https://github.com/hyprwm/hyprland-plugins
+hyprpm add https://github.com/KZDKM/Hyprspace
+hyprpm add https://github.com/horriblename/hyprgrass
+hyprpm enable hyprgrass
+hyprpm enable Hyprspace
+hyprpm enable hyprbars
+```
+Then ```win + shift + r``` to reload Hyprland
+
 ## USAGE ([link to the wiki (still under development)](https://github.com/Xgameisdabest/dotfiles/wiki))
 
 THIS IS ___NOT___ YOUR NORMAL TYPICAL ___DESKTOP___ (the desktop interface on W*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ___TILING WINDOW MANAGER___ (i3, hyprland, sway, dwm...).
