@@ -69,6 +69,7 @@ $logout)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		pkill -f "kitty.*--class=kitty-bg"
 		killall activate-linux
+		killall protonvpn-app
 		killall -SIGINT waybar
 		killall battery-warning.sh
 		killall bat-status-daemon.sh
