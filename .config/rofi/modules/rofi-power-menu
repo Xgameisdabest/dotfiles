@@ -67,17 +67,28 @@ $suspend)
 	;;
 $logout)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		pkill -f "kitty.*--class=kitty-bg"
-		killall activate-linux
-		killall protonvpn-app
-		killall -SIGINT waybar
-		killall battery-warning.sh
-		killall bat-status-daemon.sh
-		killall usb-watch.sh
-		killall udevadm
-		killall dunst
-		killall hypridle
-		systemctl --user stop hyprpolkitagent
+		# Gracefully stop the Portals (This is what usually hangs Flatpaks)
+		# Kill the Hyprland and GTK implementations first, then the main portal
+		pkill -TERM -f "xdg-desktop-portal-hyprland|xdg-desktop-portal-gtk"
+		pkill -TERM -x "xdg-desktop-portal"
+
+		# Kill all Flatpak app processes
+		# This looks for processes running inside the flatpak sandbox
+		if command -v flatpak &>/dev/null; then
+			# We target the 'bwrap' (bubblewrap) processes that Flatpak uses
+			pkill -TERM -u "$USER" -f "bwrap"
+		fi
+
+		# Kill browsers and VPNs
+		pkill -SIGTERM -f "chrome|firefox|brave|zen-browser|librewolf|protonvpn|mullvad"
+
+		# Cleanup UI and custom scripts
+		killall waybar dunst hypridle activate-linux 2>/dev/null
+
+		# The "Anti-Suicide" script cleanup (Option 1)
+		pkill -u "$USER" -f "\.sh" --exclude-pids $$
+
+		# Exit
 		sleep 0.5
 		hyprctl dispatch exit
 	elif [[ $XDG_CURRENT_DESKTOP == "sway" ]]; then
