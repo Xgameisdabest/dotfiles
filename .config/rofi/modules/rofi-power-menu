@@ -83,7 +83,7 @@ $logout)
 		pkill -SIGTERM -f "chrome|firefox|brave|zen-browser|librewolf|protonvpn|mullvad"
 
 		# Cleanup UI and custom scripts
-		killall waybar dunst hypridle activate-linux 2>/dev/null
+		killall waybar swaybg dunst hypridle activate-linux 2>/dev/null
 
 		# The "Anti-Suicide" script cleanup (Option 1)
 		pkill -u "$USER" -f "\.sh" --exclude-pids $$
