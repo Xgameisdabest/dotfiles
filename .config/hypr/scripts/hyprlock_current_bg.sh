@@ -18,7 +18,7 @@ if [ -n "$WALLPAPER" ]; then
 fi
 
 # Run Hyprlock and wait for it to quit
-hyprlock
+hyprlock --immediate-render --no-fade-in -q
 
 killall -9 hyprlock
 
