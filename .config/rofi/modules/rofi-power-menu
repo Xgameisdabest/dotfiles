@@ -45,9 +45,15 @@ chosen=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -dmenu -i
 
 case $chosen in
 $shutdown)
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		systemctl --user stop hyprpolkitagent
+	fi
 	poweroff
 	;;
 $reboot)
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		systemctl --user stop hyprpolkitagent
+	fi
 	reboot
 	;;
 $lock)
@@ -82,15 +88,16 @@ $logout)
 		# Kill browsers and VPNs
 		pkill -SIGTERM -f "chrome|firefox|brave|zen-browser|librewolf|protonvpn|mullvad"
 
-		# Cleanup UI and custom scripts\
+		# Cleanup UI and custom scripts
+		systemctl --user stop hyprpolkitagent
 		killall -SIGINT waybar
-		killall swaybg dunst hypridle pactl udevadm activate-linux 2>/dev/null
+		killall swaybg mpvpaper dunst hypridle pactl udevadm activate-linux 2>/dev/null
 
 		# Exit
 		sleep 0.5
 		hyprctl dispatch exit
 		pkill -u "$USER" -f "\.sh"
-		
+
 		exit 0
 
 	elif [[ $XDG_CURRENT_DESKTOP == "sway" ]]; then
