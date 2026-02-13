@@ -4,10 +4,13 @@ ___DEVELOP ON UBUNTU 25.10___<BR>
 ___TESTED ON ARCH LINUX AND LINUX MINT___
 
 __Project Size__
+
 - dotfiles repo: 35 ~> 36 Megabytes<BR>
 - TOTAL (dotfiles, dependencies, build from source apps): ~1.4 Gigabytes<BR>
 
 __About:__<BR>
+Been brewing since late __March 2024__ <BR>
+Repo started in 1st __June 2024__ <BR>
 The purpose of this project is to share my configs, my ideas as openly as possible. Feel free to open a VM or try it on your own machine!<BR>
 <BR>
 __If you encounter any issue just open an issue on the ShitHub page, thanks!__<BR>
@@ -19,15 +22,15 @@ __If you encounter any issue just open an issue on the ShitHub page, thanks!__<B
 
 ## Preview
 
-V1 - use ```git checkout 4404458``` (use ```git checkout 08e8942``` if you want bottom bar) to use this version and ```git checkout main``` if you want to use the latest
+V1 - use `git checkout 4404458` (use `git checkout 08e8942` if you want bottom bar) to use this version and `git checkout main` if you want to use the latest
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview.jpg?raw=true)
 
-V2 - use ```git checkout f82e277``` to use this version and ```git checkout main``` if you want to use the latest
+V2 - use `git checkout f82e277` to use this version and `git checkout main` if you want to use the latest
 
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_2.jpg?raw=true)
 
-V3 - use ```git checkout ef3b956``` to use this version and ```git checkout main``` if you want to use the latest (I do not recommend use this version as i3 is unstable, use this one if you consider Hyprland) (Bar now can be on top or bottom, white or black color. Change it via the specified dotfiles config file, more information at the ___Configuration___ section)
+V3 - use `git checkout ef3b956` to use this version and `git checkout main` if you want to use the latest (I do not recommend use this version as i3 is unstable, use this one if you consider Hyprland) (Bar now can be on top or bottom, white or black color. Change it via the specified dotfiles config file, more information at the ___Configuration___ section)
 ![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_3.jpg?raw=true)
 
 Hyprland is now supported!
@@ -46,11 +49,11 @@ Install the font:
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 
 > [!NOTE]
-> ```Picom``` is a dependency that needs to be installed and build from source in order to work correctly.
+> `Picom` is a dependency that needs to be installed and build from source in order to work correctly.
 > [Install and build Picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)
 
 > [!NOTE]
-> From what I have experienced, the terminal emulator ```kitty``` starts quite slow when installed from apt (from apt is 0.50 seconds, from source is 0.15 seconds), so it is highly recommend to build it from source.
+> From what I have experienced, the terminal emulator `kitty` starts quite slow when installed from apt (from apt is 0.50 seconds, from source is 0.15 seconds), so it is highly recommend to build it from source.
 > [Link to build kitty from source](https://sw.kovidgoyal.net/kitty/build/)
 
 My way to install and build kitty from source:
@@ -63,7 +66,7 @@ ln -s ~/testenv/kitty/kitty/launcher/kitty ~/.local/bin/kitty
 ln -s ~/testenv/kitty/kitty/launcher/kitten ~/.local/bin/kitten
 ```
 
-To maintain kitty, I created a file in kitty repo directory and named it as update_kitty.sh and give it permission to run ```chmod +x update_kitty.sh```
+To maintain kitty, I created a file in kitty repo directory and named it as update_kitty.sh and give it permission to run `chmod +x update_kitty.sh`
 
 ```
 #!/bin/bash
@@ -75,13 +78,14 @@ sudo rm -rf ~/go/ && echo "Build deps removed!"
 ```
 
 Install rofimoji, waypaper via pipx
+
 ```
 sudo apt install pipx
 pipx install waypaper
 pipx install rofimoji
 ```
 
-Install dependencies for i3 (for ```apt```)
+Install dependencies for i3 (for `apt`)
 
 ```
 sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light kitty x11-utils awk touchegg unclutter-xfixes paplay
@@ -127,13 +131,14 @@ i3-msg restart
 ```
 
 > [!NOTE]
-> REMEMBER TO ADD ```TERMINAL=alacritty``` TO ```/etc/environment``` OR IF YOU USE KITTY ```TERMINAL=kitty``` TO ```/etc/environment``` OR ANY TERMINAL APP PATH TO ```/etc/environment```. IT IS HIGHLY RECOMMENDED TO USE KITTY AS THIS DOTFILES IS USING KITTY! SO PUT ```TERMINAL=kitty``` INTO ```/etc/environment```
+> REMEMBER TO ADD `TERMINAL=alacritty` TO `/etc/environment` OR IF YOU USE KITTY `TERMINAL=kitty` TO `/etc/environment` OR ANY TERMINAL APP PATH TO `/etc/environment`. IT IS HIGHLY RECOMMENDED TO USE KITTY AS THIS DOTFILES IS USING KITTY! SO PUT `TERMINAL=kitty` INTO `/etc/environment`
 
 ## Hyprland Plugins
 
-This dotfiles supports hyprland plugins such as ```hyprbars, Hyprspace, hyprgrass, hyprwinwrap```
+This dotfiles supports hyprland plugins such as `hyprbars, Hyprspace, hyprgrass, hyprwinwrap`
 
-In order to install and use these plugins, please install the ```hyprpm``` package first.
+In order to install and use these plugins, please install the `hyprpm` package first.
+
 ```
 sudo apt install hyprpm
 ```
@@ -141,6 +146,7 @@ sudo apt install hyprpm
 Then log into the Hyprland environment<BR>
 
 Opent the terminal and install these for the best Hyprland experience.
+
 ```
 hyprpm update
 hyprpm add https://github.com/hyprwm/hyprland-plugins
@@ -150,11 +156,12 @@ hyprpm enable hyprgrass
 hyprpm enable Hyprspace
 hyprpm enable hyprbars
 ```
-Then ```win + shift + r``` to reload Hyprland if 2 or more bars spawned.
+
+Then `win + shift + r` to reload Hyprland if 2 or more bars spawned.
 
 ## USAGE ([link to the wiki (still under development)](https://github.com/Xgameisdabest/dotfiles/wiki))
 
-THIS IS ___NOT___ YOUR NORMAL TYPICAL ___DESKTOP___ (the desktop interface on W*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ___TILING WINDOW MANAGER___ (i3, hyprland, sway, dwm...).
+THIS IS ___NOT___ YOUR NORMAL TYPICAL ___DESKTOP___ (the desktop interface on W\*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ___TILING WINDOW MANAGER___ (i3, hyprland, sway, dwm...).
 
 It is highly recommend to go on the web to search [what is a tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager) and its usage so you can know the basics of a ___TILING WINDOW MANAGER___.
 
@@ -186,13 +193,13 @@ Supported Distros (and package managers):
 
 __USAGE__
 
-- ```update```: update the repo
-- ```upgrade```: upgrade the packages
-- ```install <package name>```: install the package
-- ```reinstall <package name>```: reinstall the package
-- ```remove <package name>```: uninstall the package
-- ```autoclean```: remove old packages
-- ```autoremove```: remove unused packages
+- `update`: update the repo
+- `upgrade`: upgrade the packages
+- `install <package name>`: install the package
+- `reinstall <package name>`: reinstall the package
+- `remove <package name>`: uninstall the package
+- `autoclean`: remove old packages
+- `autoremove`: remove unused packages
 
 ## CONFIGURATION
 
@@ -326,7 +333,7 @@ Put your configs such as Hyprland configs and env vars, also executables into th
 ```
 
 Hyprland will automatically scan that directory and override any default settings that this dotfiles come with (__for .conf files__). <BR>
-For .sh files, such as startup scripts, you need to create a .conf file such as ```startup.conf``` or any other name, then put the script you want to exec in the __.conf__ file.<BR>
+For .sh files, such as startup scripts, you need to create a .conf file such as `startup.conf` or any other name, then put the script you want to exec in the __.conf__ file.<BR>
 
 ```
 #EXAMPLE
