@@ -8,7 +8,11 @@ screensaver_logic() {
 	local style="$1"
 	local cmd=""
 
+	messages_list=("Never kill yourself" "Have fun" "You are not alone" "Be positive" "Stay focus")
+	message=${messages_list[$RANDOM % ${#messages_list[@]}]}
+
 	case "$style" in
+	cbonsai) cmd="cbonsai --live --multiplier 5 --infinite --wait 5 --time 0.02 --life 40 --message=\"$message\"" ;;
 	clock) cmd="tty-clock -scbC7S" ;;
 	pipes) cmd="pipes" ;;
 	cmatrix) cmd="cmatrix" ;;
@@ -26,7 +30,6 @@ screensaver_logic() {
 		exit 1
 	fi
 
-	# Execution
 	pkill -USR1 waybar
 	hyprctl dispatch fullscreen
 	sleep 0.2

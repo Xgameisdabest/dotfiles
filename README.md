@@ -300,7 +300,7 @@ cava_background=false #(OPTIONS: true/false) (Relaunch window manager required)
 # This changes the style of the screen saver itself
 # This will require to install external package/scripts
 # Press alt+q to activate
-screen_saver_style=rain #(OPTIONS: clock, pipes, cmatrix, neofetch, rain)
+screen_saver_style=rain #(OPTIONS: clock, pipes, cmatrix, neofetch, rain, cbonsai)
 ```
 
 __FOR HYPRLAND__<BR>
