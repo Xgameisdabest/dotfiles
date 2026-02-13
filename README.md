@@ -167,7 +167,7 @@ It is highly recommend to go on the web to search [what is a tiling window manag
 
 Here is the list of keybinds for this dotfiles (all of this can be viewed in the desktop itself):
 
-- Press (win/mod + shift + r) to reload the tiling window manager (i3wm)
+- Press (win/mod + shift + r) to reload the tiling window manager
 
 > [!NOTE]
 > helpful tip: if you are using a laptop and an external monitor, plug the connection cable (HDMI, VGA, DP) to the laptop and use this key combination, it should cast to the external monitor on reload. ___Do it multiple times if the bar is glitching!___
@@ -179,8 +179,8 @@ Here is the list of keybinds for this dotfiles (all of this can be viewed in the
 - Press (win/mod + -) to toggle the visibility of the bar
 - Press (win/mod + [1 -> 0]) to change the workspace
 - Press (win/mod + shift + [1 -> 0] to move/drop the focused window to the selected number workspace)
-- Press (win/mod + v) to toggle between tiling mode (the mode that place windows/programs side by side) and floating mode (the mode you can drag windows/programs around by hold left click on the title)
-- Press (win/mod + tab) to open the opened windows menu, select and press ENTER to switch to the opened windows
+- Press (win/mod + v) to toggle between tiling mode (the mode that place Bindoj/programs side by side) and floating mode (the mode you can drag Bindoj/programs around by hold left click on the title)
+- Press (win/mod + tab) to open the opened Bindoj menu, select and press ENTER to switch to the opened Bindoj
 - Press (win/mod + ARROW_KEYS) to change focus between the tiled windows.
 - Press (ctrl + win/mod + ARROW_LEFT/ARROW_RIGHT) to send the focused window to the next numerical workspace.
 
