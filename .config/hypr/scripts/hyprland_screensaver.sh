@@ -16,7 +16,7 @@ screensaver_logic() {
 	clock) cmd="tty-clock -scbC7S" ;;
 	pipes) cmd="pipes" ;;
 	cmatrix) cmd="cmatrix" ;;
-	neofetch) cmd="neofetch" ;;
+	neofetch) cmd="$HOME/.config/neofetch/neofetch_center.sh" ;;
 	rain) cmd="rain" ;;
 	*) cmd="tty-clock -scbC7S" ;;
 	esac
@@ -31,10 +31,12 @@ screensaver_logic() {
 	fi
 
 	pkill -USR1 waybar
-	hyprctl dispatch fullscreen
+	hyprctl dispatch fullscreen 0
 	sleep 0.2
 	eval "$cmd"
 	pkill -USR1 waybar
 }
 
-$TERMINAL -e bash -c "$(declare -f screensaver_logic); screensaver_logic \"$screen_saver_style\""
+export -f screensaver_logic
+
+$TERMINAL -e bash -c "screensaver_logic \"$screen_saver_style\""
