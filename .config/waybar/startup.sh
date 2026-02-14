@@ -8,7 +8,7 @@ fi
 
 touch "$LOCK_FILE"
 
-killall -9 waybar 2>/dev/null
+killall -SIGINT waybar 2>/dev/null
 while pgrep -u $USER -x waybar >/dev/null; do sleep 0.1; done
 
 source ~/.config/dtf-config/config
