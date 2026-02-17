@@ -18,8 +18,7 @@ if [ -n "$WALLPAPER" ]; then
 fi
 
 # Run Hyprlock and wait for it to quit
-hyprlock --immediate-render --no-fade-in -q
-
+(paplay ~/.config/dunst/scripts/sounds/message.oga &) && hyprlock --immediate-render --no-fade-in -q
 killall -9 hyprlock
 
 # After Hyprlock exits, restore the default (or original) wallpaper line
