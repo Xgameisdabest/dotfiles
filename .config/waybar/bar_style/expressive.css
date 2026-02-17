@@ -101,6 +101,13 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
+#custom-network.ethernet {
+	padding: 0px 5px 0px 13px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
 #tray {
 	background-color: #3f4454;
 	color: #bbc4df;
