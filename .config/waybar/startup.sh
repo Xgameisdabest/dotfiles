@@ -34,7 +34,7 @@ elif [[ $bar_color == "white" ]]; then
 fi
 
 waybar -s "$STYLE_DIR/$STYLE" -c "$CONFIG_DIR/$CONF" &
-notify-send "Waybar spawned!"
+paplay $HOME/.config/dunst/scripts/sounds/bell.oga
 
 sleep 1
 rm "$LOCK_FILE"
