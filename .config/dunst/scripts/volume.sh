@@ -87,8 +87,8 @@ volume_up)
 	else
 		pactl set-sink-volume @DEFAULT_SINK@ "+${volume_step}%"
 		notify_volume ""
-		paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null &
-		sleep 0.2
+		# paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null &
+		# sleep 0.3
 	fi
 	;;
 
@@ -99,8 +99,8 @@ volume_down)
 	else
 		pactl set-sink-volume @DEFAULT_SINK@ "-${volume_step}%"
 		notify_volume ""
-		paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null &
-		sleep 0.2
+		# paplay "$CUSTOM_SOUND_PATH/audio-volume-change.oga" 2>/dev/null &
+		# sleep 0.3
 	fi
 	;;
 
