@@ -54,7 +54,7 @@ while sleep 4; do
 		prev_tx=$tx_bytes
 		prev_time=$cur_time
 
-		echo "{\"text\":\"󰈀\",\"class\":\"ethernet\",\"tooltip\":\"${tooltip}\"}"
+		echo "{\"text\":\"󰈀 \",\"class\":\"ethernet\",\"tooltip\":\"${tooltip}\"}"
 		continue
 	fi
 
