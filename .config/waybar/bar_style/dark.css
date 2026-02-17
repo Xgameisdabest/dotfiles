@@ -85,12 +85,18 @@ tooltip label {
 #custom-hyprsunset,
 #custom-hyprland-settings,
 #custom-audio,
-#custom-network,
 #custom-power {
 	padding: 0 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
 	color: #16161d;
+	transition: all 0.2s ease;
+}
+
+#custom-network {
+	padding: 0px 8px 0px 13px;
+	margin: 10px 4px;
+	border-radius: 4px;
 	transition: all 0.2s ease;
 }
 
