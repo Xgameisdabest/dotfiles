@@ -34,7 +34,7 @@ elif [[ $bar_color == "white" ]]; then
 fi
 
 waybar -s "$STYLE_DIR/$STYLE" -c "$CONFIG_DIR/$CONF" &
-paplay $HOME/.config/dunst/scripts/sounds/bell.oga
+paplay $HOME/.config/dunst/scripts/sounds/button-toggle.ogg
 
 sleep 1
 rm "$LOCK_FILE"
