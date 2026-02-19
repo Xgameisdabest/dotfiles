@@ -36,5 +36,6 @@ fi
 waybar -s "$STYLE_DIR/$STYLE" -c "$CONFIG_DIR/$CONF" &
 paplay $HOME/.config/dunst/scripts/sounds/button-toggle.ogg
 
-sleep 1
 rm "$LOCK_FILE"
+
+(sleep 1 && ~/.config/waybar/scripts/protonvpn-indicator-fix.sh) &
