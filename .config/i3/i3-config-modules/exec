@@ -28,3 +28,4 @@ exec_always --no-startup-id xss-lock  -- ~/.config/i3/scripts/lock.sh #lock when
 exec_always --no-startup-id ~/.config/i3/scripts/auto_sleep.sh #auto sleep, timeout when not used
 exec --no-startup-id unclutter-xfixes --hide-on-touch --start-hidden #hide mouse cursor when using touch screen
 exec --no-startup-id touchegg #hold to right click on touch screen
+exec --no-startup-id ~/.config/i3/scripts/protonvpn_check_when_resume.sh #Protonvpn fix if stayed connect after logout and relogin into i3 session
