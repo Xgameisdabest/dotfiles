@@ -59,9 +59,10 @@ addr=$(echo "$matched_line" | cut -f2)
 wsid=$(echo "$matched_line" | cut -f3)
 
 if [[ -n "$addr" ]]; then
+	target_pid=$(hyprctl clients -j | jq -r ".[] | select(.address == \"$addr\") | .pid")
 	if [[ "$wsid" == "-98" ]]; then
 		# Handle hidden window: cleanup stack and move to current workspace
-		target_pid=$(hyprctl clients -j | jq -r ".[] | select(.address == \"$addr\") | .pid")
+		notify-send "Window showed!" "Process ID: $target_pid"
 		[[ -n "$target_pid" ]] && sed -i "/^$target_pid$/d" "$stack_file"
 
 		curr_ws=$(hyprctl activeworkspace -j | jq '.id')
@@ -69,6 +70,7 @@ if [[ -n "$addr" ]]; then
 		hyprctl dispatch focuswindow address:"$addr"
 	else
 		# Handle visible window: switch workspace and focus
+		notify-send "Window switched!" "Process ID: $target_pid"
 		hyprctl dispatch workspace "$wsid"
 		hyprctl dispatch focuswindow address:"$addr"
 	fi
