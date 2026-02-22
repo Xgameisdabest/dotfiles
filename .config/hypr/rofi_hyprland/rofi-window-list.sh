@@ -1,36 +1,52 @@
-#!/usr/bin/bash
-source ~/.config/dtf-config/config
+#!/usr/bin/env bash
+
+CONFIG_FILE="$HOME/.config/dtf-config/config"
+[[ -f "$CONFIG_FILE" ]] && source "$CONFIG_FILE"
+
 rofi_theme=${rofi_theme:-black}
-if [[ $rofi_theme == "white" ]]; then
-	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
-else
-	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
-fi
+theme_dir="$HOME/.config/rofi/rofi_theme/$rofi_theme"
+path_to_theme="$theme_dir/$rofi_theme.rasi"
+stack_file="/tmp/hide_window_pid_stack.txt"
 
-# Get list of windows from hyprctl
-windows=$(
-	hyprctl -j clients | jq -r 'sort_by(.workspace.id, .title)[] | "\(.address)\t\(.workspace.id)\t[Ws: \(.workspace.id)] \(.class) - \(.title)"'
-)
-windows_list=$(echo "$windows" | cut -f3-)
+window_data=$(hyprctl -j clients | jq -r '
+    sort_by(.workspace.id, .title)[] 
+    | (if .workspace.id == -98 then "Hidden" else "WS: \(.workspace.id)" end) as $ws_label
+    | "\($ws_label) -> \(.class): \(.title)\t\(.address)\t\(.workspace.id)"
+')
 
-windows_list_menu_height=100
-numbers_of_window=$(echo "$windows_list" | wc -l)
-height_per_window_entry=$((windows_list_menu_height + (numbers_of_window * 38)))
-if [[ $height_per_window_entry -gt 710 ]]; then
-	height_per_window_entry=710
-fi
+window_list=$(echo "$window_data" | cut -f1)
 
-# Let the user pick a window in rofi
-choice=$(echo "$windows_list" | rofi -dmenu -i -p " Available Windows 󰖲 " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: ${height_per_window_entry}px;}")
+num_windows=$(echo "$window_list" | wc -l)
+max_height=710
+calculated_height=$((100 + (num_windows * 38)))
+final_height=$((calculated_height > max_height ? max_height : calculated_height))
 
-# Extract address and workspace of chosen window
-addr=$(echo "$windows" | grep -F "$choice" | cut -f1)
-wsid=$(echo "$windows" | grep -F "$choice" | cut -f2)
+choice=$(echo "$window_list" | rofi -dmenu -i \
+	-p " Available Bindoj 󰖲 " \
+	-theme "$path_to_theme" \
+	-theme-str "listview {columns: 1; layout: vertical;}" \
+	-theme-str "window {height: ${final_height}px;}")
 
-# Focus it if chosen
-if [[ -n "$choice" ]]; then
-	# First, switch to its workspace (only if not already there)
-	hyprctl dispatch workspace "$wsid"
-	# Then, focus the exact window
-	hyprctl dispatch focuswindow address:"$addr"
+[[ -z "$choice" ]] && exit 0
+
+matched_line=$(echo "$window_data" | grep -P "^\Q$choice\E" | head -n1)
+addr=$(echo "$matched_line" | cut -f2)
+wsid=$(echo "$matched_line" | cut -f3)
+
+if [[ -n "$addr" ]]; then
+	if [[ "$wsid" == "-98" ]]; then
+		target_pid=$(hyprctl clients -j | jq -r ".[] | select(.address == \"$addr\") | .pid")
+
+		if [[ -n "$target_pid" ]]; then
+			sed -i "/^$target_pid$/d" "$stack_file"
+		fi
+
+		current_workspace=$(hyprctl activeworkspace -j | jq '.id')
+		hyprctl dispatch movetoworkspacesilent "$current_workspace",address:"$addr"
+		hyprctl dispatch focuswindow address:"$addr"
+
+	else
+		hyprctl dispatch workspace "$wsid"
+		hyprctl dispatch focuswindow address:"$addr"
+	fi
 fi
