@@ -10,22 +10,38 @@ stack_file="/tmp/hide_window_pid_stack.txt"
 
 window_data=$(hyprctl -j clients | jq -r '
     sort_by(.workspace.id, .title)[] 
-    | (if .workspace.id == -98 then "Hidden" else "WS: \(.workspace.id)" end) as $ws_label
+    | (if .workspace.id == -98 then "Hidden" else "Workspace: \(.workspace.id)" end) as $ws_label
     | "\($ws_label) -> \(.class): \(.title)\t\(.address)\t\(.workspace.id)"
 ')
 
 window_list=$(echo "$window_data" | cut -f1)
 
+# Height
 num_windows=$(echo "$window_list" | wc -l)
 max_height=710
 calculated_height=$((100 + (num_windows * 38)))
 final_height=$((calculated_height > max_height ? max_height : calculated_height))
 
+# Width
+max_chars=$(echo "$window_list" | wc -L)
+min_width=400
+max_width=1200
+calculated_width=$(awk -v mc="$max_chars" 'BEGIN { printf "%.0f", (mc * 10.5) + 80 }')
+
+# Clamp width between min and max
+if ((calculated_width < min_width)); then
+	final_width=$min_width
+elif ((calculated_width > max_width)); then
+	final_width=$max_width
+else
+	final_width=$calculated_width
+fi
+
 choice=$(echo "$window_list" | rofi -dmenu -i \
 	-p " Available Bindoj 󰖲 " \
 	-theme "$path_to_theme" \
 	-theme-str "listview {columns: 1; layout: vertical;}" \
-	-theme-str "window {height: ${final_height}px;}")
+	-theme-str "window {height: ${final_height}px; width: ${final_width};}")
 
 [[ -z "$choice" ]] && exit 0
 
