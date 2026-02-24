@@ -11,13 +11,13 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-web="  Web Search"
-yt="  Youtube"
-github="  Github"
-ai="  Ai"
-virustotal="󰨯  Virus Total"
-nerdfonts="󰌧  Nerd Fonts"
-this_dotfiles="󰌧  This Dotfiles"
+web="  Web Search (Brave)  "
+yt="  Youtube  "
+github="  Github  "
+ai="  Ai  "
+virustotal="󰨯  Virus Total 󰌧 "
+nerdfonts="󰛖  Nerd Fonts 󰌧 "
+this_dotfiles="  This Dotfiles Repo 󰌧 "
 back="Back 󰌍"
 quit="Exit 󰈆 "
 
@@ -37,42 +37,82 @@ web() {
 }
 
 yt() {
-	search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Videos   ")
-	search_engine="https://www.youtube.com/results?search_query="
-	main() {
-		if [[ -n "$search" ]]; then
-			url="$search_engine$search"
-			xdg-open "$url"
-		else
-			exit
-		fi
+	open_the_webpage_yt="󰖟  Open the website 󰌧 "
+	open_the_search_bar_yt="  Search for videos"
+
+	choice=$(echo -e "$open_the_webpage_yt\n$open_the_search_bar_yt\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 330px;}" -p " Videos   ")
+
+	search_yt() {
+		search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Videos   ")
+		search_engine="https://www.youtube.com/results?search_query="
+		main() {
+			if [[ -n "$search" ]]; then
+				url="$search_engine$search"
+				xdg-open "$url"
+			else
+				exit
+			fi
+		}
+		main
+		exit 0
 	}
-	main
-	exit 0
+
+	case $choice in
+	$open_the_webpage_yt)
+		xdg-open https://youtube.com
+		;;
+	$open_the_search_bar_yt)
+		search_yt
+		;;
+	$back)
+		main
+		;;
+	esac
 }
 
 github() {
-	search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Repositories   ")
-	search_engine="https://github.com/search?q="
-	main() {
-		if [[ -n "$search" ]]; then
-			query=$(echo "$search" | sed 's/ /+/g')
-			url="${search_engine}${query}&type=repositories"
-			xdg-open "$url"
-		else
-			exit
-		fi
+	open_the_webpage_git="󰖟  Open the website 󰌧 "
+	open_the_search_bar_git="  Search for repositories"
+
+	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 380px;}" -p " Github   ")
+
+	search_github() {
+		search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Repositories   ")
+		search_engine="https://github.com/search?q="
+		main() {
+			if [[ -n "$search" ]]; then
+				query=$(echo "$search" | sed 's/ /+/g')
+				url="${search_engine}${query}&type=repositories"
+				xdg-open "$url"
+				exit 0
+			else
+				exit
+			fi
+		}
+		main
+		exit 0
 	}
-	main
-	exit 0
+
+	case $choice in
+	$open_the_webpage_git)
+		xdg-open https://github.com
+		;;
+	$open_the_search_bar_git)
+		search_github
+		;;
+	$back)
+		main
+		;;
+	esac
+
 }
 
 ai() {
-	gemini="  Gemini"
-	chatgpt="  ChatGpt"
-	claude="  Claude"
-	model_choice=$(echo -e "$gemini\n$chatgpt\n$claude\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 250px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
-	
+	gemini="  Gemini 󰌧 "
+	chatgpt="  ChatGpt 󰌧 "
+	claude="  Claude 󰌧 "
+	model_choice=$(echo -e "$gemini\n$chatgpt\n$claude\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 245px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
+
 	case $model_choice in
 	$gemini)
 		xdg-open https://gemini.google.com
@@ -90,7 +130,7 @@ ai() {
 		main
 		;;
 	esac
-	
+
 }
 
 virustotal_func() {
@@ -109,7 +149,7 @@ nerdfonts_func() {
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$github\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 400px; width: 302px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode  ")
+	select=$(echo -e "$web\n$yt\n$ai\n$github\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 392px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Select Search Mode  ")
 
 	case $select in
 	$web)
