@@ -150,7 +150,7 @@
 	},
 	"custom/dtf-update": {
 		"format": "{}",
-		"exec": "~/.config/waybar/scripts/dtf-update-bar.sh",
+		"exec": "~/.config/hypr/scripts/hypr_dtf_update.sh",
 		"on-click": "~/.config/hypr/scripts/dtf_update_update.sh"
 	},
 	"custom/padd": {

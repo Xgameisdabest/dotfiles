@@ -16,6 +16,10 @@ if [[ -z "$check_update" ]]; then
 	echo ""
 elif [[ "$check_update" == *"Your branch is up-to-date with"* ]] || [[ "$check_update" == *"Your branch is up to date with"* ]]; then
 	notify-send "Dotfiles Update  " "Your dotfiles are up to date!"
+	echo ""
 else
 	notify-send "Dotfiles Update  " "Update available!"
+	echo " Update!"
 fi
+
+exit 0
