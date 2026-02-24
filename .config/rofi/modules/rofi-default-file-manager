@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source ~/.config/dtf-config/config
+source "$HOME/.config/dtf-config/config"
 rofi_theme=${rofi_theme:-black}
 
-# Handle theme path
+# Handle theme path (Using $HOME for better reliability in scripts)
 if [[ $rofi_theme == "white" ]]; then
-	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme="$HOME/.config/rofi/rofi_theme/white/white.rasi"
 else
-	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme="$HOME/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
 # Apps & Desktop Files
@@ -34,6 +34,20 @@ quit="Exit 󰈆 "
 main_menu_height=365px
 main_menu_width=375px
 
+# --- LOGIC TO DETECT CURRENT DEFAULT ---
+# Query the current default handler for directories
+current_default=$(xdg-mime query default inode/directory)
+
+# Map the desktop file to the 0-based index of the Rofi list
+case "$current_default" in
+"$thunar_desktop") current_row=0 ;;
+"$nautilus_desktop") current_row=1 ;;
+"$dolphin_desktop") current_row=2 ;;
+"$pcmanfm_desktop") current_row=3 ;;
+"$nemo_desktop") current_row=4 ;;
+*) current_row=0 ;; # Default to first row if unknown
+esac
+
 apply_change() {
 	local bin=$1
 	local desktop=$2
@@ -47,18 +61,17 @@ apply_change() {
 
 	# 2. Apply Changes (XDG + Mint/Cinnamon Specifics)
 	if command -v "$bin" >/dev/null 2>&1; then
-		# Standard XDG Mime (Works on Ubuntu/General Linux)
+		# Standard XDG Mime
 		xdg-mime default "$desktop" inode/directory
 
-		# GIO Mime (Crucial for Linux Mint/Cinnamon/Nemo-based systems)
+		# GIO Mime (Crucial for Nemo-based systems)
 		if command -v gio >/dev/null 2>&1; then
 			gio mime inode/directory "$desktop"
 		fi
 
-		# GSettings (Ensures GTK-based desktops like Mint/GNOME update their internal preference)
+		# GSettings
 		if command -v gsettings >/dev/null 2>&1; then
 			gsettings set org.gnome.desktop.app-folders.folder-children "['$bin']" 2>/dev/null
-			# Explicitly set the file manager handler
 			gsettings set org.gnome.desktop.applications.file-manager default-app "'$desktop'" 2>/dev/null
 		fi
 
@@ -69,8 +82,13 @@ apply_change() {
 	fi
 }
 
-# Rofi Menu
-select_menu=$(echo -e "$thunar_select\n$nautilus_select\n$dolphin_select\n$pcmanfm_select\n$nemo_select\n$back\n$quit" | rofi -dmenu -i -p ' Default File Managers   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme "$path_to_theme")
+# Rofi Menu with -selected-row
+select_menu=$(echo -e "$thunar_select\n$nautilus_select\n$dolphin_select\n$pcmanfm_select\n$nemo_select\n$back\n$quit" |
+	rofi -dmenu -i -p ' Default File Managers  ' \
+		-selected-row "$current_row" \
+		-theme-str "listview {columns: 1; layout: vertical;}" \
+		-theme-str "window {width: $main_menu_width; height: $main_menu_height;}" \
+		-theme "$path_to_theme")
 
 case $select_menu in
 "$nautilus_select") apply_change "$nautilus_bin" "$nautilus_desktop" "Nautilus" ;;
