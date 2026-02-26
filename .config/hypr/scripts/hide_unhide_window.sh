@@ -15,14 +15,14 @@ function hide_window() {
 	if [[ $pid != "null" ]]; then
 		hyprctl dispatch movetoworkspacesilent special:magic,pid:$pid
 		echo $pid >>$stack_file
-		notify-send "Window hidden!" "Use Mod+Shift+D to unhide it"$'\n'"Process ID: $pid" -t 2200
+		notify-send "Window hidden!" "Use Mod+Shift+D to unhide it"$'\n'"Process ID: $pid" -t 2200 -h string:x-dunst-stack-tag:window_show_hide
 	fi
 }
 
 function show_window() {
 	pid=$(tail -1 $stack_file && sed -i '$d' $stack_file)
 	[ -z $pid ] && exit
-	notify-send "Window showed!" "Process ID: $pid"
+	notify-send "Window showed!" "Process ID: $pid" -h string:x-dunst-stack-tag:window_show_hide
 	current_workspace=$(hyprctl activeworkspace -j | jq '.id')
 	hyprctl dispatch movetoworkspacesilent $current_workspace,pid:$pid
 	hyprctl dispatch focuswindow pid:$pid

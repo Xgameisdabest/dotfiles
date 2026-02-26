@@ -62,7 +62,7 @@ if [[ -n "$addr" ]]; then
 	target_pid=$(hyprctl clients -j | jq -r ".[] | select(.address == \"$addr\") | .pid")
 	if [[ "$wsid" == "-98" ]]; then
 		# Handle hidden window: cleanup stack and move to current workspace
-		notify-send "Window showed!" "Process ID: $target_pid"
+		notify-send "Window showed!" "Process ID: $target_pid" -h string:x-dunst-stack-tag:window_show_hide
 		[[ -n "$target_pid" ]] && sed -i "/^$target_pid$/d" "$stack_file"
 
 		curr_ws=$(hyprctl activeworkspace -j | jq '.id')
