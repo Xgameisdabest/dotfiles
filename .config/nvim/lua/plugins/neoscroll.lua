@@ -20,30 +20,35 @@ return {
 		})
 
 		local km = vim.keymap
+		local all_modes = { "n", "i", "v" }
+		local nv_modes = { "n", "v" }
 
-		km.set("n", "<S-s>", function()
-			neoscroll.ctrl_f({ duration = 150 })
-		end, { desc = "Page Down" })
+		for _, nv_modes in ipairs(nv_modes) do
+			km.set(nv_modes, "<S-s>", function()
+				neoscroll.ctrl_f({ duration = 150 })
+			end, { desc = "Page Down" })
 
-		km.set("n", "<S-w>", function()
-			neoscroll.ctrl_b({ duration = 150 })
-		end, { desc = "Page Up" })
+			km.set(nv_modes, "<S-w>", function()
+				neoscroll.ctrl_b({ duration = 150 })
+			end, { desc = "Page Up" })
+		end
 
-		km.set("v", "<S-s>", function()
-			neoscroll.ctrl_f({ duration = 150 })
-		end, { desc = "Page Down" })
+		for _, all_modes in ipairs(all_modes) do
+			km.set(all_modes, "<PageDown>", function()
+				neoscroll.ctrl_f({ duration = 150 })
+			end, { desc = "Page Down" })
 
-		km.set("v", "<S-w>", function()
-			neoscroll.ctrl_b({ duration = 150 })
-		end, { desc = "Page Up" })
-		
-		km.set("n", "<PageDown>", function()
-			neoscroll.ctrl_f({ duration = 150 })
-		end, { desc = "Page Down" })
+			km.set(all_modes, "<PageUp>", function()
+				neoscroll.ctrl_b({ duration = 150 })
+			end, { desc = "Page Up" })
 
-		km.set("n", "<PageUp>", function()
-			neoscroll.ctrl_b({ duration = 150 })
-		end, { desc = "Page Up" })
+			km.set(all_modes, "<S-Down>", function()
+				neoscroll.ctrl_f({ duration = 150 })
+			end, { desc = "Page Down (Shift)" })
 
+			km.set(all_modes, "<S-Up>", function()
+				neoscroll.ctrl_b({ duration = 150 })
+			end, { desc = "Page Up (Shift)" })
+		end
 	end,
 }
