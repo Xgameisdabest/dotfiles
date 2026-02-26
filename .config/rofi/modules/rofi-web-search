@@ -16,6 +16,7 @@ yt="  Youtube  "
 github="  Github  "
 ai="  Ai  "
 virustotal="󰨯  Virus Total 󰌧 "
+flathub="  Flathub 󰌧 "
 nerdfonts="󰛖  Nerd Fonts 󰌧 "
 this_dotfiles="  This Dotfiles Repo 󰌧 "
 back="Back 󰌍"
@@ -27,9 +28,10 @@ web() {
 	main() {
 		if [[ -n "$search" ]]; then
 			url="$search_engine$search"
-			xdg-open "$url"
+			xdg-open "$url" &
+			exit 0
 		else
-			exit
+			exit 0
 		fi
 	}
 	main
@@ -48,9 +50,10 @@ yt() {
 		main() {
 			if [[ -n "$search" ]]; then
 				url="$search_engine$search"
-				xdg-open "$url"
+				xdg-open "$url" &
+				exit 0
 			else
-				exit
+				exit 0
 			fi
 		}
 		main
@@ -59,7 +62,8 @@ yt() {
 
 	case $choice in
 	$open_the_webpage_yt)
-		xdg-open https://youtube.com
+		xdg-open https://youtube.com &
+		exit 0
 		;;
 	$open_the_search_bar_yt)
 		search_yt
@@ -83,10 +87,10 @@ github() {
 			if [[ -n "$search" ]]; then
 				query=$(echo "$search" | sed 's/ /+/g')
 				url="${search_engine}${query}&type=repositories"
-				xdg-open "$url"
+				xdg-open "$url" &
 				exit 0
 			else
-				exit
+				exit 0
 			fi
 		}
 		main
@@ -95,7 +99,8 @@ github() {
 
 	case $choice in
 	$open_the_webpage_git)
-		xdg-open https://github.com
+		xdg-open https://github.com &
+		exit 0
 		;;
 	$open_the_search_bar_git)
 		search_github
@@ -115,41 +120,25 @@ ai() {
 
 	case $model_choice in
 	$gemini)
-		xdg-open https://gemini.google.com
+		xdg-open https://gemini.google.com &
 		exit 0
 		;;
 	$chatgpt)
-		xdg-open https://chatgpt.com
+		xdg-open https://chatgpt.com &
 		exit 0
 		;;
 	$claude)
-		xdg-open https://claude.ai
+		xdg-open https://claude.ai &
 		exit 0
 		;;
 	$back)
 		main
 		;;
 	esac
-
-}
-
-virustotal_func() {
-	xdg-open https://www.virustotal.com
-	exit 0
-}
-
-dotfiles() {
-	xdg-open https://github.com/xgameisdabest/dotfiles
-	exit 0
-}
-
-nerdfonts_func() {
-	xdg-open https://www.nerdfonts.com/cheat-sheet
-	exit 0
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$github\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 392px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcut & Search  ")
+	select=$(echo -e "$web\n$yt\n$ai\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 427px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcut & Search  ")
 
 	case $select in
 	$web)
@@ -162,16 +151,23 @@ main() {
 		github
 		;;
 	$this_dotfiles)
-		dotfiles
+		xdg-open https://github.com/xgameisdabest/dotfiles &
+		exit 0
 		;;
 	$nerdfonts)
-		nerdfonts_func
+		xdg-open https://www.nerdfonts.com/cheat-sheet &
+		exit 0
 		;;
 	$virustotal)
-		virustotal_func
+		xdg-open https://www.virustotal.com &
+		exit 0
 		;;
 	$ai)
 		ai
+		;;
+	$flathub)
+		xdg-open https://flathub.org &
+		exit 0
 		;;
 	esac
 }
