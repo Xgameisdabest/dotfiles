@@ -58,9 +58,8 @@ return {
 			{ "<leader>}", ":vsplit #<CR>", desc = "V-Split Previous" },
 
 			{ "<leader>f", group = "Find" },
-			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files"},
-			{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Find Recent/Old Files"},
-
+			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files" },
+			{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Find Recent/Old Files" },
 		})
 
 		-- -- 3. Visual Mode Mappings
@@ -70,7 +69,11 @@ return {
 			{ "s", "j", desc = "Down" },
 			{ "a", "h", desc = "Left" },
 			{ "d", "l", desc = "Right" },
-			{ "3", "dd", desc = "Delete Line" },
+			{ "<S-s>", "<PageDown>", desc = "Page Up" },
+			{ "<S-w>", "<PageUp>", desc = "Page Down" },
+			{ "<S-a>", "^", desc = "Jump To The Start Of The Line" },
+			{ "<S-d>", "$", desc = "Jump To The End Of The Line" },
+			{ "3", "dd", desc = "Delete The Entire Line" },
 			{ "1", "d", desc = "Delete Selection" },
 			{
 				"<leader>/",
