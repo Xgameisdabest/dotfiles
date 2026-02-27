@@ -133,6 +133,9 @@ i3-msg restart
 > [!NOTE]
 > REMEMBER TO ADD `TERMINAL=alacritty` TO `/etc/environment` OR IF YOU USE KITTY `TERMINAL=kitty` TO `/etc/environment` OR ANY TERMINAL APP PATH TO `/etc/environment`. IT IS HIGHLY RECOMMENDED TO USE KITTY AS THIS DOTFILES IS USING KITTY! SO PUT `TERMINAL=kitty` INTO `/etc/environment`
 
+> [!NOTE]
+> If you are on a laptop and get the best experience with this dotfiles, install [libinput-gestures](https://github.com/bulletmark/libinput-gestures) for touchpad gestures such as swiping 3 - 4 fingers up/down, left/right
+
 ## Hyprland Plugins
 
 This dotfiles supports hyprland plugins such as `hyprbars, Hyprspace, hyprgrass, hyprwinwrap`
@@ -149,9 +152,9 @@ Opent the terminal and install these for the best Hyprland experience.
 
 ```
 hyprpm update
-hyprpm add https://github.com/hyprwm/hyprland-plugins
-hyprpm add https://github.com/KZDKM/Hyprspace
-hyprpm add https://github.com/horriblename/hyprgrass
+hyprpm add https://github.com/hyprwm/hyprland-plugins # add basic plugins such as hyprbars
+hyprpm add https://github.com/KZDKM/Hyprspace # macOs like workspace switching
+hyprpm add https://github.com/horriblename/hyprgrass # For touch screen users
 hyprpm enable hyprgrass
 hyprpm enable Hyprspace
 hyprpm enable hyprbars
