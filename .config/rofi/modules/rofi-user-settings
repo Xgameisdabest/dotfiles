@@ -8,7 +8,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=360px
+main_menu_height=390px
 main_menu_width=375px
 
 wm_settings="󰢹  Desktop Settings "
@@ -17,9 +17,10 @@ monitor_settings="󱒃  Monitor Settings "
 power_mode_settings="󰓅  Power Mode Settings "
 default_browser="󰖟  Default Web Browser "
 default_file_manager="  Default File Manger "
+system_update_upgrade="󰚰  System Upgrade"
 quit="Exit 󰈆 "
 
-select=$(echo -e "$wm_settings\n$usr_settings\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$quit" | rofi -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+select=$(echo -e "$wm_settings\n$usr_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$quit" | rofi -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
 
 case $select in
 $wm_settings)
@@ -30,7 +31,7 @@ $wm_settings)
 	fi
 	;;
 $usr_settings)
-	$TERMINAL -e nvim ~/.config/dtf-config/config
+	$TERMINAL -e nvim ~/.config/dtf-config/config &
 	;;
 $monitor_settings)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
@@ -47,5 +48,8 @@ $default_file_manager)
 	;;
 $default_browser)
 	~/.config/rofi/modules/rofi-default-browser
+	;;
+$system_update_upgrade)
+	$TERMINAL -e ~/.config/rofi/scripts/rofi_user_settings_system_upgrade.sh &
 	;;
 esac
