@@ -1,0 +1,102 @@
+#!/bin/bash
+
+source "$HOME/.config/dtf-config/config"
+rofi_theme=${rofi_theme:-black}
+
+# Handle theme path
+if [[ $rofi_theme == "white" ]]; then
+    path_to_theme="$HOME/.config/rofi/rofi_theme/white/white.rasi"
+else
+    path_to_theme="$HOME/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+# Apps & Desktop Files
+firefox_bin="firefox"
+firefox_desktop="firefox.desktop"
+chrome_bin="google-chrome-stable"
+chrome_desktop="google-chrome.desktop"
+brave_bin="brave-browser"
+brave_desktop="brave-browser.desktop"
+librewolf_bin="librewolf"
+librewolf_desktop="librewolf.desktop"
+chromium_bin="chromium"
+chromium_desktop="chromium.desktop"
+
+# Selection list
+firefox_select="󰈹  Firefox"
+chrome_select="  Google Chrome"
+brave_select="󰖟  Brave Browser"
+librewolf_select="󰈹  LibreWolf"
+chromium_select="  Chromium"
+back="Back 󰌍"
+quit="Exit 󰈆 "
+
+main_menu_height=360px
+main_menu_width=375px
+
+# --- LOGIC TO DETECT CURRENT DEFAULT ---
+current_default=$(xdg-mime query default x-scheme-handler/https)
+
+case "$current_default" in
+"$firefox_desktop")   current_row=0 ;;
+"$chrome_desktop")    current_row=1 ;;
+"$brave_desktop")     current_row=2 ;;
+"$librewolf_desktop") current_row=3 ;;
+"$chromium_desktop")  current_row=4 ;;
+*) current_row=0 ;; 
+esac
+
+apply_change() {
+    local bin=$1
+    local desktop=$2
+    local name=$3
+
+    # 1. Install check
+    if ! command -v "$bin" >/dev/null 2>&1; then
+        notify-send "Installation Required" "$name is not installed. Launching terminal..."
+        ${TERMINAL:-kitty} -e zsh -ic "echo '--- Installing $name ---'; install $bin; echo 'Press any key to exit.'; read -n 1"
+    fi
+
+    # 2. Apply Changes
+    if command -v "$bin" >/dev/null 2>&1; then
+        # Set primary browser via xdg-settings
+        xdg-settings set default-web-browser "$desktop"
+
+        # Apply Mime Types
+        xdg-mime default "$desktop" x-scheme-handler/http
+        xdg-mime default "$desktop" x-scheme-handler/https
+        xdg-mime default "$desktop" text/html
+        xdg-mime default "$desktop" application/x-extension-htm
+        xdg-mime default "$desktop" application/x-extension-html
+        xdg-mime default "$desktop" application/xhtml+xml
+
+        # GIO Mime
+        if command -v gio >/dev/null 2>&1; then
+            gio mime x-scheme-handler/http "$desktop"
+            gio mime x-scheme-handler/https "$desktop"
+        fi
+
+        update-desktop-database ~/.local/share/applications
+        notify-send "Browser Updated" "Default set to $name"
+    else
+        notify-send "Action Cancelled" "$name was not installed. No changes made."
+    fi
+}
+
+# Rofi Menu
+select_menu=$(echo -e "$firefox_select\n$chrome_select\n$brave_select\n$librewolf_select\n$chromium_select\n$back\n$quit" |
+    rofi -dmenu -i -p ' Default Browsers 󰖟 ' \
+        -selected-row "$current_row" \
+        -theme-str "listview {columns: 1; layout: vertical;}" \
+        -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" \
+        -theme "$path_to_theme")
+
+case $select_menu in
+"$firefox_select")   apply_change "$firefox_bin" "$firefox_desktop" "Firefox" ;;
+"$chrome_select")    apply_change "$chrome_bin" "$chrome_desktop" "Chrome" ;;
+"$brave_select")     apply_change "$brave_bin" "$brave_desktop" "Brave" ;;
+"$librewolf_select") apply_change "$librewolf_bin" "$librewolf_desktop" "LibreWolf" ;;
+"$chromium_select")  apply_change "$chromium_bin" "$chromium_desktop" "Chromium" ;;
+"$back") ~/.config/rofi/modules/rofi-user-settings ;;
+*) exit 0 ;;
+esac
