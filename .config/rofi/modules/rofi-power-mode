@@ -60,7 +60,7 @@ main_menu() {
 	if hash powerprofilesctl 2>/dev/null; then
 		power_mode_status="$(powerprofilesctl get)"
 	elif hash auto-cpufreq 2>/dev/null; then
-		power_mode_status="$(auto-cpufreq --get-state)"
+		power_mode_status="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || echo "N/A")"
 	fi
 
 	set_mode_performace() {

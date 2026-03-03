@@ -68,20 +68,26 @@ if command -v pipx &>/dev/null; then
 fi
 
 if command -v pip &>/dev/null; then
-	echo -e "${BLUE}Upgrading global pip packages...${NC}"
-	python3 -m pip install --upgrade pip 2>/dev/null
+	echo -e "${BLUE}Checking for outdated global pip packages...${NC}"
 
-	# pip doesn't have a great "interactive" bulk upgrade,
-	# but we can list them first so you know what's happening
-	OUTDATED=$(pip list --outdated --format=columns)
-	if [ -n "$OUTDATED" ]; then
-		echo "$OUTDATED"
+	# Get the list of outdated packages (names only)
+	OUTDATED_NAMES=$(pip list --outdated --format=columns | tail -n +3 | awk '{print $1}')
+
+	if [ -n "$OUTDATED_NAMES" ]; then
+		echo -e "${GREEN}The following packages have updates available:${NC}"
+		pip list --outdated --format=columns
+
 		echo -n "Do you want to upgrade these pip packages? (y/n): "
 		read -r confirm
-		if [[ "$confirm" == [yY] ]]; then
-			pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U 2>/dev/null
+		if [[ "$confirm" =~ ^[yY]$ ]]; then
+			# We loop through the names to upgrade them
+			echo "$OUTDATED_NAMES" | xargs -n1 pip install -U
 		fi
+	else
+		echo "All pip packages are up to date."
 	fi
 fi
 
 echo -e "${GREEN}--- All processes complete! ---${NC}"
+echo "Press <ENTER> to exit"
+read
