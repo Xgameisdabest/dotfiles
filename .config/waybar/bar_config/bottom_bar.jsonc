@@ -37,7 +37,7 @@
 	"custom/window": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/window_title.sh",
-		"interval": 1,
+		"interval": 2,
 		"return-type": "json",
 		"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
 	},
@@ -55,14 +55,16 @@
 	"custom/bluetooth": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/bluetooth.sh",
-		"interval": 1,
+		"interval": 2,
 		"return-type": "json",
 		"on-click": "~/.config/rofi/modules/rofi-bluetooth",
 		"on-click-right": "~/.config/waybar/scripts/toggle_bluetooth.sh"
 	},
 	"clock": {
-		"interval": 1,
-		"format": "󰥔 {:%H%M%S}",
+		"interval": 30,
+		// "interval": 1,
+		// "format": "󰥔 {:%H%M%S}",
+		"format": "󰥔 {:%I:%M %p}",
 		"tooltip-format": " {:%d-%m-%Y}",
 		"on-click": "~/.config/rofi/modules/rofi-calendar"
 	},
@@ -70,7 +72,7 @@
 		"format": "{} ",
 		"exec": "~/.config/waybar/scripts/cpu_temp.sh",
 		"return-type": "json",
-		"interval": 1,
+		"interval": 5,
 		"on-click": "~/.config/waybar/scripts/waybar-rofi-sysmonitor.sh"
 	},
 	"custom/battery": {
@@ -131,7 +133,7 @@
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/notification-indicator",
 		"return-type": "json",
-		"interval": 1,
+		"interval": 2,
 		"on-click": "~/.config/dunst/scripts/noti-center.sh",
 		"on-click-right": "dunstctl history-clear"
 	},
