@@ -61,6 +61,13 @@ main_menu() {
 		power_mode_status="$(powerprofilesctl get)"
 	elif hash auto-cpufreq 2>/dev/null; then
 		power_mode_status="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || echo "N/A")"
+		if [ -f "/sys/devices/system/cpu/intel_pstate/no_turbo" ]; then
+			[[ $(cat /sys/devices/system/cpu/intel_pstate/no_turbo) == "0" ]] && turbo_status="on" || turbo_status="off"
+		elif [ -f "/sys/devices/system/cpu/cpufreq/boost" ]; then
+			[[ $(cat /sys/devices/system/cpu/cpufreq/boost) == "1" ]] && turbo_status="on" || turbo_status="off"
+		else
+			turbo_status="N/A"
+		fi
 	fi
 
 	set_mode_performace() {
@@ -132,9 +139,9 @@ main_menu() {
 		if command -v auto-cpufreq >/dev/null 2>&1; then
 			[[ "$bat_percentage" == "100%" ]] && prompt="Full 󰂅 " || prompt=" $bat_percentage 󰁹 "
 			if [[ $LAUNCHED_FROM_SETTINGS == "true" ]]; then
-				rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: 345px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg "$(echo -e " MODE: $power_mode_status\n INFO: $time_left")" -p " $prompt"
+				rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: 345px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg "$(echo -e " MODE: $power_mode_status\n Turbo: $turbo_status\n TIME: $time_left")" -p " $prompt"
 			else
-				rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: 310px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg "$(echo -e " MODE: $power_mode_status\n INFO: $time_left")" -p " $prompt"
+				rofi -dmenu -i -theme "$path_to_theme" -theme-str "window {height: 310px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -selected-row 1 -mesg "$(echo -e " MODE: $power_mode_status\n Turbo: $turbo_status\n TIME: $time_left")" -p " $prompt"
 			fi
 		else
 			# Battery Logic
