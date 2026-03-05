@@ -14,9 +14,7 @@
 		"tray",
 		"custom/window"
 	],
-	"modules-center": [
-		"hyprland/workspaces"
-	],
+	"modules-center": ["hyprland/workspaces"],
 	"modules-right": [
 		"custom/dtf-update",
 		"clock",
@@ -40,9 +38,9 @@
 	"custom/window": {
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/window_title.sh",
-		"interval": 2,
 		"return-type": "json",
-		"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh"
+		"on-click": "~/.config/hypr/rofi_hyprland/rofi-window-list.sh",
+		"tooltip": true
 	},
 	"hyprland/window": {
 		"format": " 󰘔  {class} ",
@@ -96,13 +94,7 @@
 		"format-charging": "󰔵  {capacity}%",
 		"format-not-charging": "  {capacity}%",
 		"format-plugged": "󱐋  {capacity}%",
-		"format-icons": [
-			" ",
-			" ",
-			" ",
-			" ",
-			" "
-		],
+		"format-icons": [" ", " ", " ", " ", " "],
 		"on-click": "~/.config/rofi/modules/rofi-power-mode"
 	},
 	"custom/network": {
