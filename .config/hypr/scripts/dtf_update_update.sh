@@ -19,9 +19,6 @@ cd "$dtf_dir_detect"
 
 # Updated logic: Check/Install dependencies, then pull and restow
 $TERMINAL -e bash -c "
-    echo '--- Checking/Installing Dependencies ---';
-    sudo apt update && sudo apt install -y $DEPS || { echo 'Dependency install failed!'; read -p 'Press <ENTER> to exit...'; exit 1; };
-
     echo '--- Pulling latest changes ---';
     git pull || { echo 'Update failed, unable to perform git pull!'; read -p 'Press <ENTER> to exit...'; exit 1; };
 
@@ -30,6 +27,9 @@ $TERMINAL -e bash -c "
     
     sudo updatedb;
     hyprctl reload;
+
+    echo '--- Checking/Installing Dependencies ---';
+    sudo apt update && sudo apt install -y $DEPS || { echo 'Dependency install failed!'; read -p 'Press <ENTER> to exit...'; exit 1; };
     
     clear;
     echo 'Update completed successfully!';
