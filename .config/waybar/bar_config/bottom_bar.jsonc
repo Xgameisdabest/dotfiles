@@ -99,8 +99,8 @@
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/network_status.sh",
 		"return-type": "json",
-		"on-click": "(~/.config/rofi/modules/rofi-wifi-menu & disown)",
-		"on-click-right": "(~/.config/polybar/scripts/polybar-wifi/toggle_wifi.sh & disown)"
+		"on-click": "setsid ~/.config/rofi/modules/rofi-wifi-menu &",
+		"on-click-right": "(~/.config/waybar/scripts/toggle_wifi.sh & disown)"
 	},
 	"custom/audio": {
 		"format": "{}",
