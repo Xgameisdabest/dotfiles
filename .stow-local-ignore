@@ -1,0 +1,4 @@
+# .stow-local-ignore
+dependencies.txt
+README.md
+.git
