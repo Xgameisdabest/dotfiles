@@ -57,9 +57,11 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:cd:*' popup-pad 17 0
 
-DISABLE_AUTO_TITLE="false"
-ENABLE_CORRECTION="false"
-COMPLETION_WAITING_DOTS="true"
+#Oh-my-zsh settings options
+DISABLE_AUTO_UPDATE=true
+DISABLE_AUTO_TITLE=false
+ENABLE_CORRECTION=false
+COMPLETION_WAITING_DOTS=true
 HIST_STAMPS="%T %d/%m/%y"
 HISTSIZE=9999
 source $ZSH/oh-my-zsh.sh
