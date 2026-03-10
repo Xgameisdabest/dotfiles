@@ -69,11 +69,35 @@ return {
 			{ "s", "j", desc = "Down" },
 			{ "a", "h", desc = "Left" },
 			{ "d", "l", desc = "Right" },
-			{ "<S-s>", "<PageDown>", desc = "Page Up" },
-			{ "<S-w>", "<PageUp>", desc = "Page Down" },
-			{ "<S-a>", "^", desc = "Jump To The Start Of The Line" },
-			{ "<S-d>", "$", desc = "Jump To The End Of The Line" },
-			{ "3", "dd", desc = "Delete The Entire Line" },
+			{
+				"<S-s>",
+				function()
+					require("neoscroll").ctrl_f({ duration = 150 })
+				end,
+				desc = "Page Up",
+			},
+			{
+				"<S-w>",
+				function()
+					require("neoscroll").ctrl_b({ duration = 150 })
+				end,
+				desc = "Page Down",
+			},
+			{
+				"<S-a>",
+				"^",
+				desc = "Jump To The Start Of The Line",
+			},
+			{
+				"<S-d>",
+				"$",
+				desc = "Jump To The End Of The Line",
+			},
+			{
+				"3",
+				"dd",
+				desc = "Delete The Entire Line",
+			},
 			{ "1", "d", desc = "Delete Selection" },
 			{
 				"<leader>/",
