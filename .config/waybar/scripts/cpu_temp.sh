@@ -8,13 +8,28 @@ gpu_list=""
 fan_list=""
 drive_list=""
 
+# Helper function to get status text
+get_status() {
+	local temp=$1
+	local crit=$2
+	local warn=$3
+	if ((temp >= crit)); then
+		echo "Critical"
+	elif ((temp >= warn)); then
+		echo "Underload"
+	else
+		echo "Safe"
+	fi
+}
+
 # --- 1. CPU Temperatures (Multi-Package) ---
 while read -r line; do
 	id=$(echo "$line" | awk -F'[: ]+' '{print $3}')
 	temp=$(echo "$line" | awk '{print $4}' | tr -d '+°C' | cut -d'.' -f1)
 
 	if [ -n "$temp" ]; then
-		cpu_list="${cpu_list} CPU $id: ${temp}°C (Crit: 100°C)\n"
+		status=$(get_status "$temp" 85 77)
+		cpu_list="${cpu_list} CPU $id: ${temp}°C ($status)\n"
 		if ((temp > max_cpu)); then
 			max_cpu=$temp
 			max_id=$id
@@ -25,7 +40,6 @@ done < <(sensors | grep "Package id")
 # --- 2. GPU, Fans, and SSDs ---
 current_adapter=""
 while read -r line; do
-	# Identify the hardware device (Adapter/PCI slot)
 	if [[ "$line" == *"-pci-"* ]] || [[ "$line" == *"-isa-"* ]]; then
 		current_adapter=$(echo "$line" | awk '{print $1}')
 	fi
@@ -33,10 +47,11 @@ while read -r line; do
 	# GPU Temp
 	if [[ "$line" == *"edge:"* ]]; then
 		g_temp=$(echo "$line" | awk '{print $2}' | tr -d '+°C' | cut -d'.' -f1)
-		gpu_list="${gpu_list} GPU 0: ${g_temp}°C (Crit: 95°C)\n"
+		status=$(get_status "$g_temp" 85 75)
+		gpu_list="${gpu_list} GPU 0: ${g_temp}°C ($status)\n"
 	fi
 
-	# Fan Speeds (Skips N/A)
+	# Fan Speeds
 	if [[ "$line" == *"fan"* ]]; then
 		f_speed=$(echo "$line" | awk '{print $2}')
 		if [[ "$f_speed" =~ ^[0-9]+$ ]]; then
@@ -45,13 +60,12 @@ while read -r line; do
 		fi
 	fi
 
-	# SSD Temperatures (NVMe/SATA)
-	# Most SSDs use 'Composite' or 'temp1' for the drive surface temp
+	# SSD Temperatures
 	if [[ "$line" == *"Composite:"* ]]; then
 		d_temp=$(echo "$line" | awk '{print $2}' | tr -d '+°C' | cut -d'.' -f1)
-		# Clean label (e.g., nvme-pci-0100 -> SSD-0100)
+		status=$(get_status "$d_temp" 70 55)
 		d_label=$(echo "$current_adapter" | sed 's/nvme-pci-/NVMe /')
-		drive_list="${drive_list} ${d_label}: ${d_temp}°C (Crit: 80°C)\n"
+		drive_list="${drive_list} ${d_label}: ${d_temp}°C ($status)\n"
 	fi
 done < <(sensors)
 
@@ -61,9 +75,9 @@ gpu_list="${gpu_list%\\n}"
 fan_list="${fan_list%\\n}"
 drive_list="${drive_list%\\n}"
 
-[ -z "$gpu_list" ] && gpu_list=" N/A"
-[ -z "$fan_list" ] && fan_list=" None detected"
-[ -z "$drive_list" ] && drive_list=" N/A"
+[ -z "$gpu_list" ] && gpu_list=" Not Available"
+[ -z "$fan_list" ] && fan_list=" Not Available"
+[ -z "$drive_list" ] && drive_list=" Not Available"
 
 # --- Waybar Class Logic ---
 class="normal"
