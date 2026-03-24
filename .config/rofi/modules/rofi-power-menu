@@ -32,7 +32,7 @@ fi
 # uptime and hosts
 uptime=$(uptime -p | sed -e 's/up //g' | awk -F'[ ,]+' '{d=h=m=0; for(i=1;i<=NF;i++){if($i=="day"||$i=="days")d=$(i-1); if($i=="hour"||$i=="hours")h=$(i-1); if($i=="minute"||$i=="minutes")m=$(i-1);} out=""; if(d>0)out=out d "d, "; if(h>0)out=out h "h, "; if(m>0)out=out m "m"; sub(/, $/,"",out); print out}')
 if [[ $uptime == "" ]]; then
-	uptime="Just Started"
+	uptime="Just Now"
 fi
 user=$(whoami)
 host=$(hostname)
