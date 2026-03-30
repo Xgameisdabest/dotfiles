@@ -7,4 +7,11 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-rofimoji --typer xdotool --selector-args="-theme $path_to_theme"
+# check environment
+if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+	typer="wtype"
+else
+	typer="xdotool"
+fi
+
+rofimoji --typer $typer --selector-args="-theme $path_to_theme"
