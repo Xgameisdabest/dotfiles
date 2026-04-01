@@ -60,7 +60,7 @@
 		"on-click-right": "(~/.config/waybar/scripts/toggle_bluetooth.sh & disown)"
 	},
 	"clock": {
-		"interval": 30,
+		"interval": 60,
 		"format": "󰥔 {:%I:%M %p}",
 		"tooltip-format": " {:%d-%m-%Y}",
 		"on-click": "setsid ~/.config/rofi/modules/rofi-calendar &"
