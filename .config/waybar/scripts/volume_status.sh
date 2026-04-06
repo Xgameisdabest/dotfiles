@@ -14,17 +14,17 @@ print_status() {
 		max=$(cat "/sys/class/backlight/$device/max_brightness")
 		curr=$(cat "/sys/class/backlight/$device/brightness")
 		brightness_val="$((curr * 100 / max))"
-		brightness_tooltip="Brightness: ${brightness_val}%"
+		brightness_tooltip="󰃠 Brightness: ${brightness_val}%"
 	else
-		brightness_val="0"
-		brightness_tooltip="Brightness: Unsupported"
+		brightness_val="N/A"
+		brightness_tooltip="󰃠 Brightness: Unsupported"
 	fi
 
 	# --- Icon and Class Logic ---
 	if [[ "$mute" == "yes" ]]; then
 		icon=""
 		class="muted"
-		volume_tooltip="Volume Muted"
+		volume_tooltip="󰕾 Volume Muted"
 	else
 		if ((volume < 50)); then
 			icon=""
@@ -36,7 +36,7 @@ print_status() {
 			icon=""
 			class="high"
 		fi
-		volume_tooltip="Volume: ${volume}%"
+		volume_tooltip="󰕾 Volume: ${volume}%"
 	fi
 
 	tooltip="$volume_tooltip\r$brightness_tooltip"

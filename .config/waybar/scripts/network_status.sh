@@ -71,7 +71,7 @@ while sleep 4; do
 		*) strength_stat="Very Bad" ;;
 		esac
 
-		tooltip="SSID: $ssid\nIP: $ipaddr\nNetwork Strength: $strength_stat"
+		tooltip="󱈤  SSID: $ssid\n  IP: $ipaddr\n󰓅  Network Strength: $strength_stat"
 
 		rx_bytes=$(</sys/class/net/$iface/statistics/rx_bytes)
 		tx_bytes=$(</sys/class/net/$iface/statistics/tx_bytes)
@@ -83,7 +83,7 @@ while sleep 4; do
 				dl_speed=$(hr_speed $(((rx_bytes - prev_rx) / interval)))
 				ul_speed=$(hr_speed $(((tx_bytes - prev_tx) / interval)))
 				net_speed=$(hr_speed $(((rx_bytes - prev_rx + tx_bytes - prev_tx) / interval)))
-				tooltip="$tooltip\n\n↓ Download: $dl_speed\n↑ Upload:   $ul_speed\n󰹹 Netspeed: $net_speed"
+				tooltip="$tooltip\n───────────────────────────\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
 			fi
 		fi
 

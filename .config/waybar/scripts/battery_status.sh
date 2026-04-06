@@ -22,9 +22,9 @@ elif hash auto-cpufreq 2>/dev/null; then
 	else
 		T_STAT="N/A"
 	fi
-	TURBO_INFO="\nTurbo: $T_STAT"
+	TURBO_INFO="\n󰶼  Turbo: $T_STAT"
 else
-	CONTROLLER="Kernel (Generic)"
+	CONTROLLER="Kernel"
 	MODE="$GOVERNOR"
 fi
 
@@ -48,20 +48,20 @@ E_NOW="${BAT_DATA[4]}"
 E_FULL="${BAT_DATA[5]}"
 
 # Time Calculation
-TIME_INFO="Time left: N/A"
+TIME_INFO="  Time left: N/A"
 if [[ "$P_RAW" -gt 0 ]]; then
 	if [[ "$STATUS" == "Discharging" ]]; then
 		HOURS=$(echo "scale=2; $E_NOW / $P_RAW" | bc)
 		TIME_MIN=$(printf "%.0f" "$(echo "$HOURS * 60" | bc)")
-		TIME_INFO="Time left: $((TIME_MIN / 60))h $((TIME_MIN % 60))m"
+		TIME_INFO="  Time left: $((TIME_MIN / 60))h $((TIME_MIN % 60))m"
 	elif [[ "$STATUS" == "Charging" ]]; then
 		E_DIFF=$((E_FULL - E_NOW))
 		HOURS=$(echo "scale=2; $E_DIFF / $P_RAW" | bc)
 		TIME_MIN=$(printf "%.0f" "$(echo "$HOURS * 60" | bc)")
-		TIME_INFO="Time to full: $((TIME_MIN / 60))h $((TIME_MIN % 60))m"
+		TIME_INFO="  Time till full: $((TIME_MIN / 60))h $((TIME_MIN % 60))m"
 	fi
 elif [[ "$STATUS" == "Full" ]]; then
-	TIME_INFO="Time left: --"
+	TIME_INFO="  Time left: --"
 fi
 
 # Electricals with leading zero fix
@@ -98,5 +98,5 @@ elif [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
 fi
 
 # Final Output
-TOOLTIP="Controller: ${CONTROLLER}\nMode: ${MODE}${TURBO_INFO}\nGovernor: ${GOVERNOR}\nStatus: $STATUS\n$TIME_INFO\n--------------------\nWattage: ${WATT}W\nVoltage: ${VOLT}V\nAmps: ${AMPS}A"
+TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n───────────────────────────\n󰠠 Electrical\n├ Wattage: ${WATT}W\n├ Voltage: ${VOLT}V\n└ Amps: ${AMPS}A"
 echo "{\"text\": \"$DISPLAY_TEXT\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
