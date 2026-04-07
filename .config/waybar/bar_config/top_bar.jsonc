@@ -14,7 +14,9 @@
 		"tray",
 		"custom/window"
 	],
-	"modules-center": ["hyprland/workspaces"],
+	"modules-center": [
+		"hyprland/workspaces"
+	],
 	"modules-right": [
 		"custom/dtf-update",
 		"clock",
@@ -57,13 +59,15 @@
 		"interval": 2,
 		"return-type": "json",
 		"on-click": "(~/.config/rofi/modules/rofi-bluetooth & disown)",
-		"on-click-right": "(~/.config/waybar/scripts/toggle_bluetooth.sh & disown)"
+		"on-click-right": "(~/.config/waybar/scripts/toggle_bluetooth.sh & disown)",
+		"tooltip": true
 	},
 	"clock": {
 		"interval": 60,
 		"format": "󰥔 {:%I:%M %p}",
-		"tooltip-format": " {:%d-%m-%Y}",
-		"on-click": "setsid ~/.config/rofi/modules/rofi-calendar &"
+		"tooltip-format": "  Date: {:%d-%m-%Y\r󰴟  Timezone: %z}",
+		"on-click": "setsid ~/.config/rofi/modules/rofi-calendar &",
+		"tooltip": true
 	},
 	"custom/temperature": {
 		"format": " {}",
@@ -93,7 +97,13 @@
 		"format-charging": "󰔵  {capacity}%",
 		"format-not-charging": "  {capacity}%",
 		"format-plugged": "󱐋  {capacity}%",
-		"format-icons": [" ", " ", " ", " ", " "],
+		"format-icons": [
+			" ",
+			" ",
+			" ",
+			" ",
+			" "
+		],
 		"on-click": "(~/.config/rofi/modules/rofi-power-mode & disown)"
 	},
 	"custom/network": {
