@@ -19,7 +19,7 @@ hr_speed() {
 	fi
 }
 
-while sleep 4; do
+while sleep 3; do
 	# Detect Ethernet interface
 	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2; exit}')
 	eth_up=$(ip link show "$eth_iface" 2>/dev/null | awk '/state/ {print $9}')
