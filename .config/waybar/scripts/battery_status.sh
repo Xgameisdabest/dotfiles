@@ -24,7 +24,7 @@ elif hash auto-cpufreq 2>/dev/null; then
 	fi
 	TURBO_INFO="\n󰶼  Turbo: $T_STAT"
 else
-	CONTROLLER="Kernel"
+	CONTROLLER="Kernel ($(uname -r))"
 	MODE="$GOVERNOR"
 fi
 
@@ -97,6 +97,13 @@ elif [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
 	DISPLAY_TEXT="$ICON Full"
 fi
 
+dynamic_sep_line=$(
+	for item in $(seq 1 $((${#CONTROLLER} + 15))); do
+		echo -n "─"
+	done
+	echo ""
+)
+
 # Final Output
-TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n───────────────────────────\n󰠠 Electrical\n├ Wattage: ${WATT}W\n├ Voltage: ${VOLT}V\n└ Amps: ${AMPS}A"
+TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n$dynamic_sep_line\n󰠠 Electrical\n├ Wattage: ${WATT}W\n├ Voltage: ${VOLT}V\n└ Amps: ${AMPS}A"
 echo "{\"text\": \"$DISPLAY_TEXT\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
