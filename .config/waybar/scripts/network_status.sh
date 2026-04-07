@@ -40,13 +40,13 @@ while sleep 3; do
 				net_speed=$(hr_speed $(((rx_bytes - prev_rx + tx_bytes - prev_tx) / interval)))
 
 				dynamic_sep_line=$(
-					for item in $(seq 1 $((${#ipaddr} + 6))); do
+					for item in $(seq 1 $((${#ipaddr} + 12))); do
 						echo -n "─"
 					done
 					echo ""
 				)
 
-				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n$dynamic_sep_line\n  Network stats\n├ ↓ $dl_speed\n├ ↑ $ul_speed\n└ 󰹹 $net_speed"
+				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n$dynamic_sep_line\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
 			fi
 		fi
 
@@ -83,8 +83,8 @@ while sleep 3; do
 
 		# Get the counts (using ${#var} is faster than calling 'wc')
 		wc_ssid=$((${#ssid} + 9))
-		wc_ipaddr=$((${#ipaddr} + 6))
-		wc_strength_stat=$((${#strength_stat} + 20))
+		wc_ipaddr=$((${#ipaddr} + 7))
+		wc_strength_stat=$((${#strength_stat} + 21))
 
 		# Regulator logic: Initialize max with the first value
 		max_len=$wc_ssid
