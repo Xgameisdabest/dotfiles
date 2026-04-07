@@ -105,5 +105,5 @@ dynamic_sep_line=$(
 )
 
 # Final Output
-TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n$dynamic_sep_line\n󰠠  Electrical\n├ Wattage: ${WATT}W\n├ Voltage: ${VOLT}V\n└ Amps: ${AMPS}A"
+TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n$dynamic_sep_line\n󰠠  Electrical\n├─ Wattage: ${WATT}W\n├─ Voltage: ${VOLT}V\n└─ Amps: ${AMPS}A"
 echo "{\"text\": \"$DISPLAY_TEXT\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
