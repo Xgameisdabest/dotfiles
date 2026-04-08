@@ -22,7 +22,7 @@ function hide_window() {
 function show_window() {
 	pid=$(tail -1 $stack_file && sed -i '$d' $stack_file)
 	[ -z $pid ] && exit
-	notify-send "Window showed!" "Process ID: $pid" -h string:x-dunst-stack-tag:window_show_hide
+	notify-send "Window shown!" "Process ID: $pid" -h string:x-dunst-stack-tag:window_show_hide
 	current_workspace=$(hyprctl activeworkspace -j | jq '.id')
 	hyprctl dispatch movetoworkspacesilent $current_workspace,pid:$pid
 	hyprctl dispatch focuswindow pid:$pid
