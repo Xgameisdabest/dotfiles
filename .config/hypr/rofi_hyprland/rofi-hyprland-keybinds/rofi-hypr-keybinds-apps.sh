@@ -13,7 +13,7 @@ goback="Back 󰌍 "
 script_name=$0
 script_full_path=$(dirname "$0")
 
-window_height=500px
+window_height=485px
 window_width=1550px
 
 OPTIONS=$("$script_full_path/parser.sh" ~/.config/hypr/hyprland_config_modules/keybinds/app_keybinds.conf)

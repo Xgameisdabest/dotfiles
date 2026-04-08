@@ -9,7 +9,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=220px
+main_menu_height=210px
 main_menu_width=300px
 
 apps_kbdn="󰀻  Apps Keybinds"
