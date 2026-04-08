@@ -9,6 +9,7 @@
     fg-col2: #ff6f91;
     grey: #6c7086;
     black: #000000;
+    mauve: #cba6f7;
 }
 
 window {
@@ -125,12 +126,12 @@ element {
     orientation:                 vertical;
     cursor:                      pointer;
 }
-element normal.normal {
+element normal {
     background-color:            transparent;
     text-color:                  @fg-col;
 }
-element selected.normal {
-    background-color:            @selected-col;
+element selected {
+    background-color:            @mauve;
     border:                      0px 0px 4px 0px;
     border-radius: 		 8px;
     text-color:                  @black;
