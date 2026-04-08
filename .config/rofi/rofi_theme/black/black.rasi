@@ -62,10 +62,10 @@ entry {
 }
 
 listview {
-    scrollbar: true;
+    scrollbar: false;
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
+    margin: 10px 20px 10px 20px;
     columns: 2;
     lines: 5;
     background-color: @bg-col;
@@ -78,12 +78,15 @@ element {
 }
 
 element-icon {
-    size: 25px;
+    size: 26px;
 }
 
 element selected {
-    background-color: @bg-col;
-    text-color: @red;
+    background-color: @mauve;
+    border-radius: 5px;
+    text-color: @bg-col;
+    margin: 20px;
+    padding: 20px;
 }
 
 mode-switcher {
