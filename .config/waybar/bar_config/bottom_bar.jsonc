@@ -65,7 +65,7 @@
 	"clock": {
 		"interval": 60,
 		"format": "󰥔 {:%I:%M %p}",
-		"tooltip-format": "  Date: {:%d-%m-%Y\r󰴟  Timezone: %z}",
+		"tooltip-format": "  Date: {:%a, %d/%b/%Y\r󰨳  Week number: %V\r󰴟  Timezone: %z}",
 		"on-click": "setsid ~/.config/rofi/modules/rofi-calendar &",
 		"tooltip": true
 	},
