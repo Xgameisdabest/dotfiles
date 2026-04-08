@@ -5,7 +5,7 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=420px
+main_menu_height=405px
 main_menu_width=320px
 
 bar_top=${bar_top:-false}

@@ -9,7 +9,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=255px
+main_menu_height=250px
 main_menu_width=450px
 
 temperature="  Temperature"
