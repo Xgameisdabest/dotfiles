@@ -242,6 +242,11 @@ bar_expressive_style=true #(OPTIONS: true/false) (Reload required)
 # REQUIRED BAR SET TO BLACK, EXPRESSIVE TRUE
 bar_dynamic_style=true #(OPTIONS: true/false) (Reload required)
 
+# Material expressive style dynamic, non-translucent when hover
+# Rounded the corners, sometimes circular shape, but squircle on hover
+# REQUIRED BAR SET TO BLACK, EXPRESSIVE TRUE, DYNAMIC TRUE
+bar_dynamic_round_style=false #(OPTIONS: true/false) (Reload required)
+
 # Exclusive feature to polybar, make the icons show less info, cleaner look
 bar_compact=false #(OPTIONS: true/false) (Reload required)
 

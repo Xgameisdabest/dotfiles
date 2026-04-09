@@ -16,6 +16,7 @@ bar_color=${bar_color:-black}
 bar_top=${bar_top:-false}
 bar_expressive_style=${bar_expressive_style:-false}
 bar_dynamic_style=${bar_dynamic_style:-false}
+bar_dynamic_round_style=${bar_dynamic_round_style:-false}
 
 CONFIG_DIR="$HOME/.config/waybar/bar_config"
 STYLE_DIR="$HOME/.config/waybar/bar_style"
@@ -25,7 +26,9 @@ STYLE="dark.css"
 
 if [[ $bar_top == "true" ]]; then CONF="top_bar.jsonc"; fi
 
-if [[ $bar_dynamic_style == "true" ]]; then
+if [[ $bar_dynamic_round_style == "true" ]]; then
+	STYLE="dynamic_round.css"
+elif [[ $bar_dynamic_style == "true" ]]; then
 	STYLE="dynamic.css"
 elif [[ $bar_expressive_style == "true" ]]; then
 	STYLE="expressive.css"
