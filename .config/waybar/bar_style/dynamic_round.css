@@ -81,11 +81,17 @@ tooltip label {
 #custom-window,
 #custom-bluetooth,
 #custom-temperature,
-#custom-notification-center,
 #custom-hyprsunset,
 #custom-hyprland-settings,
 #custom-audio {
 	padding: 0 13px;
+	margin: 10px 4px;
+	border-radius: 20px;
+	transition: all 0.2s ease;
+}
+
+#custom-notification-center {
+	padding: 0px 16px 0px 13px;
 	margin: 10px 4px;
 	border-radius: 20px;
 	transition: all 0.2s ease;
