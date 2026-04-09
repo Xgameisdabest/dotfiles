@@ -83,7 +83,7 @@ element-icon {
 
 element selected {
     background-color: @mauve;
-    border-radius: 5px;
+    border-radius: 20px;
     text-color: @bg-col-light;
     margin: 20px;
     padding: 20px;
