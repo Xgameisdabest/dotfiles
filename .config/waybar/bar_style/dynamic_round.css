@@ -84,9 +84,15 @@ tooltip label {
 #custom-notification-center,
 #custom-hyprsunset,
 #custom-hyprland-settings,
-#custom-audio,
-#custom-power {
+#custom-audio {
 	padding: 0 13px;
+	margin: 10px 4px;
+	border-radius: 20px;
+	transition: all 0.2s ease;
+}
+
+#custom-power {
+	padding: 0px 16px 0px 15px;
 	margin: 10px 4px;
 	border-radius: 20px;
 	transition: all 0.2s ease;
@@ -253,7 +259,7 @@ tooltip label {
 #custom-bluetooth.powered-off:hover,
 #custom-bluetooth.no-devices:hover,
 #custom-bluetooth.one-device:hover {
-	min-width: 27px;
+	min-width: 30px;
 }
 
 #custom-hyprsunset:hover,
