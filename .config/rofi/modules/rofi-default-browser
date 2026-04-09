@@ -31,7 +31,7 @@ chromium_select="  Chromium"
 back="Back 󰌍"
 quit="Exit 󰈆 "
 
-main_menu_height=355px
+main_menu_height=365px
 main_menu_width=375px
 
 # --- LOGIC TO DETECT CURRENT DEFAULT ---
