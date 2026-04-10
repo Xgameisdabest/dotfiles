@@ -9,22 +9,29 @@ handle_title() {
 	pid=$(echo "$data" | jq -r '.pid')
 
 	if [ -z "$class" ] || [ "$class" = "null" ]; then
-		echo "{\"text\": \"󰖲\", \"tooltip\": \" No active window\"}"
+		echo "{\"text\": \"󰖲\", \"tooltip\": \"  No active window\"}"
 	else
-		# Calculate RAM usage for the specific PID in MB
+		# Calculate RAM usage for the specific PID in MB/GB
 		# 'rss' is Resident Set Size (physical memory used)
 		if [ -n "$pid" ] && [ "$pid" != "null" ]; then
 			ram_kb=$(ps -p "$pid" -o rss= | tr -d ' ')
 			if [ -n "$ram_kb" ]; then
 				ram_mb=$((ram_kb / 1024))
-				ram_display="($ram_mb MB)"
+
+				if [ "$ram_mb" -ge 1024 ]; then
+					# Convert to GB with 1 decimal place using awk
+					ram_gb=$(awk "BEGIN {printf \"%.1f\", $ram_kb / 1048576}")
+					ram_display="$ram_gb GB"
+				else
+					ram_display="$ram_mb MB"
+				fi
 			else
-				ram_display="Not found?"
+				ram_display="Null B"
 			fi
 		fi
 
 		short_label="${class:0:15}"
-		window_tooltip="  $full_title\n  RAM Usage: $ram_mb MB"
+		window_tooltip="  $full_title\n  RAM Usage: $ram_display"
 		echo "{\"text\": \"󰖯 $short_label\", \"tooltip\": \"$window_tooltip\"}"
 	fi
 }
