@@ -138,7 +138,7 @@ ai() {
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 427px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcut & Search  ")
+	select=$(echo -e "$web\n$yt\n$ai\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 435px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcut & Search  ")
 
 	case $select in
 	$web)
