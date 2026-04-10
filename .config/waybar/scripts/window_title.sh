@@ -31,7 +31,7 @@ handle_title() {
 		fi
 
 		short_label="${class:0:15}"
-		window_tooltip="  $full_title\n  RAM Usage: $ram_display"
+		window_tooltip="  $full_title\n  RAM Usage (estimated): $ram_display"
 		echo "{\"text\": \"󰖯 $short_label\", \"tooltip\": \"$window_tooltip\"}"
 	fi
 }
