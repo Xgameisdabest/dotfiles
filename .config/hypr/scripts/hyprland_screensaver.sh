@@ -12,6 +12,7 @@ screensaver_logic() {
 	message=${messages_list[$RANDOM % ${#messages_list[@]}]}
 
 	case "$style" in
+	cava) cmd="cava" ;;
 	cbonsai) cmd="cbonsai --live --multiplier 5 --infinite --wait 5 --time 0.02 --life 40 --message=\"$message\"" ;;
 	clock) cmd="tty-clock -scbC7S" ;;
 	pipes) cmd="pipes" ;;
