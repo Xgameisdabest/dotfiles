@@ -11,11 +11,11 @@ else
 fi
 
 #when add new entry make sure to add 35 to height
-waybar_submenu_height=255px
+waybar_submenu_height=245px
 waybar_submenu_width=280px
 
-waybar_style_submenu_height=290px
-waybar_style_submenu_width=430px
+waybar_style_submenu_height=320px
+waybar_style_submenu_width=480px
 waybar_config_submenu_height=215px
 waybar_config_submenu_width=280px
 
@@ -71,9 +71,10 @@ waybar_style_submenu() {
 	waybar_color_white="  White Theme "
 	waybar_color_expressive="  Expressive Theme"
 	waybar_color_expressive_dynamic="  Expressive Theme (Dynamic)"
+	waybar_color_expressive_dynamic_rounded="  Expressive Theme (Dynamic, Rounded)"
 
 	#when add new entry make sure to add 35 to height
-	select_style=$(echo -e "$waybar_color_dark\n$waybar_color_white\n$waybar_color_expressive\n$waybar_color_expressive_dynamic\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_style_submenu_height; width: $waybar_style_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
+	select_style=$(echo -e "$waybar_color_dark\n$waybar_color_white\n$waybar_color_expressive\n$waybar_color_expressive_dynamic\n$waybar_color_expressive_dynamic_rounded\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_style_submenu_height; width: $waybar_style_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
 
 	case $select_style in
 	$waybar_color_white)
@@ -87,6 +88,9 @@ waybar_style_submenu() {
 		;;
 	$waybar_color_expressive_dynamic)
 		$TERMINAL -e nvim ~/.config/waybar/bar_style/dynamic.css
+		;;
+	$waybar_color_expressive_dynamic_rounded)
+		$TERMINAL -e nvim ~/.config/waybar/bar_style/dynamic_round.css
 		;;
 	$goback)
 		waybar_submenu
