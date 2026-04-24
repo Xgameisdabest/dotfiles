@@ -77,9 +77,9 @@ apply_change() {
         fi
 
         update-desktop-database ~/.local/share/applications
-        notify-send "Browser Updated" "Default set to $name"
+        notify-send "  Browser Updated" "Default set to $name"
     else
-        notify-send "Action Cancelled" "$name was not installed. No changes made."
+        notify-send "  Action Cancelled" "$name was not installed. No changes made."
     fi
 }
 
