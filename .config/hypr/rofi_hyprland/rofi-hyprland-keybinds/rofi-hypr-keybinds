@@ -16,7 +16,7 @@ apps_kbdn="󰀻  Apps Keybinds"
 sys_kbdn="  System Keybinds"
 quit="Exit 󰈆 "
 
-select=$(echo -e "$sys_kbdn\n$apps_kbdn\n$quit" | rofi -dmenu -i -p '   Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+select=$(echo -e "$sys_kbdn\n$apps_kbdn\n$quit" | rofi -x11 -dmenu -i -p '   Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
 
 case $select in
 $apps_kbdn)

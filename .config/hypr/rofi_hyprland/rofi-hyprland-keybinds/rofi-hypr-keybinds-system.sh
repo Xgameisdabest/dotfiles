@@ -18,7 +18,7 @@ window_width=1575px
 
 OPTIONS=$("$script_full_path/parser.sh" ~/.config/hypr/hyprland_config_modules/keybinds/wm_keybinds.conf && "$script_full_path/parser.sh" ~/.config/hypr/hyprland_config_modules/keybinds/special_keybinds.conf)
 
-SELECTED=$(echo -e "$OPTIONS\n$goback" | rofi -dmenu -i -p '   System Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $window_width; height: $window_height;}" -theme $path_to_theme)
+SELECTED=$(echo -e "$OPTIONS\n$goback" | rofi -x11 -dmenu -i -p '   System Keybinds ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $window_width; height: $window_height;}" -theme $path_to_theme)
 
 case $SELECTED in
 $goback)
