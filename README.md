@@ -1,6 +1,6 @@
 ## About
 
-___DEVELOP ON UBUNTU 25.10___<BR>
+___DEVELOP ON UBUNTU 26.04___<BR>
 ___TESTED ON ARCH LINUX AND LINUX MINT___
 
 __Project Size__
