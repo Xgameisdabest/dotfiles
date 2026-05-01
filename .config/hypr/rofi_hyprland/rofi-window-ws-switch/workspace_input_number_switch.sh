@@ -9,7 +9,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-input=$(rofi -dmenu -i -theme-str "window {height: 90px; width: 300px;}" -p "  󰖲 " -theme $path_to_theme)
+input=$(rofi -x11 -dmenu -i -theme-str "window {height: 90px; width: 300px;}" -p "  󰖲 " -theme $path_to_theme)
 if [[ $input != "" ]] && [[ "$input" =~ ^-?[0-9]+$ ]]; then
 	hyprctl dispatch workspace $input
 else
