@@ -7,4 +7,4 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-rofi -theme $path_to_theme -show drun
+rofi -x11 -theme $path_to_theme -show drun

@@ -14,4 +14,4 @@ else
 	typer="xdotool"
 fi
 
-rofimoji --typer $typer --selector-args="-theme $path_to_theme"
+rofimoji --typer $typer --selector-args="-x11 -theme $path_to_theme"

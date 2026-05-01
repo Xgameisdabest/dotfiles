@@ -20,8 +20,8 @@ if [[ $bar_hidden_when_using_launcher == "true" ]]; then
 		    polybar-msg cmd show
 		fi
 	elif [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		rofi -theme $path_to_theme -show drun
+		rofi -x11 -theme $path_to_theme -show drun
 	fi
 else
-	rofi -theme $path_to_theme -show drun
+	rofi -x11 -theme $path_to_theme -show drun
 fi
