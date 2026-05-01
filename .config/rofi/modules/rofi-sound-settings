@@ -79,7 +79,7 @@ ouput_dev_card=$(pactl list cards | grep "device.name" | sed 's/device.name =//g
 current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | sed 's/bluez_output.//g' | sed 's/\..*//')
 
 main_menu() {
-	select=$(echo -e "$opt_list" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   " -theme $path_to_theme)
+	select=$(echo -e "$opt_list" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Audio   " -theme $path_to_theme)
 
 	case $select in
 	$playback_opt)
@@ -104,7 +104,7 @@ main_menu() {
 }
 
 manual_set_volume_func() {
-	input_vol_percent=$(rofi -dmenu -i -p " Volume   (From 0 -> 153) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $manual_menu_height; width: $manual_menu_width; location: $location; x-offset: $manual_menu_x_offset; y-offset: $manual_menu_y_offset;}" -theme $path_to_theme)
+	input_vol_percent=$(rofi -x11 -dmenu -i -p " Volume   (From 0 -> 153) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $manual_menu_height; width: $manual_menu_width; location: $location; x-offset: $manual_menu_x_offset; y-offset: $manual_menu_y_offset;}" -theme $path_to_theme)
 	case $input_vol_percent in
 	"")
 		exit 0
@@ -129,7 +129,7 @@ outputdev_func() {
 		height_per_outputdev=710
 	fi
 
-	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  " -theme-str "window {location: $location; x-offset: $ouputdev_menu_x_offset; y-offset: $ouputdev_menu_y_offset; height: ${height_per_outputdev};}" -theme $path_to_theme)
+	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -x11 -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  " -theme-str "window {location: $location; x-offset: $ouputdev_menu_x_offset; y-offset: $ouputdev_menu_y_offset; height: ${height_per_outputdev};}" -theme $path_to_theme)
 	#echo $select_output
 	if [[ $select_output == $goback ]]; then
 		main_menu
@@ -152,7 +152,7 @@ inputdev_func() {
 		height_per_inputdev=710
 	fi
 
-	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $inputdev_menu_x_offset; y-offset: $inputdev_menu_y_offset; height: ${height_per_inputdev};}" -p " Input 󱦉  " -theme $path_to_theme)
+	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -x11 -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $inputdev_menu_x_offset; y-offset: $inputdev_menu_y_offset; height: ${height_per_inputdev};}" -p " Input 󱦉  " -theme $path_to_theme)
 	#echo $select_input
 	if [[ $select_input == $goback ]]; then
 		main_menu
@@ -175,7 +175,7 @@ devconfig_func() {
 		height_per_configs=710
 	fi
 
-	select_profile=$(echo -e "$devconfig_list\n$goback" | rofi -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $devconfig_menu_x_offset; y-offset: $devconfig_menu_y_offset; height: ${height_per_configs};}" -p " Configuration   " -theme $path_to_theme)
+	select_profile=$(echo -e "$devconfig_list\n$goback" | rofi -x11 -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $devconfig_menu_x_offset; y-offset: $devconfig_menu_y_offset; height: ${height_per_configs};}" -p " Configuration   " -theme $path_to_theme)
 	if [[ $select_profile == $goback ]]; then
 		main_menu
 	fi

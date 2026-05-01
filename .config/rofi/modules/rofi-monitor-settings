@@ -28,7 +28,7 @@ main_menu() {
 		height_per_monitor_listed=710
 	fi
 
-	monitor_picked=$(echo -e "$monitor_list\n$goback\n$quit" | rofi -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
+	monitor_picked=$(echo -e "$monitor_list\n$goback\n$quit" | rofi -x11 -dmenu -p " Monitors 󰍺  " -theme $path_to_theme -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: ${height_per_monitor_listed};}")
 
 	if [[ -z "$monitor_picked" ]] || [[ "$monitor_picked" = "$quit" ]]; then
 		exit
@@ -83,7 +83,7 @@ mode_menu() {
 	current_res=$(hyprctl monitors -j | jq -r --arg mon "$monitor_picked" \
 		'.[] | select(.name==$mon) | "\(.width)x\(.height)@\(.refreshRate)"')
 
-	mode_picked=$(echo -e "$menu_entries" | rofi -dmenu -p " Current Resolution 󰹑 : $current_res " \
+	mode_picked=$(echo -e "$menu_entries" | rofi -x11 -dmenu -p " Current Resolution 󰹑 : $current_res " \
 		-theme $path_to_theme \
 		-theme-str "listview {columns: 1; layout: vertical;}" \
 		-theme-str "window {width: $mode_menu_width; height: $height_per_mode_listed;}")

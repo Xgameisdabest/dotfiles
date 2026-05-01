@@ -85,7 +85,7 @@ apply_change() {
 
 # Rofi Menu
 select_menu=$(echo -e "$firefox_select\n$chrome_select\n$brave_select\n$librewolf_select\n$chromium_select\n$back\n$quit" |
-    rofi -dmenu -i -p ' Default Browsers 󰖟 ' \
+    rofi -x11 -dmenu -i -p ' Default Browsers 󰖟 ' \
         -selected-row "$current_row" \
         -theme-str "listview {columns: 1; layout: vertical;}" \
         -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" \

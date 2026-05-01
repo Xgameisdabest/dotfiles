@@ -20,7 +20,7 @@ default_file_manager="  Default File Manger "
 system_update_upgrade="󰚰  Full System Upgrade"
 quit="Exit 󰈆 "
 
-select=$(echo -e "$wm_settings\n$usr_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$quit" | rofi -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+select=$(echo -e "$wm_settings\n$usr_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$quit" | rofi -x11 -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
 
 case $select in
 $wm_settings)

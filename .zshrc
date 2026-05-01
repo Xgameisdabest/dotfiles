@@ -124,6 +124,7 @@ if [[ $- == *i* ]]; then
 	alias pwr-max="powerprofilesctl set performance"
 	alias pwr-mid="powerprofilesctl set balanced"
 	alias pwr-low="powerprofilesctl set power-saver"
+	alias rofi="rofi -x11"
 fi
 
 #KERNEL VERSION

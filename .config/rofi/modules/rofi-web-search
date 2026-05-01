@@ -23,7 +23,7 @@ back="Back 󰌍"
 quit="Exit 󰈆 "
 
 web() {
-	search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Search   ")
+	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Search   ")
 	search_engine="https://search.brave.com/search?q="
 	main() {
 		if [[ -n "$search" ]]; then
@@ -42,10 +42,10 @@ yt() {
 	open_the_webpage_yt="󰖟  Open the website 󰌧 "
 	open_the_search_bar_yt="  Search for videos"
 
-	choice=$(echo -e "$open_the_webpage_yt\n$open_the_search_bar_yt\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 330px;}" -p " Videos   ")
+	choice=$(echo -e "$open_the_webpage_yt\n$open_the_search_bar_yt\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 330px;}" -p " Videos   ")
 
 	search_yt() {
-		search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Videos   ")
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Videos   ")
 		search_engine="https://www.youtube.com/results?search_query="
 		main() {
 			if [[ -n "$search" ]]; then
@@ -78,10 +78,10 @@ github() {
 	open_the_webpage_git="󰖟  Open the website 󰌧 "
 	open_the_search_bar_git="  Search for repositories"
 
-	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 380px;}" -p " Github   ")
+	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 380px;}" -p " Github   ")
 
 	search_github() {
-		search=$(echo | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Repositories   ")
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Repositories   ")
 		search_engine="https://github.com/search?q="
 		main() {
 			if [[ -n "$search" ]]; then
@@ -116,7 +116,7 @@ ai() {
 	gemini="  Gemini 󰌧 "
 	chatgpt="  ChatGpt 󰌧 "
 	claude="  Claude 󰌧 "
-	model_choice=$(echo -e "$gemini\n$chatgpt\n$claude\n$back" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 245px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
+	model_choice=$(echo -e "$gemini\n$chatgpt\n$claude\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 245px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
 
 	case $model_choice in
 	$gemini)
@@ -138,7 +138,7 @@ ai() {
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -dmenu -theme $path_to_theme -theme-str "window {height: 435px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcut & Search  ")
+	select=$(echo -e "$web\n$yt\n$ai\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 435px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcut & Search  ")
 
 	case $select in
 	$web)

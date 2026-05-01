@@ -99,7 +99,7 @@ calendar_menu() {
 		selected_row="-selected-row $next_month_index"
 	fi
 
-	echo -e "$calendar_body" | sed 's/\./__/g' | rofi -dmenu \
+	echo -e "$calendar_body" | sed 's/\./__/g' | rofi -x11 -dmenu \
 		-theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" \
 		-theme $path_to_theme \
 		-p "$calendar_header" $urgent $active $selected_row

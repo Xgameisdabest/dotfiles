@@ -368,7 +368,7 @@ show_menu() {
 
 		#options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
 		options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_trusted\n$devices_paired\n$bluetooth_manager\n$quit"
-		chosen="$(echo -e "$options" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
+		chosen="$(echo -e "$options" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
 
 		case "$chosen" in
 		"" | "$divider")
@@ -408,7 +408,7 @@ show_menu() {
 	else
 		power="  Power: Off"
 		options_off="$power\n$quit"
-		chosen="$(echo -e "$options_off" | rofi -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
+		chosen="$(echo -e "$options_off" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height_off; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
 
 		case "$chosen" in
 		"" | "$divider")
@@ -422,7 +422,7 @@ show_menu() {
 	fi
 }
 
-rofi_command="rofi -dmenu -i -theme $path_to_theme -p "
+rofi_command="rofi -x11 -dmenu -i -theme $path_to_theme -p "
 
 case "$1" in
 --status)

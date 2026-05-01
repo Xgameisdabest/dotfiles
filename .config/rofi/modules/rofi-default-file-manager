@@ -84,7 +84,7 @@ apply_change() {
 
 # Rofi Menu with -selected-row
 select_menu=$(echo -e "$thunar_select\n$nautilus_select\n$dolphin_select\n$pcmanfm_select\n$nemo_select\n$back\n$quit" |
-	rofi -dmenu -i -p ' Default File Managers  ' \
+	rofi -x11 -dmenu -i -p ' Default File Managers  ' \
 		-selected-row "$current_row" \
 		-theme-str "listview {columns: 1; layout: vertical;}" \
 		-theme-str "window {width: $main_menu_width; height: $main_menu_height;}" \
