@@ -36,7 +36,7 @@ rofi="󰮫  Rofi  "
 zshconfig="  Zsh"
 dunst="󰵙  Notification "
 main_menu() {
-	select=$(echo -e "$hyprconfig\n$rofi\n$waybar\n$dunst\n$zshconfig\n$hyprlock\n$gestures\n$wallpaper\n$arandr\n$goback\n$quit" | rofi -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
+	select=$(echo -e "$hyprconfig\n$rofi\n$waybar\n$dunst\n$zshconfig\n$hyprlock\n$gestures\n$wallpaper\n$arandr\n$goback\n$quit" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
 
 	case $select in
 	$hyprconfig)

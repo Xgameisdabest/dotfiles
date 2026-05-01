@@ -44,7 +44,7 @@ elif ((calc_w > max_w)); then
 else final_w=$calc_w; fi
 
 # Open Rofi
-choice=$(echo "$window_list" | rofi -dmenu -i \
+choice=$(echo "$window_list" | rofi -x11 -dmenu -i \
 	-p " Available Windows 󰖲 " \
 	-selected-row "$selected_row" \
 	-theme "$path_to_theme" \

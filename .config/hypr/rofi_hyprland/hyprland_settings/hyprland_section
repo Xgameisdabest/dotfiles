@@ -28,7 +28,7 @@ hypr_submenu() {
 	special_key_keybinds="󰘲  Special Key Keybinds 󰌏 "
 	plugins_keybinds="  Plugins Keybinds 󰌏 "
 
-	select4=$(echo -e "$hypr_sub\n$exec\n$plugins_opt\n$coloring\n$animations\n$gaps_border\n$for_window_rules\n$input_opt\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$plugins_keybinds\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_submenu_height; width: $hypr_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Hyprland   " -theme $path_to_theme)
+	select4=$(echo -e "$hypr_sub\n$exec\n$plugins_opt\n$coloring\n$animations\n$gaps_border\n$for_window_rules\n$input_opt\n$system_keybinds\n$app_keybinds\n$special_key_keybinds\n$plugins_keybinds\n$goback" | rofi -x11 -dmenu -i -theme-str "window {height: $hypr_submenu_height; width: $hypr_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Hyprland   " -theme $path_to_theme)
 
 	case $select4 in
 	$hypr_sub)

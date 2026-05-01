@@ -20,7 +20,7 @@ hypr_setting_submenu() {
 	waybar_section="󰅍  Waybar"
 	hypr_settings_section="󰅍  This Menu"
 
-	select10=$(echo -e "$main_config\n$hypr_settings_section\n$hypr_section\n$dunst_section\n$rofi_section\n$waybar_section\n$goback" | rofi -dmenu -i -theme-str "window {height: $hypr_setting_submenu_height; width: $hypr_setting_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu Config   " -theme $path_to_theme)
+	select10=$(echo -e "$main_config\n$hypr_settings_section\n$hypr_section\n$dunst_section\n$rofi_section\n$waybar_section\n$goback" | rofi -x11 -dmenu -i -theme-str "window {height: $hypr_setting_submenu_height; width: $hypr_setting_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Menu Config   " -theme $path_to_theme)
 
 	case $select10 in
 	$hypr_section)

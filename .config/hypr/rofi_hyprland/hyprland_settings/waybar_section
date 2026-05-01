@@ -26,7 +26,7 @@ waybar_submenu() {
 	bar_start="󱓞  Bar Startup"
 
 	#when add new entry make sure to add 35 to height
-	waybar_select=$(echo -e "$waybar_main_cfg_sub\n$waybar_color_sub\n$bar_start\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_submenu_height; width: $waybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Waybar   " -theme $path_to_theme)
+	waybar_select=$(echo -e "$waybar_main_cfg_sub\n$waybar_color_sub\n$bar_start\n$goback" | rofi -x11 -dmenu -i -theme-str "window {height: $waybar_submenu_height; width: $waybar_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Waybar   " -theme $path_to_theme)
 
 	case $waybar_select in
 	$waybar_main_cfg_sub)
@@ -50,7 +50,7 @@ waybar_config_submenu() {
 	waybar_cfg_bottom="  Bar Bottom "
 
 	#when add new entry make sure to add 35 to height
-	select_config=$(echo -e "$waybar_cfg_bottom\n$waybar_cfg_top\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_config_submenu_height; width: $waybar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
+	select_config=$(echo -e "$waybar_cfg_bottom\n$waybar_cfg_top\n$goback" | rofi -x11 -dmenu -i -theme-str "window {height: $waybar_config_submenu_height; width: $waybar_config_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
 
 	case $select_config in
 	$waybar_cfg_bottom)
@@ -74,7 +74,7 @@ waybar_style_submenu() {
 	waybar_color_expressive_dynamic_rounded="  Expressive Theme (Dynamic, Rounded)"
 
 	#when add new entry make sure to add 35 to height
-	select_style=$(echo -e "$waybar_color_dark\n$waybar_color_white\n$waybar_color_expressive\n$waybar_color_expressive_dynamic\n$waybar_color_expressive_dynamic_rounded\n$goback" | rofi -dmenu -i -theme-str "window {height: $waybar_style_submenu_height; width: $waybar_style_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
+	select_style=$(echo -e "$waybar_color_dark\n$waybar_color_white\n$waybar_color_expressive\n$waybar_color_expressive_dynamic\n$waybar_color_expressive_dynamic_rounded\n$goback" | rofi -x11 -dmenu -i -theme-str "window {height: $waybar_style_submenu_height; width: $waybar_style_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Polybar   " -theme $path_to_theme)
 
 	case $select_style in
 	$waybar_color_white)

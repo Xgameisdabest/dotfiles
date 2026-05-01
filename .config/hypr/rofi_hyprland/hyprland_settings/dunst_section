@@ -20,7 +20,7 @@ dunst_submenu() {
 	notification_center="󰅍  Notification Bar Icon"
 	volume_and_light="󰕾  Volume & Light"
 
-	select6=$(echo -e "$main_config\n$volume_and_light\n$bat_status\n$notification_center\n$airplane_mode\n$goback" | rofi -dmenu -i -theme-str "window {height: $dunst_submenu_height; width: $dunst_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Notification   " -theme $path_to_theme)
+	select6=$(echo -e "$main_config\n$volume_and_light\n$bat_status\n$notification_center\n$airplane_mode\n$goback" | rofi -x11 -dmenu -i -theme-str "window {height: $dunst_submenu_height; width: $dunst_submenu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Notification   " -theme $path_to_theme)
 
 	case $select6 in
 	$bat_status)
