@@ -96,7 +96,7 @@ noti_main_menu() {
 	# 4. Show Rofi
 	options="$dnd_toggle\n$cls_hist\n$notifications"
 
-	selected=$(echo -e "$quit\n$options" | rofi -dmenu \
+	selected=$(echo -e "$quit\n$options" | rofi -x11 -dmenu \
 		-theme "$path_to_theme" \
 		-i -selected-row 2 \
 		-p " Notifications 󱅫  " \
@@ -129,7 +129,7 @@ noti_body_menu() {
 
 	clean_body=$(echo "$body" | sed 's/<[^>]*>//g')
 
-	choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -dmenu \
+	choose_opt=$(echo -e "$goback\n$quit\nNotification Body 󰎟 :\n$clean_body" | rofi -x11 -dmenu \
 		-theme "$path_to_theme" -i -selected-row 0 \
 		-p " Notification Body 󰎟 " \
 		-theme-str "listview {columns: 1;}" \

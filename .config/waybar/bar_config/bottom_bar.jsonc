@@ -135,7 +135,7 @@
 		"exec": "~/.config/waybar/scripts/notification-indicator",
 		"return-type": "json",
 		"interval": 2,
-		"on-click": "(~/.config/dunst/scripts/noti-center.sh & disown)",
+		"on-click": "(~/.config/rofi/modules/rofi-noti-center.sh & disown)",
 		"on-click-right": "dunstctl history-clear"
 	},
 	"custom/hyprsunset": {
