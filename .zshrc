@@ -126,8 +126,12 @@ if [[ $- == *i* ]]; then
 	alias rofi="rofi -x11"
 fi
 
-#KERNEL VERSION
+### DISPLAY ON STARTUP SECTION
+####################################################
+#DISTRO NAME AND VERSION
+echo -e " \033[1;32m\033[0m \e[1;33mDistro:\033[0m $(cat /etc/os-release | grep PRETTY_NAME | sed "s/PRETTY_NAME=//g" | sed "s/\"//g")"
 
+#KERNEL VERSION
 if [[ -f /proc/version_signature ]]; then
     echo -e " \033[1;32m\033[0m \e[1;33mKernel Version:\033[0m $(cat /proc/version_signature)"
 else
@@ -141,6 +145,7 @@ echo -e " \033[1;32m\033[0m \e[1;33mUsed Linux since \033[1;36m$(date -d "$(s
 if [[ -f "$HOME/.easy_package_managers.sh" ]]; then
 	source "$HOME/.easy_package_managers.sh"
 fi
+####################################################
 
 #PROMPT
 
