@@ -129,7 +129,9 @@ fi
 ### DISPLAY ON STARTUP SECTION
 ####################################################
 #DISTRO NAME AND VERSION
-echo -e " \033[1;32m\033[0m \e[1;33mDistro:\033[0m $(cat /etc/os-release | grep PRETTY_NAME | sed "s/PRETTY_NAME=//g" | sed "s/\"//g")"
+OS_NAME=$(source /etc/os-release && echo "$PRETTY_NAME")
+OS_CODENAME="<Codename: $(source /etc/os-release && echo "$VERSION_CODENAME")>"
+echo -e " \033[1;32m\033[0m \e[1;33mDistro:\033[0m $OS_NAME $OS_CODENAME"
 
 #KERNEL VERSION
 if [[ -f /proc/version_signature ]]; then
