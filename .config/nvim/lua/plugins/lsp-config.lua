@@ -41,15 +41,24 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			-- Get the list of installed servers
 			local servers = require("mason-lspconfig").get_installed_servers()
 
 			for _, server in ipairs(servers) do
-				vim.lsp.config(server, {
+				local config = {
 					capabilities = capabilities,
-				})
+				}
 
+				-- Inject Zsh support if the server is bashls
+				if server == "bashls" then
+					config.filetypes = { "sh", "bash", "zsh" }
+					config.settings = {
+						bashIde = {
+							globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh)",
+						},
+					}
+				end
+
+				vim.lsp.config(server, config)
 				vim.lsp.enable(server)
 			end
 		end,
