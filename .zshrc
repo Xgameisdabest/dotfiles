@@ -114,6 +114,11 @@ if [[ $- == *i* ]]; then
 		alias lss="command ls"
 	fi
 
+	if command -v zoxide >/dev/null 2>&1; then
+		eval "$(zoxide init zsh)"
+		alias cd="z"
+	fi
+
 	alias sudo="sudo -B"
 	alias consoleconfig="sudo dpkg-reconfigure console-setup "
 	alias i3config="cd ~/.config/i3/"
