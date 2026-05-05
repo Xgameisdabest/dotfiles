@@ -53,7 +53,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --icon=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' prefix '·'
 # give a preview of commandline arguments when completing `kill`
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
@@ -117,6 +116,7 @@ if [[ $- == *i* ]]; then
 	if command -v zoxide >/dev/null 2>&1; then
 		eval "$(zoxide init zsh)"
 		alias cd="z"
+		alias cdi="zi"
 	fi
 
 	alias sudo="sudo -B"
@@ -138,7 +138,6 @@ if [[ $- == *i* ]]; then
 	alias v=nvim
 	alias lgit=lazygit
 	alias suv="sudo -e"
-	alias vconfig="cd ~/.config/nvim/"
 	alias pwr-stat="powerprofilesctl get"
 	alias pwr-max="powerprofilesctl set performance"
 	alias pwr-mid="powerprofilesctl set balanced"
