@@ -115,6 +115,7 @@ if [[ $- == *i* ]]; then
 
 	if command -v zoxide >/dev/null 2>&1; then
 		eval "$(zoxide init zsh)"
+		export _ZO_MAXAGE=120
 		alias cd="z"
 		alias cdi="zi"
 	fi
