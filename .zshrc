@@ -51,10 +51,11 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'lsd -1 --color=always --icon=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' 'lsd -1 --color=always --icon=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':fzf-tab:complete:cd:*' popup-pad 17 0
+zstyle ':fzf-tab:*' fzf-flags --ansi
 
 #Oh-my-zsh settings options
 DISABLE_AUTO_UPDATE=true
