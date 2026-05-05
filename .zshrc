@@ -3,7 +3,7 @@
 
 # Check for config file if it exists
 if [[ -f "$HOME/.config/dtf-config/config" ]]; then
-    source "$HOME/.config/dtf-config/config"
+	source "$HOME/.config/dtf-config/config"
 fi
 
 #ENVIRONMENT VARIABLES
@@ -38,12 +38,12 @@ bindkey '	' fzf-tab-complete
 
 #PLUGINS
 plugins=(
-zsh-autopair
-zsh-autosuggestions 
-zsh-syntax-highlighting 
-fzf-tab
-command-not-found
-sudo
+	zsh-autopair
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	fzf-tab
+	command-not-found
+	sudo
 )
 
 #fzf-tab
@@ -51,11 +51,10 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'lsd -1 --color=always --icon=always $realpath'
-zstyle ':fzf-tab:complete:cd:*' 'lsd -1 --color=always --icon=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --icon=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':fzf-tab:*' fzf-flags --ansi
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' prefix '·'
 
 #Oh-my-zsh settings options
 DISABLE_AUTO_UPDATE=true
@@ -96,8 +95,8 @@ if [[ $- == *i* ]]; then
 	#ALIASES
 
 	if command -v lsd >/dev/null 2>&1; then
-	    alias ls="lsd -t"
-	    alias lss="command ls"
+		alias ls="lsd -t"
+		alias lss="command ls"
 	fi
 
 	alias sudo="sudo -B"
@@ -136,13 +135,13 @@ echo -e " \033[1;32m\033[0m \e[1;33mDistro:\033[0m $OS_NAME $OS_CODENAME"
 
 #KERNEL VERSION
 if [[ -f /proc/version_signature ]]; then
-    echo -e " \033[1;32m\033[0m \e[1;33mKernel Version:\033[0m $(cat /proc/version_signature)"
+	echo -e " \033[1;32m\033[0m \e[1;33mKernel Version:\033[0m $(cat /proc/version_signature)"
 else
-    echo -e " \033[1;32m\033[0m \e[1;33mKernel Version:\033[0m $(uname -r)"
+	echo -e " \033[1;32m\033[0m \e[1;33mKernel Version:\033[0m $(uname -r)"
 fi
 
 #LINUX USE DATE
-echo -e " \033[1;32m\033[0m \e[1;33mUsed Linux since \033[1;36m$(date -d "$(stat / | grep Birth | awk '{print $2}')" +%d/%b/%Y)\e[1;33m for \033[1;31m$(( ( $(date +%s) - $(date -d "$(stat / | grep Birth | awk '{print $2}')" +%s) ) / 86400 ))\e[1;33m days\033[0m"
+echo -e " \033[1;32m\033[0m \e[1;33mUsed Linux since \033[1;36m$(date -d "$(stat / | grep Birth | awk '{print $2}')" +%d/%b/%Y)\e[1;33m for \033[1;31m$((($(date +%s) - $(date -d "$(stat / | grep Birth | awk '{print $2}')" +%s)) / 86400))\e[1;33m days\033[0m"
 
 #PACKAGE MANAGERS ALIASES
 if [[ -f "$HOME/.easy_package_managers.sh" ]]; then
@@ -153,7 +152,7 @@ fi
 #PROMPT
 
 autoload -Uz vcs_info
-precmd() { vcs_info }
+precmd() { vcs_info; }
 zstyle ':vcs_info:git:*' formats '%b '
 
 #PS1="%B%F{black}╭ %B%F{white}%n%F{red}@%F{white}%m%f%F{red} - %F{black}  %F{red}- %F{white}%B%~%b%f%F{black}%B "$'\n'"╰%F{white}%B%F{red}➜ %b%f"
@@ -186,7 +185,6 @@ PROMPT='$(git_prompt_info)
 #   %B%F{#ff6f91} %f%F{#f7a8b8}%n%f %F{#797d8a}-%f %F{#89b4fa} %f%F{#94e2d5}%m%f%b
 #   %B%F{#e0e6ed}%~%f  %(?:%F{#a6e3a1}λ%f%b:%F{#ff6f91}λ%f%b)  '
 
-
 #PROMPT='  $(git_prompt_info)
 #  %B%F{white}%~%f%b  %B%F{red}%f%b  '
 
@@ -196,7 +194,7 @@ RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%
 : ${use_tmux:=false}
 # Check the condition then played the tmux execution procedure
 if [[ $use_tmux == "true" ]]; then
-	if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+	if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 		exec tmux
 	fi
 	if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
