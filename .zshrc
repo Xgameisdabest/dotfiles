@@ -157,6 +157,11 @@ if [[ $- == *i* ]]; then
 		echo -ne "\e[6 q"
 	}
 
+	lazygit() {
+		command lazygit "$@"
+		echo -ne "\e[6 q"
+	}
+
 	alias sudo="sudo -B"
 	alias consoleconfig="sudo dpkg-reconfigure console-setup "
 	alias i3config="cd ~/.config/i3/"
