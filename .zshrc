@@ -135,6 +135,7 @@ if [[ $- == *i* ]]; then
 	fi
 
 	alias sudo="sudo -B"
+	alias nvim='nvim; echo -ne "\e[6 q"'
 	alias consoleconfig="sudo dpkg-reconfigure console-setup "
 	alias i3config="cd ~/.config/i3/"
 	alias out="exit"
