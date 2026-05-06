@@ -26,6 +26,18 @@ export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export MANPATH="/usr/local/man:$MANPATH"
 
+# Source the user configured variable use_tmux from the ~/.config/dtf-config/config file
+: ${use_tmux:=false}
+# Check the condition then played the tmux execution procedure
+if [[ $use_tmux == "true" ]]; then
+	if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+		exec tmux
+	fi
+	if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+		tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+	fi
+fi
+
 #ZSH COMPLETION
 autoload -Uz compinit
 compinit
@@ -211,15 +223,3 @@ PROMPT='$(git_prompt_info)
 #  %B%F{white}%~%f%b  %B%F{red}%f%b  '
 
 RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%b:%B%F{#ff6f91}|%f%F{#e0e6ed}%f%T%F{#ff6f91}|%f%b %B%F{#ff6f91}✗%f%b)%F{#e0e6ed}%f '
-
-# Source the user configured variable use_tmux from the ~/.config/dtf-config/config file
-: ${use_tmux:=false}
-# Check the condition then played the tmux execution procedure
-if [[ $use_tmux == "true" ]]; then
-	if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-		exec tmux
-	fi
-	if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
-		tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-	fi
-fi
