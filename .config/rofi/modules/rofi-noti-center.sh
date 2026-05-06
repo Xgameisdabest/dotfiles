@@ -136,7 +136,7 @@ noti_body_menu() {
 		-theme-str "window {location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 
 	case "$choose_opt" in
-	"$goback") not_main_menu ;;
+	"$goback") noti_main_menu ;;
 	"$quit") exit 0 ;;
 	esac
 }
