@@ -1,6 +1,13 @@
 # All configurations are made by me Xgameisdabest
 # Get ready because this code is gonna be messy
 
+# Colors
+green='\033[1;32m'
+red='\033[1;31m'
+cyan='\033[0;36m'
+yellow='\e[0;33m'
+reset='\033[0m'
+
 # Check for config file if it exists
 if [[ -f "$HOME/.config/dtf-config/config" ]]; then
 	source "$HOME/.config/dtf-config/config"
@@ -85,15 +92,10 @@ source $ZSH/oh-my-zsh.sh
 if [[ $- == *i* ]]; then
 	# Set up the verbose output for all supported coreutils command
 	if [[ "$verbose_coreutils_output" == "true" ]]; then
-		if [[ -f "$HOME/.coreutils_vb_rework.sh" ]]; then
-			source "$HOME/.coreutils_vb_rework.sh"
-		fi
-
-		# alias cd="cd_verbose" # Calls the verbose cd function
-		# alias mkdir="mkdir_verbose" # Calls the verbose mkdir function
-		# alias touch="touch_verbose" # Calls the verbose touch function
-		# compdef mkdir_verbose=mkdir
-		# compdef touch_verbose=touch
+		chpwd() {
+			# Actual cd verbose function
+			echo -e "${red}$OLDPWD${reset} ${yellow}~>${reset} ${green}$PWD${reset}" | sed "s/\/home\/$USER/~/g"
+		}
 		alias mkdir="mkdir --verbose"
 		alias rm="rm --verbose"
 		alias rmdir="rmdir --verbose"

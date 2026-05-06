@@ -72,11 +72,12 @@ while sleep 3; do
 		ipaddr=${ipaddr:-"N/A"}
 
 		case $strength in
-		9[0-9] | 100) strength_stat="Excellent" ;;
-		7[0-9] | 8[0-9]) strength_stat="Good" ;;
-		5[0-9] | 6[0-9]) strength_stat="Medium" ;;
-		2[5-9] | [3-4][0-9]) strength_stat="Low" ;;
-		*) strength_stat="Very Bad" ;;
+		100 | 9[0-9]) strength_stat="Excellent" ;;
+		[7-8][0-9]) strength_stat="Good" ;;
+		[5-6][0-9]) strength_stat="Medium" ;;
+		[3-4][0-9] | 2[6-9]) strength_stat="Low" ;;
+		[0-1][0-9] | 2[0-5]) strength_stat="Very Bad" ;;
+		*) strength_stat="Offline" ;;
 		esac
 
 		tooltip="󱈤  SSID: $ssid\n  IP: $ipaddr\n󰓅  Network Strength: $strength_stat"
