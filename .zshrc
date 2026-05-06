@@ -30,13 +30,26 @@ export MANPATH="/usr/local/man:$MANPATH"
 : ${use_tmux:=false}
 # Check the condition then played the tmux execution procedure
 if [[ $use_tmux == "true" ]]; then
-	if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-		exec tmux
-	fi
-	if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
-		tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-	fi
+    # Standard guard clauses: ensure tmux exists, shell is interactive, 
+    # and we aren't already nested inside a tmux session.
+    if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+        i=1
+        # Loop to find an available session name
+        # It stops if the session doesn't exist OR if it exists but no one is attached to it
+        while tmux has-session -t "main-$i" 2>/dev/null && \
+              [ -n "$(tmux list-clients -t "main-$i" 2>/dev/null)" ]; do
+            ((i++))
+        done
+        
+        # -A: Attach if it exists, otherwise create
+        # -s: Name the session "main-X"
+	exec tmux new-session -A -s "main-$i" "trap 'tmux kill-session -t \"main-$i\"' EXIT; $SHELL"
+    fi
+    if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+        tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+    fi
 fi
+
 
 #ZSH COMPLETION
 autoload -Uz compinit
@@ -87,7 +100,7 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 # commands
 zstyle ':fzf-tab:complete:-command-:*' fzf-preview \
 	'(out=$(tldr --color always "$word") 2>/dev/null && echo $out) || (out=$(MANWIDTH=$FZF_PREVIEW_COLUMNS man "$word") 2>/dev/null && echo $out) || (out=$(which "$word") && echo $out) || echo "${(P)word}"'
-zstyle ':fzf-tab:complete:-command-:*' fzf-flags --preview-window=right:75%
+zstyle ':fzf-tab:complete:-command-:*' fzf-flags --preview-window=right:55%
 
 #Oh-my-zsh settings options
 DISABLE_AUTO_UPDATE=true
