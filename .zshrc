@@ -134,8 +134,17 @@ if [[ $- == *i* ]]; then
 		alias cdi="zi"
 	fi
 
+	if command -v rg >/dev/null 2>&1; then
+		alias grep="rg"
+	fi
+
+	# Reset caret to line after exit neovim
+	nvim() {
+		command nvim "$@"
+		echo -ne "\e[6 q"
+	}
+
 	alias sudo="sudo -B"
-	alias nvim='nvim; echo -ne "\e[6 q"'
 	alias consoleconfig="sudo dpkg-reconfigure console-setup "
 	alias i3config="cd ~/.config/i3/"
 	alias out="exit"
