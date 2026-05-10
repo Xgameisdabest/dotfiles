@@ -169,17 +169,17 @@ hl.curve("overshot", { type = "bezier", points = { { 0.18, 0.95 }, { 0.22, 1.03 
 hl.curve("popin", { type = "bezier", points = { { 0, 1.3 }, { 1, 1 } } })
 hl.curve("smoothResize", { type = "bezier", points = { { 0, 0 }, { 0, 1.28 } } })
 
--- hl.animation({ leaf = STRING, enabled = BOOL, speed = FLOAT, curve = STRING, style = STRING })
+-- hl.animation({ leaf = STRING, enabled = BOOL, speed = FLOAT, bezier = STRING, style = STRING })
 -- Fading
-hl.animation({ leaf = "fade", enabled = true, speed = 1.9, curve = "default" })
+hl.animation({ leaf = "fade", enabled = true, speed = 1.9, bezier = "default" })
 -- Windows
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 4, curve = "popin", style = "popin 80%" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 4, curve = "popin", style = "popin 80%" })
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 3, curve = "smoothResize" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 4, bezier = "popin", style = "popin 80%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 4, bezier = "popin", style = "popin 80%" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 3, bezier = "smoothResize" })
 -- Workspaces
-hl.animation({ leaf = "workspaces", enabled = true, speed = 5, curve = "overshot", style = "slide" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "overshot", style = "slide" })
 -- Borders
-hl.animation({ leaf = "border", enabled = true, speed = 1, curve = "linear" })
+hl.animation({ leaf = "border", enabled = true, speed = 1, bezier = "linear" })
 hl.animation({ leaf = "borderangle", enabled = false })
 
 ----------------
