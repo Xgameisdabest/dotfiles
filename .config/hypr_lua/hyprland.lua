@@ -77,7 +77,7 @@ end)
 
 -- Waybar
 hl.dsp.exec_cmd("~/.config/waybar/startup.sh")
--- Hyprsunset 
+-- Hyprsunset
 hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprsunset_launch.sh")
 -- Animations option on/off
 hl.dsp.exec_cmd("~/.config/hypr/scripts/decorations_options.sh")
@@ -272,7 +272,7 @@ hl.config({
 		workspace_swipe_create_new = true,
 		workspace_swipe_forever = true,
 		workspace_swipe_cancel_ratio = 0.15,
-	}
+	},
 })
 
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
@@ -281,38 +281,70 @@ hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 ---- KEYBINDINGS ----
 ---------------------
 
-local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local mod = "SUPER"
+local alt = "ALT"
 
-hl.bind(mainMod .. " + t", hl.dsp.exec_cmd(kitty))
-hl.bind(mainMod .. " + x", hl.dsp.exec_cmd("~/.config/hypr/scripts/kill_window.sh"))
-hl.bind(mainMod .. " + e", hl.dsp.exec_cmd())
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+---------------------
+---- APP KEYBINDS ---
+---------------------
 
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+hl.bind(mod .. " + t", hl.dsp.exec_cmd(kitty))
+
+---------------------------------
+---- WINDOW MANAGER KEYBINDS ----
+---------------------------------
+
+hl.bind(mod .. " + SHIFT + r", hl.dsp.exec_cmd('notify-send "Hyprland Manually Reloaded!" && hyprctl reload'))
+
+-- Move/resize windows with mainMod + LMB/RMB and dragging
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Lock screen via hyprlock
+hl.bind(
+	mod .. "+ q",
+	hl.dsp.exec_cmd(
+		"exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh"
+	)
+)
+
+-- Screensaver
+hl.bind(alt .. "+ q", hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprland_screensaver.sh"))
+
+-- Window lists
+hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd("~/.config/hypr/rofi_hyprland/rofi-window-list.sh"))
+
+-- Kill window
+hl.bind(mod .. " + x", hl.dsp.exec_cmd("~/.config/hypr/scripts/kill_window.sh"))
+
+-- Toggle fullscreen/float
+hl.bind(mod .. " + v", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
+hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
+
+-- Launching menu (rofi)
+hl.bind(mod .. "+ g", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen-game.sh"))
+hl.bind(mod .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen.sh"))
+hl.bind(alt .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/drun.sh"))
+
+hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + up", hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
-	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
-
--- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
@@ -373,9 +405,9 @@ hl.window_rule({
 
 -- Layer rules also return a handle.
 local overlayLayerRule = hl.layer_rule({
-    name  = "no-anim-overlay",
-    match = { namespace = "^my-overlay$" },
-    no_anim = true,
+	name = "no-anim-overlay",
+	match = { namespace = "^my-overlay$" },
+	no_anim = true,
 })
 overlayLayerRule:set_enabled(false)
 
