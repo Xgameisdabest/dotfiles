@@ -48,6 +48,22 @@ return {
 					capabilities = capabilities,
 				}
 
+				-- Hyprland Lua LSP Support (Only works in the hyprland configuration directory)
+				if server == "lua_ls" then
+					config.on_init = function(client)
+						if client.workspace_folders and client.workspace_folders[1].name:match(".config/hypr") then
+							client.config.settings.Lua =
+								vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
+									workspace = { library = { "/usr/share/hypr/stubs" } },
+									diagnostics = { globals = { "hl" } },
+								})
+							client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+						end
+						return true
+					end
+					config.settings = { Lua = { diagnostics = { globals = { "vim" } } } }
+				end
+
 				-- Inject Zsh support if the server is bashls
 				if server == "bashls" then
 					config.filetypes = { "sh", "bash", "zsh" }
