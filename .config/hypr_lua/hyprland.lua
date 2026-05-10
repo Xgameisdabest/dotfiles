@@ -203,6 +203,15 @@ hl.config({
 		key_press_enables_dpms = true,
 		allow_session_lock_restore = 1,
 	},
+
+	render = {
+		new_render_scheduling = true,
+		direct_scanout = 1,
+	},
+
+	ecosystem = {
+		no_donation_nag = true,
+	},
 })
 
 -- Im here
@@ -213,34 +222,42 @@ hl.config({
 
 hl.config({
 	input = {
-		kb_layout = "us",
-		kb_variant = "",
-		kb_model = "",
-		kb_options = "",
-		kb_rules = "",
-
 		follow_mouse = 1,
-
-		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
-
+		sensitivity = 0.22,
 		touchpad = {
 			natural_scroll = false,
+			disable_while_typing = false,
+			tap_to_click = true,
+			tap_and_drag = true,
+			drag_lock = 2,
 		},
 	},
+
+	cursor = {
+		hide_on_touch = true,
+		hide_on_tablet = true,
+		no_hardware_cursors = 0,
+		use_cpu_buffer = 2,
+		no_break_fs_vrr = 1,
+		min_refresh_rate = 30, --hz
+		-- inactive_timeout = 10 #seconds
+		enable_hyprcursor = true,
+		sync_gsettings_theme = true,
+		warp_back_after_non_mouse_input = false,
+		hide_on_key_press = false,
+		warp_on_toggle_special = 1,
+		warp_on_change_workspace = 0,
+		zoom_disable_aa = true,
+	},
+
+	gestures = {
+		workspace_swipe_create_new = true,
+		workspace_swipe_forever = true,
+		workspace_swipe_cancel_ratio = 0.15,
+	}
 })
 
-hl.gesture({
-	fingers = 3,
-	direction = "horizontal",
-	action = "workspace",
-})
-
--- Example per-device config
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-hl.device({
-	name = "epic-mouse-v1",
-	sensitivity = -0.5,
-})
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -249,13 +266,9 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
-local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
-hl.bind(
-	mainMod .. " + M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
-)
+hl.bind(mainMod .. " + t", hl.dsp.exec_cmd(kitty))
+hl.bind(mainMod .. " + x", hl.dsp.exec_cmd("~/.config/hypr/scripts/kill_window.sh"))
+
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
@@ -322,19 +335,13 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
--- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
-
--- Example window rules that are useful
-
 local suppressMaximizeRule = hl.window_rule({
-	-- Ignore maximize requests from all apps. You'll probably like this.
+	-- Ignore maximize requests from all apps.
 	name = "suppress-maximize-events",
 	match = { class = ".*" },
 
 	suppress_event = "maximize",
 })
--- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
 	-- Fix some dragging issues with XWayland
@@ -352,12 +359,12 @@ hl.window_rule({
 })
 
 -- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
+local overlayLayerRule = hl.layer_rule({
+    name  = "no-anim-overlay",
+    match = { namespace = "^my-overlay$" },
+    no_anim = true,
+})
+overlayLayerRule:set_enabled(false)
 
 -- Hyprland-run windowrule
 hl.window_rule({
