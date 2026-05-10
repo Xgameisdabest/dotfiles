@@ -330,7 +330,7 @@ hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Hide/Unhide window
 hl.bind(mod .. "+ d", hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh h"))
-hl.bind(mod .. "SHIFT + d", hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh s"))
+hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh s"))
 
 -- IM HERE
 
