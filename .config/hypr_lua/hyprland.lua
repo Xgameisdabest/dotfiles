@@ -288,7 +288,13 @@ local alt = "ALT"
 ---- APP KEYBINDS ---
 ---------------------
 
-hl.bind(mod .. " + t", hl.dsp.exec_cmd(kitty))
+hl.bind(mod .. " + t", hl.dsp.exec_cmd("kitty"))
+
+-- Launching menu (rofi)
+hl.bind(mod .. "+ g", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen-game.sh"))
+hl.bind(mod .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen.sh"))
+hl.bind(alt .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/drun.sh"))
+hl.bind(alt .. "+ space", hl.dsp.exec_cmd("~/.config/rofi/scripts/drun.sh"))
 
 ---------------------------------
 ---- WINDOW MANAGER KEYBINDS ----
@@ -322,10 +328,11 @@ hl.bind(mod .. " + v", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
 
--- Launching menu (rofi)
-hl.bind(mod .. "+ g", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen-game.sh"))
-hl.bind(mod .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen.sh"))
-hl.bind(alt .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/drun.sh"))
+-- Hide/Unhide window
+hl.bind(mod .. "+ d", hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh h"))
+hl.bind(mod .. "SHIFT + d", hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh s"))
+
+-- IM HERE
 
 hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
