@@ -39,6 +39,7 @@ hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 -------------------
 ---- AUTOSTART ----
 -------------------
+hl.dsp.exec_cmd("~/.config/hypr/scripts/monitor.sh")
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user stop betterlockscreen@$USER.service")
@@ -73,6 +74,23 @@ hl.on("hyprland.start", function()
 	-- Protonvpn fix if stayed connect after logout and relogin into Hyprland session
 	hl.exec_cmd("~/.config/hypr/scripts/protonvpn_check_when_resume.sh")
 end)
+
+-- Waybar
+hl.dsp.exec_cmd("~/.config/waybar/startup.sh")
+-- Hyprsunset 
+hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprsunset_launch.sh")
+-- Animations option on/off
+hl.dsp.exec_cmd("~/.config/hypr/scripts/decorations_options.sh")
+-- For layouts
+hl.dsp.exec_cmd("~/.config/hypr/scripts/layout.sh")
+-- Set cava as background, using hyprwinwrap plugin
+hl.dsp.exec_cmd("~/.config/hypr/scripts/cavabg/cavabg-launch.sh")
+-- Gestures
+hl.dsp.exec_cmd("libinput-gestures-setup restart")
+-- Auto sleep
+hl.dsp.exec_cmd("~/.config/hypr/scripts/auto_sleep.sh")
+-- Inactive Opacity Change
+hl.dsp.exec_cmd("~/.config/hypr/scripts/transparent_window_when_unfocus.sh")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -265,24 +283,19 @@ hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
--- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + t", hl.dsp.exec_cmd(kitty))
 hl.bind(mainMod .. " + x", hl.dsp.exec_cmd("~/.config/hypr/scripts/kill_window.sh"))
-
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + e", hl.dsp.exec_cmd())
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
--- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
--- Switch workspaces with mainMod + [0-9]
--- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
