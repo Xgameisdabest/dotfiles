@@ -39,27 +39,31 @@ hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 -------------------
 ---- AUTOSTART ----
 -------------------
-hl.dsp.exec_cmd("~/.config/hypr/scripts/monitor.sh")
+
+local home = os.getenv("HOME")
+local user = os,getenv("USER")
+
+hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/monitor.sh")
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("systemctl --user stop betterlockscreen@$USER.service")
+	hl.exec_cmd("systemctl --user stop betterlockscreen@" .. user .. ".service")
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
 	-- Polkit agent, required for graphical apps
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	-- Init the notification daemon
 	hl.exec_cmd("dunst")
 	-- Usb media notification daemon
-	hl.exec_cmd("~/.config/dunst/scripts/usb-watch.sh")
+	hl.exec_cmd(home .. "/.config/dunst/scripts/usb-watch.sh")
 	-- Plug, unplug power source daemon
-	hl.exec_cmd("~/.config/dunst/scripts/bat-status-daemon.sh")
+	hl.exec_cmd(home .. "/.config/dunst/scripts/bat-status-daemon.sh")
 	-- Battery low notification daemon
-	hl.exec_cmd("~/.config/dunst/scripts/battery-warning.sh")
+	hl.exec_cmd(home .. "/.config/dunst/scripts/battery-warning.sh")
 	-- Notifications
-	hl.exec_cmd("~/.config/dunst/volume.sh volume_status")
-	hl.exec_cmd("~/.config/dunst/volume.sh brightness_status")
-	hl.exec_cmd("~/.config/dunst/bat_status.sh status")
+	hl.exec_cmd(home .. "/.config/dunst/volume.sh volume_status")
+	hl.exec_cmd(home .. "/.config/dunst/volume.sh brightness_status")
+	hl.exec_cmd(home .. "/.config/dunst/bat_status.sh status")
 	-- Welcome message
-	hl.exec_cmd("~/.config/dunst/scripts/welcome-notif.sh")
+	hl.exec_cmd(home .. "/.config/dunst/scripts/welcome-notif.sh")
 	-- Helpful startup tips
 	hl.exec_cmd('notify-send -t 2500 "Press 󰖳 + = to open the keybind menu!"')
 	hl.exec_cmd('notify-send -t 2500 "Press 󰖳 + i to open the settings menu!"')
@@ -72,25 +76,25 @@ hl.on("hyprland.start", function()
 	-- Input method
 	hl.exec_cmd("fcitx5 -d")
 	-- Protonvpn fix if stayed connect after logout and relogin into Hyprland session
-	hl.exec_cmd("~/.config/hypr/scripts/protonvpn_check_when_resume.sh")
+	hl.exec_cmd(home .. "/.config/hypr/scripts/protonvpn_check_when_resume.sh")
 end)
 
 -- Waybar
-hl.dsp.exec_cmd("~/.config/waybar/startup.sh")
+hl.dsp.exec_cmd(home .. "/.config/waybar/startup.sh")
 -- Hyprsunset
-hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprsunset_launch.sh")
+hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hyprsunset_launch.sh")
 -- Animations option on/off
-hl.dsp.exec_cmd("~/.config/hypr/scripts/decorations_options.sh")
+hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/decorations_options.sh")
 -- For layouts
-hl.dsp.exec_cmd("~/.config/hypr/scripts/layout.sh")
+hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/layout.sh")
 -- Set cava as background, using hyprwinwrap plugin
-hl.dsp.exec_cmd("~/.config/hypr/scripts/cavabg/cavabg-launch.sh")
+hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
 -- Gestures
 hl.dsp.exec_cmd("libinput-gestures-setup restart")
 -- Auto sleep
-hl.dsp.exec_cmd("~/.config/hypr/scripts/auto_sleep.sh")
+hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/auto_sleep.sh")
 -- Inactive Opacity Change
-hl.dsp.exec_cmd("~/.config/hypr/scripts/transparent_window_when_unfocus.sh")
+hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/transparent_window_when_unfocus.sh")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -288,13 +292,16 @@ local alt = "ALT"
 ---- APP KEYBINDS ---
 ---------------------
 
+local home = os.getenv("HOME")
+
+-- Launch the terminal (Kitty)
 hl.bind(mod .. " + t", hl.dsp.exec_cmd("kitty"))
 
 -- Launching menu (rofi)
-hl.bind(mod .. "+ g", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen-game.sh"))
-hl.bind(mod .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/fullscreen.sh"))
-hl.bind(alt .. "+ r", hl.dsp.exec_cmd("~/.config/rofi/scripts/drun.sh"))
-hl.bind(alt .. "+ space", hl.dsp.exec_cmd("~/.config/rofi/scripts/drun.sh"))
+hl.bind(mod .. "+ g", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/fullscreen-game.sh"))
+hl.bind(mod .. "+ r", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/fullscreen.sh"))
+hl.bind(alt .. "+ r", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/drun.sh"))
+hl.bind(alt .. "+ space", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/drun.sh"))
 
 ---------------------------------
 ---- WINDOW MANAGER KEYBINDS ----
