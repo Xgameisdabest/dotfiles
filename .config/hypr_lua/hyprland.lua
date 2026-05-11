@@ -86,6 +86,22 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
 	-- Polkit agent, required for graphical apps
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	-- Waybar
+	hl.exec_cmd(home .. "/.config/waybar/startup.sh")
+	-- Hyprsunset
+	hl.exec_cmd(home .. "/.config/hypr/scripts/hyprsunset_launch.sh")
+	-- Animations option on/off
+	hl.exec_cmd(home .. "/.config/hypr/scripts/decorations_options.sh")
+	-- For layouts
+	hl.exec_cmd(home .. "/.config/hypr/scripts/layout.sh")
+	-- Set cava as background, using hyprwinwrap plugin
+	hl.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
+	-- Gestures
+	hl.exec_cmd("libinput-gestures-setup restart")
+	-- Auto sleep
+	hl.exec_cmd(home .. "/.config/hypr/scripts/auto_sleep.sh")
+	-- Inactive Opacity Change
+	hl.exec_cmd(home .. "/.config/hypr/scripts/transparent_window_when_unfocus.sh")
 	-- Init the notification daemon
 	hl.exec_cmd("dunst")
 	-- Usb media notification daemon
