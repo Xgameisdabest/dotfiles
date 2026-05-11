@@ -390,7 +390,17 @@ hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rof
 hl.bind(mod .. " + x", hl.dsp.window.close())
 
 -- Toggle fullscreen/float
-hl.bind(mod .. " + v", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + V", function()
+	local win = hl.get_active_window()
+	if win and not win.floating then
+		hl.dispatch(hl.dsp.window.float({ action = "set" }))
+		hl.dispatch(hl.dsp.window.resize())
+		hl.dispatch(hl.dsp.window.center())
+	else
+		hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+	end
+end)
+
 hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
 
