@@ -3,11 +3,35 @@
 -- CONFIG SPLIT
 
 -- custom config
+
+local home = os.getenv("HOME")
 local custom_dir = home .. "/.config/hypr/custom/"
-local p = io.popen('find ' .. custom_dir .. ' -name "*.lua"')
+local main_cfg_dir = home .. ".config/hypr/hyprland_config_modules/"
+
+-- Add the main_cfg_dir dir to the search path
+package.path = package.path .. ";" .. main_cfg_dir .. "?.lua"
+local p = io.popen("find " .. main_cfg_dir .. ' -maxdepth 1 -name "*.lua"')
 if p then
 	for file in p:lines() do
-		require(file)
+		-- Extract just the filename without the path or .lua extension
+		local module_name = file:match("([^/]+)%.lua$")
+		if module_name then
+			require(module_name)
+		end
+	end
+	p:close()
+end
+
+-- Add the custom dir to the search path
+package.path = package.path .. ";" .. custom_dir .. "?.lua"
+local p = io.popen("find " .. custom_dir .. ' -maxdepth 1 -name "*.lua"')
+if p then
+	for file in p:lines() do
+		-- Extract just the filename without the path or .lua extension
+		local module_name = file:match("([^/]+)%.lua$")
+		if module_name then
+			require(module_name)
+		end
 	end
 	p:close()
 end
@@ -308,6 +332,7 @@ local home = os.getenv("HOME")
 
 -- Launch the terminal (Kitty)
 hl.bind(mod .. " + t", hl.dsp.exec_cmd("kitty"))
+hl.bind(mod .. " + c", hl.dsp.exec_cmd("librewolf"))
 
 -- Launching menu (rofi)
 hl.bind(mod .. "+ g", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/fullscreen-game.sh"))
@@ -344,7 +369,9 @@ hl.bind(alt .. "+ q", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hyprland_sc
 hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-window-list.sh"))
 
 -- Kill window
-hl.bind(mod .. " + x", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/kill_window.sh"))
+-- hl.bind(mod .. " + x", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/kill_window.sh"))
+
+hl.bind(mod .. " + x", hl.dsp.window.close())
 
 -- Toggle fullscreen/float
 hl.bind(mod .. " + v", hl.dsp.window.float({ action = "toggle" }))
