@@ -41,7 +41,7 @@ hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 -------------------
 
 local home = os.getenv("HOME")
-local user = os,getenv("USER")
+local user = os.getenv("USER")
 
 hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/monitor.sh")
 
@@ -80,21 +80,21 @@ hl.on("hyprland.start", function()
 end)
 
 -- Waybar
-hl.dsp.exec_cmd(home .. "/.config/waybar/startup.sh")
+hl.exec_cmd(home .. "/.config/waybar/startup.sh")
 -- Hyprsunset
-hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hyprsunset_launch.sh")
+hl.exec_cmd(home .. "/.config/hypr/scripts/hyprsunset_launch.sh")
 -- Animations option on/off
-hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/decorations_options.sh")
+hl.exec_cmd(home .. "/.config/hypr/scripts/decorations_options.sh")
 -- For layouts
-hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/layout.sh")
+hl.exec_cmd(home .. "/.config/hypr/scripts/layout.sh")
 -- Set cava as background, using hyprwinwrap plugin
-hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
+hl.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
 -- Gestures
-hl.dsp.exec_cmd("libinput-gestures-setup restart")
+hl.exec_cmd("libinput-gestures-setup restart")
 -- Auto sleep
-hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/auto_sleep.sh")
+hl.exec_cmd(home .. "/.config/hypr/scripts/auto_sleep.sh")
 -- Inactive Opacity Change
-hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/transparent_window_when_unfocus.sh")
+hl.exec_cmd(home .. "/.config/hypr/scripts/transparent_window_when_unfocus.sh")
 
 -----------------------
 ----- PERMISSIONS -----
