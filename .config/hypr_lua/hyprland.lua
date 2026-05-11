@@ -408,7 +408,24 @@ hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mod .. "+ d", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hide_unhide_window.sh h"))
 hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hide_unhide_window.sh s"))
 
+-- Launch web search
+hl.bind(mod .. "+ s", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-web-search"))
+
+-- Launch user settings
+hl.bind(mod .. " + i ", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-user-settings"))
+
+-- Launch keybinds menu
+hl.bind(mod .. "+ equal", hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds"))
+
+-- Toggle waybar visibility
+hl.bind(mod .. "+ minus", hl.dsp.exec_cmd("pkill -USR1 waybar && notify-send -t 2300 \"Waybar Visibility Toggled!\" \"Press Mod+- to toggle\""))
+
+-- Cycle between workspace previously
+hl.bind(alt .. "+ Tab", hl.dsp.group.prev())
+
 -- IM HERE
+hl.bind(switch:on:Lid Switch,exec, systemctl suspend { locked = true })
+hl.bind(switch:off:Lid Switch,exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh')
 
 hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
