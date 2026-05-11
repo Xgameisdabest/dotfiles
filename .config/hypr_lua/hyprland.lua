@@ -307,6 +307,8 @@ hl.bind(alt .. "+ space", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/drun.sh
 ---- WINDOW MANAGER KEYBINDS ----
 ---------------------------------
 
+local home = os.getenv("HOME")
+
 hl.bind(mod .. " + SHIFT + r", hl.dsp.exec_cmd('notify-send "Hyprland Manually Reloaded!" && hyprctl reload'))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
@@ -317,18 +319,18 @@ hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind(
 	mod .. "+ q",
 	hl.dsp.exec_cmd(
-		"exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh"
+		"exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null &&" .. home .. "/.config/hypr/scripts/hyprlock_current_bg.sh"
 	)
 )
 
 -- Screensaver
-hl.bind(alt .. "+ q", hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprland_screensaver.sh"))
+hl.bind(alt .. "+ q", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hyprland_screensaver.sh"))
 
 -- Window lists
-hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd("~/.config/hypr/rofi_hyprland/rofi-window-list.sh"))
+hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-window-list.sh"))
 
 -- Kill window
-hl.bind(mod .. " + x", hl.dsp.exec_cmd("~/.config/hypr/scripts/kill_window.sh"))
+hl.bind(mod .. " + x", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/kill_window.sh"))
 
 -- Toggle fullscreen/float
 hl.bind(mod .. " + v", hl.dsp.window.float({ action = "toggle" }))
@@ -336,8 +338,8 @@ hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Hide/Unhide window
-hl.bind(mod .. "+ d", hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh h"))
-hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh s"))
+hl.bind(mod .. "+ d", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hide_unhide_window.sh h"))
+hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hide_unhide_window.sh s"))
 
 -- IM HERE
 
