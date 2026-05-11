@@ -1,5 +1,17 @@
 -- transition to hyprland.lua
 
+-- CONFIG SPLIT
+
+-- custom config
+local custom_dir = home .. "/.config/hypr/custom/"
+local p = io.popen('find ' .. custom_dir .. ' -name "*.lua"')
+if p then
+	for file in p:lines() do
+		require(file)
+	end
+	p:close()
+end
+
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
@@ -43,7 +55,7 @@ hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 local home = os.getenv("HOME")
 local user = os.getenv("USER")
 
-hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/monitor.sh")
+hl.exec_cmd(home .. "/.config/hypr/scripts/monitor.sh")
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user stop betterlockscreen@" .. user .. ".service")
@@ -319,7 +331,9 @@ hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind(
 	mod .. "+ q",
 	hl.dsp.exec_cmd(
-		"exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null &&" .. home .. "/.config/hypr/scripts/hyprlock_current_bg.sh"
+		"exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null &&"
+			.. home
+			.. "/.config/hypr/scripts/hyprlock_current_bg.sh"
 	)
 )
 
