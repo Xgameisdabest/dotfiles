@@ -113,6 +113,8 @@ hl.bind(mod .. "+ SHIFT + down", hl.dsp.window.move({ direction = "d" }))
 -- Move window to neighbouring workspace
 hl.bind("CTRL + " .. mod .. " + left ", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind("CTRL + " .. mod .. " + right ", hl.dsp.window.move({ workspace = "+1" }))
+hl.bind("CTRL + " .. mod .. " + left ", hl.dsp.focus({ workspace = "previous" }))
+hl.bind("CTRL + " .. mod .. " + right ", hl.dsp.focus({ workspace = "previous" }))
 
 -- Menu window switcher
 hl.bind(
