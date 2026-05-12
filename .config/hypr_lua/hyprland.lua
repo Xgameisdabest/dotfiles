@@ -299,7 +299,7 @@ hl.config({
 		follow_mouse = 1,
 		sensitivity = 0.22,
 		touchpad = {
-			natural_scroll = false,
+			natural_scroll = true,
 			disable_while_typing = false,
 			tap_to_click = true,
 			tap_and_drag = true,
@@ -427,7 +427,7 @@ hl.bind(
 )
 
 -- Cycle between workspace previously
-hl.bind(alt .. "+ Tab", hl.dsp.group.prev())
+hl.bind(alt .. "+ Tab", hl.dsp.focus({ workspace = "previous"}))
 
 -- Laptop lid
 hl.bind("switch:on:Lid", hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
@@ -453,8 +453,8 @@ for i = 1, 10 do
 end
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "+1" }))
+hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "-1" }))
 
 -- Reposition window in a workspace
 hl.bind(mod .. "+ SHIFT + left", hl.dsp.window.move({ direction = "l" }))
@@ -465,6 +465,20 @@ hl.bind(mod .. "+ SHIFT + down", hl.dsp.window.move({ direction = "d" }))
 -- Move window to neighbouring workspace
 hl.bind("CTRL + " .. mod .. " + left ", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind("CTRL + " .. mod .. " + right ", hl.dsp.window.move({ workspace = "+1" }))
+
+-- Menu
+hl.bind(
+	mod .. "+ SHIFT + grave",
+	hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-window-ws-switch/workspace_input_number_window_switch.sh")
+)
+hl.bind(
+	mod .. "+ grave",
+	hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-window-ws-switch/workspace_input_number_switch.sh")
+)
+
+-- Move to next workspace focus via keyboard
+hl.bind("CTRL + " .. alt .. " + right", hl.dsp.focus({ workspace = "+1" }))
+hl.bind("CTRL + " .. alt .. " + left", hl.dsp.focus({ workspace = "-1" }))
 
 ------------------------------
 ---- Special Key keybinds ----
