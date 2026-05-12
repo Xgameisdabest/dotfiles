@@ -1,0 +1,28 @@
+----------------------------------
+----  MISC, RENDER, ECOSYSTEM ----
+----------------------------------
+
+hl.config({
+	misc = {
+		force_default_wallpaper = 0,
+		vrr = 1,
+		enable_anr_dialog = true,
+		disable_autoreload = true,
+		disable_hyprland_logo = true,
+		disable_splash_rendering = true,
+		animate_manual_resizes = false,
+		animate_mouse_windowdragging = false,
+		mouse_move_enables_dpms = true,
+		key_press_enables_dpms = true,
+		allow_session_lock_restore = 1,
+	},
+
+	render = {
+		new_render_scheduling = true,
+		direct_scanout = 1,
+	},
+
+	ecosystem = {
+		no_donation_nag = true,
+	},
+})

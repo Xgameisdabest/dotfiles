@@ -1,0 +1,42 @@
+---------------
+---- INPUT ----
+---------------
+
+hl.config({
+	input = {
+		follow_mouse = 1,
+		sensitivity = 0.22,
+		touchpad = {
+			natural_scroll = true,
+			disable_while_typing = false,
+			tap_to_click = true,
+			tap_and_drag = true,
+			drag_lock = 2,
+		},
+	},
+
+	cursor = {
+		hide_on_touch = true,
+		hide_on_tablet = true,
+		no_hardware_cursors = 0,
+		use_cpu_buffer = 2,
+		no_break_fs_vrr = 1,
+		min_refresh_rate = 30, --hz
+		-- inactive_timeout = 10 #seconds
+		enable_hyprcursor = true,
+		sync_gsettings_theme = true,
+		warp_back_after_non_mouse_input = false,
+		hide_on_key_press = false,
+		warp_on_toggle_special = 1,
+		warp_on_change_workspace = 0,
+		zoom_disable_aa = true,
+	},
+
+	gestures = {
+		workspace_swipe_create_new = true,
+		workspace_swipe_forever = true,
+		workspace_swipe_cancel_ratio = 0.15,
+	},
+})
+
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
