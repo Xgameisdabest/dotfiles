@@ -343,7 +343,7 @@ local alt = "ALT"
 local home = os.getenv("HOME")
 
 -- Launch the terminal (Kitty)
-hl.bind(mod .. " + t", hl.dsp.exec_cmd("kitty"))
+hl.bind(mod .. " + t", hl.dsp.exec_cmd("$(which kitty)"))
 
 -- Open the default web browser via xdg
 hl.bind(mod .. " + c", hl.dsp.exec_cmd("xdg-open https://"))
@@ -367,6 +367,13 @@ hl.bind(
 hl.bind(mod .. "+ escape", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-power-menu"))
 
 -- Launch waypaper
+hl.bind(mod .. "+ m", hl.dsp.exec_cmd("waypaper"))
+
+-- Launch waydroid
+hl.bind(mod .. "+ w", hl.dsp.exec_cmd("waydroid show-full-ui"))
+
+-- Launch rofimoji (emoji picker using rofi)
+hl.bind(mod .. "+ slash", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/emoji_picker.sh"))
 
 ---------------------------------
 ---- WINDOW MANAGER KEYBINDS ----
@@ -384,9 +391,9 @@ hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind(
 	mod .. "+ q",
 	hl.dsp.exec_cmd(
-		"exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null &&"
+		"bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null &&"
 			.. home
-			.. "/.config/hypr/scripts/hyprlock_current_bg.sh"
+			.. "/.config/hypr/scripts/hyprlock_current_bg.sh'"
 	)
 )
 
@@ -498,21 +505,23 @@ hl.bind("CTRL + " .. alt .. " + left", hl.dsp.focus({ workspace = "-1" }))
 ---- Special Key keybinds ----
 ------------------------------
 
+local home = os.getenv("HOME")
+
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
 	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+	hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/volume.sh volume_up"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+	hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/volume.sh volume_down"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-	{ locked = true, repeating = true }
+	hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/volume.sh volume_mute"),
+	{ locked = true, repeating = false }
 )
 hl.bind(
 	"XF86AudioMicMute",
