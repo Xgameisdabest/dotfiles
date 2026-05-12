@@ -415,36 +415,60 @@ hl.bind(mod .. "+ s", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-web-se
 hl.bind(mod .. " + i ", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-user-settings"))
 
 -- Launch keybinds menu
-hl.bind(mod .. "+ equal", hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds"))
+hl.bind(
+	mod .. "+ equal",
+	hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds")
+)
 
 -- Toggle waybar visibility
-hl.bind(mod .. "+ minus", hl.dsp.exec_cmd("pkill -USR1 waybar && notify-send -t 2300 \"Waybar Visibility Toggled!\" \"Press Mod+- to toggle\""))
+hl.bind(
+	mod .. "+ minus",
+	hl.dsp.exec_cmd('pkill -USR1 waybar && notify-send -t 2300 "Waybar Visibility Toggled!" "Press Mod+- to toggle"')
+)
 
 -- Cycle between workspace previously
 hl.bind(alt .. "+ Tab", hl.dsp.group.prev())
 
--- IM HERE
-hl.bind(switch:on:Lid Switch,exec, systemctl suspend { locked = true })
-hl.bind(switch:off:Lid Switch,exec, bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh')
+-- Laptop lid
+hl.bind("switch:on:Lid", hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
+hl.bind(
+	"switch:off:Lid",
+	hl.dsp.exec_cmd(
+		"bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh'"
+	),
+	{ locked = true }
+)
 
+-- Window switch
 hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mod .. " + down", hl.dsp.focus({ direction = "down" }))
 
+-- Workspace switch and move window to workspace
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- Example special workspace (scratchpad)
-hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
-
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+
+-- Reposition window in a workspace
+hl.bind(mod .. "+ SHIFT + left", hl.dsp.window.move({ direction = "l" }))
+hl.bind(mod .. "+ SHIFT + right", hl.dsp.window.move({ direction = "r" }))
+hl.bind(mod .. "+ SHIFT + up", hl.dsp.window.move({ direction = "u" }))
+hl.bind(mod .. "+ SHIFT + down", hl.dsp.window.move({ direction = "d" }))
+
+-- Move window to neighbouring workspace
+hl.bind("CTRL + " .. mod .. " + left ", hl.dsp.window.move({ workspace = "-1" }))
+hl.bind("CTRL + " .. mod .. " + right ", hl.dsp.window.move({ workspace = "+1" }))
+
+------------------------------
+---- Special Key keybinds ----
+------------------------------
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
