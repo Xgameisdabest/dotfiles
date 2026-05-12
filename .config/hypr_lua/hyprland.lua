@@ -153,13 +153,9 @@ hl.exec_cmd(home .. "/.config/hypr/scripts/transparent_window_when_unfocus.sh")
 -----------------------
 hl.config({
 	ecosystem = {
-		enforce_permissions = true,
+		enforce_permissions = false,
 	},
 })
-
-hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
-hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
-hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -348,13 +344,29 @@ local home = os.getenv("HOME")
 
 -- Launch the terminal (Kitty)
 hl.bind(mod .. " + t", hl.dsp.exec_cmd("kitty"))
-hl.bind(mod .. " + c", hl.dsp.exec_cmd("librewolf"))
+
+-- Open the default web browser via xdg
+hl.bind(mod .. " + c", hl.dsp.exec_cmd("xdg-open https://"))
+
+-- Open the default file manager via xdg
+hl.bind(mod .. " + e", hl.dsp.exec_cmd("xdg-open ."))
 
 -- Launching menu (rofi)
 hl.bind(mod .. "+ g", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/fullscreen-game.sh"))
 hl.bind(mod .. "+ r", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/fullscreen.sh"))
 hl.bind(alt .. "+ r", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/drun.sh"))
 hl.bind(alt .. "+ space", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/drun.sh"))
+
+-- Connect to android phone via scrcpy (Deprecreated, dont use it since waydroid exists)
+hl.bind(
+	alt .. "+ p",
+	hl.dsp.exec_cmd('notify-send "CONNECTING TO PHONE " && scrcpy -Sw --video-codec=h265 --keyboard=uhid')
+)
+
+-- Launch rofi power menu/escape menu
+hl.bind(mod .. "+ escape", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-power-menu"))
+
+-- Launch waypaper
 
 ---------------------------------
 ---- WINDOW MANAGER KEYBINDS ----
@@ -427,14 +439,16 @@ hl.bind(
 )
 
 -- Cycle between workspace previously
-hl.bind(alt .. "+ Tab", hl.dsp.focus({ workspace = "previous"}))
+hl.bind(alt .. "+ Tab", hl.dsp.focus({ workspace = "previous" }))
 
 -- Laptop lid
-hl.bind("switch:on:Lid", hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
 hl.bind(
-	"switch:off:Lid",
+	"switch:off:Lid Switch",
 	hl.dsp.exec_cmd(
-		"bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null && ~/.config/hypr/scripts/hyprlock_current_bg.sh'"
+		"bash -c '! pidof -x hyprlock_current_bg.sh > /dev/null &&"
+			.. home
+			.. "/.config/hypr/scripts/hyprlock_current_bg.sh'"
 	),
 	{ locked = true }
 )
