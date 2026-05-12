@@ -57,7 +57,7 @@ return {
 									workspace = { library = { "/usr/share/hypr/stubs" } },
 									diagnostics = { globals = { "hl" } },
 								})
-							client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+							client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
 						end
 						return true
 					end
