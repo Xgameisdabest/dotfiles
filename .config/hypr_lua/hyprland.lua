@@ -507,6 +507,10 @@ hl.bind("CTRL + " .. alt .. " + left", hl.dsp.focus({ workspace = "-1" }))
 
 local home = os.getenv("HOME")
 
+-- Caps lock and numlock bind
+hl.bind("Caps_Lock", hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/key_notif/capslock_notify.sh"))
+hl.bind("Num_Lock", hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/key_notif/numlock_notify.sh"))
+
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
 	"XF86AudioRaiseVolume",
@@ -525,17 +529,51 @@ hl.bind(
 )
 hl.bind(
 	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/volume.sh mic_toggle"),
+	{ locked = true, repeating = false }
+)
+hl.bind(
+	"XF86MonBrightnessUp",
+	hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/volume.sh brightness_up"),
 	{ locked = true, repeating = true }
 )
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+hl.bind(
+	"XF86MonBrightnessDown",
+	hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/volume.sh brightness_down"),
+	{ locked = true, repeating = true }
+)
+
+-- Open pavucontrol
+hl.bind(mod .. "+ XF86AudioMute", hl.dsp.exec_cmd("pavucontrol"))
+hl.bind(mod .. "+ XF86AudioMicMute", hl.dsp.exec_cmd("pavucontrol --tab=4"))
 
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+-- Airplane mode
+hl.bind("XF86RFKill", hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/noti-airplane.sh"), { locked = true })
+
+-- Display settings
+hl.bind("XF86Display", hl.dsp.exec_cmd("wdisplays"))
+
+-- Screenshot
+hl.bind(
+	"print",
+	hl.dsp.exec_cmd(
+		"sh -c \'desktop=\"$HOME/Pictures/$(date +\'%Y-%m-%d_%H-%M-%S_desktop\').png\" && grim \"$desktop\" && wl-copy < \"$desktop\" && notify-send \"Screenshotted 󰨇 \""
+	)
+)
+
+hl.bind(
+	mod .. "+ print",
+	hl.dsp.exec_cmd(
+		'sh -c \'focus_window="$HOME/Pictures/$(date +\'%Y-%m-%d_%H-%M-%S_window\').png" && grim -g "$(hyprctl activewindow -j | jq -r ".at[0],.at[1],.size[0],.size[1]" | tr "\n" "," | sed "s/,$//")" "$focus_window" && wl-copy < "$focus_window" && notify-send "Window Screenshotted 󰖯 "\''
+	)
+)
+hl.bind("SHIFT + print", hl.dsp.exec_cmd(""))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
