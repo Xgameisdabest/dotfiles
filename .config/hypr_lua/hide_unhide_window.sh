@@ -1,0 +1,30 @@
+#!/bin/bash
+stack_file="/tmp/hide_window_pid_stack.txt"
+touch "$stack_file"
+function hide_window() {
+	window_count=$(hyprctl activeworkspace -j | jq '.windows')
+	if [[ "$window_count" -eq 0 ]]; then
+		exit 0
+	fi
+	pid=$(hyprctl activewindow -j | jq '.pid')
+	if [[ $pid != "null" ]]; then
+		hyprctl dispatch "hl.dsp.window.move({ workspace = 'special:magic', window = 'pid:$pid', follow = false })"
+		echo $pid >>$stack_file
+		notify-send "Window hidden!" "Use Mod+Shift+D to unhide it"$'\n'"Process ID: $pid" -t 2200 -h string:x-dunst-stack-tag:window_show_hide
+	fi
+}
+function show_window() {
+	pid=$(tail -1 $stack_file && sed -i '$d' $stack_file)
+	[ -z $pid ] && exit
+	notify-send "Window shown!" "Process ID: $pid" -h string:x-dunst-stack-tag:window_show_hide
+	current_workspace=$(hyprctl activeworkspace -j | jq '.id')
+	hyprctl dispatch "hl.dsp.window.move({ workspace = '$current_workspace', window = 'pid:$pid' })"
+	hyprctl dispatch "hl.dsp.window.focus({ window = 'pid:$pid' })"
+}
+if [ ! -z $1 ]; then
+	if [ "$1" == "h" ]; then
+		hide_window >>/dev/null
+	else
+		show_window >>/dev/null
+	fi
+fi
