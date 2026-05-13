@@ -6,8 +6,6 @@ local home = os.getenv("HOME")
 ---- Special Key keybinds ----
 ------------------------------
 
-local home = os.getenv("HOME")
-
 -- Caps lock and numlock bind
 hl.bind("Caps_Lock", hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/key_notif/capslock_notify.sh"))
 hl.bind("Num_Lock", hl.dsp.exec_cmd(home .. "/.config/dunst/scripts/key_notif/numlock_notify.sh"))

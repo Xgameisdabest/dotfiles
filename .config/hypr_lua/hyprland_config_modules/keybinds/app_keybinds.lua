@@ -6,8 +6,6 @@ local home = os.getenv("HOME")
 ---- APP KEYBINDS ---
 ---------------------
 
-local home = os.getenv("HOME")
-
 -- Launch the terminal (Kitty)
 hl.bind(mod .. " + t", hl.dsp.exec_cmd("$(which kitty)"))
 

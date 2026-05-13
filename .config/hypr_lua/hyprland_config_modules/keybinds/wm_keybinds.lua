@@ -6,8 +6,6 @@ local home = os.getenv("HOME")
 ---- WINDOW MANAGER KEYBINDS ----
 ---------------------------------
 
-local home = os.getenv("HOME")
-
 hl.bind(mod .. " + SHIFT + r", hl.dsp.exec_cmd('notify-send "Hyprland Manually Reloaded!" && hyprctl reload'))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
