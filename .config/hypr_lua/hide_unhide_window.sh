@@ -19,7 +19,7 @@ function show_window() {
 	notify-send "Window shown!" "Process ID: $pid" -h string:x-dunst-stack-tag:window_show_hide
 	current_workspace=$(hyprctl activeworkspace -j | jq '.id')
 	hyprctl dispatch "hl.dsp.window.move({ workspace = '$current_workspace', window = 'pid:$pid' })"
-	hyprctl dispatch "hl.dsp.window.focus({ window = 'pid:$pid' })"
+	hyprctl dispatch "hl.dsp.focus({ window = 'pid:$pid' })"
 }
 if [ ! -z $1 ]; then
 	if [ "$1" == "h" ]; then

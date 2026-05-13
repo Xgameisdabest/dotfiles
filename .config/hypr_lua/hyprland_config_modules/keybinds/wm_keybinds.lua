@@ -26,12 +26,10 @@ hl.bind(
 hl.bind(alt .. "+ q", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hyprland_screensaver.sh"))
 
 -- Window lists
-hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-window-list.sh"))
+hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/rofi-window-list.sh"))
 
 -- Kill window
--- hl.bind(mod .. " + x", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/kill_window.sh"))
-
-hl.bind(mod .. " + x", hl.dsp.window.close())
+hl.bind(mod .. " + x", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/kill_window.sh"))
 
 -- Toggle fullscreen/float (HUGE HUGE THANKS TO Mountain-Ride-6361 to help me on the r/hyprland subreddit)
 -- Link: https://www.reddit.com/r/hyprland/comments/1tbmon2/how_to_convert_resize_percentage_to_lua/
@@ -50,8 +48,8 @@ hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Hide/Unhide window
-hl.bind(mod .. "+ d", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hide_unhide_window.sh h"))
-hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hide_unhide_window.sh s"))
+hl.bind(mod .. "+ d", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/hide_unhide_window.sh h"))
+hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/hide_unhide_window.sh s"))
 
 -- Launch web search
 hl.bind(mod .. "+ s", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-web-search"))
