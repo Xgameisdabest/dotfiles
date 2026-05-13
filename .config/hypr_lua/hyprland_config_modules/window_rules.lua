@@ -40,13 +40,12 @@ hl.window_rule({
 	float = true,
 })
 
--- Rofi
+-- Suppress maximize event for all windows
 hl.window_rule({
-	name = "rofi",
-	match = { class = "Rofi" },
-	stay_focused = true,
-	float = true,
-	pin = true,
+	name = "suppress_maximize",
+	match = { class = ".*" },
+	suppress_event = "maximize",
+	immediate = true,
 })
 
 -- Waypaper
@@ -56,8 +55,49 @@ hl.window_rule({
 	float = true,
 })
 
+-- Tile kitty
+hl.window_rule({
+	name = "tile_kitty",
+	match = { class = "^kitty$" },
+	tile = true,
+})
+
+-- No focus for empty xwayland floating non-fullscreen non-pinned windows
+hl.window_rule({
+	name = "no_focus_xwayland_empty",
+	match = { class = "^$", title = "^$", xwayland = true, float = true, fullscreen = false, pin = false },
+	no_focus = true,
+})
+
+-- Rofi
+hl.window_rule({
+	name = "rofi",
+	match = { class = "Rofi" },
+	stay_focused = true,
+	float = true,
+	pin = true,
+})
+
+-- wihotspot
+hl.window_rule({
+	name = "wihotspot_float",
+	match = { class = "wihotspot" },
+	float = true,
+})
+
+-- ilgwg desktop gremlins (borderless pinned overlay)
+hl.window_rule({
+	name = "desktop_gremlins",
+	match = { title = "ilgwg_desktop_gremlins.py" },
+	border_size = 0,
+	float = true,
+	pin = true,
+	opacity = "1 override",
+})
+
 -- Steam (blank title fix)
 hl.window_rule({
+	name = "steam_blank_title",
 	match = { class = "^(steam)$", title = "^()$" },
 	min_size = { 1, 1 },
 	stay_focused = true,
