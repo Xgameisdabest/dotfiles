@@ -38,7 +38,7 @@ hl.bind(mod .. " + V", function()
 	local win = hl.get_active_window()
 	if win and not win.floating then
 		hl.dispatch(hl.dsp.window.float({ action = "set" }))
-		hl.dispatch(hl.dsp.window.resize())
+		hl.dsp.window.resize({x = -70,y=-70,relative =true})
 		hl.dispatch(hl.dsp.window.center())
 	else
 		hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
@@ -109,10 +109,8 @@ hl.bind(mod .. "+ SHIFT + up", hl.dsp.window.move({ direction = "u" }))
 hl.bind(mod .. "+ SHIFT + down", hl.dsp.window.move({ direction = "d" }))
 
 -- Move window to neighbouring workspace
-hl.bind("CTRL + " .. mod .. " + left ", hl.dsp.window.move({ workspace = "-1" }))
-hl.bind("CTRL + " .. mod .. " + right ", hl.dsp.window.move({ workspace = "+1" }))
-hl.bind("CTRL + " .. mod .. " + left ", hl.dsp.focus({ workspace = "previous" }))
-hl.bind("CTRL + " .. mod .. " + right ", hl.dsp.focus({ workspace = "previous" }))
+hl.bind("CTRL + " .. mod .. " + left ", hl.dsp.window.move({ workspace = "-1", follow = false }))
+hl.bind("CTRL + " .. mod .. " + right ", hl.dsp.window.move({ workspace = "+1", follow = false }))
 
 -- Menu window switcher
 hl.bind(
