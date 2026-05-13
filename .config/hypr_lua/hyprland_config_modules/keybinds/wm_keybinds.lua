@@ -29,7 +29,7 @@ hl.bind(alt .. "+ q", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/hyprland_sc
 hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/rofi-window-list.sh"))
 
 -- Kill window
-hl.bind(mod .. " + x", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/kill_window.sh"))
+hl.bind(mod .. " + x", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/kill_window.sh"))
 
 -- Toggle fullscreen/float (HUGE HUGE THANKS TO Mountain-Ride-6361 to help me on the r/hyprland subreddit)
 -- Link: https://www.reddit.com/r/hyprland/comments/1tbmon2/how_to_convert_resize_percentage_to_lua/
