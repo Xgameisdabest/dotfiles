@@ -33,16 +33,17 @@ hl.bind(mod .. "+ Tab", hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rof
 
 hl.bind(mod .. " + x", hl.dsp.window.close())
 
--- Toggle fullscreen/float
-hl.bind(mod .. " + V", function()
-	local win = hl.get_active_window()
-	if win and not win.floating then
-		hl.dispatch(hl.dsp.window.float({ action = "set" }))
-		hl.dispatch(hl.dsp.window.resize())
-		hl.dispatch(hl.dsp.window.center())
-	else
-		hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+-- Toggle fullscreen/float (HUGE HUGE THANKS TO Mountain-Ride-6361 to help me on the r/hyprland subreddit)
+-- Link: https://www.reddit.com/r/hyprland/comments/1tbmon2/how_to_convert_resize_percentage_to_lua/
+hl.bind(mod .. " + v ", function()
+	hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+	local monitor = hl.get_active_monitor()
+	if not monitor then
+		return
 	end
+	local height = monitor.height * 0.7
+	local width = monitor.width * 0.7
+	hl.dispatch(hl.dsp.window.resize({ x = width, y = height }))
 end)
 
 hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
