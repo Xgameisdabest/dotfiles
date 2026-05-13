@@ -38,7 +38,7 @@ hl.bind(mod .. " + V", function()
 	local win = hl.get_active_window()
 	if win and not win.floating then
 		hl.dispatch(hl.dsp.window.float({ action = "set" }))
-		hl.dsp.window.resize({x = -70,y=-70,relative =true})
+		hl.dispatch(hl.dsp.window.resize())
 		hl.dispatch(hl.dsp.window.center())
 	else
 		hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
