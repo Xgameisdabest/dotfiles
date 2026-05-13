@@ -1,7 +1,6 @@
 ## About
 
-___DEVELOP ON UBUNTU 26.04___<BR>
-___TESTED ON ARCH LINUX AND LINUX MINT___
+___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS)___<BR>
 
 __Project Size__
 
