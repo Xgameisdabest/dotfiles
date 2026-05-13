@@ -49,11 +49,44 @@ hl.window_rule({
 	pin = true,
 })
 
--- Steam
+-- Waypaper
 hl.window_rule({
-	match = { class = "^(steam)$", title = "^()$"},
-	min_size = {1,1},
+	name = "waypaper",
+	match = { class = "waypaper" },
+	float = true,
+})
+
+-- Steam (blank title fix)
+hl.window_rule({
+	match = { class = "^(steam)$", title = "^()$" },
+	min_size = { 1, 1 },
 	stay_focused = true,
+})
+
+-- Steam floating windows
+local steam_float_titles = {
+	"^Friends$",
+	"Steam - News",
+	".* - Chat",
+	"^Settings$",
+	".* - event started",
+	".* CD key",
+	"^Steam - Self Updater$",
+	"^Screenshot Uploader$",
+	"^Steam Guard - Computer Authorization Required$",
+}
+for _, title_pattern in ipairs(steam_float_titles) do
+	hl.window_rule({
+		name = "steam_float",
+		match = { class = "^Steam$", title = title_pattern },
+		float = true,
+	})
+end
+
+hl.window_rule({
+	name = "steam_keyboard_float",
+	match = { title = "^Steam Keyboard$" },
+	float = true,
 })
 
 -- idle inhibit classes
@@ -71,7 +104,7 @@ local idle_inhibit_classes = {
 	"^(.*vivaldi.*)$",
 }
 
--- Float windows based on windows' classes
+-- Float windows based on class
 local float_classes = {
 	"^(wdisplays)$",
 	"^(vlc)$",
@@ -88,6 +121,8 @@ local float_classes = {
 	"^(org.kde.polkit-kde-authentication-agent-1)$",
 	"^([Xx]dg-desktop-portal-gtk)$",
 	"^(.*dialog.*)$",
+	"wihotspot",
+	"protonvpn-app",
 }
 
 -- Float windows based on title
@@ -104,6 +139,13 @@ local float_titles = {
 	"^(Choose wallpaper)(.*)$",
 	"^(Library)(.*)$",
 	"^(.*dialog.*)$",
+	"^Network Connections$",
+	"^Waypaper$",
+	"^SimpleScreenRecorder$",
+	"^onboard$",
+	"^Screen Layout Editor$",
+	"^Volume Control$",
+	"^Proton VPN$",
 }
 
 -- Fullscreen
