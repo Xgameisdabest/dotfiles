@@ -316,6 +316,9 @@ cava_background=false #(OPTIONS: true/false) (Relaunch window manager required)
 # This will require to install external package/scripts
 # Press alt+q to activate
 screen_saver_style=rain #(OPTIONS: clock, pipes, cmatrix, neofetch, rain, cbonsai, cava)
+
+# Use hyprshutdown to quit hyprland (Recommended if doing important work)
+use_hyprshutdown=false #(OPTIONS: true/false)
 ```
 
 __FOR HYPRLAND__<BR>

@@ -10,6 +10,7 @@ main_menu_width=320px
 
 bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
+use_hyprshutdown=${use_hyprshutdown:-false}
 
 if [[ $bar_top == "true" ]]; then
 	location="north east"
@@ -76,32 +77,37 @@ $suspend)
 	;;
 $logout)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-		# Gracefully stop the Portals (This is what usually hangs Flatpaks)
-		# Kill the Hyprland and GTK implementations first, then the main portal
-		pkill -TERM -f "xdg-desktop-portal-hyprland|xdg-desktop-portal-gtk"
-		pkill -TERM -x "xdg-desktop-portal"
+		if [[ $use_hyprshutdown == "false" ]]; then
+			# Gracefully stop the Portals (This is what usually hangs Flatpaks)
+			# Kill the Hyprland and GTK implementations first, then the main portal
+			pkill -TERM -f "xdg-desktop-portal-hyprland|xdg-desktop-portal-gtk"
+			pkill -TERM -x "xdg-desktop-portal"
 
-		# Kill all Flatpak app processes
-		# This looks for processes running inside the flatpak sandbox
-		if command -v flatpak &>/dev/null; then
-			# We target the 'bwrap' (bubblewrap) processes that Flatpak uses
-			pkill -TERM -u "$USER" -f "bwrap"
+			# Kill all Flatpak app processes
+			# This looks for processes running inside the flatpak sandbox
+			if command -v flatpak &>/dev/null; then
+				# We target the 'bwrap' (bubblewrap) processes that Flatpak uses
+				pkill -TERM -u "$USER" -f "bwrap"
+			fi
+
+			# Kill browsers and VPNs
+			pkill -SIGTERM -f "chrome|firefox|brave|zen-browser|librewolf|protonvpn|mullvad"
+
+			# Cleanup UI and custom scripts
+			systemctl --user stop hyprpolkitagent
+			killall -SIGINT waybar
+			killall swaybg mpvpaper dunst hypridle pactl udevadm activate-linux 2>/dev/null
+
+			# Exit
+			sleep 0.5
+			hyprctl dispatch exit
+			hyprctl dispatch 'hl.dsp.exit()'
+			pkill -u "$USER" -f "\.sh"
+
+			exit 0
+		else
+			hyprshutdown
 		fi
-
-		# Kill browsers and VPNs
-		pkill -SIGTERM -f "chrome|firefox|brave|zen-browser|librewolf|protonvpn|mullvad"
-
-		# Cleanup UI and custom scripts
-		systemctl --user stop hyprpolkitagent
-		killall -SIGINT waybar
-		killall swaybg mpvpaper dunst hypridle pactl udevadm activate-linux 2>/dev/null
-
-		# Exit
-		sleep 0.5
-		hyprctl dispatch exit
-		pkill -u "$USER" -f "\.sh"
-
-		exit 0
 
 	elif [[ $XDG_CURRENT_DESKTOP == "sway" ]]; then
 		waydroid session stop
