@@ -12,7 +12,7 @@ Been brewing since late __March 2024__ <BR>
 Repo officially started in __1st June 2024__ <BR>
 The purpose of this project is to share my configs, my ideas as openly as possible. Feel free to open a VM or try it on your own machine!<BR>
 <BR>
-__If you encounter any issue just open an issue on the ShitHub page, thanks!__<BR>
+__If you encounter any issue just open an issue on the GitHub page, thanks!__<BR>
 <BR>
 
 > [!NOTE]
