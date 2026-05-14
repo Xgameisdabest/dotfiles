@@ -21,25 +21,9 @@ __If you encounter any issue just open an issue on the ShitHub page, thanks!__<B
 
 ## Preview
 
-V1 - use `git checkout 4404458` (use `git checkout 08e8942` if you want bottom bar) to use this version and `git checkout main` if you want to use the latest
-
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview.jpg?raw=true)
-
-V2 - use `git checkout f82e277` to use this version and `git checkout main` if you want to use the latest
-
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_2.jpg?raw=true)
-
-V3 - use `git checkout ef3b956` to use this version and `git checkout main` if you want to use the latest (I do not recommend use this version as i3 is unstable, use this one if you consider Hyprland) (Bar now can be on top or bottom, white or black color. Change it via the specified dotfiles config file, more information at the ___Configuration___ section)
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_3.jpg?raw=true)
-
-Hyprland is now supported!
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_3_hypr.jpg?raw=true)
-
-V4 - (up-to-date)
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_4.jpg?raw=true)
-
-Material expressive inspired bar style (For Hyprland V4)
-![alt text](https://github.com/Xgameisdabest/my-i3-config-dotfiles/blob/main/.preview_img/preview_expressive_hypr.jpg?raw=true)
+![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_10-38-19_desktop.png?raw=true)
+<BR>
+![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_10-43-17_desktop.png?raw=true)
 
 ## Installation
 
