@@ -30,12 +30,10 @@ bar_dynamic_round_style=true
 bar_top=false
 ```
 
-
 ![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_10-38-19_desktop.png?raw=true)
 <BR>
 ![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_10-43-17_desktop.png?raw=true)
 <BR>
-<https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_11-24-56_desktop.png>
 ![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_11-24-56_desktop.png?raw=true)
 
 ## Installation
