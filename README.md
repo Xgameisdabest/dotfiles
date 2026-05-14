@@ -21,7 +21,7 @@ __If you encounter any issue just open an issue on the ShitHub page, thanks!__<B
 
 ## Preview
 
-Hyprland with options:
+Hyprland with dotfiles options (see below at the configuration section):
 ```
 bar_color=black
 bar_expressive_style=true
