@@ -5,7 +5,7 @@ ___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS)___<BR>
 __Project Size__
 
 - dotfiles repo: 35 ~> 36 Megabytes<BR>
-- TOTAL (dotfiles, dependencies, build from source apps): ~1.4 Gigabytes<BR>
+- TOTAL (dotfiles, dependencies, build from source apps): ~800 Megabytes<BR>
 
 __About:__<BR>
 Been brewing since late __March 2024__ <BR>
