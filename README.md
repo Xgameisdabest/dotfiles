@@ -79,16 +79,14 @@ pipx install waypaper
 pipx install rofimoji
 ```
 
-Install dependencies for i3 (for `apt`)
-
+Install neovim via ([pacstall](https://pacstall.dev/)):
 ```
-sudo apt install zsh i3 polybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf xdotool udev redshift x11-xserver-utils lsd xorg jq xclip power-profiles-daemon acpi feh bsdmainutils light x11-utils gawk touchegg unclutter-xfixes pulseaudio-utils
+pacstall -U
+pacstall -Up
+pacstall -I neovim
 ```
 
-> [!NOTE]
-> Afaik, there are still some missing dependencies that are not in the list bc I kinda lost track of during the process of developing. So make sure to check all the config files or see if you encounter ANY bugs, it may related to missing dependencies.
-
-Hyprland is now supported! Here's how I set it up on my system.
+Install Hyprland dependencies
 
 ```
 sudo add-apt-repository ppa:cppiber/hyprland
@@ -120,17 +118,11 @@ cd ~
 git clone https://github.com/Xgameisdabest/dotfiles.git
 cd dotfiles
 stow .
-sudo updatedb
-i3-msg restart
+sudo updatedb # Update find/locate command
+i3-msg restart # If using i3 (Not recommended since no longer support)
+hyprctl dispatch restart # Hyprland
 ```
-
-> [!NOTE]
-> REMEMBER TO ADD `TERMINAL=alacritty` TO `/etc/environment` OR IF YOU USE KITTY `TERMINAL=kitty` TO `/etc/environment` OR ANY TERMINAL APP PATH TO `/etc/environment`. IT IS HIGHLY RECOMMENDED TO USE KITTY AS THIS DOTFILES IS USING KITTY! SO PUT `TERMINAL=kitty` INTO `/etc/environment`
-
-> [!NOTE]
-> If you are on a laptop and get the best experience with this dotfiles, install [libinput-gestures](https://github.com/bulletmark/libinput-gestures) for touchpad gestures such as swiping 3 - 4 fingers up/down, left/right
-
-## Hyprland Plugins
+## Hyprland Plugins (Not recommend due to mismatch ABI hell)
 
 This dotfiles supports hyprland plugins such as `hyprbars, Hyprspace, hyprgrass, hyprwinwrap`
 
@@ -140,7 +132,7 @@ In order to install and use these plugins, please install the `hyprpm` package f
 sudo apt install hyprpm
 ```
 
-Then log into the Hyprland environment<BR>
+Then re-log in the Hyprland environment<BR>
 
 Opent the terminal and install these for the best Hyprland experience.
 
@@ -189,14 +181,15 @@ Supported Distros (and package managers):
 - Debian/Ubuntu (apt)
 
 __USAGE__
-
-- `update`: update the repo
+Very straight forward:
+- `update`: update the package manager's repositories
 - `upgrade`: upgrade the packages
-- `install <package name>`: install the package
-- `reinstall <package name>`: reinstall the package
-- `remove <package name>`: uninstall the package
+- `install <package name>`: install the specified package
+- `reinstall <package name>`: reinstall the specified package
+- `remove <package name>`: uninstall the specified package
 - `autoclean`: remove old packages
 - `autoremove`: remove unused packages
+- `purge <package name>`: fully remove specified packages with its config
 
 ## CONFIGURATION
 
