@@ -163,6 +163,7 @@ local float_classes = {
 	"^(.*dialog.*)$",
 	"wihotspot",
 	"protonvpn-app",
+	"com.github.wwmm.easyeffects",
 }
 
 -- Float windows based on title
