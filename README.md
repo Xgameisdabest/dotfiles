@@ -65,7 +65,7 @@ ln -s ~/testenv/kitty/kitty/launcher/kitty ~/.local/bin/kitty
 ln -s ~/testenv/kitty/kitty/launcher/kitten ~/.local/bin/kitten
 ```
 
-To maintain kitty, I created a file in kitty repo directory and named it as update_kitty.sh and give it permission to run `chmod +x update_kitty.sh`
+To maintain kitty, I created a file in kitty repo directory and named it as `update_kitty.sh` and give it permission to run `chmod +x update_kitty.sh`
 
 ```
 #!/bin/bash
