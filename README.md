@@ -21,9 +21,8 @@ __If you encounter any issue just open an issue on the GitHub page, thanks!__<BR
 
 Posted on r/unixporn on 14 May 2026:
 https://www.reddit.com/r/unixporn/s/v6qrrSL9JR
-#7 post on r/unixporn 14 May 2026 at 23:58 pm
-UTC +07
-#5 post on r/unixporn 15 May 2026 at 5:44 am UTC +07
+#6 post on r/unixporn 15 May 2026 at 10:21 AM UTC +07, thank you so much 🙏
+![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-15_10-18-35_desktop.png?raw=true)
 
 ## Preview
 
