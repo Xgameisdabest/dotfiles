@@ -323,6 +323,9 @@ At first, you might want to create the directory:
 mkdir ~/.config/hypr/custom/
 ```
 
+>[!NOTE]
+>This works more efficient with the lua version, all you need to do is create the .lua config file
+
 Put your configs such as Hyprland configs and env vars, also executables into this directory: <BR>
 
 ```
