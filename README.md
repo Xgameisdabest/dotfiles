@@ -316,6 +316,9 @@ screen_saver_style=rain #(OPTIONS: clock, pipes, cmatrix, neofetch, rain, cbonsa
 
 # Use hyprshutdown to quit hyprland (Recommended if doing important work)
 use_hyprshutdown=false #(OPTIONS: true/false)
+
+# Execute easyeffects on start and use easyeffects for better audio, audio tuning
+easyeffects_onstart=true #(OPTIONS: true/false) (Relaunch window manager required)
 ```
 
 __FOR HYPRLAND__<BR>

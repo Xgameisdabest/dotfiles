@@ -55,6 +55,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("fcitx5 -d")
 	-- Protonvpn fix if stayed connect after logout and relogin into Hyprland session
 	hl.exec_cmd(home .. "/.config/hypr/scripts/protonvpn_check_when_resume.sh")
+	-- easyeffects on startup
+	hl.exec_cmd(home .. "/.config/hypr/scripts/easyeffects_on_start.sh")
 end)
 
 -- Waybar
