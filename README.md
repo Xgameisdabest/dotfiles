@@ -19,9 +19,9 @@ __If you encounter any issue just open an issue on the GitHub page, thanks!__<BR
 > This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.
 > I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.
 
-Posted on r/unixporn on 14 May 2026:
-https://www.reddit.com/r/unixporn/s/v6qrrSL9JR
-#6 post on r/unixporn 15 May 2026 at 10:21 AM UTC +07, thank you so much 🙏
+Posted on r/unixporn on 14 May 2026: <BR>
+https://www.reddit.com/r/unixporn/s/v6qrrSL9JR <BR>
+#6 post on r/unixporn 15 May 2026 at 10:21 AM UTC +07, thank you so much 🙏 <BR>
 ![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-15_10-18-35_desktop.png?raw=true)
 
 ## Preview
