@@ -96,7 +96,7 @@ $logout)
 			# Cleanup UI and custom scripts
 			systemctl --user stop hyprpolkitagent
 			killall -SIGINT waybar
-			killall swaybg mpvpaper dunst hypridle pactl udevadm activate-linux 2>/dev/null
+			killall swaybg mpvpaper dunst hypridle pactl udevadm activate-linux easyeffects 2>/dev/null
 
 			# Exit
 			sleep 0.5
