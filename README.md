@@ -319,6 +319,9 @@ use_hyprshutdown=false #(OPTIONS: true/false)
 
 # Execute easyeffects on start and use easyeffects for better audio, audio tuning
 easyeffects_onstart=true #(OPTIONS: true/false) (Relaunch window manager required)
+
+# Open lazygit whenever cd in a directory with .git directory in it
+lazygit_in_git_repo_dir=true #(OPTIONS: true/false)
 ```
 
 __FOR HYPRLAND__<BR>
