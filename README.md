@@ -305,9 +305,6 @@ battery_warning_notification=false #(OPTIONS: true/false) (Relaunch window manag
 # Set power mode changes brightness for each mode: power-saving, balanced and perfomance
 brightness_changes_by_power_mode=false #(OPTIONS: true/false)
 
-# REQUIRE HYPR PLUGINS, hyprwinwrap scripts for fun
-cava_background=false #(OPTIONS: true/false) (Relaunch window manager required)
-
 # Screen saver/zen mode, a fun feature
 # This changes the style of the screen saver itself
 # This will require to install external package/scripts
