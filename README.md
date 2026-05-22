@@ -134,7 +134,7 @@ hyprctl dispatch restart # Hyprland
 ```
 ## Hyprland Plugins (Not recommend due to mismatch ABI hell)
 
-This dotfiles supports hyprland plugins such as `hyprbars, Hyprspace, hyprgrass, hyprwinwrap`
+This dotfiles supports hyprland plugins such as `hyprbars, Hyprspace, hyprgrass`
 
 In order to install and use these plugins, please install the `hyprpm` package first.
 
