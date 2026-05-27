@@ -251,7 +251,7 @@ bar_compact=false #(OPTIONS: true/false) (Reload required)
 bar_top=false #(OPTIONS: true/false) (Reload required)
 
 # Exclusive i3 feature, hidebar when open up the fullscreen rofi menu
-bar_hidden_when_using_launcher=false #(OPTIONS: true/false) (Reload required)
+bar_hidden_when_using_fullscreen_launcher=true #(OPTIONS: true/false) (Reload required)
 
 # Set rofi color to white or black
 rofi_theme=black #(OPTIONS: white/black)
