@@ -156,6 +156,10 @@
 		"exec": "~/.config/hypr/scripts/hypr_dtf_update.sh",
 		"on-click": "setsid ~/.config/hypr/scripts/dtf_update_update.sh &"
 	},
+	"custom/cava": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/cava.sh"
+	},
 	"custom/padd": {
 		"format": " ",
 		"interval": "once",
