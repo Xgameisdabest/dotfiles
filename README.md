@@ -250,7 +250,7 @@ bar_compact=false #(OPTIONS: true/false) (Reload required)
 # Move the bar to the top of the screen, better than some operating system *cough* windows *cough*
 bar_top=false #(OPTIONS: true/false) (Reload required)
 
-# Exclusive i3 feature, hidebar when open up the fullscreen rofi menu
+# Hide the status bar when open up the fullscreen rofi menu
 bar_hidden_when_using_fullscreen_launcher=true #(OPTIONS: true/false) (Reload required)
 
 # Set rofi color to white or black
