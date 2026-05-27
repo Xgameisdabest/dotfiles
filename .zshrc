@@ -143,10 +143,6 @@ if [[ $- == *i* ]]; then
 		alias cdi="zi"
 	fi
 
-	if command -v rg >/dev/null 2>&1; then
-		alias grep="rg"
-	fi
-
 	# Reset caret to line after exit neovim
 	nvim() {
 		command nvim "$@"
