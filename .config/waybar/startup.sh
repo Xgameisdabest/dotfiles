@@ -24,7 +24,9 @@ STYLE_DIR="$HOME/.config/waybar/bar_style"
 CONF="bottom_bar.jsonc"
 STYLE="dark.css"
 
-if [[ $bar_top == "true" ]]; then CONF="top_bar.jsonc"; fi
+if [[ $bar_top == "true" ]]; then
+	CONF="top_bar.jsonc"
+fi
 
 if [[ $bar_dynamic_round_style == "true" ]]; then
 	STYLE="dynamic_round.css"
@@ -34,6 +36,10 @@ elif [[ $bar_expressive_style == "true" ]]; then
 	STYLE="expressive.css"
 elif [[ $bar_color == "white" ]]; then
 	STYLE="white.css"
+fi
+
+if [[ -f /tmp/waybar.hidden ]]; then
+	rm /tmp/waybar.hidden
 fi
 
 waybar -s "$STYLE_DIR/$STYLE" -c "$CONFIG_DIR/$CONF" &
