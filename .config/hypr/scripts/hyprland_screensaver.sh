@@ -31,7 +31,8 @@ screensaver_logic() {
 		exit 1
 	fi
 
-	pkill -USR1 waybar
+	# no longer use due to waybar moved to top layer, providing better support
+	# pkill -USR1 waybar
 	hyprctl dispatch fullscreen 0
 	sleep 0.2
 	eval "$cmd"
