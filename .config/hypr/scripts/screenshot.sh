@@ -11,9 +11,10 @@ if [[ $1 == "screen" ]]; then
 elif [[ $1 == "window" ]]; then
 	# Window
 	focus_window="$HOME/Pictures/$(date +'%Y-%m-%d_%H-%M-%S_window').png"
-	grim -g "$(hyprctl activewindow -j | jq -r ".at[0],.at[1],.size[0],.size[1]" | tr "\n" "," | sed "s/,$//")" "$focus_window"
-	wl-copy <"$focus_window"
-	if [[ -f $focus_window ]]; then
+	geom=$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+	grim -g "$geom" "$focus_window"
+	if [[ -f "$focus_window" ]]; then
+		wl-copy <"$focus_window"
 		notify-send "Window Screenshotted 󰖯 "
 	fi
 elif [[ $1 == "select" ]]; then
