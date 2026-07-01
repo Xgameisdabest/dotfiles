@@ -2,9 +2,9 @@
 source ~/.config/dtf-config/config
 rofi_theme=${rofi_theme:-black}
 if [[ $rofi_theme == "white" ]]; then
-	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme="~/.config/rofi/rofi_theme/white/white-search.rasi"
 else
-	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme="~/.config/rofi/rofi_theme/black/black-search.rasi"
 fi
 
 rofi -x11 -theme $path_to_theme -show drun
