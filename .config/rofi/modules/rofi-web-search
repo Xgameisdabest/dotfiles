@@ -7,8 +7,10 @@ rofi_theme=${rofi_theme:-black}
 
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme_search="~/.config/rofi/rofi_theme/white/white-search.rasi"
 else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme_search="~/.config/rofi/rofi_theme/black/black-search.rasi"
 fi
 
 web="  Web Search (Brave)  "
@@ -23,7 +25,7 @@ back="Back 󰌍"
 quit="Exit 󰈆 "
 
 web() {
-	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Search   ")
+	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Search   ")
 	search_engine="https://search.brave.com/search?q="
 	main() {
 		if [[ -n "$search" ]]; then
@@ -40,12 +42,12 @@ web() {
 
 yt() {
 	open_the_webpage_yt="󰖟  Open the website 󰌧 "
-	open_the_search_bar_yt="  Search for videos"
+	open_the_search_bar_yt="  Search for videos  "
 
-	choice=$(echo -e "$open_the_webpage_yt\n$open_the_search_bar_yt\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 330px;}" -p " Videos   ")
+	choice=$(echo -e "$open_the_webpage_yt\n$open_the_search_bar_yt\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 350px;}" -p " Videos   ")
 
 	search_yt() {
-		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Videos   ")
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Videos   ")
 		search_engine="https://www.youtube.com/results?search_query="
 		main() {
 			if [[ -n "$search" ]]; then
@@ -76,12 +78,12 @@ yt() {
 
 github() {
 	open_the_webpage_git="󰖟  Open the website 󰌧 "
-	open_the_search_bar_git="  Search for repositories"
+	open_the_search_bar_git="  Search for repositories  "
 
-	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 380px;}" -p " Github   ")
+	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 400px;}" -p " Github   ")
 
 	search_github() {
-		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 90px;}" -p " Repositories   ")
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Repositories   ")
 		search_engine="https://github.com/search?q="
 		main() {
 			if [[ -n "$search" ]]; then
