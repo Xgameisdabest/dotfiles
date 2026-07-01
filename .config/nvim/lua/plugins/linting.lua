@@ -26,7 +26,7 @@ return {
 		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = "#002b00", fg = "#a6e3a1" })
 
 		vim.diagnostic.config({
-			virtual_text = false,
+			virtual_text = true,
 			signs = true,
 			underline = true,
 			update_in_insert = false,
