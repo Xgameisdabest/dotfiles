@@ -5,7 +5,7 @@
 source ~/.config/dtf-config/config
 
 main_menu_height=325px
-main_menu_width=355px
+main_menu_width=390px
 manual_menu_height=90px
 manual_menu_width=480px
 
@@ -58,8 +58,10 @@ fi
 
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme_set="~/.config/rofi/rofi_theme/white/white-set.rasi"
 else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme_set="~/.config/rofi/rofi_theme/black/black-set.rasi"
 fi
 
 #main
@@ -67,11 +69,11 @@ fi
 goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
-outputdev_opt="Output Device 󰜟"
-inputdev_opt="Input Device 󱦉"
-devconfig_opt="Device Configuration "
-manual_volume_opt="Manual Volume Level "
-pavucontrol_opt="Pulseaudio Control GUI 󰖯 "
+outputdev_opt="󰜟  Outpur Device  "
+inputdev_opt="󱦉  Input Device  "
+devconfig_opt="  Device Configuration  "
+manual_volume_opt="   Manual Volume Level  "
+pavucontrol_opt="󰖯  Pulseaudio Control GUI   "
 
 opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$pavucontrol_opt\n$quit"
 
@@ -104,7 +106,7 @@ main_menu() {
 }
 
 manual_set_volume_func() {
-	input_vol_percent=$(rofi -x11 -dmenu -i -p " Volume   (From 0 -> 153) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $manual_menu_height; width: $manual_menu_width; location: $location; x-offset: $manual_menu_x_offset; y-offset: $manual_menu_y_offset;}" -theme $path_to_theme)
+	input_vol_percent=$(rofi -x11 -dmenu -i -p " Volume   (From 0 -> 153) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $manual_menu_height; width: $manual_menu_width; location: $location; x-offset: $manual_menu_x_offset; y-offset: $manual_menu_y_offset;}" -theme $path_to_theme_set)
 	case $input_vol_percent in
 	"")
 		exit 0
@@ -130,7 +132,6 @@ outputdev_func() {
 	fi
 
 	select_output=$(echo -e "$outputdev_list\n$goback" | rofi -x11 -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -p " Output 󰜟  " -theme-str "window {location: $location; x-offset: $ouputdev_menu_x_offset; y-offset: $ouputdev_menu_y_offset; height: ${height_per_outputdev};}" -theme $path_to_theme)
-	#echo $select_output
 	if [[ $select_output == $goback ]]; then
 		main_menu
 	else
@@ -153,7 +154,6 @@ inputdev_func() {
 	fi
 
 	select_input=$(echo -e "$inputdev_list\n$goback" | rofi -x11 -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $inputdev_menu_x_offset; y-offset: $inputdev_menu_y_offset; height: ${height_per_inputdev};}" -p " Input 󱦉  " -theme $path_to_theme)
-	#echo $select_input
 	if [[ $select_input == $goback ]]; then
 		main_menu
 	else

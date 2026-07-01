@@ -52,8 +52,10 @@ fi
 
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme_search="~/.config/rofi/rofi_theme/white/white-search.rasi"
 else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme_search="~/.config/rofi/rofi_theme/black/black-search.rasi"
 fi
 
 #main
@@ -437,7 +439,7 @@ show_menu() {
 	fi
 }
 
-rofi_command="rofi -x11 -dmenu -i -theme $path_to_theme -p "
+rofi_command="rofi -x11 -dmenu -i -theme $path_to_theme_search -p "
 
 case "$1" in
 --status)

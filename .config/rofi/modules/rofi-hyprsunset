@@ -26,17 +26,19 @@ fi
 
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme_set="~/.config/rofi/rofi_theme/white/white-set.rasi"
 else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme_set="~/.config/rofi/rofi_theme/black/black-set.rasi"
 fi
 
 start="  Start (Default: 4800)"
-start_custom="󱤵  Start Custom"
+start_custom="󱤵  Start Custom  "
 reset="  Reset"
 quit="Exit 󰈆 "
 
 start_custom_func() {
-	percentage=$(rofi -x11 -dmenu -theme $path_to_theme -i -p " Set Custom   (From 4500 -> 6500) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $value_menu_width; height: $value_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+	percentage=$(rofi -x11 -dmenu -theme $path_to_theme_set -i -p " Set Custom   (From 4500 -> 6500) " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $value_menu_width; height: $value_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 	case $percentage in
 	"")
 		exit 0
