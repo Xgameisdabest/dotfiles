@@ -19,9 +19,9 @@ fi
 
 # --- Theme Configuration ---
 if [[ $rofi_theme == "white" ]]; then
-	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme="~/.config/rofi/rofi_theme/white/white-search.rasi"
 else
-	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme="~/.config/rofi/rofi_theme/black/black-search.rasi"
 fi
 
 goback="Back 󰌍 "
