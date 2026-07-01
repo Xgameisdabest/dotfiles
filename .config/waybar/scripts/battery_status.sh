@@ -28,9 +28,16 @@ else
 	MODE="$GOVERNOR"
 fi
 
+dynamic_sep_line=$(
+	for item in $(seq 1 $((${#CONTROLLER} + 15))); do
+		echo -n "─"
+	done
+	echo ""
+)
+
 # Desktop Handling
 if [ ! -d "$BAT_PATH" ]; then
-	TOOLTIP="Controller: ${CONTROLLER}\nMode: ${MODE}${TURBO_INFO}\nGovernor: ${GOVERNOR}\nStatus: Plugged In\nTime left: INF\n--------------------\nWattage: --W\nVoltage: --V\nAmps: --A"
+	TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: Plugged In\n  Time left: INF\n$dynamic_sep_line\n󰠠  Wattage: --W\n├─ Voltage: --V\n└─ Amps: --A"
 	echo "{\"text\": \"󰚥 AC\", \"percentage\": 100, \"class\": \"desktop-ac\", \"tooltip\": \"$TOOLTIP\"}"
 	exit 0
 fi
@@ -97,12 +104,6 @@ elif [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
 	DISPLAY_TEXT="$ICON Full"
 fi
 
-dynamic_sep_line=$(
-	for item in $(seq 1 $((${#CONTROLLER} + 15))); do
-		echo -n "─"
-	done
-	echo ""
-)
 
 # Final Output
 TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n$dynamic_sep_line\n󰠠  Electrical\n├─ Wattage: ${WATT}W\n├─ Voltage: ${VOLT}V\n└─ Amps: ${AMPS}A"
