@@ -2,6 +2,19 @@
 
 CONFIG_FILE="$HOME/.config/dtf-config/config"
 [[ -f "$CONFIG_FILE" ]] && source "$CONFIG_FILE"
+bar_top=${bar_top:-false}
+
+if [[ $bar_top == "true" ]]; then
+	location="north west"
+
+	main_menu_x_offset=10px
+	main_menu_y_offset=70px
+else
+	location="south west"
+
+	main_menu_x_offset=10px
+	main_menu_y_offset=-70px
+fi
 
 rofi_theme=${rofi_theme:-black}
 theme_dir="$HOME/.config/rofi/rofi_theme/$rofi_theme"
@@ -49,7 +62,7 @@ choice=$(echo "$window_list" | rofi -x11 -dmenu -i \
 	-selected-row "$selected_row" \
 	-theme "$path_to_theme" \
 	-theme-str "listview {columns: 1; layout: vertical;}" \
-	-theme-str "window {height: ${final_h}px; width: ${final_w}px;}")
+	-theme-str "window {height: ${final_h}px; width: ${final_w}px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 
 [[ -z "$choice" ]] && exit 0
 
