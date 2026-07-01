@@ -5,7 +5,7 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=405px
+main_menu_height=440px
 main_menu_width=320px
 
 bar_top=${bar_top:-false}
@@ -44,8 +44,15 @@ reboot='  Reboot'
 lock='  Lock'
 suspend='󰤄  Suspend'
 logout='󰍃  Log out'
+screensaver="󰷜  Screensaver"
 
-chosen=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -x11 -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Select   " -mesg "$(echo -e "󰥔  Uptime: $uptime\n  Host: $host\n  User: $user")")
+if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+	choice_list="$lock\n$screensaver\n$suspend\n$logout\n$reboot\n$shutdown"
+else
+	choice_list="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
+fi
+
+chosen=$(echo -e "$choice_list" | rofi -x11 -dmenu -i -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Select   " -mesg "$(echo -e "󰥔  Uptime: $uptime\n  Host: $host\n  User: $user")")
 
 case $chosen in
 $shutdown)
@@ -116,5 +123,8 @@ $logout)
 		killall dunst
 		i3-msg 'exit'
 	fi
+	;;
+$screensaver)
+	~/.config/hypr/scripts/hyprland_screensaver.sh
 	;;
 esac
