@@ -2,44 +2,73 @@
 
 #THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
 
-menu_width=585px
-menu_height=490px
+menu_width=615px
+menu_height=555px
 
 source ~/.config/dtf-config/config
 
-bar_top=${bar_top:-false}
+rofi_theme=${rofi_theme:-black}
 
-if [[ $bar_top == "true" ]]; then
-	location="north west"
-
-	main_menu_x_offset=10px
-	main_menu_y_offset=70px
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
 else
-	location="south west"
- 
-	main_menu_x_offset=10px
-	main_menu_y_offset=-70px
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
+
+# bar_top=${bar_top:-false}
+
+# if [[ $bar_top == "true" ]]; then
+# 	location="north west"
+#
+# 	main_menu_x_offset=10px
+# 	main_menu_y_offset=70px
+# else
+# 	location="south west"
+#
+# 	main_menu_x_offset=10px
+# 	main_menu_y_offset=-70px
+# fi
 
 point_icon=" "
 model_text=" Model 󰢹  "
 specs_text=" Specifications   "
 os_text=" Operating System   "
 
-get_os_name=$(echo "$point_icon  : $(grep -E '^(NAME)=' /etc/os-release | sed 's/=//g' | sed 's/\"//g' | sed 's/_/ /g' | sed 's/NAME//g')")
+back="Back 󰌍"
+quit="Exit 󰈆 "
 
-get_os_version=$(echo "$point_icon  : $(grep -E '^(VERSION)=' /etc/os-release | sed 's/=//g' | sed 's/\"//g' | sed 's/_/ /g' | sed 's/VERSION//g')")
+get_os_name=$(echo "$point_icon Distro  : $(grep -E '^(NAME)=' /etc/os-release | sed 's/=//g' | sed 's/\"//g' | sed 's/_/ /g' | sed 's/NAME//g')")
 
-get_os_birth=$(stat / | grep Birth | awk '{print $1$2}' | sed 's/:/: /g' | sed 's/Birth/Installation Date Y\/M\/D/g')
+get_os_version=$(echo "$point_icon Version  : $(grep -E '^(VERSION)=' /etc/os-release | sed 's/=//g' | sed 's/\"//g' | sed 's/_/ /g' | sed 's/VERSION//g')")
 
-get_os_arch=$(echo "$point_icon  : $(arch)")
+os_installation_date=$(stat / | grep Birth | awk '{print $1$2}' | sed 's/:/: /g' | sed 's/Birth/Installation Date Y\/M\/D/g')
+get_os_installation_date=$(echo "$point_icon Installation Date 󰃯 : $os_installation_date" )
 
-get_os_cpu=$(echo "$point_icon  : $(lscpu | grep "Model name" | sed 's/Model name:[ \t]*//')")
+get_os_arch=$(echo "$point_icon CPU Architecture  : $(arch)")
 
-get_os_mem=$(echo "$point_icon 󰘚 : $(free -h | awk '/Mem/ {print $2}' | sed 's/Gi/ GiB/g')")
+get_os_cpu=$(echo "$point_icon CPU  : $(lscpu | grep "Model name" | sed 's/Model name:[ \t]*//')")
 
-get_os_space=$(echo "$point_icon 󰨣 : $(df -h / | awk 'NR==2 {print $2}' | sed 's/G/ GiB/g') (/)")
+get_os_mem=$(echo "$point_icon RAM 󰘚 : $(free -h | awk '/Mem/ {print $2}' | sed 's/Gi/ GiB/g')")
 
-get_model_hw=$(echo "$point_icon $(hostnamectl | grep "Hardware Model" | sed 's/  Hardware Model: //g')")
+get_os_space=$(echo "$point_icon DISK 󰨣 : $(df -h / | awk 'NR==2 {print $2}' | sed 's/G/ GiB/g') (Root partition)")
 
-echo -e "$model_text\n$get_model_hw\n$specs_text\n$get_os_cpu\n$get_os_mem\n$get_os_space\n$get_os_arch\n$os_text\n$get_os_name\n$get_os_version" | rofi -dmenu -p " About 󰟀  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $menu_width; height: $menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" 
+get_model_hw=$(echo "$point_icon Device Model 󰾰 : $(hostnamectl | grep "Hardware Model" | sed 's/  Hardware Model: //g')")
+
+# echo -e "$model_text\n$get_model_hw\n$specs_text\n$get_os_cpu\n$get_os_mem\n$get_os_space\n$get_os_arch\n$os_text\n$get_os_name\n$get_os_version" | rofi -theme $path_to_theme -dmenu -p " About 󰟀  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $menu_width; height: $menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}"
+
+#Display list
+os_info="$os_text\n$get_os_name\n$get_os_version\n$get_os_arch"
+hw_info="$specs_text\n$get_os_cpu\n$get_os_mem\n$get_os_space"
+model_name="$model_text\n$get_model_hw"
+display_list="$model_name\n$os_info\n$hw_info"
+
+choice=$(echo -e "$display_list\n$back\n$quit" | rofi -theme $path_to_theme -dmenu -p " System Information 󰟀  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $menu_width; height: $menu_height;}")
+
+case $choice in
+	$back)
+		~/.config/rofi/modules/rofi-user-settings
+		;;
+	*)
+		exit 0
+		;;
+esac
