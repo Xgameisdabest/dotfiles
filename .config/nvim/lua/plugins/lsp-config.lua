@@ -55,13 +55,11 @@ return {
 							client.config.settings.Lua =
 								vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
 									workspace = { library = { "/usr/share/hypr/stubs" } },
-									diagnostics = { globals = { "hl" } },
 								})
 							client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
 						end
 						return true
 					end
-					config.settings = { Lua = { diagnostics = { globals = { "vim" } } } }
 				end
 
 				-- Inject Zsh support if the server is bashls
