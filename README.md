@@ -247,7 +247,7 @@ bar_dynamic_round_style=false #(OPTIONS: true/false) (Reload required)
 # Exclusive feature to polybar, make the icons show less info, cleaner look
 bar_compact=false #(OPTIONS: true/false) (Reload required)
 
-# Move the bar to the top of the screen, better than some operating system *cough* windows *cough*
+# Move the bar to the top of the screen
 bar_top=false #(OPTIONS: true/false) (Reload required)
 
 # Hide the status bar when open up the fullscreen rofi menu
