@@ -366,9 +366,24 @@ show_menu() {
 		pairable=$(pairable_on)
 		discoverable=$(discoverable_on)
 
-		#options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
 		options="$devices\n$power\n$scan\n$pairable\n$discoverable\n$devices_trusted\n$devices_paired\n$bluetooth_manager\n$quit"
-		chosen="$(echo -e "$options" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme -p " Bluetooth  ")"
+
+		connected_devices=$(bluetoothctl devices Connected | grep Device | cut -d ' ' -f 3- | sed 's/^/ /')
+
+		# long but worked
+		if [[ $connected_devices != "" ]]; then
+			amount_currently_connected=$(echo -e "Device Connected:\n$connected_devices")
+
+			numbers_of_line=$(echo -e "$connected_devices" | wc -l)
+			main_menu_height=505
+			main_menu_height=$((main_menu_height + (numbers_of_line * 25)))
+			main_menu_height="${main_menu_height}px"
+			chosen="$(echo -e "$options" | rofi -x11 -dmenu -mesg "$amount_currently_connected" -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -theme $path_to_theme -p " Bluetooth  ")"
+		else
+			amount_currently_connected=""
+			main_menu_height="${main_menu_height}px"
+			chosen="$(echo -e "$options" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -theme $path_to_theme -p " Bluetooth  ")"
+		fi
 
 		case "$chosen" in
 		"" | "$divider")
