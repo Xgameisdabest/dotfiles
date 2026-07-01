@@ -33,7 +33,7 @@ mainbox {
 }
 
 inputbar {
-    children: [prompt,entry];
+    children: [prompt];
     background-color: @bg-col;
     border-radius: 5px;
     padding: 2px;
