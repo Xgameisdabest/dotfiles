@@ -18,7 +18,7 @@ fi
 
 rofi_theme=${rofi_theme:-black}
 theme_dir="$HOME/.config/rofi/rofi_theme/$rofi_theme"
-path_to_theme="$theme_dir/$rofi_theme.rasi"
+path_to_theme="$theme_dir/$rofi_theme-search.rasi"
 stack_file="/tmp/hide_window_pid_stack.txt"
 
 # Get screen width and currently focused window
@@ -46,7 +46,7 @@ final_h=$((calc_h > max_h ? max_h : calc_h))
 
 # Calculate dynamic width (Target: 10.5px per char, Max: 2/3 screen)
 max_chars=$(echo "$window_list" | wc -L)
-min_w=400
+min_w=500
 read -r max_w calc_w <<<"$(awk -v sw="$screen_width" -v mc="$max_chars" 'BEGIN { printf "%.0f %.0f", (sw*2/3), (mc*10.5)+80 }')"
 
 # Clamp width between min and max limits
