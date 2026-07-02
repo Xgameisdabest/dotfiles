@@ -329,7 +329,7 @@ device_menu() {
 	trusted=$(device_trusted "$mac")
 	options="$connected\n$paired\n$trusted\n$goback\n$quit"
 
-	chosen="$(echo -e "$options" | $rofi_command " $device_name 󰾰  " -theme-str "window {height: 390; width: 350px; location: $location; x-offset: $device_menu_x_offset; y-offset: $device_menu_y_offset;}")"
+	chosen="$(echo -e "$options" | $rofi_command_non_search " $device_name 󰾰  " -theme-str "window {height: 390; width: 350px; location: $location; x-offset: $device_menu_x_offset; y-offset: $device_menu_y_offset;}")"
 
 	case "$chosen" in
 	"" | "$divider")
@@ -415,11 +415,6 @@ show_menu() {
 		"$pairable")
 			toggle_pairable
 			;;
-		*)
-			device=$(bluetoothctl devices | grep "$chosen")
-			# Open a submenu if a device is selected
-			if [[ $device ]]; then device_menu "$device"; fi
-			;;
 		esac
 
 	else
@@ -440,6 +435,7 @@ show_menu() {
 }
 
 rofi_command="rofi -x11 -dmenu -i -theme $path_to_theme_search -p "
+rofi_command_non_search="rofi -x11 -dmenu -i -theme $path_to_theme -p "
 
 case "$1" in
 --status)
