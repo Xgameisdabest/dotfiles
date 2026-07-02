@@ -257,7 +257,10 @@ device_list() {
 		;;
 	*)
 		dev_list_addr=$(bluetoothctl devices | grep "$select")
-		if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+		if [[ $dev_list ]]; then
+			device_list_entered=true
+			device_menu "$dev_list_addr"
+		fi
 		;;
 	esac
 }
@@ -283,7 +286,10 @@ device_list_trusted() {
 		;;
 	*)
 		dev_list_addr=$(bluetoothctl devices | grep "$select")
-		if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+		if [[ $dev_list ]]; then
+			device_list_trusted_entered=true
+			device_menu "$dev_list_addr"
+		fi
 		;;
 	esac
 }
@@ -309,7 +315,10 @@ device_list_paired() {
 		;;
 	*)
 		dev_list_addr=$(bluetoothctl devices | grep "$select")
-		if [[ $dev_list ]]; then device_menu "$dev_list_addr"; fi
+		if [[ $dev_list ]]; then
+			device_list_paired_entered=true
+			device_menu "$dev_list_addr"
+		fi
 		;;
 	esac
 }
@@ -345,7 +354,16 @@ device_menu() {
 		toggle_trust "$mac"
 		;;
 	"$goback")
-		device_list
+		if [[ $device_list_entered == true ]]; then
+			device_list_entered=false
+			device_list
+		elif [[ $device_list_paired_entered == true ]]; then
+			device_list_paired_entered=false
+			device_list_paired
+		elif [[ $device_list_trusted_entered == true ]]; then
+			device_list_trusted_entered=false
+			device_list_trusted
+		fi
 		;;
 	esac
 }
