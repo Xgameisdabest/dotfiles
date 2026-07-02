@@ -174,17 +174,41 @@ toggle_connection() {
 
 		# The magic line that solves everything
 		bluetoothctl pairable on
+		sleep 0.5
 
-		# Pair the device if not already paired
-		bluetoothctl pair "$1"
-		notify-send "Paired With Device $device_name"
-
-		# Trust the device if not already trusted
-		bluetoothctl trust "$1"
-		notify-send "Trusted Device $device_name"
-
-		# Connect to the device
-		bluetoothctl connect "$1"
+		# Use expect to handle the interactive pairing and authorization
+		expect <<EOF
+            set timeout 10
+            spawn bluetoothctl
+            
+            # Trust the device first to elevate its permissions
+            send "trust $1\r"
+            expect "Changing trust succeeded"
+            
+            # Send the pair command
+            send "pair $1\r"
+            
+            # Handle the specific agent authorization prompt
+            expect {
+                "Accept pairing (yes/no):" {
+                    send "yes\r"
+                    exp_continue
+                }
+                "Pairing successful" {
+                    # Move on once paired
+                }
+                timeout {
+                    exit 1
+                }
+            }
+            
+            # Finally, connect
+            send "connect $1\r"
+            expect "Connection successful"
+            
+            send "quit\r"
+            expect eof
+EOF
 
 		sleep 1
 		if bluetoothctl info "$1" | grep -q "Connected: yes"; then
