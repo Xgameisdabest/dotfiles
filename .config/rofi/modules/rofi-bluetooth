@@ -5,7 +5,7 @@
 #THIS SCRIPT WAS MODIFIED BY ME (Xgameisdabest, aka xytozine)
 
 #when add new entry make sure to add 35 to height
-main_menu_height=440px
+main_menu_height=440
 main_menu_height_off=175px
 main_menu_width=350px
 
