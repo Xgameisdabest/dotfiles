@@ -65,7 +65,7 @@ goback="Back 󰌍 "
 quit="Exit 󰈆 "
 
 power_on() {
-	if bluetoothctl show | grep -q "Powered: yes"; then
+	if bluetoothctl show | grep "Powered: yes"; then
 		return 0
 	else
 		return 1
@@ -77,7 +77,7 @@ toggle_power() {
 		bluetoothctl power off
 		show_menu
 	else
-		if rfkill list bluetooth | grep -q 'blocked: yes'; then
+		if rfkill list bluetooth | grep 'blocked: yes'; then
 			rfkill unblock bluetooth && sleep 3
 		fi
 		bluetoothctl power on
@@ -86,7 +86,7 @@ toggle_power() {
 }
 
 scan_on() {
-	if bluetoothctl show | grep -q "Discovering: yes"; then
+	if bluetoothctl show | grep "Discovering: yes"; then
 		echo "  Scan: Toggle"
 		return 0
 	else
@@ -109,7 +109,7 @@ toggle_scan() {
 }
 
 pairable_on() {
-	if bluetoothctl show | grep -q "Pairable: yes"; then
+	if bluetoothctl show | grep "Pairable: yes"; then
 		echo "󰌘  Pairable: On"
 		return 0
 	else
@@ -129,7 +129,7 @@ toggle_pairable() {
 }
 
 discoverable_on() {
-	if bluetoothctl show | grep -q "Discoverable: yes"; then
+	if bluetoothctl show | grep "Discoverable: yes"; then
 		echo "󰐻  Discoverable: On"
 		return 0
 	else
@@ -150,7 +150,7 @@ toggle_discoverable() {
 
 device_connected() {
 	device_info=$(bluetoothctl info "$1")
-	if echo "$device_info" | grep -q "Connected: yes"; then
+	if echo "$device_info" | grep "Connected: yes"; then
 		return 0
 	else
 		return 1
@@ -185,7 +185,7 @@ toggle_connection() {
 
 		# Connect to the device
 		bluetoothctl connect "$1"
-		if bluetoothctl info "$1" | grep -q "Connected: yes"; then
+		if bluetoothctl info "$1" | grep "Connected: yes"; then
 			notify-send "Successfully Connected To Device $device_name"
 			device_menu "$device"
 		else
@@ -196,7 +196,7 @@ toggle_connection() {
 }
 device_paired() {
 	device_info=$(bluetoothctl info "$1")
-	if echo "$device_info" | grep -q "Paired: yes"; then
+	if echo "$device_info" | grep "Paired: yes"; then
 		echo "󰌘  Paired: Yes"
 		return 0
 	else
@@ -217,7 +217,7 @@ toggle_paired() {
 
 device_trusted() {
 	device_info=$(bluetoothctl info "$1")
-	if echo "$device_info" | grep -q "Trusted: yes"; then
+	if echo "$device_info" | grep "Trusted: yes"; then
 		echo "  Trusted: Yes"
 		return 0
 	else
