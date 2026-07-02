@@ -161,7 +161,6 @@ toggle_connection() {
 	# Ensure the agent is active and automatically accepts requests
 	bluetoothctl default-agent
 	bluetoothctl agent on
-
 	if device_connected "$1"; then
 		# If already connected, disconnect it
 		notify-send "Cancelling Connection With Device $device_name"
@@ -172,12 +171,15 @@ toggle_connection() {
 		# If not connected, connect and ensure the device is paired and trusted
 		notify-send "Establishing Connection With Device $device_name"
 
-		# The magic line that solves everything
-		bluetoothctl pairable on
-		sleep 0.5
-
-		# Use expect to handle the interactive pairing and authorization
-		expect <<EOF
+		if device_paired "$1" || device_trusted "$1"; then
+			# Already paired or trusted (or both) — skip the pairing dance entirely
+			bluetoothctl connect "$1"
+		else
+			# The magic line that solves everything
+			bluetoothctl pairable on
+			sleep 0.5
+			# Use expect to handle the interactive pairing and authorization
+			expect <<EOF
             set timeout 10
             spawn bluetoothctl
             
@@ -209,9 +211,11 @@ toggle_connection() {
             send "quit\r"
             expect eof
 EOF
+		fi
 
-		sleep 1
-		if bluetoothctl info "$1" | grep -q "Connected: yes"; then
+		sleep 5
+		device_info=$(bluetoothctl info "$1")
+		if echo "$device_info" | grep -q "Connected: yes"; then
 			notify-send "Successfully Connected To Device $device_name"
 			device_menu "$device"
 		else
@@ -220,6 +224,7 @@ EOF
 		fi
 	fi
 }
+
 device_paired() {
 	device_info=$(bluetoothctl info "$1")
 	if echo "$device_info" | grep -q "Paired: yes"; then
