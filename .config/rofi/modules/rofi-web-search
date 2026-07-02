@@ -13,7 +13,8 @@ else
 	path_to_theme_search="~/.config/rofi/rofi_theme/black/black-search.rasi"
 fi
 
-web="  Web Search (Brave)  "
+# web="  Web Search (Brave)  "
+web="  Web Search (Google)  "
 yt="  Youtube  "
 github="  Github  "
 ai="  Ai  "
@@ -26,7 +27,8 @@ quit="Exit 󰈆 "
 
 web() {
 	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Search   ")
-	search_engine="https://search.brave.com/search?q="
+	# search_engine="https://search.brave.com/search?q="
+	search_engine="https://www.google.com/search?q="
 	main() {
 		if [[ -n "$search" ]]; then
 			url="$search_engine$search"
